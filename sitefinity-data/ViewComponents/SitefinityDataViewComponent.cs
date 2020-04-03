@@ -23,7 +23,7 @@ namespace sitefinity_data.ViewComponents
         /// </summary>
         /// <param name="httpClientFactory">The HTTP client factory.</param>
         /// <param name="requestContext">The request context holding context vairables for the current user, culture, site etc...</param>
-        public SitefinityDataViewComponent(IHttpClientFactory httpClientFactory, IRequestContext context)
+        public SitefinityDataViewComponent(IHttpClientFactory httpClientFactory, IRequestContext requestContext)
         {
             this.httpClientFactory = httpClientFactory;
             this.requestContest = context;
@@ -38,6 +38,7 @@ namespace sitefinity_data.ViewComponents
         {
             var client = this.httpClientFactory.CreateClient(Constants.HttpClients.ODataHttpClientName);
 
+            // when using the OData client, the url is automatically prefixed with the value of web the service and the sitefinity instance url
             var newsItemsResponseMessage = await client.GetAsync($"newsitems?sf_site={this.requestContest.SiteId}&sf_culture={this.requestContest.Culture}").ConfigureAwait(true);
             newsItemsResponseMessage.EnsureSuccessStatusCode();
 
