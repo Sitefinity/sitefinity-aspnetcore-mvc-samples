@@ -26,7 +26,7 @@ namespace sitefinity_data.ViewComponents
         public SitefinityDataViewComponent(IHttpClientFactory httpClientFactory, IRequestContext requestContext)
         {
             this.httpClientFactory = httpClientFactory;
-            this.requestContest = context;
+            this.requestContest = requestContext;
         }
 
         /// <summary>
