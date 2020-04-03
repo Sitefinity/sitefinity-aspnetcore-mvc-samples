@@ -39,7 +39,8 @@ namespace sitefinity_data.ViewComponents
             var client = this.httpClientFactory.CreateClient(Constants.HttpClients.ODataHttpClientName);
 
             // when using the OData client, the url is automatically prefixed with the value of web the service and the sitefinity instance url
-            var newsItemsResponseMessage = await client.GetAsync($"newsitems?sf_site={this.requestContest.SiteId}&sf_culture={this.requestContest.Culture}").ConfigureAwait(true);
+            // we use an expand the get the related image
+            var newsItemsResponseMessage = await client.GetAsync($"newsitems?$expand=Thumbnail&sf_site={this.requestContest.SiteId}&sf_culture={this.requestContest.Culture}").ConfigureAwait(true);
             newsItemsResponseMessage.EnsureSuccessStatusCode();
 
             var responseJson = await newsItemsResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
