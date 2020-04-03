@@ -1,0 +1,12 @@
+@using sitefinity_data.ViewModels
+@model NewsViewModel[]
+
+<h1>News items</h1>
+<ul>
+    @foreach (var item in this.Model)
+    {
+        <li>
+            @item.Title
+        </li>   
+    }
+</ul>
