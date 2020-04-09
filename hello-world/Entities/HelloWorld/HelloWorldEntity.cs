@@ -1,9 +1,9 @@
-namespace hello_world.Models.HelloWorld
+namespace hello_world.Entities.HelloWorld
 {
     /// <summary>
     /// The test model for the load tests widget.
     /// </summary>
-    public class HelloWorldModel
+    public class HelloWorldEntity
     {
         /// <summary>
         /// Gets or sets a value indicating whether a boolean property is true or false.

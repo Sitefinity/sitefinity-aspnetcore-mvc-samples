@@ -1,6 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
-using hello_world.Models.HelloWorld;
+using hello_world.Entities.HelloWorld;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 
 namespace hello_world.ViewComponents
@@ -16,7 +16,7 @@ namespace hello_world.ViewComponents
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public IViewComponentResult Invoke(IViewComponentContext<HelloWorldModel> context)
+        public IViewComponentResult Invoke(IViewComponentContext<HelloWorldEntity> context)
         {
             if (context == null)
             {
