@@ -1,32 +1,25 @@
-using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
-using Progress.Sitefinity.AspNetCore.Web;
-using sitefinity_data.ViewModels;
+using sitefinity_data.Models.SitefinityData;
 
 namespace sitefinity_data.ViewComponents
 {
     /// <summary>
-    /// The view component for load tests.
+    /// The view component for accessing Sitefinity data.
     /// </summary>
     [SitefinityWidget]
     public class SitefinityDataViewComponent : ViewComponent
     {
-        private IHttpClientFactory httpClientFactory;
-        private IRequestContext requestContest;
+        private ISitefinityDataModel model;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SitefinityDataViewComponent"/> class.
         /// </summary>
-        /// <param name="httpClientFactory">The HTTP client factory.</param>
-        /// <param name="requestContext">The request context holding context vairables for the current user, culture, site etc...</param>
-        public SitefinityDataViewComponent(IHttpClientFactory httpClientFactory, IRequestContext requestContext)
+        /// <param name="model">The model.</param>
+        public SitefinityDataViewComponent(ISitefinityDataModel model)
         {
-            this.httpClientFactory = httpClientFactory;
-            this.requestContest = requestContext;
+            this.model = model;
         }
 
         /// <summary>
@@ -34,19 +27,9 @@ namespace sitefinity_data.ViewComponents
         /// </summary>
         /// <param name="context">The view component context.</param>
         /// <returns>The view component result.</returns>
-        public async Task<IViewComponentResult> InvokeAsync(IViewComponentContext context)
+        public async Task<IViewComponentResult> InvokeAsync(IViewComponentContext<SitefinityDataEntity> context)
         {
-            var client = this.httpClientFactory.CreateClient(Constants.HttpClients.ODataHttpClientName);
-
-            // when using the OData client, the url is automatically prefixed with the value of web the service and the sitefinity instance url
-            // we use an expand the get the related image
-            var newsItemsResponseMessage = await client.GetAsync($"newsitems?$expand=Thumbnail&sf_site={this.requestContest.SiteId}&sf_culture={this.requestContest.Culture}").ConfigureAwait(true);
-            newsItemsResponseMessage.EnsureSuccessStatusCode();
-
-            var responseJson = await newsItemsResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var itemsArray = JObject.Parse(responseJson)["value"] as JArray;
-            var items = itemsArray.ToObject<NewsViewModel[]>();
-
+            var items = await this.model.GetViewModels(context.Entity);
             return this.View(items);
         }
     }
