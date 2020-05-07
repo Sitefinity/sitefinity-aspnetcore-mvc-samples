@@ -1,0 +1,16 @@
+@using sitefinity_data.ViewModels
+@model NewsViewModel[]
+
+<h1>News items</h1>
+<ul>
+    @foreach (var item in this.Model)
+    {
+        <li>
+            @item.Title
+            @if (item.Thumbnail != null)
+            {
+                <img src="@item.Thumbnail.ThumbnailUrl" />
+            }
+        </li>   
+    }
+</ul>
