@@ -9,10 +9,11 @@ namespace custom_section.Entities.StaticSection
         public ViewType ViewType { get; set; }
     }
 
-    public enum ViewType
+     public enum ViewType
     {
-        One,
-        Two,
-        Three
+        Container,
+        ContainerFluid,
+        TwoMixed,
+        ThreeAutoLayout
     }
 }

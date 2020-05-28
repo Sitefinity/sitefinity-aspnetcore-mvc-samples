@@ -15,13 +15,15 @@ namespace custom_section.ViewComponents
 
             switch (context.Entity.ViewType)
             {
-                case ViewType.One:
+                case ViewType.Container:
                 default:
-                    return this.View("One", context);
-                case ViewType.Two:
-                    return this.View("Two", context);
-                case ViewType.Three:
-                    return this.View("Three", context);
+                    return this.View("Container", context);
+                case ViewType.ContainerFluid:
+                    return this.View("ContainerFluid", context);
+                case ViewType.TwoMixed:
+                    return this.View("TwoMixed", context);
+                case ViewType.ThreeAutoLayout:
+                    return this.View("ThreeAutoLayout", context);
             }
         }
     }
