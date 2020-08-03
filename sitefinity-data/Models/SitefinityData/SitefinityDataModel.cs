@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Net.Http.Headers;
 using Progress.Sitefinity.AspNetCore.SitefinityApi;
+using Progress.Sitefinity.AspNetCore.SitefinityApi.Filters;
 using sitefinity_data.Dto;
 using sitefinity_data.ViewModels;
 
@@ -13,13 +14,13 @@ namespace sitefinity_data.Models.SitefinityData
     /// </summary>
     public class SitefinityDataModel : ISitefinityDataModel
     {
-        private IRestService service;
+        private IRestClient service;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SitefinityDataViewComponent"/> class.
         /// </summary>
         /// <param name="service">The rest service.</param>
-        public SitefinityDataModel(IRestService service)
+        public SitefinityDataModel(IRestClient service)
         {
             this.service = service;
         }
@@ -30,7 +31,7 @@ namespace sitefinity_data.Models.SitefinityData
         /// </summary>
         /// <param name="entity">The entity object.</param>
         /// <returns>The generated view models.</returns>
-        public async Task<IList<NewsViewModel>> GetViewModels(SitefinityDataEntity entity)
+        public async Task<IList<Item>> GetViewModels(SitefinityDataEntity entity)
         {
             // when using the OData client, the url is automatically prefixed with the value of web the service and the sitefinity instance url
             // we use an expand the get the related image
@@ -231,7 +232,7 @@ namespace sitefinity_data.Models.SitefinityData
 
             await this.service.DeleteItem(deleteArgs);
 
-            return this.View(response.Items);
+            return response.Items;
         }
     }
 }

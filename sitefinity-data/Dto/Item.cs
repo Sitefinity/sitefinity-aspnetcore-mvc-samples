@@ -65,6 +65,11 @@ namespace sitefinity_data.Dto
         ThirdChoice = 0x04
     }
 
+
+    /// <summary>
+    /// The image view model.
+    /// </summary>
+
     public class Image
     {
         /// <summary>

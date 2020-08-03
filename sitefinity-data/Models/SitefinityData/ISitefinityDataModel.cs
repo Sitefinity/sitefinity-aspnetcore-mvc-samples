@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using sitefinity_data.Dto;
 using sitefinity_data.ViewModels;
 
 namespace sitefinity_data.Models.SitefinityData
@@ -14,6 +15,6 @@ namespace sitefinity_data.Models.SitefinityData
         /// </summary>
         /// <param name="entity">The entity object.</param>
         /// <returns>The generated view models.</returns>
-        Task<IList<NewsViewModel>> GetViewModels(SitefinityDataEntity entity);
+        Task<IList<Item>> GetViewModels(SitefinityDataEntity entity);
     }
 }

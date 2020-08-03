@@ -1,3 +1,5 @@
+using sitefinity_data.Dto;
+
 namespace sitefinity_data.ViewModels
 {
     /// <summary>
@@ -14,17 +16,5 @@ namespace sitefinity_data.ViewModels
         /// Gets or sets the thumbnail.
         /// </summary>
         public Image Thumbnail { get; set; }
-    }
-
-    /// <summary>
-    /// The image view model.
-    /// </summary>
-
-    public class Image
-    {
-        /// <summary>
-        /// Gets or sets the thumbnail url.
-        /// </summary>
-        public string ThumbnailUrl { get; set; }
     }
 }
