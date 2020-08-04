@@ -44,15 +44,14 @@ namespace sitefinity_data.Models.SitefinityData
 
             // optional parameter, specifies the fields to be returned, if not specified
             // the default service response fields will be returned
+            getAllArgs.Fields.Add("Title");
+
             // "*" returns all the fields, even those that are available when requesting a single item only
-            getAllArgs.SimpleFields.Add("*");
+            // getAllArgs.Fields.Add("*");
 
-            // returns only Title
-            // args.SimpleFields.Add("Title");
-
-            // optional parameter, specifies the related fields to be included in the response (like related data or parent relationships)
+            // specifies the related fields to be included in the response (like related data or parent relationships)
             if (!entity.HideImage)
-                getAllArgs.RelatedFields.Add("RelatedMediaSingle");
+                getAllArgs.Fields.Add("RelatedMediaSingle");
 
             // optional parameter, specifies the maximum items to be returned
             getAllArgs.Take = 20;
@@ -176,7 +175,7 @@ namespace sitefinity_data.Models.SitefinityData
 
             // reference to documentation on how to retrieve bearer tokens
             // https://www.progress.com/documentation/sitefinity-cms/request-access-token-for-calling-web-services
-            var token = "Bearer ..";
+            var token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSIsImtpZCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSJ9.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo1MDAxL1NpdGVmaW5pdHkvQXV0aGVudGljYXRlL09wZW5JRCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjUwMDEvU2l0ZWZpbml0eS9BdXRoZW50aWNhdGUvT3BlbklEL3Jlc291cmNlcyIsImV4cCI6MTU5NjUzMjY5MSwibmJmIjoxNTk2NTI5MDkxLCJjbGllbnRfaWQiOiJpcmlzIiwic2NvcGUiOiJvcGVuaWQiLCJzdWIiOiJEZWZhdWx0fGNjNjRiMDZiLTExOTYtNDRiNS05OTg3LTM1MWIwNzU0NjY1ZSIsImF1dGhfdGltZSI6MTU5NjUyOTA5MSwiaWRwIjoiaWRzcnYiLCJhbXIiOlsicGFzc3dvcmQiXX0.Y0VNEzhxlDA9vftHbdVccIshkAUtZ34klfvh-0oIhunMxKf3_03XXjezkPOh9uHjasGwH-Mv358yHbSaSRmByv4ioxYYDL2yDbA0fAouJf6gfUBdviT8K8qInzqTz5skhXx9KXGnBEIzVmHKRoRHYVWQ4KdbRYJuEGZNHG4QlhG2-LlSAyZstKGAvle9ogZsqctBNqsNjmAnIhe8jNnjhqql5Kc3Qrk18gZeiQIX2TEsi5pjQTGDQO77IGi3NjXtAptMyrL6TUEpCc9eQQlLOJf-O2Vv0E1T2lEvstKRwjUAYey6wyOok6zcn7-wv3iWkE2-SyoO9EWqi9YrIRdr8Q";
             createItemArgs.AdditionalHeaders.Add(HeaderNames.Authorization, token);
 
             var createResponse = await this.service.CreateItem<Item>(createItemArgs);
