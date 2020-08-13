@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>change_grid_system</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.0.7300" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="13.0.7300" />
+  </ItemGroup>
+
+</Project>
