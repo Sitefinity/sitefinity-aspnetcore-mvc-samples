@@ -25,7 +25,7 @@ namespace change_grid_system.TagHelpers
         /// <summary>
         /// Gets or sets the number of grid columns per row column.
         /// </summary>
-        public string NumberPerColumn { get; set; }
+        public string CssColsPerRowCol  { get; set; }
 
         /// <summary>
         /// Processes the output.
@@ -37,7 +37,7 @@ namespace change_grid_system.TagHelpers
             if (output != null)
             {
                 output.Attributes.RemoveAll("columnClass");
-                var cls = string.Concat(this.AdditionalClass, " w-", this.NumberPerColumn, "/", this.GridSize);
+                var cls = string.Concat(this.AdditionalClass, " w-", this.CssColsPerRowCol , "/", this.GridSize);
                 output.Attributes.SetAttribute("class", cls);
             }
         }
