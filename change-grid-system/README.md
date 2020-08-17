@@ -26,7 +26,7 @@ In it we build the tailwind classes using a custom Tag helper.
 The tag helper has 3 properties:
 * GridSize (the number of grid columns in the system - 12 for example)
 * AddtionalClass (all additional classes, set to the column, for example from the property editor's advanced view)
-* NumberPerColumn (number of grid coluimns per row column) which we'll pass through the section template. 
+* CssColsPerRowCol  (number of grid coluimns per row column) which we'll pass through the section template. 
 
 We pass those as attributes of the div element that represend the column wrapper.
 
