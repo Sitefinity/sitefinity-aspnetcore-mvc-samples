@@ -1,8 +1,10 @@
-using System.Net.Http;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using Progress.Sitefinity.AspNetCore;
-using Progress.Sitefinity.AspNetCore.Web;
+using Microsoft.Net.Http.Headers;
+using Progress.Sitefinity.AspNetCore.SitefinityApi;
+using Progress.Sitefinity.AspNetCore.SitefinityApi.Filters;
+using sitefinity_data.Dto;
 using sitefinity_data.ViewModels;
 
 namespace sitefinity_data.Models.SitefinityData
@@ -12,18 +14,15 @@ namespace sitefinity_data.Models.SitefinityData
     /// </summary>
     public class SitefinityDataModel : ISitefinityDataModel
     {
-        private IHttpClientFactory httpClientFactory;
-        private IRequestContext requestContest;
+        private IRestClient service;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SitefinityDataViewComponent"/> class.
         /// </summary>
-        /// <param name="httpClientFactory">The HTTP client factory.</param>
-        /// <param name="requestContext">The request context holding context vairables for the current user, culture, site etc...</param>
-        public SitefinityDataModel(IHttpClientFactory httpClientFactory, IRequestContext requestContext)
+        /// <param name="service">The rest service.</param>
+        public SitefinityDataModel(IRestClient service)
         {
-            this.httpClientFactory = httpClientFactory;
-            this.requestContest = requestContext;
+            this.service = service;
         }
 
 
@@ -32,25 +31,207 @@ namespace sitefinity_data.Models.SitefinityData
         /// </summary>
         /// <param name="entity">The entity object.</param>
         /// <returns>The generated view models.</returns>
-        public async Task<NewsViewModel[]> GetViewModels(SitefinityDataEntity entity)
+        public async Task<IList<Item>> GetViewModels(SitefinityDataEntity entity)
         {
-            var client = this.httpClientFactory.CreateClient(Constants.HttpClients.ODataHttpClientName);
-
             // when using the OData client, the url is automatically prefixed with the value of web the service and the sitefinity instance url
             // we use an expand the get the related image
 
-            var url = $"newsitems?sf_site={this.requestContest.SiteId}&sf_culture={this.requestContest.Culture}";
+            var getAllArgs = new GetAllArgs
+            {
+                // required parameter, specifies the items to work with
+                Type = "pressreleases"
+            };
+
+            // optional parameter, specifies the fields to be returned, if not specified
+            // the default service response fields will be returned
+            getAllArgs.Fields.Add("Title");
+
+            // "*" returns all the fields, even those that are available when requesting a single item only
+            // getAllArgs.Fields.Add("*");
+
+            // specifies the related fields to be included in the response (like related data or parent relationships)
             if (!entity.HideImage)
-                url += "&$expand=Thumbnail";
-            
-            var newsItemsResponseMessage = await client.GetAsync(url).ConfigureAwait(true);
-            newsItemsResponseMessage.EnsureSuccessStatusCode();
+                getAllArgs.Fields.Add("RelatedMediaSingle");
 
-            var responseJson = await newsItemsResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-            var itemsArray = JObject.Parse(responseJson)["value"] as JArray;
-            var items = itemsArray.ToObject<NewsViewModel[]>();
+            // optional parameter, specifies the maximum items to be returned
+            getAllArgs.Take = 20;
 
-            return items;
+            // optional parameter, specifies the items to be skipped
+            getAllArgs.Skip = 0;
+
+            // optional paramteter, specifies an ordering clause
+            getAllArgs.OrderBy.Add(new OrderBy()
+            {
+                Name = "Title",
+                Type = OrderType.Ascending
+            });
+
+            // optional parameter, specifies if the total count of the items should be returned
+            getAllArgs.Count = true;
+
+            // optional parameter, if nothing is specified, the default for the site will be used
+            getAllArgs.Provider = "OpenAccessProvider";
+
+            getAllArgs.Filter = new FilterClause()
+            {
+                FieldName = "Title",
+                FieldValue = "test",
+                Operator = FilterClause.Operators.Equal
+            };
+
+            getAllArgs.Filter = new FilterClause()
+            {
+                FieldName = "Title",
+                FieldValue = "test",
+                Operator = FilterClause.Operators.Equal
+            };
+
+            var filterTitle = new FilterClause()
+            {
+                FieldName = "Title",
+                FieldValue = "test",
+                Operator = FilterClause.Operators.Equal,
+            };
+
+            var filterTitle2 = new FilterClause()
+            {
+                FieldName = "Title",
+                FieldValue = "test",
+                Operator = FilterClause.Operators.NotEqual,
+            };
+
+            var filterTitle3 = new FilterClause()
+            {
+                FieldName = "Title",
+                FieldValue = "test",
+                Operator = FilterClause.StringOperators.StartsWith,
+            };
+
+            var filterTitle4 = new FilterClause()
+            {
+                FieldName = "Title",
+                FieldValue = "test",
+                Operator = FilterClause.StringOperators.EndsWith,
+            };
+
+            var filtersByTitle = new CombinedFilter()
+            {
+                Operator = CombinedFilter.LogicalOperators.Or,
+                ChildFilters = new FilterClause[] { filterTitle, filterTitle2 },
+            };
+
+            var filtersByTitleWithStringOperators = new CombinedFilter()
+            {
+                Operator = CombinedFilter.LogicalOperators.Or,
+                ChildFilters = new FilterClause[] { filterTitle3, filterTitle4 },
+            };
+
+            var multipleFiltersCombined = new CombinedFilter
+            {
+                Operator = CombinedFilter.LogicalOperators.And,
+                ChildFilters = new CombinedFilter[] { filtersByTitle, filtersByTitleWithStringOperators },
+            };
+
+            getAllArgs.Filter = multipleFiltersCombined;
+
+            // The generic parameter here is a plain DTO for a one to one relationship with the model on the server
+            // It contains a representation for every kind of field that is currently supported by the system
+
+            var response = await this.service.GetItems<Item>(getAllArgs).ConfigureAwait(true);
+
+            // in order to execute /create/read/update operations a token must be acquired from the web server
+            var createItemArgs = new CreateArgs()
+            {
+                // required parameter, specifies the items to work with
+                Type = "pressreleases",
+
+                // required parameter, specifies the data to be passed to the server
+                Data = new Item()
+                {
+                    Title = "Test",
+                    DateAndTime = DateTime.UtcNow,
+                    Number = 123456,
+                    ChoicesSingle = SingleChoice.FirstChoice,
+                    ChociesMultiple = MultipleChoice.FirstChoice | MultipleChoice.SecondChoice,
+                    LongText = "LongText",
+                    ShortText = "ShortText",
+                    ArrayOfGuids = new [] { Guid.NewGuid() },
+                    GUIDField = Guid.NewGuid(),
+                    MetaTitle = "Test",
+                    MetaDescription = "Test",
+                    OpenGraphDescription = "Test",
+                    OpenGraphTitle = "Test",
+                    Tags = new [] { Guid.NewGuid() },
+                    UrlName = "test" + Guid.NewGuid().ToString(),
+                    YesNo = true,
+                    
+                    // related, properties are added through relation request
+                    // RelatedMediaSingle
+                },
+
+                // optional parameter, if nothing is specified, the default for the site will be used
+                Provider = "OpenAccessProvider"
+            };
+
+            // reference to documentation on how to retrieve bearer tokens
+            // https://www.progress.com/documentation/sitefinity-cms/request-access-token-for-calling-web-services
+            var token = "Bearer ...";
+            createItemArgs.AdditionalHeaders.Add(HeaderNames.Authorization, token);
+
+            var createResponse = await this.service.CreateItem<Item>(createItemArgs);
+
+            var getSingleArgs = new GetItemArgs()
+            {
+                // required parameter, specifies the id of the item to update
+                Id = createResponse.Id.ToString(),
+
+                // required parameter, specifies the items to work with
+                Type = "pressreleases",
+
+                // optional parameter, if nothing is specified, the default for the site will be used
+                Provider = "OpenAccessProvider"
+            };
+
+            var getSingleResponse = await this.service.GetItem<Item>(getSingleArgs);
+
+            var updateArgs = new UpdateArgs()
+            {
+                // required parameter, specifies the id of the item to update
+                Id = getSingleResponse.Id.ToString(),
+
+                // required parameter, specifies the items to work with
+                Type = "pressreleases",
+
+                // required parameter, specifies the data to be passed to the server
+                Data = new Item()
+                {
+                    Title = "updated title",
+                },
+
+                // optional parameter, if nothing is specified, the default for the site will be used
+                Provider = "OpenAccessProvider"
+            };
+            updateArgs.AdditionalHeaders.Add(HeaderNames.Authorization, token);
+
+            await this.service.UpdateItem(updateArgs);
+
+            var deleteArgs = new DeleteArgs()
+            {
+                // required parameter, specifies the id of the item to update
+                Id = getSingleResponse.Id.ToString(),
+
+                // required parameter, specifies the items to work with
+                Type = "pressreleases",
+
+                // optional parameter, if nothing is specified, the default for the site will be used
+                Provider = "OpenAccessProvider"
+            };
+
+            deleteArgs.AdditionalHeaders.Add(HeaderNames.Authorization, token);
+
+            await this.service.DeleteItem(deleteArgs);
+
+            return response.Items;
         }
     }
 }

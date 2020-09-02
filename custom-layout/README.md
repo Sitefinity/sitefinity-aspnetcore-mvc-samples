@@ -9,7 +9,9 @@ As of this moment template inheritance is not available for templates, created w
 
 You can create a new layout file inside your .Net Core project under the folders /Views/Shared. The new file must contain the words “Layout” or “Template” in its name. 
 
-The layout files are integrated in the backend UI of Sitefinity and you can choose between them when you create new page. To do this go to Sitefinity backend -> Pages-> Create a page, enter page title and click “Continue”. Your layout files will be available in the lower part of the template selector under the section “External .NET core renderer”  
+The layout files are integrated in the backend UI of Sitefinity and you can choose between them when you create new page. To do this go to Sitefinity backend -> Pages-> Create a page, enter page title and click “Continue”. Your layout files will be available in the lower part of the template selector under the section “External .NET core renderer”
+
+To define your own custom sections, you can decorate several html tags (div, header, footer, aside, section, main, body) with the data-sfcontainer="your_placeholder_name" attribute, which will enable users to drop into different placeholders from scratch
 
 Note: every layout file must have a defined section named Scripts. 
 

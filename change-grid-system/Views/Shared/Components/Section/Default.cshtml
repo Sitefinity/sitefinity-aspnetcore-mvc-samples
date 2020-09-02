@@ -1,0 +1,19 @@
+﻿@model Progress.Sitefinity.AspNetCore.Widgets.Models.Section.SectionViewModel;
+
+
+<section style="@this.Model.SectionStyle" class="flex @this.Model.SectionClasses">
+    @if (this.Model.ShowVideo && this.Model.VideoUrl != null)
+    {
+        <div class="sc-video__wrapper">
+            <video class="sc-video__element" autoplay muted loop>
+                <source src="@this.Model.VideoUrl">
+            </video>
+        </div>
+
+    }
+    @for (var i = 0; i < this.Model.ColumnsCount; i++)
+    {
+        <div style="@this.Model.ColumnStyles[i]" columnClass grid-size="@this.Model.CssGridSystemColumnCount " css-cols-per-row-col="@this.Model.ColumnProportions[i]" additional-class="@this.Model.ColumnsClasses[i]" data-sf-container container-context="@this.Model.Context.ContainerContext(this.Model.ColumnNames[i], this.Model.ColumnTitles[i])">
+        </div>
+    }
+</section>

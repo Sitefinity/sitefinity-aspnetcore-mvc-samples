@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>hello_world</RootNamespace>
+    <RootNamespace>change_grid_system</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

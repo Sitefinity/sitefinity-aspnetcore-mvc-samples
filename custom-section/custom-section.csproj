@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>hello_world</RootNamespace>
+    <RootNamespace>custom_section</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
