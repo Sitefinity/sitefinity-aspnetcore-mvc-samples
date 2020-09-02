@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.0.7300" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="13.0.7300" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.1.7400" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="13.1.7400" />
   </ItemGroup>
 
 </Project>
