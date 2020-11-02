@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 using Progress.Sitefinity.AspNetCore.SitefinityApi;
+using Progress.Sitefinity.AspNetCore.SitefinityApi.Exceptions;
 using Progress.Sitefinity.AspNetCore.SitefinityApi.Filters;
 using sitefinity_data.Dto;
 using sitefinity_data.ViewModels;
+using sitefinity_data.ViewModels.SitefinityData;
 
 namespace sitefinity_data.Models.SitefinityData
 {
@@ -14,15 +17,17 @@ namespace sitefinity_data.Models.SitefinityData
     /// </summary>
     public class SitefinityDataModel : ISitefinityDataModel
     {
-        private IRestClient service;
+        private readonly IRestClient service;
+        private readonly ILogger<SitefinityDataModel> logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SitefinityDataViewComponent"/> class.
         /// </summary>
         /// <param name="service">The rest service.</param>
-        public SitefinityDataModel(IRestClient service)
+        public SitefinityDataModel(IRestClient service, ILogger<SitefinityDataModel> logger)
         {
             this.service = service;
+            this.logger = logger;
         }
 
 
@@ -31,15 +36,19 @@ namespace sitefinity_data.Models.SitefinityData
         /// </summary>
         /// <param name="entity">The entity object.</param>
         /// <returns>The generated view models.</returns>
-        public async Task<IList<Item>> GetViewModels(SitefinityDataEntity entity)
+        public async Task<IList<ItemGroup>> GetViewModels(SitefinityDataEntity entity)
         {
+            var viewModels = new List<ItemGroup>();
+            var itemType = "pressreleases";
+            var provider = "OpenAccessProvider";
+
             // when using the OData client, the url is automatically prefixed with the value of web the service and the sitefinity instance url
             // we use an expand the get the related image
 
             var getAllArgs = new GetAllArgs
             {
                 // required parameter, specifies the items to work with
-                Type = "pressreleases"
+                Type = itemType
             };
 
             // optional parameter, specifies the fields to be returned, if not specified
@@ -70,7 +79,17 @@ namespace sitefinity_data.Models.SitefinityData
             getAllArgs.Count = true;
 
             // optional parameter, if nothing is specified, the default for the site will be used
-            getAllArgs.Provider = "OpenAccessProvider";
+            getAllArgs.Provider = provider;
+
+            // The generic parameter here is a plain DTO for a one to one relationship with the model on the server
+            // It contains a representation for every kind of field that is currently supported by the system
+            getAllArgs.Filter = null;
+            var responseWithoutFilter = await this.service.GetItems<Item>(getAllArgs).ConfigureAwait(true);
+            viewModels.Add(new ItemGroup()
+            {
+                Name = "Items without filter",
+                Items = responseWithoutFilter.Items,
+            });
 
             getAllArgs.Filter = new FilterClause()
             {
@@ -79,12 +98,12 @@ namespace sitefinity_data.Models.SitefinityData
                 Operator = FilterClause.Operators.Equal
             };
 
-            getAllArgs.Filter = new FilterClause()
+            var responseWithBasicFilter = await this.service.GetItems<Item>(getAllArgs).ConfigureAwait(true);
+            viewModels.Add(new ItemGroup()
             {
-                FieldName = "Title",
-                FieldValue = "test",
-                Operator = FilterClause.Operators.Equal
-            };
+                Name = "Items with simple filter",
+                Items = responseWithBasicFilter.Items,
+            });
 
             var filterTitle = new FilterClause()
             {
@@ -133,17 +152,19 @@ namespace sitefinity_data.Models.SitefinityData
             };
 
             getAllArgs.Filter = multipleFiltersCombined;
+            var responseWithComplexFilter = await this.service.GetItems<Item>(getAllArgs).ConfigureAwait(true);
 
-            // The generic parameter here is a plain DTO for a one to one relationship with the model on the server
-            // It contains a representation for every kind of field that is currently supported by the system
-
-            var response = await this.service.GetItems<Item>(getAllArgs).ConfigureAwait(true);
+            viewModels.Add(new ItemGroup()
+            {
+                Name = "Items with complex filter",
+                Items = responseWithComplexFilter.Items,
+            });
 
             // in order to execute /create/read/update operations a token must be acquired from the web server
             var createItemArgs = new CreateArgs()
             {
                 // required parameter, specifies the items to work with
-                Type = "pressreleases",
+                Type = itemType,
 
                 // required parameter, specifies the data to be passed to the server
                 Data = new Item()
@@ -170,68 +191,74 @@ namespace sitefinity_data.Models.SitefinityData
                 },
 
                 // optional parameter, if nothing is specified, the default for the site will be used
-                Provider = "OpenAccessProvider"
+                Provider = provider
             };
 
-            // reference to documentation on how to retrieve bearer tokens
-            // https://www.progress.com/documentation/sitefinity-cms/request-access-token-for-calling-web-services
-            var token = "Bearer ...";
-            createItemArgs.AdditionalHeaders.Add(HeaderNames.Authorization, token);
-
-            var createResponse = await this.service.CreateItem<Item>(createItemArgs);
-
-            var getSingleArgs = new GetItemArgs()
+            try
             {
-                // required parameter, specifies the id of the item to update
-                Id = createResponse.Id.ToString(),
+                // reference to documentation on how to retrieve bearer tokens
+                // https://www.progress.com/documentation/sitefinity-cms/request-access-token-for-calling-web-services
+                var token = "Bearer ...";
+                createItemArgs.AdditionalHeaders.Add(HeaderNames.Authorization, token);
 
-                // required parameter, specifies the items to work with
-                Type = "pressreleases",
-
-                // optional parameter, if nothing is specified, the default for the site will be used
-                Provider = "OpenAccessProvider"
-            };
-
-            var getSingleResponse = await this.service.GetItem<Item>(getSingleArgs);
-
-            var updateArgs = new UpdateArgs()
-            {
-                // required parameter, specifies the id of the item to update
-                Id = getSingleResponse.Id.ToString(),
-
-                // required parameter, specifies the items to work with
-                Type = "pressreleases",
-
-                // required parameter, specifies the data to be passed to the server
-                Data = new Item()
+                var createResponse = await this.service.CreateItem<Item>(createItemArgs);
+                var getSingleArgs = new GetItemArgs()
                 {
-                    Title = "updated title",
-                },
+                    // required parameter, specifies the id of the item to update
+                    Id = createResponse.Id.ToString(),
 
-                // optional parameter, if nothing is specified, the default for the site will be used
-                Provider = "OpenAccessProvider"
-            };
-            updateArgs.AdditionalHeaders.Add(HeaderNames.Authorization, token);
+                    // required parameter, specifies the items to work with
+                    Type = itemType,
 
-            await this.service.UpdateItem(updateArgs);
+                    // optional parameter, if nothing is specified, the default for the site will be used
+                    Provider = provider
+                };
 
-            var deleteArgs = new DeleteArgs()
+                var getSingleResponse = await this.service.GetItem<Item>(getSingleArgs);
+
+                var updateArgs = new UpdateArgs()
+                {
+                    // required parameter, specifies the id of the item to update
+                    Id = getSingleResponse.Id.ToString(),
+
+                    // required parameter, specifies the items to work with
+                    Type = itemType,
+
+                    // required parameter, specifies the data to be passed to the server
+                    Data = new Item()
+                    {
+                        Title = "updated title",
+                    },
+
+                    // optional parameter, if nothing is specified, the default for the site will be used
+                    Provider = provider
+                };
+                updateArgs.AdditionalHeaders.Add(HeaderNames.Authorization, token);
+
+                await this.service.UpdateItem(updateArgs);
+
+                var deleteArgs = new DeleteArgs()
+                {
+                    // required parameter, specifies the id of the item to update
+                    Id = getSingleResponse.Id.ToString(),
+
+                    // required parameter, specifies the items to work with
+                    Type = itemType,
+
+                    // optional parameter, if nothing is specified, the default for the site will be used
+                    Provider = provider
+                };
+
+                deleteArgs.AdditionalHeaders.Add(HeaderNames.Authorization, token);
+
+                await this.service.DeleteItem(deleteArgs);
+            }
+            catch (ErrorCodeException error)
             {
-                // required parameter, specifies the id of the item to update
-                Id = getSingleResponse.Id.ToString(),
+                this.logger.LogError($"Cannot create/update/delete items. Actual error is {error.Message}");
+            }
 
-                // required parameter, specifies the items to work with
-                Type = "pressreleases",
-
-                // optional parameter, if nothing is specified, the default for the site will be used
-                Provider = "OpenAccessProvider"
-            };
-
-            deleteArgs.AdditionalHeaders.Add(HeaderNames.Authorization, token);
-
-            await this.service.DeleteItem(deleteArgs);
-
-            return response.Items;
+            return viewModels;
         }
     }
 }
