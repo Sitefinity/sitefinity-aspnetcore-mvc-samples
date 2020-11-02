@@ -1,11 +1,11 @@
-using sitefinity_data.Dto;
+﻿using sitefinity_data.Dto;
 
-namespace sitefinity_data.ViewModels
+namespace sitefinity_data.ViewModels.SitefinityData
 {
     /// <summary>
     /// The view model.
     /// </summary>
-    public class NewsViewModel
+    public class ItemViewModel
     {
         /// <summary>
         /// Gets or sets the title.

@@ -1,16 +1,24 @@
 @using sitefinity_data.ViewModels
-@model IList<NewsViewModel>
+@model IList<sitefinity_data.ViewModels.SitefinityData.ItemGroup>
 
 <h1>News items</h1>
-<ul>
-    @foreach (var item in this.Model)
+@foreach (var group in this.Model)
+{
+    <h3>@group.Name</h3>
+
+    @foreach (var item in group.Items)
     {
-        <li>
-            @item.Title
-            @if (item.Thumbnail != null)
-            {
-                <img src="@item.Thumbnail.ThumbnailUrl" />
-            }
-        </li>   
+        <ul>
+            <li>
+                @item.Title
+                @if (item.RelatedMediaSingle != null && item.RelatedMediaSingle.Length > 0)
+                {
+                    @foreach (var image in item.RelatedMediaSingle)
+                    {
+                        <img src="@image" />
+                    }
+                }
+            </li>
+        </ul>
     }
-</ul>
+}

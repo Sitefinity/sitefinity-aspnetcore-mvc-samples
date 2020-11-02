@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using sitefinity_data.Models.SitefinityData;
 using sitefinity_data.ViewModels;
+using sitefinity_data.ViewModels.SitefinityData;
 
 namespace sitefinity_data.ViewComponents
 {
@@ -31,9 +32,7 @@ namespace sitefinity_data.ViewComponents
         /// <returns>The view component result.</returns>
         public async Task<IViewComponentResult> InvokeAsync(IViewComponentContext<SitefinityDataEntity> context)
         {
-            var items = await this.model.GetViewModels(context.Entity);
-            var viewModels = items.Select(x => new NewsViewModel() { Title = x.Title, Thumbnail = x.RelatedMediaSingle.Length > 0 ? x.RelatedMediaSingle[0] : null } ).ToList();
-
+            var viewModels = await this.model.GetViewModels(context.Entity);
             return this.View(viewModels);
         }
     }
