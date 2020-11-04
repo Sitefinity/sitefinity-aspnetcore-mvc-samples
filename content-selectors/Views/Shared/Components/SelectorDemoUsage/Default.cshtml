@@ -1,0 +1,23 @@
+﻿@using content_selectors.ViewModels.SelectorDemoUsage
+
+@model List<ItemCollection>
+
+@foreach (var collection in this.Model)
+{
+    <h1>@collection.GroupTitle</h1>
+    <ul>
+        @if (collection.Items != null)
+        {
+            @foreach (var item in collection.Items)
+            {
+                <li>
+                    @item.Title
+                    @if (item is ImageDto image)
+                    {
+                        <img src="@image.ThumbnailUrl" />
+                    }
+                </li>
+            }
+        }
+    </ul>
+}
