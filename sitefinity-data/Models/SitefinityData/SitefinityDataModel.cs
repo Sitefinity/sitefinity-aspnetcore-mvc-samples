@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
@@ -88,7 +89,7 @@ namespace sitefinity_data.Models.SitefinityData
             viewModels.Add(new ItemGroup()
             {
                 Name = "Items without filter",
-                Items = responseWithoutFilter.Items,
+                Items = responseWithoutFilter.Items.Select(x => this.GetItemViewModel(x)).ToArray(),
             });
 
             getAllArgs.Filter = new FilterClause()
@@ -102,7 +103,7 @@ namespace sitefinity_data.Models.SitefinityData
             viewModels.Add(new ItemGroup()
             {
                 Name = "Items with simple filter",
-                Items = responseWithBasicFilter.Items,
+                Items = responseWithBasicFilter.Items.Select(x => this.GetItemViewModel(x)).ToArray(),
             });
 
             var filterTitle = new FilterClause()
@@ -157,7 +158,7 @@ namespace sitefinity_data.Models.SitefinityData
             viewModels.Add(new ItemGroup()
             {
                 Name = "Items with complex filter",
-                Items = responseWithComplexFilter.Items,
+                Items = responseWithComplexFilter.Items.Select(x => this.GetItemViewModel(x)).ToArray(),
             });
 
             // in order to execute /create/read/update operations a token must be acquired from the web server
@@ -259,6 +260,21 @@ namespace sitefinity_data.Models.SitefinityData
             }
 
             return viewModels;
+        }
+
+        private ItemViewModel GetItemViewModel(Item item)
+        {
+            var viewModel = new ItemViewModel()
+            {
+                Title = item.Title
+            };
+
+            if (item.RelatedMediaSingle != null && item.RelatedMediaSingle.Length == 1)
+            {
+                viewModel.ThumbnailUrl = item.RelatedMediaSingle[0].ThumbnailUrl;
+            }
+
+            return viewModel;
         }
     }
 }

@@ -10,6 +10,6 @@ namespace sitefinity_data.ViewModels.SitefinityData
     {
         public string Name { get; set; }
 
-        public IList<Item> Items { get; set; }
+        public IList<ItemViewModel> Items { get; set; }
     }
 }

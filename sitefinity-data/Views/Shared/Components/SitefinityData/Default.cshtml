@@ -11,12 +11,9 @@
         <ul>
             <li>
                 @item.Title
-                @if (item.RelatedMediaSingle != null && item.RelatedMediaSingle.Length > 0)
+                @if (item.ThumbnailUrl != null)
                 {
-                    @foreach (var image in item.RelatedMediaSingle)
-                    {
-                        <img src="@image" />
-                    }
+                    <img src="@item.ThumbnailUrl" />
                 }
             </li>
         </ul>

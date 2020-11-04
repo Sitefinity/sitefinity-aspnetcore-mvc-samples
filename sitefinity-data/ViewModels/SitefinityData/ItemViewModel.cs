@@ -15,6 +15,6 @@ namespace sitefinity_data.ViewModels.SitefinityData
         /// <summary>
         /// Gets or sets the thumbnail.
         /// </summary>
-        public Image Thumbnail { get; set; }
+        public string ThumbnailUrl { get; set; }
     }
 }
