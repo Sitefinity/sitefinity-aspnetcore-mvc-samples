@@ -44,6 +44,8 @@ namespace content_selectors.Models.SelectorDemoUsage
         {
             var viewModels = new List<ItemCollection>();
 
+            // GetItems is an extension method from the class RestClientExtensions in the namespace Progress.Sitefinity.AspNetCore.SitefinityApi
+            // In order to use it the generic type must inherit from ISdkItem
             var newsItems = await this.restService.GetItems<ItemDto>(entity.News).ConfigureAwait(true);
             viewModels.Add(new ItemCollection()
             {
