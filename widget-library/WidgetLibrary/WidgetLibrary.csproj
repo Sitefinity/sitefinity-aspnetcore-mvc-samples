@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.2.7500.7539" />
+	</ItemGroup>
+</Project>

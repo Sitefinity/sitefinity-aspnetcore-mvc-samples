@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>widget_library</RootNamespace>
+	<MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.2.7500.7539" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="13.2.7500.7539" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WidgetLibrary\WidgetLibrary.csproj" />
+  </ItemGroup>
+
+</Project>
