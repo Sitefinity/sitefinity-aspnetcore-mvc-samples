@@ -3,11 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
 using Progress.Sitefinity.AspNetCore;
-using sitefinity_data.Models.SitefinityData;
 
-namespace sitefinity_data
+namespace all_properties
 {
     public class Startup
     {
@@ -15,7 +13,6 @@ namespace sitefinity_data
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ISitefinityDataModel, SitefinityDataModel>();
             services.AddSitefinity();
             services.AddViewComponentModels();
         }

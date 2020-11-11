@@ -21,7 +21,6 @@ namespace content_selectors.Models.SelectorDemoUsage
     {
         private readonly IRestClient restService;
         private readonly IRenderContext renderContext;
-        private readonly ILogger<SelectorDemoUsageModel> logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SitefinityDataViewComponent"/> class.
