@@ -1,0 +1,11 @@
+﻿@include generate-utility-spacing-class("margin-top", "#{$selector-prefix}-mt", $spacing-list);
+@include generate-utility-spacing-class("margin-bottom", "#{$selector-prefix}-mb", $spacing-list);
+@include generate-utility-spacing-class("margin-left", "#{$selector-prefix}-ml", $spacing-list);
+@include generate-utility-spacing-class("margin-right", "#{$selector-prefix}-mr", $spacing-list);
+@include generate-utility-spacing-class("margin", "#{$selector-prefix}-m", $spacing-list);
+
+@include generate-utility-spacing-class("padding-top", "#{$selector-prefix}-pt", $spacing-list);
+@include generate-utility-spacing-class("padding-bottom", "#{$selector-prefix}-pb", $spacing-list);
+@include generate-utility-spacing-class("padding-left", "#{$selector-prefix}-pl", $spacing-list);
+@include generate-utility-spacing-class("padding-right", "#{$selector-prefix}-pr", $spacing-list);
+@include generate-utility-spacing-class("padding", "#{$selector-prefix}-p", $spacing-list);

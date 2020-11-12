@@ -1,0 +1,22 @@
+﻿@model IList<Renderer.Dto.TestimonialItem>
+
+@for (var i = 0; i < this.Model.Count; i++)
+{
+    var item = this.Model[i];
+
+    <div class="qu-txt-white @(i != 0 ? "qu-mt-xl" : "")">
+        <div class="qu-quote"></div>
+        <p class="qu-txt-medium qu-mb-s">@item.Quote</p>
+
+        <div class="media align-items-center">
+            @if (item.Photo != null && item.Photo.Length > 0)
+            {
+                <img class="qu-mr-xs" src="@item.Photo[0].ThumbnailUrl" alt="Profile picture of @item.TestimonialAuthor" />
+            }
+            <div class="media-body">
+                <h4 class="qu-mb-zero">@item.TestimonialAuthor</h4>
+                <b class="qu-txt-uppercase">@item.Company</b>
+            </div>
+        </div>
+    </div>
+}

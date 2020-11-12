@@ -1,0 +1,68 @@
+﻿.form-group {
+    margin-bottom: 40px;
+
+    &.form-check {
+        margin-top: -10px;
+        margin-bottom: 30px;
+    }
+
+    label {
+        color: $white;
+
+        &:not(.form-check-label) {
+            font-weight: $font-weight-semibold;
+            text-transform: uppercase;
+        }
+    }
+
+    .form-control {
+        background-color: transparent;
+        height: 50px;
+        border-radius: 0;
+        border: 1px solid $white;
+    }
+
+    textarea.form-control {
+        height: 145px;
+    }
+
+    .#{$selector-prefix}-checkbox {
+        height: 15px;
+        width: 15px;
+
+        .form-check-input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .qu-checkbox-checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 15px;
+            width: 15px;
+            border: 1px solid $white;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &::after {
+                content: "\f00c";
+                position: relative;
+                top: -4px;
+                display: none;
+                font-family: $font-family-fa;
+                font-size: 18px;
+                color: $white;
+            }
+        }
+
+        .form-check-input:checked ~ .qu-checkbox-checkmark:after {
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+﻿@mixin generate-utility-spacing-class($property, $starts-with, $spacing-list, $modifier: "") {
+
+    @each $spacing, $value in $spacing-list {
+
+        #{unquote($modifier)}.#{$starts-with}-#{$spacing} {
+            #{$property}: $value !important;
+        }
+    }
+}

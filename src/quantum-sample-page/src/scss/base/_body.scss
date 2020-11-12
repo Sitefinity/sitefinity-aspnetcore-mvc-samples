@@ -1,0 +1,16 @@
+body {
+    color: $black;
+    font-family: $font-family;
+    font-size: $font-size-base;
+    font-weight: $font-weight-light;
+    font-style: normal;
+    line-height: normal;
+}
+
+html, body {
+    height: 100%;
+}
+
+p {
+    margin-bottom: 0;
+}
