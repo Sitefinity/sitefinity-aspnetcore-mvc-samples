@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Microsoft.Net.Http.Headers;
 using Progress.Sitefinity.AspNetCore.SitefinityApi;
-using Progress.Sitefinity.AspNetCore.SitefinityApi.Exceptions;
-using Progress.Sitefinity.AspNetCore.SitefinityApi.Filters;
 using Renderer.Dto;
 using Renderer.Entities.Testimonial;
 using Renderer.Services;
-using Renderer.ViewModels;
 using Renderer.ViewModels.Testimonial;
 
 namespace Renderer.Models.Testimonial
@@ -20,16 +15,14 @@ namespace Renderer.Models.Testimonial
     public class TestimonialModel : ITestimonialModel
     {
         private readonly IRestClient service;
-        private readonly ILogger<TestimonialModel> logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TestimonialViewComponent"/> class.
         /// </summary>
         /// <param name="service">The rest service.</param>
-        public TestimonialModel(IRestClient service, ILogger<TestimonialModel> logger)
+        public TestimonialModel(IRestClient service)
         {
             this.service = service;
-            this.logger = logger;
         }
 
 
@@ -38,13 +31,29 @@ namespace Renderer.Models.Testimonial
         /// </summary>
         /// <param name="entity">The entity object.</param>
         /// <returns>The generated view models.</returns>
-        public async Task<IList<TestimonialItem>> GetViewModels(TestimonialEntity entity)
+        public async Task<IList<ItemViewModel>> GetViewModels(TestimonialEntity entity)
         {
-            //var response = await this.service.GetItems<TestimonialItem>(entity.Testimonials).ConfigureAwait(true);
-            var response = await TestimonialService.GetItems<TestimonialItem>(this.service, entity.Testimonials, new GetAllArgs() { Fields = new List<string>() { "Id", "Photo", "TestimonialAuthor", "Quote", "Company" } });
+            var response = await TestimonialService.GetItems<TestimonialItem>(this.service, entity.Testimonials, new GetAllArgs() { Fields = new List<string>() { "Id", "Photo", "TestimonialAuthor", "Quote", "Company" } }).ConfigureAwait(true);
 
 
-            return response.Items;
+            return response.Items.Select(x => this.GetItemViewModel(x)).ToArray();
+        }
+
+        private ItemViewModel GetItemViewModel(TestimonialItem item)
+        {
+            var viewModel = new ItemViewModel()
+            {
+                Title = item.TestimonialAuthor,
+                Quote = item.Quote,
+                Company = item.Company
+            };
+
+            if (item.Photo != null && item.Photo.Length == 1)
+            {
+                viewModel.ThumbnailUrl = item.Photo[0].ThumbnailUrl;
+            }
+
+            return viewModel;
         }
     }
 }

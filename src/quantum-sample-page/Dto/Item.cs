@@ -22,9 +22,6 @@ namespace Renderer.Dto
 
         public string MetaDescription { get; set; }
 
-        /// <summary>
-        /// Gets or sets the title.
-        /// </summary>
         public string Title { get; set; }
 
         public string LongText { get; set; }
@@ -69,7 +66,6 @@ namespace Renderer.Dto
     /// <summary>
     /// The image view model.
     /// </summary>
-
     public class Image
     {
         /// <summary>

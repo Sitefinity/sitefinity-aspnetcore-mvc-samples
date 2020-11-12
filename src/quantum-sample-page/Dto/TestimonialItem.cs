@@ -1,5 +1,4 @@
-﻿using System;
-using Progress.Sitefinity.AspNetCore.SitefinityApi.Dto;
+﻿using Progress.Sitefinity.AspNetCore.SitefinityApi.Dto;
 
 namespace Renderer.Dto
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Renderer.Entities.StaticSection
+﻿namespace Renderer.Entities.StaticSection
 {
     public class StaticSectionEntity
     {

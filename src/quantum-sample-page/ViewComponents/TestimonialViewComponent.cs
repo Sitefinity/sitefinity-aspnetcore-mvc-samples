@@ -1,10 +1,9 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Renderer.Entities.Testimonial;
 using Renderer.Models.Testimonial;
-using Renderer.ViewModels;
+
 namespace Renderer.ViewComponents
 {
     /// <summary>

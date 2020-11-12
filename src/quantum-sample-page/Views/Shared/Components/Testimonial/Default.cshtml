@@ -1,4 +1,6 @@
-﻿@model IList<Renderer.Dto.TestimonialItem>
+﻿@using Renderer.ViewModels.Testimonial;
+
+@model IList<ItemViewModel>
 
 @for (var i = 0; i < this.Model.Count; i++)
 {
@@ -9,12 +11,12 @@
         <p class="qu-txt-medium qu-mb-s">@item.Quote</p>
 
         <div class="media align-items-center">
-            @if (item.Photo != null && item.Photo.Length > 0)
+            @if (item.ThumbnailUrl != null)
             {
-                <img class="qu-mr-xs" src="@item.Photo[0].ThumbnailUrl" alt="Profile picture of @item.TestimonialAuthor" />
+                <img class="qu-mr-xs" src="@item.ThumbnailUrl" alt="Profile picture of @item.Title" />
             }
             <div class="media-body">
-                <h4 class="qu-mb-zero">@item.TestimonialAuthor</h4>
+                <h4 class="qu-mb-zero">@item.Title</h4>
                 <b class="qu-txt-uppercase">@item.Company</b>
             </div>
         </div>

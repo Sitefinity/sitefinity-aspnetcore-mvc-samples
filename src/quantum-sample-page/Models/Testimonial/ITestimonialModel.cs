@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Renderer.Dto;
 using Renderer.Entities.Testimonial;
+using Renderer.ViewModels.Testimonial;
 
 namespace Renderer.Models.Testimonial
 {
@@ -14,6 +14,6 @@ namespace Renderer.Models.Testimonial
         /// Gets the view models.
         /// </summary>
         /// <returns>The generated view models.</returns>
-        Task<IList<TestimonialItem>> GetViewModels(TestimonialEntity entity);
+        Task<IList<ItemViewModel>> GetViewModels(TestimonialEntity entity);
     }
 }
