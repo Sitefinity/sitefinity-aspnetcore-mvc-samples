@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "widget-library": {
+    "WebApp": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
