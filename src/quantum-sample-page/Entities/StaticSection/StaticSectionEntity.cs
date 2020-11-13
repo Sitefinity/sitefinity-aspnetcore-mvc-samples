@@ -8,6 +8,8 @@
     public enum ViewType
     {
         Container,
-        ContainerFluid
+        ContainerFluid,
+        TwoMixed,
+        ThreeAutoLayout
     }
 }

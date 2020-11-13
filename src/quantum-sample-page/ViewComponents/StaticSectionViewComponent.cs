@@ -20,6 +20,10 @@ namespace Renderer.ViewComponents
                     return this.View("Container", context);
                 case ViewType.ContainerFluid:
                     return this.View("ContainerFluid", context);
+                case ViewType.TwoMixed:
+                    return this.View("TwoMixed", context);
+                case ViewType.ThreeAutoLayout:
+                    return this.View("ThreeAutoLayout", context);
             }
         }
     }
