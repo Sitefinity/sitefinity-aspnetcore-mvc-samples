@@ -451,7 +451,7 @@ strong {
   text-transform: uppercase;
 }
 
-.qu-quote {
+.qu-icon-quote {
   position: relative;
   display: inline-flex;
   width: 55px;
@@ -459,7 +459,7 @@ strong {
   font-size: 66px;
 }
 
-.qu-quote::after {
+.qu-icon-quote::after {
   position: absolute;
   top: -15px;
   left: 0;
@@ -468,6 +468,18 @@ strong {
   font-family: "Gill Sans";
   font-weight: 800;
   content: "\201D";
+}
+
+.qu-icon-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  font-size: 48px;
+  color: #FFF;
+  border: 1px solid #FFF;
+  border-radius: 100px;
 }
 
 .qu-logo {
@@ -529,7 +541,8 @@ strong {
 }
 
 .form-group .form-control {
-  background-color: transparent;
+  color: #FFF;
+  background-color: transparent !important;
   height: 50px;
   border-radius: 0;
   border: 1px solid #FFF;
@@ -577,4 +590,12 @@ strong {
 
 .form-group .qu-checkbox .form-check-input:checked ~ .qu-checkbox-checkmark:after {
   display: block;
+}
+
+.form-check.invalid .qu-checkbox-checkmark {
+  border-color: var(--danger);
+}
+
+.form-check.invalid .form-check-label {
+  color: var(--danger);
 }

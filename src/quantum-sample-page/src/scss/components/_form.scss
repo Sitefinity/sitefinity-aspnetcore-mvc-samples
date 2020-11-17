@@ -16,7 +16,8 @@
     }
 
     .form-control {
-        background-color: transparent;
+        color: $white;
+        background-color: transparent !important;
         height: 50px;
         border-radius: 0;
         border: 1px solid $white;
@@ -64,5 +65,16 @@
         .form-check-input:checked ~ .qu-checkbox-checkmark:after {
             display: block;
         }
+    }
+}
+
+.form-check.invalid {
+
+    .qu-checkbox-checkmark {
+        border-color: var(--danger);
+    }
+
+    .form-check-label {
+        color: var(--danger);
     }
 }

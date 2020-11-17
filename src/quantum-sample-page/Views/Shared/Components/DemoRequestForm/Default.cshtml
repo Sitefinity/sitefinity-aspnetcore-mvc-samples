@@ -1,19 +1,19 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model Renderer.Models.DemoRequestModel
 
-@using (Html.BeginForm("Index", "FormValues", FormMethod.Post))
+@using (Html.BeginForm("Index", "FormValues", FormMethod.Post, new { id = "submitForm" }))
 {
     <div class="form-group">
         <label asp-for="Name">Name</label>
-        <input class="form-control" asp-for="Name">
+        <input class="form-control" asp-for="Name" required>
     </div>
     <div class="form-group">
         <label asp-for="Company">Company</label>
-        <input class="form-control" asp-for="Company">
+        <input class="form-control" asp-for="Company" required>
     </div>
     <div class="form-group">
         <label asp-for="Email">Email</label>
-        <input type="email" class="form-control" asp-for="Email">
+        <input type="email" class="form-control" asp-for="Email" required>
     </div>
     <div class="form-group">
         <label asp-for="Comment">Comment</label>
@@ -21,10 +21,18 @@
     </div>
     <div class="form-group form-check">
         <label class="qu-checkbox form-check-input">
-            <input type="checkbox" class="form-check-input" asp-for="IsPrivacyPolicyAccepted">
+            <input type="checkbox" class="form-check-input" asp-for="IsPrivacyPolicyAccepted" required>
             <span class="qu-checkbox-checkmark"></span>
         </label>
         <label class="form-check-label ml-2" asp-for="IsPrivacyPolicyAccepted">I agree to receive email communications and my data to be used in accordance with Quantum's Privacy Policy.</label>
     </div>
-    <input class="btn btn-secondary" type="submit" value="Request a demo" />
+    <input id="submitButton" class="btn btn-secondary" type="submit" value="Request a demo" />
 }
+
+<div id="submitSuccess" class="d-none qu-mt-2xs">
+    <i class="fa fa-check qu-icon-check" aria-hidden="true"></i>
+    <p class="qu-txt-medium qu-txt-white qu-mt-l">
+        Thank you for your request!<br />
+        We'll be in touch shortly.
+    </p>
+</div>

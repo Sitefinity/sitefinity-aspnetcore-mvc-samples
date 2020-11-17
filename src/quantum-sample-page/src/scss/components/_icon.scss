@@ -1,4 +1,4 @@
-.#{$selector-prefix}-quote {
+.#{$selector-prefix}-icon-quote {
     position: relative;
     display: inline-flex;
     width: 55px;
@@ -15,4 +15,16 @@
         font-weight: 800;
         content: "\201D";
     }
+}
+
+.#{$selector-prefix}-icon-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    font-size: 48px;
+    color: $white;
+    border: 1px solid $white;
+    border-radius: 100px;
 }
