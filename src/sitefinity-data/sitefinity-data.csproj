@@ -10,8 +10,8 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.2.7500.9561" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="13.2.7500.9561" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.2.7500.9608" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="13.2.7500.9608" />
   </ItemGroup>
 
 </Project>
