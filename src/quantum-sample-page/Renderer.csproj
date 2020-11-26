@@ -31,7 +31,6 @@
     <Folder Include="src\scss\trumps\" />
     <Folder Include="src\scss\vendors\" />
     <Folder Include="src\scss\mixins\" />
-    <Folder Include="Services\" />
     <Folder Include="src\scripts\" />
   </ItemGroup>
   <ItemGroup>

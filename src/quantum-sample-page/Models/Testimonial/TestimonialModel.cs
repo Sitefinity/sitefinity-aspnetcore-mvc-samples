@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Progress.Sitefinity.AspNetCore.SitefinityApi;
 using Renderer.Dto;
 using Renderer.Entities.Testimonial;
-using Renderer.Services;
 using Renderer.ViewModels.Testimonial;
 
 namespace Renderer.Models.Testimonial
@@ -25,7 +24,6 @@ namespace Renderer.Models.Testimonial
             this.service = service;
         }
 
-
         /// <summary>
         /// Gets the view models.
         /// </summary>
@@ -33,9 +31,7 @@ namespace Renderer.Models.Testimonial
         /// <returns>The generated view models.</returns>
         public async Task<IList<ItemViewModel>> GetViewModels(TestimonialEntity entity)
         {
-            var response = await TestimonialService.GetItems<TestimonialItem>(this.service, entity.Testimonials, new GetAllArgs() { Fields = new List<string>() { "Id", "Photo", "TestimonialAuthor", "Quote", "Company" } }).ConfigureAwait(true);
-
-
+            var response = await this.service.GetItems<TestimonialItem>(entity.Testimonials, new GetAllArgs() { Fields = new List<string>() { "Id", "Photo", "TestimonialAuthor", "Quote", "Company" } }).ConfigureAwait(true);
             return response.Items.Select(x => this.GetItemViewModel(x)).ToArray();
         }
 
