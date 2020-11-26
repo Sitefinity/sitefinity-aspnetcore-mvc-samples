@@ -23,16 +23,9 @@
     <Folder Include="Views\FormValues\" />
     <Folder Include="Views\Shared\Components\DemoRequestForm\" />
     <Folder Include="Controllers\" />
-    <Folder Include="src\" />
-    <Folder Include="src\scss\" />
-    <Folder Include="src\scss\settings\" />
     <Folder Include="Entities\StaticSection\" />
     <Folder Include="Views\Shared\Components\StaticSection\" />
-    <Folder Include="src\scss\trumps\" />
-    <Folder Include="src\scss\vendors\" />
-    <Folder Include="src\scss\mixins\" />
     <Folder Include="Services\" />
-    <Folder Include="src\scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\favicon.ico" />

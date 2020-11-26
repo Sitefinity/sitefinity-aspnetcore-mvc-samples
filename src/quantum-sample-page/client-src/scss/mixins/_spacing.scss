@@ -2,8 +2,18 @@
 
     @each $spacing, $value in $spacing-list {
 
-        #{unquote($modifier)}.#{$starts-with}-#{$spacing} {
-            #{$property}: $value !important;
+        @if (str-index($property, 'left') or str-index($property, 'rigt')) {
+            @media (min-width: 992px) {
+
+                .#{$starts-with}-#{$spacing} {
+                    #{$property}: $value;
+                }
+            }
+        }
+        @else {
+            .#{$starts-with}-#{$spacing} {
+                #{$property}: $value;
+            }
         }
     }
 }
