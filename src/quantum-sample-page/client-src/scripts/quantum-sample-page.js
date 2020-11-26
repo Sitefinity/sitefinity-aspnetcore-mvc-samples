@@ -52,6 +52,10 @@
                 if (this.readyState === 4 && (this.status === 200 || this.status === 204)) {
                     submitForm.classList.add(hiddenClass);
                     submitSuccess.classList.remove(hiddenClass);
+
+                    document.querySelector("#" + formHeadingSelector).scrollIntoView({
+                        behavior: "smooth"
+                    });
                 }
             };
             xhr.open("post", "/FormValues", true);
