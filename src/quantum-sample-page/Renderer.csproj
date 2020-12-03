@@ -20,22 +20,17 @@
     <Folder Include="Views\Shared\Components\Testimonial\" />
     <Folder Include="ViewModels\Testimonial\" />
     <Folder Include="Models\DemoRequest\" />
-    <Folder Include="Views\FormValues\" />
     <Folder Include="Views\Shared\Components\DemoRequestForm\" />
     <Folder Include="Controllers\" />
     <Folder Include="Entities\StaticSection\" />
     <Folder Include="Views\Shared\Components\StaticSection\" />
-    <Folder Include="src\scss\trumps\" />
-    <Folder Include="src\scss\vendors\" />
-    <Folder Include="src\scss\mixins\" />
-    <Folder Include="src\scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="13.2.7500.9608" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="13.2.7500.9608" />
     <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.2.7500.9608" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="13.2.7500.9608" />
   </ItemGroup>
 </Project>

@@ -6,17 +6,17 @@
 {
     var item = this.Model[i];
 
-    <div class="qu-txt-white @(i != 0 ? "qu-mt-xl" : "")">
+    <div class="qu-txt-white @(i != 0 ? "mt-5" : "")">
         <div class="qu-icon-quote"></div>
-        <p class="qu-txt-medium qu-mb-s">@item.Quote</p>
+        <p class="qu-txt-medium mb-4">@item.Quote</p>
 
         <div class="media align-items-center">
             @if (item.ThumbnailUrl != null)
             {
-                <img class="qu-mr-xs" src="@item.ThumbnailUrl" alt="Profile picture of @item.Title" />
+                <img class="mr-2" src="@item.ThumbnailUrl" alt="Profile picture of @item.Title" />
             }
             <div class="media-body">
-                <h4 class="qu-mb-zero">@item.Title</h4>
+                <h4 class="mb-0">@item.Title</h4>
                 <b class="qu-txt-uppercase">@item.Company</b>
             </div>
         </div>

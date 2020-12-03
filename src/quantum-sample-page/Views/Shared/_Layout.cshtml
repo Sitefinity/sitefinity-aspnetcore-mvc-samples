@@ -11,17 +11,6 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>@ViewData["Title"]</title>
 
-    <environment include="Development">
-        <link rel="stylesheet" href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("Styles/bootstrap.css")" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-              crossorigin="anonymous"
-              asp-fallback-href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("Styles/bootstrap.min.css")"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-    </environment>
-
     @RenderSection("Styles", false)
 
     @* Scripts for the OOB Sitefinity widgets *@
