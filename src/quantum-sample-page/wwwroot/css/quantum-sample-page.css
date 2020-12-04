@@ -10597,7 +10597,7 @@ strong {
   background-repeat: no-repeat;
 }
 
-.btn {
+.btn, .btn:focus, .btn:not(:disabled):not(.disabled):active {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -10613,19 +10613,19 @@ strong {
   box-shadow: none !important;
 }
 
-.btn:hover, .btn:focus, .btn:not(:disabled):not(.disabled):active {
+.btn:hover {
   color: #00B4C9;
   text-decoration: none;
   background-color: rgba(0, 180, 201, 0.05);
   border-color: #00B4C9;
 }
 
-.btn.btn-secondary {
+.btn.btn-secondary, .btn.btn-secondary:focus, .btn.btn-secondary:not(:disabled):not(.disabled):active {
   background: #FFF;
   border-color: #FFF;
 }
 
-.btn.btn-secondary:hover, .btn.btn-secondary:focus, .btn.btn-secondary:not(:disabled):not(.disabled):active {
+.btn.btn-secondary:hover {
   background-color: #f2f2f2;
   border-color: #f2f2f2;
 }
@@ -10701,9 +10701,15 @@ strong {
 }
 
 .form-check.invalid .qu-checkbox-checkmark {
-  border-color: var(--danger);
+  border-color: #ff0058;
 }
 
 .form-check.invalid .form-check-label {
-  color: var(--danger);
+  color: #ff0058;
+}
+
+.form-validated .form-control:invalid ~ .invalid-feedback {
+  display: block;
+  color: #ff0058;
+  font-size: 15px;
 }

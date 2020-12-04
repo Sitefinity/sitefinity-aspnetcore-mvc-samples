@@ -71,10 +71,16 @@
 .form-check.invalid {
 
     .qu-checkbox-checkmark {
-        border-color: var(--danger);
+        border-color: $red;
     }
 
     .form-check-label {
-        color: var(--danger);
+        color: $red;
     }
+}
+
+.form-validated .form-control:invalid ~ .invalid-feedback {
+    display: block;
+    color: $red;
+    font-size: $font-size-base;
 }
