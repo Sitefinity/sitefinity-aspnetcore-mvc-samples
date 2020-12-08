@@ -12,6 +12,5 @@ $container-max-widths: (
     xl: 1280px,
     xxl: 1320px );
 $spacer: 20px;
-$enable-responsive-font-sizes: true;
 
 @import "node_modules/bootstrap/scss/bootstrap";
