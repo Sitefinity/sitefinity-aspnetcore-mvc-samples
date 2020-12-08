@@ -6,6 +6,7 @@
     var submitButtonSelector = "submitButton";
     var submitFormSelector = "submitForm";
     var submitSuccessSelector = "submitSuccess";
+    var submitFormValidateClass = "form-validated";
 
     var checkboxInvalidClass = "invalid";
     var hiddenClass = "d-none";
@@ -27,18 +28,9 @@
     var privacyPolicyCheckbox = submitForm.querySelector(checboxSelector);
     var submitSuccess = document.getElementById(submitSuccessSelector);
 
-    submitButton.addEventListener("click", function () {
-        if (!privacyPolicyCheckbox.checkValidity()) {
-            privacyPolicyCheckbox.closest(checkboxWrapperSelector).classList.add(checkboxInvalidClass);
-            privacyPolicyCheckbox.focus();
-        }
-    });
-
     privacyPolicyCheckbox.addEventListener("change", function (event) {
         if (event.target.checked) {
             privacyPolicyCheckbox.closest(checkboxWrapperSelector).classList.remove(checkboxInvalidClass);
-        } else {
-            privacyPolicyCheckbox.closest(checkboxWrapperSelector).classList.add(checkboxInvalidClass);
         }
     });
 
@@ -61,6 +53,11 @@
             xhr.open("post", "/FormValues", true);
             xhr.send(new URLSearchParams(formData));
             return false;
+        } else if (!privacyPolicyCheckbox.checkValidity()) {
+            privacyPolicyCheckbox.closest(checkboxWrapperSelector).classList.add(checkboxInvalidClass);
+            privacyPolicyCheckbox.focus();
         }
+
+        submitForm.classList.add(submitFormValidateClass);
     };
 });
