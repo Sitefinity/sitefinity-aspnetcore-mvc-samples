@@ -1,0 +1,32 @@
+﻿@model Progress.Sitefinity.AspNetCore.Models.PageModel
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Progress.Sitefinity.AspNetCore
+
+<!DOCTYPE html>
+<html id="html">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>@ViewData["Title"]</title>
+
+    @RenderSection("Styles", false)
+
+    @* Scripts for the OOB Sitefinity widgets *@
+    <link rel="stylesheet" href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("styles/main.css")" type="text/css" />
+
+    @* Custom styles *@
+    <link rel="stylesheet" href="~/assets/fonts/gill-sans.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;700&display=swap" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/quantum-sample-page.min.css" />
+
+    @* Custom scripts *@
+    <script src="~/scripts/quantum-sample-page.js"></script>
+</head>
+
+<body class="container-fluid">
+    @RenderSection("Scripts")
+</body>
+</html>

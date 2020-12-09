@@ -1,0 +1,10 @@
+@using all_properties.Entities.AllProperties;
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+
+@model string
+
+@* serialized properties as json *@
+
+<!--ModelStart-->
+@Html.HtmlSanitize(Html.Raw(this.Model).ToString())
+<!--ModelEnd-->

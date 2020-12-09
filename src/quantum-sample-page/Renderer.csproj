@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+
+
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="Views\Shared\" />
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Dto\" />
+    <Folder Include="ViewComponents\" />
+    <Folder Include="Models\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Entities\Testimonial\" />
+    <Folder Include="Models\Testimonial\" />
+    <Folder Include="Views\Shared\Components\Testimonial\" />
+    <Folder Include="ViewModels\Testimonial\" />
+    <Folder Include="Models\DemoRequest\" />
+    <Folder Include="Views\Shared\Components\DemoRequestForm\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Entities\StaticSection\" />
+    <Folder Include="Views\Shared\Components\StaticSection\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="13.2.7500.9608" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.2.7500.9608" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="13.2.7500.9608" />
+  </ItemGroup>
+</Project>

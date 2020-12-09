@@ -1,0 +1,4 @@
+@font-face {
+    font-family: "Gill Sans";
+    src: url("GillSansUltraBold.woff2") format("woff2"), url("GillSansUltraBold.woff") format("woff"), url("GillSansUltraBold.ttf") format("ttf");
+}
