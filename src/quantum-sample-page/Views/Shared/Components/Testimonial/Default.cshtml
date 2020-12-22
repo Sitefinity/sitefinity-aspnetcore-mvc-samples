@@ -13,7 +13,7 @@
         <div class="media align-items-center">
             @if (item.ThumbnailUrl != null)
             {
-                <img class="mr-2" src="@item.ThumbnailUrl" alt="Profile picture of @item.Title" />
+                <img class="mr-2 rounded-circle" width="50" height="50" src="@item.ThumbnailUrl" alt="Profile picture of @item.Title" />
             }
             <div class="media-body">
                 <h4 class="mb-0">@item.Title</h4>
