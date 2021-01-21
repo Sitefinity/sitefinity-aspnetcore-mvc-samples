@@ -1,6 +1,5 @@
 ﻿using Renderer.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Net.Http.Headers;
 using Progress.Sitefinity.AspNetCore.SitefinityApi;
 using System.Threading.Tasks;
 
@@ -36,7 +35,7 @@ namespace Renderer.Controllers
                 }
             });
 
-            return this.View(model);
+            return this.NoContent();
         }
 
         public class FormData
