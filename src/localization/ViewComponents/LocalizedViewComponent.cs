@@ -28,7 +28,7 @@ namespace localization.ViewComponents
             // when a Sitefinity page is executed the CultureInfo.CurrentUICulture is automatically populated
             // with the culture the page is translated on, so the string here would be resolved automatically
             var localizedString = this.localizer.GetString("Hello World !");
-            return this.View(localizedString);
+            return this.View("Default", localizedString.Value);
         }
     }
 }
