@@ -7,14 +7,15 @@ This is a repository contains the samples to demonstrate how to develop your fro
 Follow the instructions [here](https://www.progress.com/documentation/sitefinity-cms/setup-the-asp.net-core-renderer)
 
 ## Samples list
-* Hello World sample - for creating a hello world widget
+* Hello World sample - for creating a hello world widget and configuring the different types of properties of the SitefinityWidget attribute.
+
 * Sitefinity Data sample - for accessing data through OData Web Services
 * Custom Layout - for creating custom base templates
 * All properties - for creating designers
 * Change Grid System - for using a TailWind, a different css grid system
 * Conditional Rendering in Editor - for controlling the content in edit/preview/live.
 * Content Selectors - for working with Sitefinity content in the widget designers
-* Custom Section - for creating a custom layout widget with hard-coded columns
+* Custom Section - for creating a custom layout widget with hard-coded columns and passing data to child widgets.
 * Extended Content Block - for overriding the logic of the content block. (valid for any OOB widget)
 * Form - for building a custom form widget to post data.
 * Localization - for localizing your Layouts and ViewComponents
