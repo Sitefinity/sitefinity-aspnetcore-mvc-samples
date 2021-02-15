@@ -8,7 +8,7 @@ namespace hello_world.ViewComponents
     /// <summary>
     /// Test widget with different kind of restrictions for its properties.
     /// </summary>
-    [SitefinityWidget]
+    [SitefinityWidget(Title="Hello World", EmptyIconText = "Custom empty text", EmptyIcon = "hand-peace-o")]
     public class HelloWorldViewComponent : ViewComponent
     {
         /// <summary>

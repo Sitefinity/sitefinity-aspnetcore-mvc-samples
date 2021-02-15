@@ -6,6 +6,12 @@ This example demonstrates how to create a ViewComponent that will be used to dis
 ## View component explained: 
 
 We use the [SitefinityWidget] attribute in order to load the widget automatically in the Sitefinity InsertWidget dialogs.
+It has a number of properties that can be used to tweak the appearance and functionality of the widget:
+
+* Title -> the friendly name of the widget
+* Category -> which category the widget is going to appear in- e.g. Content, Layout
+* EmptyIcon -> what icon to show when the widget has an empty state. The available icon names are font-awesome icons.
+* EmptyIconText -> the text to be shown when the widget has an empty state
 
 You need to inherit the ViewComponent so we can detect and render your functionality inside your pages.
 
