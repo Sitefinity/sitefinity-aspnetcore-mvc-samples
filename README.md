@@ -9,7 +9,7 @@ Follow the instructions [here](https://www.progress.com/documentation/sitefinity
 ## Samples list
 * Hello World sample - for creating a hello world widget and configuring the different types of properties of the SitefinityWidget attribute.
 
-* Sitefinity Data sample - for accessing data through OData Web Services
+* Sitefinity Data sample - for accessing data through OData Web Services and limiting access to the Sitefinity OData service.
 * Custom Layout - for creating custom base templates
 * All properties - for creating designers
 * Change Grid System - for using a TailWind, a different css grid system
