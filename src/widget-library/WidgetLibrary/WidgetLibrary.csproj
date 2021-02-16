@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net5.0</TargetFramework>
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 	</PropertyGroup>
 	<ItemGroup>
-		<EmbeddedResource Include="Scripts\common.js" />
+		<EmbeddedResource Include="Scripts\hello.js" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.2.7500.9608" />
-        <PackageReference Include="Progress.Sitefinity.Renderer" Version="13.2.7500.9608" />
+		<PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.3.7600.15763" />
+        <PackageReference Include="Progress.Sitefinity.Renderer" Version="13.3.7600.15763" />
 	</ItemGroup>
 </Project>
