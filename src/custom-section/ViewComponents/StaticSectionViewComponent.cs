@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using custom_section.Entities.StaticSection;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
+using custom_section.ViewModels;
 
 namespace custom_section.ViewComponents
 {
@@ -18,7 +19,12 @@ namespace custom_section.ViewComponents
                 child.Properties.Add("FromParent", "Val from parent");
             }
 
-            return this.View(context.Entity.ViewType ?? "Container", context);
+            var viewModel = new StaticSectionViewModel()
+            {
+                Context = context
+            };
+
+            return this.View(context.Entity.ViewType ?? "Container", viewModel);
         }
     }
 }
