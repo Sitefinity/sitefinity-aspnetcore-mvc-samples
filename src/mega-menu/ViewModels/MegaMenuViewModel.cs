@@ -13,15 +13,23 @@ namespace mega_menu.ViewModels
     {
         public string FirstPageId { get; set; }
 
+        public string FirstSectionCss { get; set; }
+
+        public IList<string> FirstSectionProportions { get; set; }
+
         public string SecondPageId { get; set; }
+
+        public string SecondSectionCss { get; set; }
+
+        public IList<string> SecondSectionProportions { get; set; }
 
         public string ThirdPageId { get; set; }
 
-        public SectionViewModel SectionViewModel { get; set; }
+        public string ThirdSectionCss { get; set; }
 
-        public SectionViewModel SecondSectionViewModel { get; set; }
+        public IList<string> ThirdSectionProportions { get; set; }
 
-        public SectionViewModel ThirdSectionViewModel { get; set; }
+        public bool HideSectionsInEdit { get; set; }
 
         public NavigationViewModel NavigationViewModel { get; set; }
 
