@@ -22,3 +22,4 @@ Follow the instructions [here](https://www.progress.com/documentation/sitefinity
 * Quantum Sample Page - for working with the Quantum sample demo.
 * Starter Template - for basing your project with everything set-upped.
 * Widget Library - for building your custom distributed widget libraries and templates. Additionally this sample includes information on how to add your own custom scripts alongside the views.
+* Mega Menu - for building a complex menu with dropdowns and placing custom/personalized content in those dropdowns.
