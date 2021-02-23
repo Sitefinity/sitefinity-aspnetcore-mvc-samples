@@ -1,9 +1,6 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Progress.Sitefinity.AspNetCore.Configuration;
 using Progress.Sitefinity.AspNetCore.SitefinityApi;
-using Progress.Sitefinity.AspNetCore.ViewComponents;
-using Progress.Sitefinity.AspNetCore.Web;
 using Progress.Sitefinity.AspNetCore.Widgets.Models.ContentBlock;
 
 namespace extended_content_block.Models
@@ -28,11 +25,10 @@ namespace extended_content_block.Models
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns>The view model.</returns>
-        public override async Task<ContentBlockViewModel> InitialzieViewModel(IViewComponentContext context)
+        public override async Task<ContentBlockViewModel> InitialzieViewModel(ContentBlockEntity entity)
         {
-            var viewModel = await base.InitialzieViewModel(context).ConfigureAwait(false);
+            var viewModel = await base.InitialzieViewModel(entity).ConfigureAwait(false);
             viewModel.Content += " From extended model";
-            viewModel.Context.Properties.Add("MyProperty", "MyPropertyValue");
 
             return viewModel;
         }
