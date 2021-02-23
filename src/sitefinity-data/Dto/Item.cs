@@ -47,7 +47,8 @@ namespace sitefinity_data.Dto
 
         public Guid[] Tags { get; set; }
 
-        public Image[] RelatedMediaSingle { get; set; }
+        // related media single or multiple
+        public Image[] Thumbnail { get; set; }
     }
 
     public enum SingleChoice
