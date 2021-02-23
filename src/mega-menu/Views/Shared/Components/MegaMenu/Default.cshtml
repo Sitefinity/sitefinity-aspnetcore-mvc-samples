@@ -1,0 +1,120 @@
+﻿@using  Progress.Sitefinity.AspNetCore.Widgets.Models.Navigation;
+@using Progress.Sitefinity.AspNetCore.Web; 
+@using mega_menu.ViewModels;
+
+
+@inject IRenderContext renderContext;
+  
+@model MegaMenuViewModel
+
+<div class="@Model.NavigationViewModel.WrapperCssClass">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target='@Model.NavigationViewModel.GetUniqueId("#navbar", string.Empty)' aria-controls='@Model.NavigationViewModel.GetUniqueId("navbar", string.Empty)' aria-expanded="false" aria-label="Toggle Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="@Model.NavigationViewModel.GetUniqueId("navbar", string.Empty)">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0 flex-wrap">
+                    @foreach (var node in @Model.NavigationViewModel.Nodes)
+                    {
+                        RenderRootLevelNode(node);
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+@*Here is specified the rendering for the root level*@
+@{ void RenderRootLevelNode(PageViewModel node)
+    {
+        if (node.ChildNodes.Count > 0)
+        {
+            <li class="nav-item dropdown @GetClass(node)">
+                <a data-pageId="@node.Key.ToLower()" class="nav-link dropdown-toggle" href="#" id='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node.Key)' data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@node.Title</a>
+                <ul class="dropdown-menu" aria-labelledby='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node.Key)'>
+                    @{RenderSubLevelsRecursive(node);}
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link @GetClass(node)" data-pageId="@node.Key.ToLower()" href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+            </li>
+        }
+    }
+}
+
+@*Here is specified the rendering for all child levels*@
+@{ void RenderSubLevelsRecursive(PageViewModel node)
+    {
+        foreach (var childNode in node.ChildNodes)
+        {
+            if (childNode.ChildNodes.Count > 0)
+            {
+                <li class="dropdown-submenu">
+                    <a data-pageId="@childNode.Key.ToLower()" class="dropdown-item @GetClass(childNode)" href="@childNode.Url" target="@childNode.LinkTarget">
+                        @childNode.Title
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                            <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @{RenderSubLevelsRecursive(childNode);}
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a class="dropdown-item @GetClass(childNode)" href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+                </li>
+            }
+        }
+    }
+}
+@*Resolves the class that will be added for each node depending whether it is selected*@
+@{Microsoft.AspNetCore.Html.IHtmlContent GetClass(PageViewModel node)
+    {
+
+        if (node.IsCurrentlyOpened)
+        {
+            return Html.HtmlSanitize("active");
+        }
+
+        return null;
+    }
+}
+
+@if (!renderContext.IsEdit)
+{
+    <script src="scripts/mega-menu.js" section-name="Bottom"></script>
+}
+
+<input type="hidden" id="firstPage" value="@this.Model.FirstPageId" />
+<input type="hidden" id="secondPage" value="@this.Model.SecondPageId" />
+<input type="hidden" id="thirdPage" value="@this.Model.ThirdPageId" />
+
+<section id="first" style="@this.Model.SectionViewModel.SectionStyle " class="row @this.Model.SectionViewModel.SectionClasses">
+    @for (var i = 0; i < 3; i++)
+    {
+        <div style="@this.Model.SectionViewModel.ColumnStyles[i]" class="col-md-@this.Model.SectionViewModel.ColumnProportions[i] @this.Model.SectionViewModel.ColumnsClasses[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext(this.Model.SectionViewModel.ColumnNames[i], this.Model.SectionViewModel.ColumnTitles[i])">
+        </div>
+    }
+</section>
+<section id="second" style="@this.Model.SecondSectionViewModel.SectionStyle" class="row @this.Model.SecondSectionViewModel.SectionClasses">
+    @for (var i = 3; i < 5; i++)
+    {
+        <div style="@this.Model.SectionViewModel.ColumnStyles[i]" class="col-md-@this.Model.SectionViewModel.ColumnProportions[i] @this.Model.SectionViewModel.ColumnsClasses[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext(this.Model.SectionViewModel.ColumnNames[i], this.Model.SectionViewModel.ColumnTitles[i])">
+        </div>
+    }
+</section>
+<section id="third" style="@this.Model.ThirdSectionViewModel.SectionStyle" class="row @this.Model.ThirdSectionViewModel.SectionClasses">
+    @for (var i = 5; i < 8; i++)
+    {
+        <div style="@this.Model.SectionViewModel.ColumnStyles[i]" class="col-md-@this.Model.SectionViewModel.ColumnProportions[i] @this.Model.SectionViewModel.ColumnsClasses[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext(this.Model.SectionViewModel.ColumnNames[i], this.Model.SectionViewModel.ColumnTitles[i])">
+        </div>
+    }
+</section>

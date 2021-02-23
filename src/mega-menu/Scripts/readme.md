@@ -1,0 +1,1 @@
+This is where all the scripts that are needed for the ViewComponents are placed. For reference see [this sample](../../widget-library/README.md)
