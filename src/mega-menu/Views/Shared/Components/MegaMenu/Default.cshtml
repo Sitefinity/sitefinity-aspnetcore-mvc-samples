@@ -26,7 +26,7 @@
     </nav>
 </div>
 
-@if (this.renderContext.IsEdit && !this.Model.HideSectionsInEdit)
+@if (this.renderContext.IsEdit)
 {
     await RenderSections(null);
 }
@@ -103,39 +103,52 @@
         if (node != null && this.renderContext.IsEdit)
             return;
 
+        var style = string.Empty;
+        if (this.Model.HideSectionsInEdit)
+            style = "display:none";
+
         var columnIterator = 1;
         @if (node == null || node.Key.ToUpperInvariant() == this.Model.FirstPageId.ToUpperInvariant())
         {
-            <section class="row @this.Model.FirstSectionCss">
-                @for (var i = 0; i < this.Model.FirstSectionProportions.Count; i++)
-                {
-                    <div class="col-md-@this.Model.FirstSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column" + @columnIterator, "Column " + @columnIterator)">
-                    </div>
-                    columnIterator++;
-                }
-            </section>
+            @if (this.Model.FirstSectionProportions.Count > 0)
+            {
+                <section class="row @this.Model.FirstSectionCss" style="@style">
+                    @for (var i = 0; i < this.Model.FirstSectionProportions.Count; i++)
+                    {
+                        <div class="col-md-@this.Model.FirstSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column" + @columnIterator, "Column " + @columnIterator)">
+                        </div>
+                        columnIterator++;
+                    }
+                </section>
+            }
         }
         @if (node == null || node.Key.ToUpperInvariant() == this.Model.SecondPageId.ToUpperInvariant())
         {
-            <section class="row @this.Model.SecondSectionCss">
-                @for (var i = 0; i < this.Model.SecondSectionProportions.Count; i++)
-                {
-                    <div class="col-md-@this.Model.SecondSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column" + @columnIterator, "Column " + @columnIterator)">
-                    </div>
-                    columnIterator++;
-                }
-            </section>
+            @if (this.Model.SecondSectionProportions.Count > 0)
+            {
+                <section class="row @this.Model.SecondSectionCss" style="@style">
+                    @for (var i = 0; i < this.Model.SecondSectionProportions.Count; i++)
+                    {
+                        <div class="col-md-@this.Model.SecondSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column" + @columnIterator, "Column " + @columnIterator)">
+                        </div>
+                        columnIterator++;
+                    }
+                </section>
+            }
         }
         @if (node == null || node.Key.ToUpperInvariant() == this.Model.ThirdPageId.ToUpperInvariant())
         {
-            <section class="row @this.Model.ThirdSectionCss">
-                @for (var i = 0; i < this.Model.ThirdSectionProportions.Count; i++)
-                {
-                    <div class="col-md-@this.Model.ThirdSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column" + @columnIterator, "Column " + @columnIterator)">
-                    </div>
-                    columnIterator++;
-                }
-            </section>
+            @if (this.Model.ThirdSectionProportions.Count > 0)
+            {
+                <section class="row @this.Model.ThirdSectionCss" style="@style">
+                    @for (var i = 0; i < this.Model.ThirdSectionProportions.Count; i++)
+                    {
+                        <div class="col-md-@this.Model.ThirdSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column" + @columnIterator, "Column " + @columnIterator)">
+                        </div>
+                        columnIterator++;
+                    }
+                </section>
+            }
         }
     }
 }

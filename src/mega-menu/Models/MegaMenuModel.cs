@@ -25,6 +25,7 @@ namespace mega_menu.Models
         public async Task<MegaMenuViewModel> InitializeViewModel(MegaMenuEntity entity, IRenderContext renderContext)
         {
             var viewModel = new MegaMenuViewModel();
+            viewModel.HideSectionsInEdit = entity.HideSectionsInEdit;
 
             viewModel.FirstSectionCss = entity.FirstSectionCss;
             viewModel.FirstSectionProportions = entity.FirstSectionProportions ?? new List<string>();
