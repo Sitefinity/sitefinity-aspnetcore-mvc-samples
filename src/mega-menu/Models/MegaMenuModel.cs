@@ -69,6 +69,7 @@ namespace mega_menu.Models
             };
 
             viewModel.SecondSectionViewModel = await this.sectionModel.InitializeViewModel(secondSectionEntity);
+            viewModel.SecondSectionViewModel.SectionStyle += display;
 
             var thirdSectionEntity = new SectionEntity()
             {
@@ -77,6 +78,7 @@ namespace mega_menu.Models
             };
 
             viewModel.ThirdSectionViewModel = await this.sectionModel.InitializeViewModel(thirdSectionEntity);
+            viewModel.ThirdSectionViewModel.SectionStyle += display;
 
             var allContexts = new[] { entity.FirstPage, entity.SecondPage, entity.ThirdPage };
             var allPagesResponse = await this.restClient.GetItems<PageNodeDto>(allContexts, new GetAllArgs()).ConfigureAwait(true);
