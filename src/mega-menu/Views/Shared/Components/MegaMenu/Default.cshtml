@@ -114,7 +114,7 @@
                 <section class="row @this.Model.FirstSectionCss" style="@style">
                     @for (var i = 0; i < this.Model.FirstSectionProportions.Count; i++)
                     {
-                        <div class="col-md-@this.Model.FirstSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column1." + i, "Column 1." + i)">
+                        <div class="col-md-@this.Model.FirstSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column1" + i, "Column 1." + i)">
                         </div>
                     }
                 </section>
