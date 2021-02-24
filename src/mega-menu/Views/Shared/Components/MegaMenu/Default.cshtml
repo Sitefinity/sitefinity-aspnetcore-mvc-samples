@@ -7,7 +7,7 @@
 
 @model MegaMenuViewModel
 
-<div class="@Model.NavigationViewModel.WrapperCssClass">
+<div class="@Model.NavigationViewModel.WrapperCssClass mega-menu">
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -15,7 +15,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="@Model.NavigationViewModel.GetUniqueId("navbar", string.Empty)">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0 flex-wrap">
+                <ul class="navbar-nav mb-2 mb-md-0 flex-wrap">
                     @foreach (var node in @Model.NavigationViewModel.Nodes)
                     {
                         await RenderRootLevelNode(node);
@@ -24,12 +24,12 @@
             </div>
         </div>
     </nav>
-</div>
 
-@if (this.renderContext.IsEdit)
-{
-    await RenderSections(null);
-}
+    @if (this.renderContext.IsEdit)
+    {
+        await RenderSections(null);
+    }
+</div>
 
 @*Here is specified the rendering for the root level*@
 @{ async Task RenderRootLevelNode(PageViewModel node)
@@ -105,16 +105,16 @@
 
         var style = string.Empty;
         if (this.Model.HideSectionsInEdit)
-            style = "display:none";
+            style = "display: none !important";
 
         @if (node == null || node.Key.ToUpperInvariant() == this.Model.FirstPageId.ToUpperInvariant())
         {
             @if (this.Model.FirstSectionProportions.Count > 0)
             {
-                <section class="row @this.Model.FirstSectionCss" style="@style">
+                <section class="row @this.Model.FirstSectionCss mega-menu__item" style="@style">
                     @for (var i = 0; i < this.Model.FirstSectionProportions.Count; i++)
                     {
-                        <div class="col-md-@this.Model.FirstSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column1." + i, "Column 1." + i)">
+                        <div class="col-md-@this.Model.FirstSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column1" + i, "Column 1." + i)">
                         </div>
                     }
                 </section>
@@ -125,7 +125,7 @@
         {
             @if (this.Model.SecondSectionProportions.Count > 0)
             {
-                <section class="row @this.Model.SecondSectionCss" style="@style">
+                <section class="row @this.Model.SecondSectionCss mega-menu__item" style="@style">
                     @for (var i = 0; i < this.Model.SecondSectionProportions.Count; i++)
                     {
                         <div class="col-md-@this.Model.SecondSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column2" + i, "Column 2." + i)">
@@ -139,7 +139,7 @@
         {
             @if (this.Model.ThirdSectionProportions.Count > 0)
             {
-                <section class="row @this.Model.ThirdSectionCss" style="@style">
+                <section class="row @this.Model.ThirdSectionCss mega-menu__item" style="@style">
                     @for (var i = 0; i < this.Model.ThirdSectionProportions.Count; i++)
                     {
                         <div class="col-md-@this.Model.ThirdSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column3" + i, "Column 3." + i)">

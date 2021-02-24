@@ -1,7 +1,11 @@
-﻿@model Progress.Sitefinity.AspNetCore.Models.PageModel
+﻿@using Progress.Sitefinity.AspNetCore.Web;
+
+@model Progress.Sitefinity.AspNetCore.Models.PageModel
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, Progress.Sitefinity.AspNetCore
+
+@inject IRenderContext renderContext;
 
 <!DOCTYPE html>
 <html id="html">
@@ -29,6 +33,12 @@
 
     @* Custom styles *@
     <link rel="stylesheet" href="~/styles/styles.css" />
+
+    @if (this.renderContext.IsEdit)
+    {
+        @* Custom styles loaded only in Edit mode *@
+        <link rel="stylesheet" href="~/styles/edit.css" />
+    }
 
     @* Custom scripts *@
     <script src="~/scripts/scripts.js"></script>
