@@ -122,6 +122,8 @@
                 </section>
             }
         }
+
+        columnIterator = this.Model.FirstSectionProportions.Count + 1;
         @if (node == null || node.Key.ToUpperInvariant() == this.Model.SecondPageId.ToUpperInvariant())
         {
             @if (this.Model.SecondSectionProportions.Count > 0)
@@ -136,6 +138,8 @@
                 </section>
             }
         }
+
+        columnIterator = this.Model.SecondSectionProportions.Count + 1;
         @if (node == null || node.Key.ToUpperInvariant() == this.Model.ThirdPageId.ToUpperInvariant())
         {
             @if (this.Model.ThirdSectionProportions.Count > 0)
