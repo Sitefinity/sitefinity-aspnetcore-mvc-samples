@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Progress.Sitefinity.AspNetCore.SitefinityApi;
+using Progress.Sitefinity.AspNetCore.SitefinityApi.Dto;
+using Progress.Sitefinity.AspNetCore.SitefinityApi.Filters;
 using Progress.Sitefinity.Renderer.Entities.Content;
 using sitefinity_data_taxa_filter.Dto;
 using sitefinity_data_taxa_filter.ViewModels.SitefinityData;
@@ -28,10 +30,10 @@ namespace sitefinity_data_taxa_filter.Models.SitefinityData
         /// </summary>
         /// <param name="entity">The entity object.</param>
         /// <returns>The generated view models.</returns>
-        public async Task<IList<ItemViewModel>> GetViewModelsWithContainsOr(SitefinityDataEntity entity)
+        public async Task<IList<ItemViewModel>> GetViewModels(SitefinityDataEntity entity)
         {
             // get the tags first
-            var tagsResponse = await this.restService.GetItems<TaxonDto>(context.Entity.Tags).ConfigureAwait(true);
+            var tagsResponse = await this.service.GetItems<TaxonDto>(entity.Tags).ConfigureAwait(true);
 
             // get all the news items and filter them by items containing one of the specified tag ids
             var getAllArgs = new GetAllArgs

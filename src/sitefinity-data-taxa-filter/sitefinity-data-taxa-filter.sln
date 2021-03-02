@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sitefinity_data_taxa_filter", "sitefinity_data_taxa_filter.csproj", "{006A164A-401F-4CF2-8265-CF087ACBC544}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sitefinity-data-taxa-filter", "sitefinity-data-taxa-filter.csproj", "{006A164A-401F-4CF2-8265-CF087ACBC544}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
