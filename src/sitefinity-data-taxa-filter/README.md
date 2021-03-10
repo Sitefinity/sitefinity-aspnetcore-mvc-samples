@@ -1,6 +1,9 @@
 # Sitefinity Data widget
 
-An example on how to create a widget that consumes that from Sitefinity.
+An example on how to create a widget that consumes that from Sitefinity and filters that data based on selected taxons.
+
+## Filtering by taxa
+To see how items can be filtered by a list of taxons checkout the SitefinityDataModel class.
 
 ## Prerequsities
 * A dynamic type with an oData path of "pressreleases" (other content types can be used as well - e.g. "newsitems")
@@ -26,6 +29,3 @@ If you wish to restrict the web service in Sitefinity to disallow access to othe
 ```
 
 Using this configuration, when API calls are made to the OData service under the route api/default, a special header will be passed carrying this api key and allowing the call through. This does not authenticate the call however, the user is still left anonymous. For this to fully work the Web Service in Sitefinity(under Administration/WebServices) should have the same Api Key value set.
-
-## Filtering by taxa
-To see how items can be filtered by a list of taxons checkout the SitefinityDataModel class.
