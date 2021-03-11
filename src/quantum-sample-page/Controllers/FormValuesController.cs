@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Progress.Sitefinity.AspNetCore.SitefinityApi;
 using System.Threading.Tasks;
+using Progress.Sitefinity.AspNetCore.SitefinityApi.OData;
 
 namespace Renderer.Controllers
 {
     public class FormValuesController : Controller
     {
-        private readonly IRestClient client;
-        public FormValuesController(IRestClient client)
+        private readonly IODataRestClient client;
+        public FormValuesController(IODataRestClient client)
         {
             this.client = client;
         }

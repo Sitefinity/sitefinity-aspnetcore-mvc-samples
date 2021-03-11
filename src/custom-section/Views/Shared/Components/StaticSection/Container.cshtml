@@ -1,7 +1,7 @@
-﻿@using custom_section.Entities.StaticSection
+﻿@using custom_section.ViewModels
 @using Progress.Sitefinity.AspNetCore.ViewComponents
 
-@model ICompositeViewComponentContext<StaticSectionEntity>
-<div class="container" data-sfcontainer="Container">
+@model StaticSectionViewModel
+<div class="container" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column1", "Column 1")">
 
 </div>

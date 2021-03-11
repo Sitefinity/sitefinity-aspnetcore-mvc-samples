@@ -1,0 +1,8 @@
+﻿@using Progress.Sitefinity.AspNetCore.ViewComponents
+
+@model IViewComponentContext
+
+@if (this.Model.Properties.ContainsKey("FromParent"))
+{
+    <h2> @this.Model.Properties["FromParent"] </h2>
+}

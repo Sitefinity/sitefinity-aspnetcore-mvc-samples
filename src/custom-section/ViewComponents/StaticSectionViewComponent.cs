@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using custom_section.Entities.StaticSection;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
+using custom_section.ViewModels;
 
 namespace custom_section.ViewComponents
 {
@@ -13,18 +14,17 @@ namespace custom_section.ViewComponents
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
 
-            switch (context.Entity.ViewType)
+            foreach (var child in context.ChildComponents)
             {
-                case ViewType.Container:
-                default:
-                    return this.View("Container", context);
-                case ViewType.ContainerFluid:
-                    return this.View("ContainerFluid", context);
-                case ViewType.TwoMixed:
-                    return this.View("TwoMixed", context);
-                case ViewType.ThreeAutoLayout:
-                    return this.View("ThreeAutoLayout", context);
+                child.Properties.Add("FromParent", "Val from parent");
             }
+
+            var viewModel = new StaticSectionViewModel()
+            {
+                Context = context
+            };
+
+            return this.View(context.Entity.ViewType ?? "Container", viewModel);
         }
     }
 }

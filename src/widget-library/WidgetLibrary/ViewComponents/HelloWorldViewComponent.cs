@@ -8,7 +8,8 @@ namespace WidgetLibrary.ViewComponents
     /// <summary>
     /// Test widget with different kind of restrictions for its properties.
     /// </summary>
-    [SitefinityWidget]
+    [SitefinityWidget(Title = "Hello World")]
+    [ViewComponent(Name = "MyCompanyPrefixHelloWorld")]
     public class HelloWorldViewComponent : ViewComponent
     {
         /// <summary>

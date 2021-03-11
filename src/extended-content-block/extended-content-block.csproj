@@ -1,16 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>extended_content_block</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.2.7500.9608" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="13.2.7500.9608" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.3.7600.17345" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="13.3.7600.17345" />
   </ItemGroup>
 
 </Project>

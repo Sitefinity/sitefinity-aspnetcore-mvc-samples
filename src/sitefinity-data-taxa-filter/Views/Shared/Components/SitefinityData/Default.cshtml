@@ -1,0 +1,16 @@
+@model IList<sitefinity_data_taxa_filter.ViewModels.SitefinityData.ItemViewModel>
+
+<h1>News items</h1>
+
+@foreach (var item in this.Model)
+{
+    <ul>
+        <li>
+            @item.Title
+            @if (item.ThumbnailUrl != null)
+            {
+                <img src="@item.ThumbnailUrl" />
+            }
+        </li>
+    </ul>
+}
