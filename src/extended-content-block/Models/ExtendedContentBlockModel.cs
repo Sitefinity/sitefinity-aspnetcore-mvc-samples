@@ -25,9 +25,9 @@ namespace extended_content_block.Models
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns>The view model.</returns>
-        public override async Task<ContentBlockViewModel> InitialzieViewModel(ContentBlockEntity entity)
+        public override async Task<ContentBlockViewModel> InitializeViewModel(ContentBlockEntity entity)
         {
-            var viewModel = await base.InitialzieViewModel(entity).ConfigureAwait(false);
+            var viewModel = await base.InitializeViewModel(entity).ConfigureAwait(false);
             viewModel.Content += " From extended model";
 
             return viewModel;
