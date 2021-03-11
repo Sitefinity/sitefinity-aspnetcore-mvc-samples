@@ -19,3 +19,6 @@ Once the extended model is ready, you can regiser it in the Startup.cs file in t
 
 		services.AddSingleton<IContentBlockModel, ExtendedContentBlockModel>();
 	}
+
+## Upgrade considerations
+If you plan to make changes to the views of the OOB widgets, please bare in mind that you would not get the changes that we introduced in the views with each release (rare occasion, but not unlikely).
