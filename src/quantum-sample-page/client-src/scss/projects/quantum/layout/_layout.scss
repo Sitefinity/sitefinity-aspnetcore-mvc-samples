@@ -1,0 +1,6 @@
+@use "../../../common/settings/colors";
+@use "../../../common/settings/text";
+
+body {
+  color: colors.$dark-gray;
+}

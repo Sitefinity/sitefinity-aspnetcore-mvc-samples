@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Progress.Sitefinity.AspNetCore;
+using Renderer.Models;
 using Renderer.Models.Testimonial;
 
 namespace Renderer
@@ -16,6 +17,7 @@ namespace Renderer
         {
             // add sitefinity related services
             services.AddScoped<ITestimonialModel, TestimonialModel>();
+            services.AddScoped<IMegaMenuModel, MegaMenuModel>();
             services.AddSitefinity();
             services.AddViewComponentModels();
         }

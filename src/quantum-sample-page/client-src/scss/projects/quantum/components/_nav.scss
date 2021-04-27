@@ -1,0 +1,36 @@
+@use "../../../common/settings/colors";
+@use "../../../common/settings/text";
+
+.qu-nav-sitemap {
+
+    &__link {
+        color: colors.$white;
+        font-weight: 500;
+
+        &:hover {
+            color: colors.$action;
+        }
+
+        &.-wrapper {
+            text-transform: uppercase;
+            color: colors.$gray;
+            font-weight: text.$font-weight-bold;
+
+            &:hover {
+                background-color: colors.$lightest-gray;
+            }
+        }
+    }
+}
+
+.q-sitemap-stacked a {
+    text-transform: capitalize !important;
+    color: white !important;
+    font-weight: 500;
+    padding: 5px 10px !important;
+}
+
+.nav-stacked a:hover, .nav-stacked a:focus {
+    background-color: transparent !important;
+    //color: $color-button !important;
+}

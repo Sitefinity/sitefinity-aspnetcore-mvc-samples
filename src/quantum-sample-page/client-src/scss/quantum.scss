@@ -1,0 +1,30 @@
+﻿//@import "config";
+//@import "layout";
+//@import "navigation";
+//@import "events";
+//@import "slider";
+//@import "news";
+//@import "services";
+//@import "showcase";
+//@import "homepage";
+//@import "others";
+@use "sass:meta";
+
+@import "projects/quantum/vendors/bootstrap";
+
+@include meta.load-css("common/trumps");
+@include meta.load-css("projects/quantum/layout/layout");
+@include meta.load-css("projects/quantum/components/typography");
+@include meta.load-css("projects/quantum/components/card");
+@include meta.load-css("projects/quantum/components/social-share");
+@include meta.load-css("projects/quantum/components/nav");
+@include meta.load-css("projects/quantum/components/mega-menu");
+
+// THIS FIX IS IN THE RENDERER
+.sc-video__element {
+  z-index: -1;
+}
+
+.-sc-video {
+  position: relative;
+}

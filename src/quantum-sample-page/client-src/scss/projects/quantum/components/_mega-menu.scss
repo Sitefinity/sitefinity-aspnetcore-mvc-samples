@@ -1,0 +1,28 @@
+@use "../../../common/settings/colors";
+
+.mega-menu .mega-menu__item {
+  display: flex;
+  top: 40px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid colors.$light-gray;
+  border-radius: 0;
+  box-shadow: 5px 5px 5px 0 rgba(221,221,221,1);
+}
+
+.mega-menu .nav-item {
+  position: relative;
+}
+
+.mega-menu .nav-item .mega-menu__item {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.1s ease;
+  z-index: 100;
+}
+
+.mega-menu .nav-item .mega-menu__item.show {
+  visibility: visible;
+  opacity: 1;
+}

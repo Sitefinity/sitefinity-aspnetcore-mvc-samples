@@ -1,0 +1,35 @@
+﻿@use "../settings/variables";
+@use "../settings/text";
+@use "../settings/colors";
+
+.#{variables.$selector-prefix}-txt-white {
+    color: colors.$white;
+}
+
+.#{variables.$selector-prefix}-txt-light-gray {
+    color: colors.$light-gray;
+}
+
+.#{variables.$selector-prefix}-txt-gray {
+    color: colors.$gray;
+}
+
+.#{variables.$selector-prefix}-txt-small {
+    font-size: text.$font-size-small;
+}
+
+.#{variables.$selector-prefix}-txt-medium {
+    font-size: text.$font-size-medium;
+}
+
+.#{variables.$selector-prefix}-txt-large {
+    font-size: text.$font-size-large;
+}
+
+.#{variables.$selector-prefix}-txt-uppercase {
+    text-transform: uppercase;
+}
+
+.#{variables.$selector-prefix}-heading-2xl {
+    font-size: text.$heading-size-2xl;
+}
