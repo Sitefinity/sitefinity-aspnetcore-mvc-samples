@@ -19,6 +19,7 @@
 @include meta.load-css("projects/quantum/components/social-share");
 @include meta.load-css("projects/quantum/components/nav");
 @include meta.load-css("projects/quantum/components/mega-menu");
+@include meta.load-css("projects/quantum/components/button");
 
 // THIS FIX IS IN THE RENDERER
 .sc-video__element {

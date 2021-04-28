@@ -11024,29 +11024,41 @@ h1, .h1 {
   background-color: #eee;
 }
 
-.q-sitemap-stacked a {
-  text-transform: capitalize !important;
-  color: white !important;
-  font-weight: 500;
-  padding: 5px 10px !important;
-}
-
-.nav-stacked a:hover, .nav-stacked a:focus {
-  background-color: transparent !important;
-}
-
 .mega-menu .mega-menu__item {
   display: flex;
+  width: 380px;
   top: 40px;
-  padding: 20px;
+  padding: 0;
   background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 0;
-  box-shadow: 5px 5px 5px 0 #dddddd;
+}
+
+.mega-menu .mega-menu__item .qu-cta a {
+  text-decoration: none;
+  padding: 0 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.mega-menu .mega-menu__item .row {
+  align-items: center;
+  height: 100%;
 }
 
 .mega-menu .nav-item {
   position: relative;
+}
+
+.mega-menu .nav-item .nav-link,
+.mega-menu .nav-item .dropdown-item {
+  color: #333;
+}
+
+.mega-menu .nav-item .nav-link:hover, .mega-menu .nav-item .nav-link:focus, .mega-menu .nav-item .nav-link:active,
+.mega-menu .nav-item .dropdown-item:hover,
+.mega-menu .nav-item .dropdown-item:focus,
+.mega-menu .nav-item .dropdown-item:active {
+  color: #00B4C9;
+  background-color: transparent;
 }
 
 .mega-menu .nav-item .mega-menu__item {
@@ -11060,6 +11072,28 @@ h1, .h1 {
 .mega-menu .nav-item .mega-menu__item.show {
   visibility: visible;
   opacity: 1;
+}
+
+.mega-menu .nav-item .dropdown-menu {
+  border: 1px solid #ccc;
+  border-radius: 0;
+  box-shadow: 3px 3px 10px 0 #ccc;
+}
+
+.navbar-nav > .nav-item > .nav-link {
+  font-weight: 600;
+}
+
+.navbar-nav > .nav-item > .nav-link:hover, .navbar-nav > .nav-item > .nav-link:focus, .navbar-nav > .nav-item > .nav-link:active {
+  color: #555;
+}
+
+.navbar-nav > .nav-item + .nav-item {
+  margin-left: 20px;
+}
+
+.btn {
+  padding: 10px 15px;
 }
 
 .sc-video__element {

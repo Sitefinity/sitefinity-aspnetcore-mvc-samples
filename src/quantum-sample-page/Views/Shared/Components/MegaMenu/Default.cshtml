@@ -26,7 +26,7 @@
 </environment>
 
 <div class="@Model.NavigationViewModel.WrapperCssClass mega-menu">
-    <nav class="navbar navbar-expand-md navbar-light">
+    <nav class="navbar navbar-expand-md">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target='@Model.NavigationViewModel.GetUniqueId("#navbar", string.Empty)' aria-controls='@Model.NavigationViewModel.GetUniqueId("navbar", string.Empty)' aria-expanded="false" aria-label="Toggle Navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -54,13 +54,13 @@
         if (node.ChildNodes.Count > 0)
         {
             <li class="nav-item dropdown @GetClass(node)">
-                <a class="nav-link dropdown-toggle" href="#" id='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node.Key)' data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@node.Title</a>
+                <a class="nav-link dropdown-toggle" href="#" id='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node?.Key)' data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@node.Title</a>
 
                 @{ var hasSection = await RenderSections(node);
 
                     if (!hasSection)
                     {
-                        <ul class="dropdown-menu" aria-labelledby='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node.Key)'>
+                        <ul class="dropdown-menu" aria-labelledby='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node?.Key)'>
                             @{ await RenderSubLevelsRecursive(node); }
                         </ul>
                     }
@@ -131,11 +131,11 @@
         if (this.Model.HideSectionsInEdit)
             style = "display: none !important";
 
-        @if (node == null || node.Key.ToUpperInvariant() == this.Model.FirstPageId.ToUpperInvariant())
+        @if (node == null || node?.Key.ToUpperInvariant() == this.Model.FirstPageId.ToUpperInvariant())
         {
             @if (this.Model.FirstSectionProportions.Count > 0)
             {
-                <section class="row @this.Model.FirstSectionCss mega-menu__item dropdown-menu" aria-labelledby='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node.Key)' style="@style">
+                <section class="row mega-menu__item dropdown-menu @this.Model.FirstSectionCss" aria-labelledby='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node?.Key)' style="@style">
                     @for (var i = 0; i < this.Model.FirstSectionProportions.Count; i++)
                     {
                         <div class="col-md-@this.Model.FirstSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column1" + i, "Column 1." + i)">
@@ -147,11 +147,11 @@
             }
         }
 
-        @if (node == null || node.Key.ToUpperInvariant() == this.Model.SecondPageId.ToUpperInvariant())
+        @if (node == null || node?.Key.ToUpperInvariant() == this.Model.SecondPageId.ToUpperInvariant())
         {
             @if (this.Model.SecondSectionProportions.Count > 0)
             {
-                <section class="row @this.Model.SecondSectionCss mega-menu__item dropdown-menu" aria-labelledby='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node.Key)' style="@style">
+                <section class="row @this.Model.SecondSectionCss mega-menu__item dropdown-menu" aria-labelledby='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node?.Key)' style="@style">
                     @for (var i = 0; i < this.Model.SecondSectionProportions.Count; i++)
                     {
                         <div class="col-md-@this.Model.SecondSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column2" + i, "Column 2." + i)">
@@ -163,11 +163,11 @@
             }
         }
 
-        @if (node == null || node.Key.ToUpperInvariant() == this.Model.ThirdPageId.ToUpperInvariant())
+        @if (node == null || node?.Key.ToUpperInvariant() == this.Model.ThirdPageId.ToUpperInvariant())
         {
             @if (this.Model.ThirdSectionProportions.Count > 0)
             {
-                <section class="row @this.Model.ThirdSectionCss mega-menu__item dropdown-menu" aria-labelledby='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node.Key)' style="@style">
+                <section class="row @this.Model.ThirdSectionCss mega-menu__item dropdown-menu" aria-labelledby='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node?.Key)' style="@style">
                     @for (var i = 0; i < this.Model.ThirdSectionProportions.Count; i++)
                     {
                         <div class="col-md-@this.Model.ThirdSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column3" + i, "Column 3." + i)">
