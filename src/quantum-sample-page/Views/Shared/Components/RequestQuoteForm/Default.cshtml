@@ -1,0 +1,48 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Renderer.Models.RequestQuoteFormModel
+
+@using (Html.BeginForm("Index", "FormValues", FormMethod.Post, new { id = "submitForm", novalidate = "", @class = "qu-form -gray" }))
+{
+    <h3>Request a Quote</h3>
+    <div class="form-group">
+        <label asp-for="FirstName">First Name</label>
+        <input class="form-control" asp-for="FirstName" required>
+        <div class="invalid-feedback">
+            Field is required
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName">Last Name</label>
+        <input class="form-control" asp-for="LastName" required>
+        <div class="invalid-feedback">
+            Field is required
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input type="email" class="form-control" asp-for="Email" required>
+        <div class="invalid-feedback">
+            Field is required
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber">Phone Number</label>
+        <input type="number" class="form-control" asp-for="PhoneNumber" required>
+        <div class="invalid-feedback">
+            Field is required
+        </div>
+    </div>    
+    <div class="form-group">
+        <label asp-for="YourMessage">Your Message</label>
+        <textarea class="form-control" asp-for="YourMessage" placeholder="Tell us more about your project"></textarea>
+    </div>
+    <button class="btn" id="submitButton" type="submit">Submit</button>
+}
+
+<!-- <div id="submitSuccess" class="d-none mt-4">
+    <i class="fa fa-check qu-icon-check" aria-hidden="true"></i>
+    <p class="qu-txt-medium qu-txt-white pt-2 mt-4">
+        Thank you for your request!<br />
+        We'll be in touch shortly.
+    </p>
+</div> -->

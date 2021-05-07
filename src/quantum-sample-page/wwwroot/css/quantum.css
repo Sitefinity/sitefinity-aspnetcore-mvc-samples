@@ -10729,39 +10729,81 @@ textarea.form-control-lg {
   }
 }
 .qu-txt-white {
-  color: #FFF;
+  color: #FFF !important;
+}
+
+.qu-txt-black {
+  color: #333 !important;
 }
 
 .qu-txt-light-gray {
-  color: #ccc;
+  color: #ccc !important;
 }
 
 .qu-txt-gray {
-  color: #777;
+  color: #777 !important;
 }
 
 .qu-txt-small {
-  font-size: 0.8rem;
+  font-size: 0.8rem !important;
 }
 
 .qu-txt-medium {
-  font-size: 1.25rem;
+  font-size: 1.25rem !important;
 }
 
 .qu-txt-large {
-  font-size: 1.5rem;
+  font-size: 1.5rem !important;
 }
 
 .qu-txt-uppercase {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 
-.qu-heading-2xl {
-  font-size: 4.375rem;
+.qu-heading-xl {
+  font-size: 2.625rem !important;
+}
+
+.qu-heading-3xl {
+  font-size: 4.375rem !important;
 }
 
 body {
   color: #555;
+}
+
+.project-phase {
+  padding: 0;
+  margin-top: 40px;
+}
+
+.project-phase h3, .project-phase .h3 {
+  color: #333;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.project-phase h3::after, .project-phase .h3::after {
+  content: url("../assets/images/Arrow.png");
+  margin-left: 30px;
+}
+
+.project-phase img {
+  opacity: 0.3;
+}
+
+.project-phase p {
+  color: #333;
+  font-size: 15px;
+  padding-left: 10px;
+  padding-right: 40px;
+}
+
+.project-phase.-last h3::after, .project-phase.-last .h3::after {
+  content: "";
 }
 
 h1, .h1 {
@@ -11027,7 +11069,6 @@ h1, .h1 {
 .mega-menu .mega-menu__item {
   display: flex;
   width: 380px;
-  top: 40px;
   padding: 0;
   background: #fff;
 }
@@ -11046,6 +11087,7 @@ h1, .h1 {
 
 .mega-menu .nav-item {
   position: relative;
+  padding: 10px;
 }
 
 .mega-menu .nav-item .nav-link,
@@ -11053,10 +11095,11 @@ h1, .h1 {
   color: #333;
 }
 
-.mega-menu .nav-item .nav-link:hover, .mega-menu .nav-item .nav-link:focus, .mega-menu .nav-item .nav-link:active,
+.mega-menu .nav-item .nav-link:hover, .mega-menu .nav-item .nav-link:focus, .mega-menu .nav-item .nav-link:active, .mega-menu .nav-item .nav-link.active,
 .mega-menu .nav-item .dropdown-item:hover,
 .mega-menu .nav-item .dropdown-item:focus,
-.mega-menu .nav-item .dropdown-item:active {
+.mega-menu .nav-item .dropdown-item:active,
+.mega-menu .nav-item .dropdown-item.active {
   color: #00B4C9;
   background-color: transparent;
 }
@@ -11076,8 +11119,9 @@ h1, .h1 {
 
 .mega-menu .nav-item .dropdown-menu {
   border: 1px solid #ccc;
-  border-radius: 0;
+  border-radius: 1px;
   box-shadow: 3px 3px 10px 0 #ccc;
+  padding: 0;
 }
 
 .navbar-nav > .nav-item > .nav-link {
@@ -11094,6 +11138,49 @@ h1, .h1 {
 
 .btn {
   padding: 10px 15px;
+}
+
+.qu-form {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.qu-form.-gray {
+  background: #F3F4F6;
+  opacity: 0.9;
+  border-radius: 8px;
+  border: none;
+  padding: 20px;
+}
+
+.qu-form.-gray label,
+.qu-form.-gray .form-group {
+  margin-bottom: 5px;
+}
+
+.qu-form.-gray .form-control {
+  font-size: inherit;
+}
+
+.qu-form.-gray textarea {
+  min-height: 90px;
+}
+
+.qu-form.-gray .btn {
+  background: #000;
+  color: #FFF;
+  border: none;
+  font-size: 18px;
+  font-weight: inherit;
+  padding: 6px 12px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.qu-form.-gray .btn:hover {
+  background: #000;
+  color: #FFF;
+  opacity: 0.8;
 }
 
 .sc-video__element {

@@ -10729,35 +10729,43 @@ textarea.form-control-lg {
   }
 }
 .qu-txt-white {
-  color: #FFF;
+  color: #FFF !important;
+}
+
+.qu-txt-black {
+  color: #333 !important;
 }
 
 .qu-txt-light-gray {
-  color: #ccc;
+  color: #ccc !important;
 }
 
 .qu-txt-gray {
-  color: #777;
+  color: #777 !important;
 }
 
 .qu-txt-small {
-  font-size: 0.8rem;
+  font-size: 0.8rem !important;
 }
 
 .qu-txt-medium {
-  font-size: 1.25rem;
+  font-size: 1.25rem !important;
 }
 
 .qu-txt-large {
-  font-size: 1.5rem;
+  font-size: 1.5rem !important;
 }
 
 .qu-txt-uppercase {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 
-.qu-heading-2xl {
-  font-size: 4.375rem;
+.qu-heading-xl {
+  font-size: 2.625rem !important;
+}
+
+.qu-heading-3xl {
+  font-size: 4.375rem !important;
 }
 
 body {

@@ -4,7 +4,6 @@
 .mega-menu .mega-menu__item {
   display: flex;
   width: 380px;
-  top: 40px;
   padding: 0;
   background: #fff;
 
@@ -24,6 +23,7 @@
 
 .mega-menu .nav-item {
   position: relative;
+  padding: 10px;
 
   .nav-link,
   .dropdown-item {
@@ -31,7 +31,8 @@
 
     &:hover,
     &:focus,
-    &:active {
+    &:active,
+    &.active {
       color: colors.$primary;
       background-color: transparent;
     }
@@ -53,8 +54,9 @@
 
 .mega-menu .nav-item .dropdown-menu {
   border: 1px solid colors.$light-gray;
-  border-radius: 0;
+  border-radius: 1px;
   box-shadow: 3px 3px 10px 0 colors.$light-gray;
+  padding: 0;
 }
 
 .navbar-nav > .nav-item > .nav-link {

@@ -1,0 +1,46 @@
+@use "../../../common/settings/variables";
+@use "../../../common/settings/colors";
+@use "../settings/components/form";
+
+.#{variables.$selector-prefix}-form {
+    font-size: form.$label-font-size;
+    font-weight: form.$label-font-weight;
+
+    &.-gray {
+        background: form.$background-gray;
+        opacity: .90;
+        border-radius: 8px;
+        border: none;
+        padding: 20px;
+
+        label,
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            font-size: inherit;
+        }
+
+        textarea {
+            min-height: 90px;
+        }
+
+        .btn {
+            background: form.$button-background;
+            color: colors.$white;
+            border: none;
+            font-size: form.$button-font-size;
+            font-weight: inherit;
+            padding: 6px 12px;
+            width: 100%;
+            margin-top: 15px;
+
+            &:hover{
+                background: form.$button-background;
+                color: colors.$white;
+                opacity: 0.8;
+            }
+        }
+    }
+}
