@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Renderer.Entities.ContactUsForm;
 
-namespace Renderer.Models
+namespace Renderer.Models.ContactUsForm
 {
-    public class RequestQuoteFormModel
+    public class ContactUsFormModel
     {
         [Required]
         [Display(Name = "FirstName")]
@@ -19,10 +20,15 @@ namespace Renderer.Models
 
         [Required]
         [Display(Name = "PhoneNumber")]
-        public int PhoneNumber { get; set; }        
+        public int PhoneNumber { get; set; }
 
         [MaxLength(150)]
         [Display(Name = "YourMessage")]
         public string YourMessage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the heading of the form.
+        /// </summary>
+        public string Heading { get; set; }
     }
 }

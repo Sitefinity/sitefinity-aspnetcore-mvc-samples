@@ -1,9 +1,9 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model Renderer.Models.RequestQuoteFormModel
+@model Renderer.Models.ContactUsForm.ContactUsFormModel
 
 @using (Html.BeginForm("Index", "FormValues", FormMethod.Post, new { id = "submitForm", novalidate = "", @class = "qu-form -gray" }))
 {
-    <h3>Request a Quote</h3>
+    <h3>@Model.Heading</h3>
     <div class="form-group">
         <label asp-for="FirstName">First Name</label>
         <input class="form-control" asp-for="FirstName" required>
