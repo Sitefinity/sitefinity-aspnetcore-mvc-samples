@@ -23,6 +23,7 @@ namespace extended_content_block
             services.AddViewComponentModels();
 
             services.AddSingleton<IContentBlockModel, ExtendedContentBlockModel>();
+            services.AddSingleton<IEntityExtender, EntityExtender<ContentBlockEntity, ExtendedContentBlockEntity>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
