@@ -27,3 +27,4 @@ Follow the instructions [here](https://www.progress.com/documentation/sitefinity
 * sitefinity-data-taxa-filter - an example on how to filter items by selected taxons
 * starter-template - for basing your project with everything set-upped.
 * widget-library - for building your custom distributed widget libraries and templates. Additionally this sample includes information on how to add your own custom scripts alongside the views.
+* sitefinity-insight - for submitting custom data to sitefinity insight connector
