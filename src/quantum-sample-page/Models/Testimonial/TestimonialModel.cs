@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Progress.Sitefinity.AspNetCore.SitefinityApi;
+using Progress.Sitefinity.RestSdk;
+using Progress.Sitefinity.RestSdk.Client.Args;
 using Renderer.Dto;
 using Renderer.Entities.Testimonial;
 using Renderer.ViewModels.Testimonial;

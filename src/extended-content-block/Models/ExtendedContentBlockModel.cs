@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Progress.Sitefinity.AspNetCore.Configuration;
-using Progress.Sitefinity.AspNetCore.SitefinityApi;
+using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.AspNetCore.Widgets.Models.ContentBlock;
 
 namespace extended_content_block.Models

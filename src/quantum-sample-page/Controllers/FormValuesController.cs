@@ -1,14 +1,16 @@
 ﻿using Renderer.Models;
 using Microsoft.AspNetCore.Mvc;
-using Progress.Sitefinity.AspNetCore.SitefinityApi;
+using Progress.Sitefinity.RestSdk;
+using Progress.Sitefinity.RestSdk.Client.Args;
+using Progress.Sitefinity.RestSdk.Client.OData;
 using System.Threading.Tasks;
-using Progress.Sitefinity.AspNetCore.SitefinityApi.OData;
 
 namespace Renderer.Controllers
 {
     public class FormValuesController : Controller
     {
         private readonly IODataRestClient client;
+
         public FormValuesController(IODataRestClient client)
         {
             this.client = client;

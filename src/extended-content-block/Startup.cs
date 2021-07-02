@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Progress.Sitefinity.AspNetCore;
+using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Progress.Sitefinity.AspNetCore.Widgets.Models.ContentBlock;
+using extended_content_block.Entities;
 
 namespace extended_content_block
 {
