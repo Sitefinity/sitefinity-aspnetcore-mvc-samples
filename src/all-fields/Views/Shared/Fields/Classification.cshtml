@@ -1,0 +1,11 @@
+@using Progress.Sitefinity.RestSdk;
+
+@model Progress.Sitefinity.RestSdk.Dto.SdkItem;
+@inject IRestClient restClient;
+
+@* Tags, Categories, Custom Classifications *@
+<h1>Tags</h1>
+@foreach (var taxaItem in (await restClient.LoadTaxa(Model, "Tags")))
+{
+    <div>@taxaItem.Title</div>
+}

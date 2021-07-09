@@ -1,0 +1,10 @@
+@model Progress.Sitefinity.RestSdk.Dto.SdkItem
+
+@* Array of guid *@
+<h1>Array of guid</h1>
+<ul>
+    @foreach (var guid in Model.GetValue<Guid[]>("TestArrayOfGuid"))
+    {
+        <li>@guid</li>
+    }
+</ul>

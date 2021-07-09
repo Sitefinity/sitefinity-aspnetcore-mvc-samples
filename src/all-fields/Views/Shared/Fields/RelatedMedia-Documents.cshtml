@@ -1,0 +1,14 @@
+@using Progress.Sitefinity.RestSdk.Dto;
+
+@model Progress.Sitefinity.RestSdk.Dto.SdkItem
+
+@* Related Media - Documents *@
+<h1>Related Media - Documents</h1>
+<ul>
+    @foreach (var document in (Model.GetValue<IEnumerable<DocumentDto>>("TestRelatedDocuments")))
+    {
+        <li>
+            <a href='@document.Url'>@document.Title</a>
+        </li>
+    }
+</ul>
