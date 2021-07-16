@@ -10748,8 +10748,12 @@ textarea.form-control-lg {
   font-size: 0.8rem !important;
 }
 
+.qu-txt-sm {
+  font-size: 0.95rem !important;
+}
+
 .qu-txt-medium {
-  font-size: 1.25rem !important;
+  font-size: 1.125rem !important;
 }
 
 .qu-txt-large {

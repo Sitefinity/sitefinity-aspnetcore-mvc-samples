@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using Progress.Sitefinity.AspNetCore.Widgets.Models.Common;
 using Progress.Sitefinity.AspNetCore.Widgets.Models.Navigation;
-using Progress.Sitefinity.AspNetCore.Widgets.Models.Section;
-using Progress.Sitefinity.Renderer.Designers;
 using Progress.Sitefinity.Renderer.Designers.Attributes;
 using Progress.Sitefinity.Renderer.Entities.Content;
+using Progress.Sitefinity.RestSdk;
 
 namespace Renderer.Entities
 {

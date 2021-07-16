@@ -1,0 +1,19 @@
+﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentDetailViewModel
+
+<div>
+    @{
+        var text = Model.Item.GetValue<string>("Title");
+    }
+    <div class="col">
+        <div class="h-100">
+            <div>
+                @if (text != null)
+                {
+                    <p>@text</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

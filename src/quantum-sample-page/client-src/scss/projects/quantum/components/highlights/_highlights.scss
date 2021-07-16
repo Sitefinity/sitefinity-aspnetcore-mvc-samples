@@ -1,0 +1,24 @@
+@use "settings";
+
+.highlights {
+
+    .col {
+        padding-right: settings.$col-h-offset;
+    }
+
+    h3 {
+        margin-top: settings.$heading-top-offset;
+        font-size: settings.$heading-font-size;
+        font-weight: settings.$heading-font-weight;
+        color: settings.$heading-color;
+    }
+
+    p {
+        color: settings.$text-color;
+        padding-right: settings.$text-h-offset;
+    }
+
+    img {
+        min-height: settings.$image-min-height;
+    }
+}

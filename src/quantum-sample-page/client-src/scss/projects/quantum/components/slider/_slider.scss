@@ -1,0 +1,20 @@
+@use "settings";
+
+.carousel-indicators {
+
+    [data-bs-target] {
+        border-radius: settings.$indicator-dimension;
+        border: 2px solid settings.$indicator-border-color;
+        box-sizing: border-box;
+        margin: 0 3px;
+
+        &:not(.active) {
+            background-color: settings.$indicator-bg-color;
+        }
+
+        &.active {
+            width: settings.$indicator-dimension-active;
+            height: settings.$indicator-dimension-active;
+        }
+    }
+}

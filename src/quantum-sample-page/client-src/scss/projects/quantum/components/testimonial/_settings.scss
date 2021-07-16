@@ -1,0 +1,6 @@
+@use "../../../../common/settings/text";
+@use "../../../../common/settings/colors";
+
+$quote-font-style: italic;
+$quote-font-size: text.$heading-size-medium;
+$quote-color: colors.$black;

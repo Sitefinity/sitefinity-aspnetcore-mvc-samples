@@ -1,0 +1,23 @@
+@use "sass:map";
+@use "settings";
+@use "../../vendors/bootstrap-variables";
+
+.qu-location {
+    position: relative;
+
+    &__map {
+        height: settings.$map-height;
+    }
+}
+
+@media (min-width: map.get(bootstrap-variables.$grid-breakpoints, md)) {
+    .qu-location__list {
+        position: absolute;
+        left: 50%;
+        width: 100%;
+        transform: translateX(-50%);
+        display: flex;
+        bottom: 0;
+        align-items: flex-end;
+    }
+}

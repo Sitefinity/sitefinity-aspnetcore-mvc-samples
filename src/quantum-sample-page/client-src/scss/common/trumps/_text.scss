@@ -22,6 +22,10 @@
     font-size: text.$font-size-small !important;
 }
 
+.#{variables.$selector-prefix}-txt-sm {
+    font-size: text.$font-size-sm !important;
+}
+
 .#{variables.$selector-prefix}-txt-medium {
     font-size: text.$font-size-medium !important;
 }

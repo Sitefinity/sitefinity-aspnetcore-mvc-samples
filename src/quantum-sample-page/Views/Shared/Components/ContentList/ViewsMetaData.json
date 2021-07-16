@@ -1,0 +1,75 @@
+{
+  "CardsList": [
+    {
+      "fieldTitle": "Image",
+      "fieldType": "RelatedImage"
+    },
+    {
+      "fieldTitle": "Title",
+      "fieldType": "ShortText"
+    },
+    {
+      "fieldTitle": "Text",
+      "fieldType": "LongText"
+    }
+  ],
+
+  "ListWithSummary": [
+    {
+      "fieldTitle": "Title",
+      "fieldType": "ShortText"
+    },
+    {
+      "fieldTitle": "Text",
+      "fieldType": "ShortText"
+    },
+    {
+      "fieldTitle": "Publication date",
+      "fieldType": "DateTime"
+    }
+  ],
+  "ListWithImage": [
+    {
+      "fieldTitle": "Title",
+      "fieldType": "ShortText"
+    },
+    {
+      "fieldTitle": "Image",
+      "fieldType": "RelatedImage"
+    },
+    {
+      "fieldTitle": "Text",
+      "fieldType": "Text"
+    }
+  ],
+  "NewsAndBlogsList": [
+    {
+      "fieldTitle": "Image",
+      "fieldType": "RelatedImage"
+    },
+    {
+      "fieldTitle": "Title",
+      "fieldType": "ShortText"
+    },
+    {
+      "fieldTitle": "Summary",
+      "fieldType": "ShortText"
+    }
+  ],
+  "ListItems": [
+    {
+      "fieldTitle": "Text",
+      "fieldType": "LongText"
+    }
+  ],
+  "QuantumCardList": [
+    {
+      "fieldTitle": "Image",
+      "fieldType": "RelatedImage"
+    },
+    {
+      "fieldTitle": "Title",
+      "fieldType": "ShortText"
+    }
+  ]
+}

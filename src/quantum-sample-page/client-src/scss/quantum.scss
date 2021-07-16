@@ -22,12 +22,8 @@
 @include meta.load-css("projects/quantum/components/mega-menu");
 @include meta.load-css("projects/quantum/components/button");
 @include meta.load-css("projects/quantum/components/form");
-
-// THIS FIX IS IN THE RENDERER
-.sc-video__element {
-  z-index: -1;
-}
-
-.-sc-video {
-  position: relative;
-}
+@include meta.load-css("projects/quantum/components/highlights");
+@include meta.load-css("projects/quantum/components/testimonial");
+@include meta.load-css("projects/quantum/components/content-list");
+@include meta.load-css("projects/quantum/components/slider");
+@include meta.load-css("projects/quantum/components/location");

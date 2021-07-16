@@ -1,0 +1,53 @@
+// Common settings
+@use "../../../common/settings/colors";
+@use "../../../common/settings/text";
+@use "../../../common/settings/variables";
+
+// Components settings
+@use "../components/slider/settings" as slider;
+
+// Grid
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px );
+$container-max-widths: (
+        sm: 540px,
+        md: 750px,
+        lg: 970px,
+        xl: 1170px,
+        xxl: 1320px );
+$spacer: 1.25rem;
+
+// Link
+$link-color: colors.$primary;
+
+// Button
+$primary: colors.$primary-light;
+$secondary: colors.$white;
+$btn-font-size: 20px;
+$btn-padding-y: 10px;
+$btn-padding-x: 20px;
+$btn-font-weight: 600;
+
+// Typography
+$font-size-base: text.$font-size-base;
+$h1-font-size: text.$heading-size-2xl;
+$h2-font-size: text.$heading-size-medium;
+$line-height-base: 1.4;
+$font-family-base: variables.$font-family;
+
+// Card
+$card-border-radius: 8px;
+$card-border-color: colors.$lightest-gray;
+
+// Carousel
+$carousel-indicator-width: slider.$indicator-dimension;
+$carousel-indicator-height: slider.$indicator-dimension;
+$carousel-indicator-hit-area-height: 0;
+$carousel-control-width: auto;
+$carousel-control-color: colors.$primary;
+$carousel-indicator-opacity: 1;

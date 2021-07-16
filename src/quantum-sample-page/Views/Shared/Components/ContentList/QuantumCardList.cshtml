@@ -1,0 +1,121 @@
+﻿@using Progress.Sitefinity.RestSdk.Dto;
+@using Renderer.Dto;
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
+
+<div class="row row-cols-1 row-cols-lg-4 g-4 qu-content-list">
+    @foreach (var item in Model.Items)
+    {
+        var title = Model.GetFieldValue<string>(item, "Title");
+        var image = Model.GetFirstRelatedMedia(item, "Image");
+        var thumbnail = image != null ? image.GetThumbnail() : null;
+
+        bool featured;
+        item.TryGetValue<bool>("Featured", out featured);
+        var contentListClassList = featured ? "qu-content-list__item col -featured" : "qu-content-list__item col";
+        <div>
+            <div class="card h-100 @contentListClassList">
+                @if (featured)
+                {
+                    <span class="qu-content-list__ribbon">FEATURED</span>
+                }
+                @if (thumbnail != null)
+                {
+                    <img class="card-img-top qu-content-list__image" src='@(thumbnail.Url)' alt='@(image.AlternativeText)' title='@(thumbnail.Title)' />
+                }
+                else if (image != null)
+                {
+                    <img class="card-img-top qu-content-list__image" src='@(image.Url)' alt='@(image.AlternativeText)' title='@(image.Title)' />
+                }
+
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(title))
+                    {
+                        <h5 class="card-title"><a href="@Model.GetItemUrl(this.Context, item)" class="qu-content-list__title">@title</a></h5>
+                    }
+                    @{
+                        DateTime publicationDate;
+                        string author;
+                        if (item.TryGetValue<DateTime>("PublicationDate", out publicationDate) && item.TryGetValue<string>("Author", out author))
+                        {
+                            <div class="qu-content-list__author qu-txt-small mb-2">
+                                @Html.FormatDate(@publicationDate, this.Context)
+                                <div>
+                                    @Localizer["By"]
+                                    @author
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <div class="card-text">
+                        @{
+                            Address address;
+                            if (item.TryGetValue<Address>("Address", out address))
+                            {
+                                var street = address.Street.ToString().Replace(',', '.');
+                                var city = address.City.ToString().Replace(',', '.');
+                                var countryCode = address.CountryCode?.ToString().Replace(',', '.');
+                                <div>
+                                    <div class="fa fa-globe"></div>
+                                    <span>
+                                        @street, @city, @countryCode
+                                    </span>
+                                </div>
+                                
+                            }
+                            string workingHours;
+                            if (item.TryGetValue<string>("WorkingHours", out workingHours))
+                            {
+                                <div>
+                                    <div class="far fa-clock"></div>
+                                    <span>@workingHours</span>
+                                </div>
+                            }
+                            string phone;
+                            if (item.TryGetValue<string>("Phone", out phone))
+                            {
+                                <div>
+                                    <div class="fa fa-mobile"></div>
+                                    <a href="tel:@phone">@phone</a>
+                                </div>
+                            }
+                            string fax;
+                            if (item.TryGetValue<string>("Fax", out fax))
+                            {
+                                <div>
+                                    <div class="fa fa-fax"></div>
+                                    <a href="tel:@fax">@fax</a>
+                                </div>
+                            }
+                            string email;
+                            if (item.TryGetValue<string>("Email", out email))
+                            {
+                                <div>
+                                    <div class="fa fa-envelope"></div>
+                                    <a href="mailto:@email">@email</a>
+                                </div>
+                            }
+                            string text;
+                            if (item.TryGetValue<string>("Summary", out text))
+                            {
+                                <p>@Html.HtmlSanitize(text)</p>
+                            }
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@if (Model.Pager != null)
+{
+    <div class="mt-2">
+        @await Html.PartialAsync("ContentPager", Model.Pager)
+    </div>
+}

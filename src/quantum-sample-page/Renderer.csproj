@@ -8,17 +8,9 @@
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'WebApp' " />
   <ItemGroup>
-    <Folder Include="Views\" />
-    <Folder Include="Views\Shared\" />
-    <Folder Include="Views\Shared\Components\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Dto\" />
-    <Folder Include="ViewComponents\" />
-    <Folder Include="Models\" />
     <Folder Include="Entities\" />
     <Folder Include="Entities\Testimonial\" />
     <Folder Include="Models\Testimonial\" />
-    <Folder Include="Views\Shared\Components\Testimonial\" />
     <Folder Include="ViewModels\Testimonial\" />
     <Folder Include="Models\DemoRequest\" />
     <Folder Include="Views\Shared\Components\DemoRequestForm\" />
@@ -37,8 +29,9 @@
     <Content Remove="wwwroot\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="13.3.7600.17345" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.3.7600.17345" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="13.3.7600.17345" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.0.7700.31934-PrBuild" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.0.7700.31934-PrBuild" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.0.7700.31934-PrBuild" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.0.7700.31934-PrBuild" />
   </ItemGroup>
 </Project>

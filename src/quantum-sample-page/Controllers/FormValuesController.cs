@@ -1,8 +1,8 @@
 ﻿using Renderer.Models;
 using Microsoft.AspNetCore.Mvc;
-using Progress.Sitefinity.AspNetCore.SitefinityApi;
 using System.Threading.Tasks;
-using Progress.Sitefinity.AspNetCore.SitefinityApi.OData;
+using Progress.Sitefinity.RestSdk.OData;
+using Progress.Sitefinity.RestSdk;
 
 namespace Renderer.Controllers
 {

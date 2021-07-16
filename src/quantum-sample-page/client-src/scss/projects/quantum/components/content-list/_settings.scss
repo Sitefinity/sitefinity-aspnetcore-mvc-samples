@@ -1,0 +1,15 @@
+@use "../../../../common/settings/colors";
+@use "../../../../common/settings/text";
+
+$featured-color: colors.$white;
+$featured-bg-color: colors.$complementary;
+$box-shadow-color: colors.$lightest-gray;
+$box-shadow-dimensions: 0 4px 15px;
+$font-size: text.$font-size-sm;
+$font-size-heading: text.$font-size-medium;
+
+$link-hover-color: colors.$action;
+
+$image-height: 142px;
+
+$author-color: colors.$gray;

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Progress.Sitefinity.AspNetCore;
+using Progress.Sitefinity.Clients.LayoutService.Dto;
 using Renderer.Models;
 using Renderer.Models.Testimonial;
 
@@ -20,6 +21,7 @@ namespace Renderer
             services.AddScoped<IMegaMenuModel, MegaMenuModel>();
             services.AddSitefinity();
             services.AddViewComponentModels();
+            services.AddMvc().AddViewLocalization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,6 +35,17 @@ namespace Renderer
             app.UseStaticFiles();
             app.UseRouting();
             app.UseSitefinity();
+
+            app.Use(async (context, next) =>
+            {
+                if (context.Items.ContainsKey("sfpagemodel"))
+                {
+                    var pageNodeDto = context.Items["sfpagemodel"] as PageModelDto;
+                    pageNodeDto.UrlParameters = new string[0];
+                }
+
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {
