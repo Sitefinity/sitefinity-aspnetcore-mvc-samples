@@ -274,7 +274,7 @@ table {
 caption {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  color: #6c757d;
+  color: #777;
   text-align: left;
 }
 
@@ -1929,7 +1929,7 @@ progress {
   margin-bottom: 1.25rem;
   color: #212529;
   vertical-align: top;
-  border-color: #dee2e6;
+  border-color: #ccc;
 }
 .table > :not(caption) > * > * {
   padding: 0.5rem 0.5rem;
@@ -2139,7 +2139,7 @@ progress {
 .form-text {
   margin-top: 0.25rem;
   font-size: 0.875em;
-  color: #6c757d;
+  color: #777;
 }
 
 .form-control {
@@ -4503,9 +4503,9 @@ textarea.form-control-lg {
 }
 .page-item.active .page-link {
   z-index: 3;
-  color: #fff;
-  background-color: #37DEF3;
-  border-color: #37DEF3;
+  color: #00B4C9;
+  background-color: #FFF;
+  border-color: #FFF;
 }
 .page-item.disabled .page-link {
   color: #6c757d;
@@ -5225,7 +5225,7 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.25rem;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid #ccc;
   border-top-left-radius: calc(0.3rem - 1px);
   border-top-right-radius: calc(0.3rem - 1px);
 }
@@ -5252,7 +5252,7 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: flex-end;
   padding: 1rem;
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid #ccc;
   border-bottom-right-radius: calc(0.3rem - 1px);
   border-bottom-left-radius: calc(0.3rem - 1px);
 }
@@ -6367,7 +6367,7 @@ textarea.form-control-lg {
 }
 
 .border {
-  border: 1px solid #dee2e6 !important;
+  border: 1px solid #ccc !important;
 }
 
 .border-0 {
@@ -6375,7 +6375,7 @@ textarea.form-control-lg {
 }
 
 .border-top {
-  border-top: 1px solid #dee2e6 !important;
+  border-top: 1px solid #ccc !important;
 }
 
 .border-top-0 {
@@ -6383,7 +6383,7 @@ textarea.form-control-lg {
 }
 
 .border-end {
-  border-right: 1px solid #dee2e6 !important;
+  border-right: 1px solid #ccc !important;
 }
 
 .border-end-0 {
@@ -6391,7 +6391,7 @@ textarea.form-control-lg {
 }
 
 .border-bottom {
-  border-bottom: 1px solid #dee2e6 !important;
+  border-bottom: 1px solid #ccc !important;
 }
 
 .border-bottom-0 {
@@ -6399,7 +6399,7 @@ textarea.form-control-lg {
 }
 
 .border-start {
-  border-left: 1px solid #dee2e6 !important;
+  border-left: 1px solid #ccc !important;
 }
 
 .border-start-0 {
@@ -7276,7 +7276,7 @@ textarea.form-control-lg {
 }
 
 .text-muted {
-  color: #6c757d !important;
+  color: #777 !important;
 }
 
 .text-black-50 {
@@ -10764,6 +10764,10 @@ textarea.form-control-lg {
   text-transform: uppercase !important;
 }
 
+.qu-heading-xs {
+  font-size: 0.875rem !important;
+}
+
 .qu-heading-xl {
   font-size: 2.625rem !important;
 }
@@ -10813,8 +10817,14 @@ body {
 h1, .h1 {
   line-height: 1.1;
   letter-spacing: -2px;
-  font-weight: 500;
+  font-weight: 400;
   color: #333;
+}
+
+h4, .h4,
+b,
+strong {
+  font-weight: 600;
 }
 
 .qu-card {
@@ -11226,7 +11236,6 @@ h1, .h1 {
 }
 
 .qu-content-list__item:hover {
-  cursor: pointer;
   box-shadow: 0 4px 15px #eee;
 }
 
@@ -11250,7 +11259,6 @@ h1, .h1 {
 }
 
 .qu-content-list__title {
-  font-size: 1.125rem;
   text-decoration: none;
 }
 
@@ -11274,6 +11282,42 @@ h1, .h1 {
   top: 15px;
 }
 
+.qu-download-list {
+  font-size: 0.95rem;
+  min-height: 630px;
+}
+
+.qu-download-list__item {
+  background-color: #F3F4F5;
+}
+
+.qu-download-list__item:hover {
+  box-shadow: 0 4px 15px #eee;
+}
+
+.qu-download-list__title {
+  text-decoration: none;
+  color: #333;
+}
+
+.qu-download-list__title:hover {
+  color: #FFAE00;
+}
+
+.qu-download-list__extension {
+  color: #ccc;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+}
+
+.qu-list__title {
+  text-decoration: none;
+}
+
+.qu-list__title:hover {
+  color: #FFAE00;
+}
+
 .carousel-indicators [data-bs-target] {
   border-radius: 10px;
   border: 2px solid #777;
@@ -11295,18 +11339,29 @@ h1, .h1 {
 }
 
 .qu-location__map {
-  height: 1280px;
+  height: 1440px;
 }
 
-@media (min-width: 768px) {
+.qu-location__list {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 576px) {
+  .qu-location__map {
+    height: 1280px;
+  }
+
   .qu-location__list {
-    position: absolute;
-    left: 50%;
-    width: 100%;
-    transform: translateX(-50%);
-    display: flex;
-    bottom: 0;
-    align-items: flex-end;
+    top: 25%;
+  }
+}
+@media (min-width: 992px) {
+  .qu-location__list {
+    top: 50%;
   }
 }
 

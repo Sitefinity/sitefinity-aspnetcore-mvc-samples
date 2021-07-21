@@ -8,7 +8,6 @@
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'WebApp' " />
   <ItemGroup>
-    <Folder Include="Entities\" />
     <Folder Include="Entities\Testimonial\" />
     <Folder Include="Models\Testimonial\" />
     <Folder Include="ViewModels\Testimonial\" />

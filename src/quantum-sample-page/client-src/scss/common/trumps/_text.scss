@@ -38,6 +38,10 @@
     text-transform: uppercase !important;
 }
 
+.#{variables.$selector-prefix}-heading-xs {
+    font-size: text.$heading-size-xs !important;
+}
+
 .#{variables.$selector-prefix}-heading-xl {
     font-size: text.$heading-size-xl !important;
 }

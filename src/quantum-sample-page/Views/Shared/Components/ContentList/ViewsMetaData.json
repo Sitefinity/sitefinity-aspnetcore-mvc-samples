@@ -71,5 +71,23 @@
       "fieldTitle": "Title",
       "fieldType": "ShortText"
     }
+  ],
+  "Events": [
+    {
+      "fieldTitle": "Title",
+      "fieldType": "ShortText"
+    },
+    {
+      "fieldTitle": "Text",
+      "fieldType": "LongText"
+    },
+    {
+      "fieldTitle": "Start date",
+      "fieldType": "DateTime"
+    },
+    {
+      "fieldTitle": "End date",
+      "fieldType": "DateTime"
+    }
   ]
 }

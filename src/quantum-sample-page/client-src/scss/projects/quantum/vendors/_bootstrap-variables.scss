@@ -39,6 +39,7 @@ $h1-font-size: text.$heading-size-2xl;
 $h2-font-size: text.$heading-size-medium;
 $line-height-base: 1.4;
 $font-family-base: variables.$font-family;
+$text-muted: colors.$gray;
 
 // Card
 $card-border-radius: 8px;
@@ -51,3 +52,10 @@ $carousel-indicator-hit-area-height: 0;
 $carousel-control-width: auto;
 $carousel-control-color: colors.$primary;
 $carousel-indicator-opacity: 1;
+
+// Borders
+$border-color: colors.$light-gray;
+
+// Pagination
+$pagination-active-color: colors.$primary;
+$pagination-active-bg: colors.$white;

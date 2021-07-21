@@ -6,18 +6,36 @@
     position: relative;
 
     &__map {
-        height: settings.$map-height;
+        height: settings.$map-mobile-height;
     }
-}
 
-@media (min-width: map.get(bootstrap-variables.$grid-breakpoints, md)) {
-    .qu-location__list {
+    &__list {
         position: absolute;
+        top: 10%;
         left: 50%;
         width: 100%;
         transform: translateX(-50%);
-        display: flex;
-        bottom: 0;
-        align-items: flex-end;
+    }
+}
+
+@media (min-width: map.get(bootstrap-variables.$grid-breakpoints, sm)) {
+    .qu-location {
+
+        &__map {
+            height: settings.$map-height;
+        }
+        
+        &__list {
+            top: 25%;
+        }
+    }
+}
+
+@media (min-width: map.get(bootstrap-variables.$grid-breakpoints, lg)) {
+    .qu-location {
+        
+        &__list {
+            top: 50%;
+        }
     }
 }

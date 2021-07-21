@@ -4,4 +4,8 @@
   margin-bottom: 30px !important;
 }
 
+.qu-location .qu-location__list {
+  top: 0;
+}
+
 /*# sourceMappingURL=quantum-edit.css.map */

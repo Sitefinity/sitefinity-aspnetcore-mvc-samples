@@ -1,0 +1,52 @@
+﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
+
+<div class="qu-list">
+    @{
+        var first = Model.Items.FirstOrDefault();
+    }
+    @foreach (var item in Model.Items)
+    {
+        var startDate = Model.GetFieldValue<DateTime>(item, "Start date");
+        var endDate = Model.GetFieldValue<DateTime>(item, "End date");
+        var title = Model.GetFieldValue<string>(item, "Title");
+        var text = Model.GetFieldValue<string>(item, "Text");
+
+        if (!item.Equals(first))
+        {
+            <hr>
+        }
+
+        <div class="qu-txt-medium">
+            @if (title != null)
+            {
+                var itemUrl = Model.GetItemUrl(this.Context, item);
+                <h5 class="h2">
+                    @if (itemUrl != null)
+                    {
+                        <a class="qu-list__title" href="@itemUrl.ToString()">@title</a>
+                    }
+                    else
+                    {
+                        // TODO: Remove wrapper when GetItemUrl return correct value
+                        <a class="qu-list__title">@Html.HtmlSanitize(title)</a>
+                    }
+                </h5>
+            }
+
+            <p class="text-muted">@Html.FormatDate(startDate, this.Context) - @Html.FormatDate(endDate, this.Context)</p>
+
+            @if (text != null)
+            {
+                <p>@Html.HtmlSanitize(text)</p>
+            }
+        </div>
+    }
+</div>
+@if (Model.Pager != null)
+{
+    <div class="mt-2">
+        @await Html.PartialAsync("ContentPager", Model.Pager)
+    </div>
+}

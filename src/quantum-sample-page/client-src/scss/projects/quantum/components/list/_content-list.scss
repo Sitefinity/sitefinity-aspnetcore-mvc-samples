@@ -1,12 +1,12 @@
 @use "settings";
+@use "mixins";
 
 .qu-content-list {
-    font-size: settings.$font-size;
+    @include mixins.default-list;
 
     &__item {
 
         &:hover {
-            cursor: pointer;
             box-shadow: settings.$box-shadow-dimensions settings.$box-shadow-color;
         }
 
@@ -31,12 +31,7 @@
     }
 
     &__title {
-        font-size: settings.$font-size-heading;
-        text-decoration: none;
-
-        &:hover {
-            color: settings.$link-hover-color;
-        }
+        @include mixins.list-title;
     }
 
     &__image {

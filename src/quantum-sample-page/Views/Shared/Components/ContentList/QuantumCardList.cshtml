@@ -7,7 +7,7 @@
 
 @model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
 
-<div class="row row-cols-1 row-cols-lg-4 g-4 qu-content-list">
+<div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4 qu-content-list">
     @foreach (var item in Model.Items)
     {
         var title = Model.GetFieldValue<string>(item, "Title");
@@ -35,7 +35,7 @@
                 <div class="card-body">
                     @if (!string.IsNullOrEmpty(title))
                     {
-                        <h5 class="card-title"><a href="@Model.GetItemUrl(this.Context, item)" class="qu-content-list__title">@title</a></h5>
+                        <h4 class="card-title qu-txt-medium"><a href="@Model.GetItemUrl(this.Context, item)" class="qu-content-list__title">@title</a></h4>
                     }
                     @{
                         DateTime publicationDate;

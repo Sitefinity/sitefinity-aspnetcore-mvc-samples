@@ -4,6 +4,12 @@
 h1 {
   line-height: 1.1;
   letter-spacing: -2px;
-  font-weight: 500;
+  font-weight: text.$font-weight-normal;
   color: colors.$black;
+}
+
+h4,
+b,
+strong {
+    font-weight: text.$font-weight-semibold;
 }

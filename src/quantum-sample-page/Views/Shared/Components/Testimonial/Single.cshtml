@@ -10,14 +10,16 @@
         <div class="col-md-2 qu-testimonial__quote-icon">
             <img src="/assets/images/quote-image.png" />
         </div>
-        <div class="col-md-10 p-5">
+        <div class="col-md-10 p-3 p-md-5">
             <h3 class="qu-testimonial__quote mt-3">@item.Quote</h3>
-            <div class="d-flex">
+            <div class="row">
                 @if (item.ThumbnailUrl != null)
                 {
-                    <img class="me-5 rounded-circle" width="90" height="90" src="@item.ThumbnailUrl" alt="Profile picture of @item.Title" />
+                    <div class="col-sm-3">
+                        <img class="me-5 rounded-circle" width="90" height="90" src="@item.ThumbnailUrl" alt="Profile picture of @item.Title" />
+                    </div>
                 }
-                <div>
+                <div class="col-sm-9">
                     <b class="d-block qu-txt-medium">@item.Title</b>
                     <span>@item.JobTitle, @item.Company</span>
                 </div>

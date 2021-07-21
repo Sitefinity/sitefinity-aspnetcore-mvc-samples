@@ -1,0 +1,13 @@
+@use "settings";
+
+@mixin default-list {
+    font-size: settings.$font-size;
+}
+
+@mixin list-title {
+    text-decoration: none;
+
+    &:hover {
+        color: settings.$link-hover-color;
+    }
+}
