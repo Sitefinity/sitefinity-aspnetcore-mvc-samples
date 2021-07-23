@@ -1,8 +1,8 @@
 @use "sass:map";
 
-@use "../../../../common/settings/colors";
-@use "../../../../common/settings/text";
-@use "../../vendors/bootstrap-variables";
+@use "../../../common/settings/colors";
+@use "../../../common/settings/text";
+@use "../vendors/bootstrap-variables";
 @use "settings";
 
 .mega-menu {

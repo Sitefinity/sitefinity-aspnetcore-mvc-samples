@@ -1,8 +1,0 @@
-@use "mixins";
-
-.qu-list {
-
-    &__title {
-        @include mixins.list-title;
-    }
-}

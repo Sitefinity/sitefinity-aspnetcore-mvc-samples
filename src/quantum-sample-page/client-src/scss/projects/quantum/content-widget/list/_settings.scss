@@ -7,13 +7,18 @@ $featured-bg-color: colors.$complementary;
 $box-shadow-color: colors.$lightest-gray;
 $box-shadow-dimensions: 0 4px 15px;
 
-$font-size: text.$font-size-sm;
+// Typography
+$small-font-size: text.$font-size-small;
+$default-font-size: text.$font-size-sm;
+$large-font-size: text.$font-size-medium;
+$large-heading-font-size: text.$heading-size-medium;
+$small-heading-font-weight: text.$font-weight-semibold;
 
 $link-hover-color: colors.$action;
 
 $image-height: 142px;
 
-$author-color: colors.$gray;
+$info-color: colors.$gray;
 
 // Download
 $download-list-bg-color: #F3F4F5;

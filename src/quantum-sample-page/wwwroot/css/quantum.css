@@ -70,7 +70,7 @@ hr:not([size]) {
 
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-top: 0;
-  margin-bottom: 0.625rem;
+  margin-bottom: 15px;
   font-weight: 500;
   line-height: 1.2;
 }
@@ -94,25 +94,20 @@ h2, .h2 {
 }
 
 h3, .h3 {
-  font-size: calc(1.3rem + 0.6vw);
-}
-@media (min-width: 1200px) {
-  h3, .h3 {
-    font-size: 1.75rem;
-  }
-}
-
-h4, .h4 {
   font-size: calc(1.275rem + 0.3vw);
 }
 @media (min-width: 1200px) {
-  h4, .h4 {
+  h3, .h3 {
     font-size: 1.5rem;
   }
 }
 
+h4, .h4 {
+  font-size: 0.95rem;
+}
+
 h5, .h5 {
-  font-size: 1.25rem;
+  font-size: 0.875rem;
 }
 
 h6, .h6 {
@@ -121,7 +116,7 @@ h6, .h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 20px;
 }
 
 abbr[title],
@@ -2268,7 +2263,7 @@ progress {
   min-height: calc(1.4em + 1rem + 2px);
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
-  border-radius: 0.3rem;
+  border-radius: 8px;
 }
 .form-control-lg::file-selector-button {
   padding: 0.5rem 1rem;
@@ -2637,7 +2632,7 @@ textarea.form-control-lg {
 .input-group-lg > .btn {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
-  border-radius: 0.3rem;
+  border-radius: 8px;
 }
 
 .input-group-sm > .form-control,
@@ -2846,7 +2841,7 @@ textarea.form-control-lg {
   user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
-  padding: 10px 20px;
+  padding: 10px 15px;
   font-size: 1.25rem;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -3323,7 +3318,7 @@ textarea.form-control-lg {
 .btn-lg, .btn-group-lg > .btn {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
-  border-radius: 0.3rem;
+  border-radius: 8px;
 }
 
 .btn-sm, .btn-group-sm > .btn {
@@ -3721,8 +3716,8 @@ textarea.form-control-lg {
 }
 
 .dropdown-toggle-split {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 11.25px;
+  padding-left: 11.25px;
 }
 .dropdown-toggle-split::after, .dropup .dropdown-toggle-split::after, .dropend .dropdown-toggle-split::after {
   margin-left: 0;
@@ -4505,7 +4500,7 @@ textarea.form-control-lg {
   z-index: 3;
   color: #00B4C9;
   background-color: #FFF;
-  border-color: #FFF;
+  border-color: #00B4C9;
 }
 .page-item.disabled .page-link {
   color: #6c757d;
@@ -4532,12 +4527,12 @@ textarea.form-control-lg {
   font-size: 1.25rem;
 }
 .pagination-lg .page-item:first-child .page-link {
-  border-top-left-radius: 0.3rem;
-  border-bottom-left-radius: 0.3rem;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 .pagination-lg .page-item:last-child .page-link {
-  border-top-right-radius: 0.3rem;
-  border-bottom-right-radius: 0.3rem;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .pagination-sm .page-link {
@@ -5199,7 +5194,7 @@ textarea.form-control-lg {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem;
+  border-radius: 8px;
   outline: 0;
 }
 
@@ -5226,8 +5221,8 @@ textarea.form-control-lg {
   justify-content: space-between;
   padding: 1.25rem 1.25rem;
   border-bottom: 1px solid #ccc;
-  border-top-left-radius: calc(0.3rem - 1px);
-  border-top-right-radius: calc(0.3rem - 1px);
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
 }
 .modal-header .btn-close {
   padding: 0.625rem 0.625rem;
@@ -5253,8 +5248,8 @@ textarea.form-control-lg {
   justify-content: flex-end;
   padding: 1rem;
   border-top: 1px solid #ccc;
-  border-bottom-right-radius: calc(0.3rem - 1px);
-  border-bottom-left-radius: calc(0.3rem - 1px);
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 .modal-footer > * {
   margin: 0.25rem;
@@ -5554,7 +5549,7 @@ textarea.form-control-lg {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem;
+  border-radius: 8px;
 }
 .popover .popover-arrow {
   position: absolute;
@@ -5646,8 +5641,8 @@ textarea.form-control-lg {
   font-size: 1rem;
   background-color: #f0f0f0;
   border-bottom: 1px solid #d8d8d8;
-  border-top-left-radius: calc(0.3rem - 1px);
-  border-top-right-radius: calc(0.3rem - 1px);
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
 }
 .popover-header:empty {
   display: none;
@@ -7125,15 +7120,15 @@ textarea.form-control-lg {
 }
 
 .fs-3 {
-  font-size: calc(1.3rem + 0.6vw) !important;
-}
-
-.fs-4 {
   font-size: calc(1.275rem + 0.3vw) !important;
 }
 
+.fs-4 {
+  font-size: 0.95rem !important;
+}
+
 .fs-5 {
-  font-size: 1.25rem !important;
+  font-size: 0.875rem !important;
 }
 
 .fs-6 {
@@ -7376,7 +7371,7 @@ textarea.form-control-lg {
 }
 
 .rounded-3 {
-  border-radius: 0.3rem !important;
+  border-radius: 8px !important;
 }
 
 .rounded-circle {
@@ -10680,10 +10675,6 @@ textarea.form-control-lg {
   }
 
   .fs-3 {
-    font-size: 1.75rem !important;
-  }
-
-  .fs-4 {
     font-size: 1.5rem !important;
   }
 }
@@ -10824,15 +10815,6 @@ h1, .h1 {
 h4, .h4,
 b,
 strong {
-  font-weight: 600;
-}
-
-.qu-card {
-  border-radius: 8px;
-  color: #333;
-}
-
-.qu-card h2, .qu-card .h2 {
   font-weight: 600;
 }
 
@@ -11158,10 +11140,6 @@ strong {
     width: 380px;
   }
 }
-.btn {
-  padding: 10px 15px;
-}
-
 .qu-form {
   font-size: 14px;
   font-weight: 400;
@@ -11310,12 +11288,62 @@ strong {
   text-transform: uppercase;
 }
 
+.qu-list {
+  font-size: 1.125rem;
+}
+
 .qu-list__title {
+  font-size: 1.625rem;
+}
+
+.qu-list__title a {
   text-decoration: none;
 }
 
-.qu-list__title:hover {
+.qu-list__title a:hover {
   color: #FFAE00;
+}
+
+.qu-list__info {
+  color: #777;
+}
+
+.-narrow .qu-list {
+  font-size: 0.8rem;
+}
+
+.-narrow .qu-list__title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.-narrow .qu-list__summary, .-narrow .qu-list__separator {
+  display: none;
+}
+
+.qu-content-detail {
+  font-size: 1.125rem;
+}
+
+.qu-content-detail__title {
+  color: #333;
+  font-size: 2.625rem;
+}
+
+.qu-content-detail__summary {
+  display: flex;
+  font-weight: 600;
+  font-style: italic;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.qu-content-detail__summary::before {
+  content: url("../assets/images/quote-small.png");
+  margin-right: 10px;
 }
 
 .carousel-indicators [data-bs-target] {

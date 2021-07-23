@@ -1,4 +1,4 @@
-﻿@use "../mixins/social-share" as socialMixins;
+﻿@use "mixins";
 @use "../../../common/settings/colors";
 
 .footer_social {
@@ -34,19 +34,19 @@
 }
 
 .social {
-    @include socialMixins.default;
+    @include mixins.default;
 }
 
 .social-round {
-    @include socialMixins.round;
+    @include mixins.round;
 }
 
 .social-high {
-    @include socialMixins.high;
+    @include mixins.high;
 }
 
 .social-wide {
-    @include socialMixins.wide;
+    @include mixins.wide;
 }
 
 .fa-share-alt-square {
@@ -55,61 +55,61 @@
 }
 
 .social-facebook {
-    @include socialMixins.wide;
+    @include mixins.wide;
 
     background: #3b5998;
 }
 
 .social-twitter {
-    @include socialMixins.round;
+    @include mixins.round;
 
     background: #1dcaff;
 }
 
 .social-linkedin {
-    @include socialMixins.round;
+    @include mixins.round;
 
     background: #0077b5;
 }
 
 .social-tumblr {
-   @include socialMixins.wide;
+   @include mixins.wide;
 
     background: #35465c;
 }
 
 .social-digg {
-    @include socialMixins.high;
+    @include mixins.high;
 
     background: #356AA0;
 }
 
 .social-blogger {
-   @include socialMixins.wide;
+   @include mixins.wide;
 
     background: #f57d00;
 }
 
 .social-book {
-    @include socialMixins.round;
+    @include mixins.round;
 
     background: #34a853;
 }
 
 .social-delicious {
-    @include socialMixins.round;
+    @include mixins.round;
 
     background: #3399ff;
 }
 
 .social-myspace {
-    @include socialMixins.round;
+    @include mixins.round;
 
     background: #000000;
 }
 
 .social-stumbleupon {
-    @include socialMixins.round;
+    @include mixins.round;
 
     background: #eb4924;
 }
@@ -122,7 +122,7 @@
 }
 
 .social-mail {
-    @include socialMixins.round;
+    @include mixins.round;
 
     background: #00b4c9;
 }
@@ -137,7 +137,7 @@
 }
 
 .tags-count-color {
-   @include socialMixins.wide;
+   @include mixins.wide;
 
     background-color: lightgray;
 }

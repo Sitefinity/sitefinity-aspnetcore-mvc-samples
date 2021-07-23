@@ -1,7 +1,7 @@
 @use "settings";
 
 @mixin default-list {
-    font-size: settings.$font-size;
+    font-size: settings.$default-font-size;
 }
 
 @mixin list-title {

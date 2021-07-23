@@ -15,31 +15,30 @@
 
         if (!item.Equals(first))
         {
-            <hr>
+            <hr class="qu-list__separator">
         }
 
-        <div class="qu-txt-medium">
+        <div>
             @if (title != null)
             {
                 var itemUrl = Model.GetItemUrl(this.Context, item);
-                <h5 class="h2">
+                <h5 class="qu-list__title">
                     @if (itemUrl != null)
                     {
-                        <a class="qu-list__title" href="@itemUrl.ToString()">@title</a>
+                        <a href="@itemUrl.ToString()">@title</a>
                     }
                     else
                     {
-                        // TODO: Remove wrapper when GetItemUrl return correct value
-                        <a class="qu-list__title">@Html.HtmlSanitize(title)</a>
+                        @Html.HtmlSanitize(title)
                     }
                 </h5>
             }
 
-            <p class="text-muted">@Html.FormatDate(startDate, this.Context) - @Html.FormatDate(endDate, this.Context)</p>
+            <p class="qu-list__info">@Html.FormatDate(startDate, this.Context) - @Html.FormatDate(endDate, this.Context)</p>
 
             @if (text != null)
             {
-                <p>@Html.HtmlSanitize(text)</p>
+                <p class="qu-list__summary">@Html.HtmlSanitize(text)</p>
             }
         </div>
     }
