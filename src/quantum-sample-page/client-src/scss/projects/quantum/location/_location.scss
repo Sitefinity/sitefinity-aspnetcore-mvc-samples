@@ -1,6 +1,5 @@
-@use "sass:map";
 @use "settings";
-@use "../vendors/bootstrap-variables";
+@use "../settings/common";
 
 .qu-location {
     position: relative;
@@ -18,7 +17,7 @@
     }
 }
 
-@media (min-width: map.get(bootstrap-variables.$grid-breakpoints, sm)) {
+@media (min-width: common.$sm-breakpoint) {
     .qu-location {
 
         &__map {
@@ -31,7 +30,7 @@
     }
 }
 
-@media (min-width: map.get(bootstrap-variables.$grid-breakpoints, lg)) {
+@media (min-width: common.$lg-breakpoint) {
     .qu-location {
         
         &__list {

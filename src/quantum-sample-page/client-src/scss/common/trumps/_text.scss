@@ -34,12 +34,20 @@
     font-size: text.$font-size-large !important;
 }
 
+.#{variables.$selector-prefix}-txt-xl {
+    font-size: text.$font-size-xl !important;
+}
+
 .#{variables.$selector-prefix}-txt-uppercase {
     text-transform: uppercase !important;
 }
 
 .#{variables.$selector-prefix}-heading-xs {
     font-size: text.$heading-size-xs !important;
+}
+
+.#{variables.$selector-prefix}-heading-medium {
+    font-size: text.$heading-size-m !important;
 }
 
 .#{variables.$selector-prefix}-heading-xl {

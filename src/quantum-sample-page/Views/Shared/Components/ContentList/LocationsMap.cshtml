@@ -1,9 +1,96 @@
 ﻿@using Renderer.Dto;
+@using Progress.Sitefinity.RestSdk.Dto;
 
 @model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
 
-<div id="map" class="qu-location__map"></div>
+<div class="qu-location">
+    <div id="map" class="qu-location__map"></div>
+    
+    <div class="container qu-location__list">
+        @* TODO: Provide heading with extended list *@
+        <h1>Contact Us</h1>
+        <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4 qu-content-list">
+            @foreach (var item in Model.Items)
+            {
+                var title = item.GetValue<string>("Title");
+                var image = item.GetValue<List<ImageDto>>("Image").FirstOrDefault();
+                var thumbnail = image != null ? image.GetThumbnail() : null;
 
+                <div>
+                    <div class="card h-100 qu-content-list__item col">
+                        @if (thumbnail != null)
+                        {
+                            <img class="card-img-top qu-content-list__image" src='@(thumbnail.Url)' alt='@(image.AlternativeText)' title='@(thumbnail.Title)' />
+                        }
+                        else if (image != null)
+                        {
+                            <img class="card-img-top qu-content-list__image" src='@(image.Url)' alt='@(image.AlternativeText)' title='@(image.Title)' />
+                        }
+
+                        <div class="card-body">
+                            @if (!string.IsNullOrEmpty(title))
+                            {
+                                <h4 class="card-title qu-txt-medium"><a href="@Model.GetItemUrl(this.Context, item)" class="qu-content-list__title">@title</a></h4>
+                            }
+
+                            <div class="card-text">
+                                @{
+                                    Address address;
+                                    if (item.TryGetValue<Address>("Address", out address))
+                                    {
+                                        var street = address.Street.ToString().Replace(',', '.');
+                                        var city = address.City.ToString().Replace(',', '.');
+                                        var countryCode = address.CountryCode?.ToString().Replace(',', '.');
+                                        <div>
+                                            <div class="fa fa-globe"></div>
+                                            <span>
+                                                @street, @city, @countryCode
+                                            </span>
+                                        </div>
+
+                                    }
+                                    string workingHours;
+                                    if (item.TryGetValue<string>("WorkingHours", out workingHours))
+                                    {
+                                        <div>
+                                            <div class="far fa-clock"></div>
+                                            <span>@workingHours</span>
+                                        </div>
+                                    }
+                                    string phone;
+                                    if (item.TryGetValue<string>("Phone", out phone))
+                                    {
+                                        <div>
+                                            <div class="fa fa-mobile"></div>
+                                            <a class="text-decoration-none" href="tel:@phone">@phone</a>
+                                        </div>
+                                    }
+                                    string fax;
+                                    if (item.TryGetValue<string>("Fax", out fax))
+                                    {
+                                        <div>
+                                            <div class="fa fa-fax"></div>
+                                            <a class="text-decoration-none" href="tel:@fax">@fax</a>
+                                        </div>
+                                    }
+                                    string email;
+                                    if (item.TryGetValue<string>("Email", out email))
+                                    {
+                                        <div>
+                                            <div class="fa fa-envelope"></div>
+                                            <a class="text-decoration-none" href="mailto:@email">@email</a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
     function initMap() {
 

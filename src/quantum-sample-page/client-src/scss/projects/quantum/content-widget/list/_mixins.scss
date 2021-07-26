@@ -1,9 +1,5 @@
 @use "settings";
 
-@mixin default-list {
-    font-size: settings.$default-font-size;
-}
-
 @mixin list-title {
     text-decoration: none;
 

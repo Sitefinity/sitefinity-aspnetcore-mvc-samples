@@ -36,10 +36,11 @@ $btn-font-weight: 600;
 // Typography
 $font-size-base: text.$font-size-base;
 $h1-font-size: text.$heading-size-2xl;
-$h2-font-size: text.$heading-size-medium;
-$h3-font-size: text.$heading-size-sm;
-$h4-font-size: text.$heading-size-small;
-$h5-font-size: text.$heading-size-xs;
+$h2-font-size: text.$heading-size-l;
+$h3-font-size: text.$heading-size-ml;
+$h4-font-size: text.$heading-size-m;
+$h5-font-size: text.$heading-size-s;
+$h6-font-size: text.$heading-size-xs;
 $line-height-base: 1.4;
 $font-family-base: variables.$font-family;
 $text-muted: colors.$gray;

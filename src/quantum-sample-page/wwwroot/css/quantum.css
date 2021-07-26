@@ -47,7 +47,7 @@
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
-  font-size: 1rem;
+  font-size: 0.938rem;
   font-weight: 400;
   line-height: 1.4;
   color: #212529;
@@ -85,33 +85,38 @@ h1, .h1 {
 }
 
 h2, .h2 {
-  font-size: calc(1.2875rem + 0.45vw);
+  font-size: calc(1.35rem + 1.2vw);
 }
 @media (min-width: 1200px) {
   h2, .h2 {
-    font-size: 1.625rem;
+    font-size: 2.25rem;
   }
 }
 
 h3, .h3 {
-  font-size: calc(1.275rem + 0.3vw);
+  font-size: calc(1.3rem + 0.6vw);
 }
 @media (min-width: 1200px) {
   h3, .h3 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 }
 
 h4, .h4 {
-  font-size: 0.95rem;
+  font-size: calc(1.2875rem + 0.45vw);
+}
+@media (min-width: 1200px) {
+  h4, .h4 {
+    font-size: 1.625rem;
+  }
 }
 
 h5, .h5 {
-  font-size: 0.875rem;
+  font-size: 0.95rem;
 }
 
 h6, .h6 {
-  font-size: 1rem;
+  font-size: 0.875rem;
 }
 
 p {
@@ -444,7 +449,7 @@ progress {
 }
 
 .lead {
-  font-size: 1.25rem;
+  font-size: 1.1725rem;
   font-weight: 300;
 }
 
@@ -538,7 +543,7 @@ progress {
 
 .blockquote {
   margin-bottom: 1.25rem;
-  font-size: 1.25rem;
+  font-size: 1.1725rem;
 }
 .blockquote > :last-child {
   margin-bottom: 0;
@@ -2122,13 +2127,13 @@ progress {
 .col-form-label-lg {
   padding-top: calc(0.5rem + 1px);
   padding-bottom: calc(0.5rem + 1px);
-  font-size: 1.25rem;
+  font-size: 1.1725rem;
 }
 
 .col-form-label-sm {
   padding-top: calc(0.25rem + 1px);
   padding-bottom: calc(0.25rem + 1px);
-  font-size: 0.875rem;
+  font-size: 0.82075rem;
 }
 
 .form-text {
@@ -2141,7 +2146,7 @@ progress {
   display: block;
   width: 100%;
   padding: 0.375rem 0.75rem;
-  font-size: 1rem;
+  font-size: 0.938rem;
   font-weight: 400;
   line-height: 1.4;
   color: #212529;
@@ -2245,7 +2250,7 @@ progress {
 .form-control-sm {
   min-height: calc(1.4em + 0.5rem + 2px);
   padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.82075rem;
   border-radius: 0.2rem;
 }
 .form-control-sm::file-selector-button {
@@ -2262,7 +2267,7 @@ progress {
 .form-control-lg {
   min-height: calc(1.4em + 1rem + 2px);
   padding: 0.5rem 1rem;
-  font-size: 1.25rem;
+  font-size: 1.1725rem;
   border-radius: 8px;
 }
 .form-control-lg::file-selector-button {
@@ -2307,7 +2312,7 @@ textarea.form-control-lg {
   display: block;
   width: 100%;
   padding: 0.375rem 2.25rem 0.375rem 0.75rem;
-  font-size: 1rem;
+  font-size: 0.938rem;
   font-weight: 400;
   line-height: 1.4;
   color: #212529;
@@ -2341,19 +2346,19 @@ textarea.form-control-lg {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   padding-left: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.82075rem;
 }
 
 .form-select-lg {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
-  font-size: 1.25rem;
+  font-size: 1.1725rem;
 }
 
 .form-check {
   display: block;
-  min-height: 1.4rem;
+  min-height: 1.3132rem;
   padding-left: 1.5em;
   margin-bottom: 0.125rem;
 }
@@ -2615,7 +2620,7 @@ textarea.form-control-lg {
   display: flex;
   align-items: center;
   padding: 0.375rem 0.75rem;
-  font-size: 1rem;
+  font-size: 0.938rem;
   font-weight: 400;
   line-height: 1.4;
   color: #212529;
@@ -2631,7 +2636,7 @@ textarea.form-control-lg {
 .input-group-lg > .input-group-text,
 .input-group-lg > .btn {
   padding: 0.5rem 1rem;
-  font-size: 1.25rem;
+  font-size: 1.1725rem;
   border-radius: 8px;
 }
 
@@ -2640,7 +2645,7 @@ textarea.form-control-lg {
 .input-group-sm > .input-group-text,
 .input-group-sm > .btn {
   padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.82075rem;
   border-radius: 0.2rem;
 }
 
@@ -2681,7 +2686,7 @@ textarea.form-control-lg {
   max-width: 100%;
   padding: 0.3125rem 0.625rem;
   margin-top: 0.1rem;
-  font-size: 0.875rem;
+  font-size: 0.82075rem;
   color: #fff;
   background-color: rgba(25, 135, 84, 0.9);
   border-radius: 0.25rem;
@@ -2763,7 +2768,7 @@ textarea.form-control-lg {
   max-width: 100%;
   padding: 0.3125rem 0.625rem;
   margin-top: 0.1rem;
-  font-size: 0.875rem;
+  font-size: 0.82075rem;
   color: #fff;
   background-color: rgba(220, 53, 69, 0.9);
   border-radius: 0.25rem;
@@ -3317,13 +3322,13 @@ textarea.form-control-lg {
 
 .btn-lg, .btn-group-lg > .btn {
   padding: 0.5rem 1rem;
-  font-size: 1.25rem;
+  font-size: 1.1725rem;
   border-radius: 8px;
 }
 
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.82075rem;
   border-radius: 0.2rem;
 }
 
@@ -3386,7 +3391,7 @@ textarea.form-control-lg {
   min-width: 10rem;
   padding: 0.5rem 0;
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.938rem;
   color: #212529;
   text-align: left;
   list-style: none;
@@ -3624,7 +3629,7 @@ textarea.form-control-lg {
   display: block;
   padding: 0.5rem 1.25rem;
   margin-bottom: 0;
-  font-size: 0.875rem;
+  font-size: 0.82075rem;
   color: #6c757d;
   white-space: nowrap;
 }
@@ -3874,10 +3879,10 @@ textarea.form-control-lg {
   justify-content: space-between;
 }
 .navbar-brand {
-  padding-top: 0.325rem;
-  padding-bottom: 0.325rem;
+  padding-top: 0.33585rem;
+  padding-bottom: 0.33585rem;
   margin-right: 1rem;
-  font-size: 1.25rem;
+  font-size: 1.1725rem;
   text-decoration: none;
   white-space: nowrap;
 }
@@ -3909,7 +3914,7 @@ textarea.form-control-lg {
 
 .navbar-toggler {
   padding: 0.25rem 0.75rem;
-  font-size: 1.25rem;
+  font-size: 1.1725rem;
   line-height: 1;
   background-color: transparent;
   border: 1px solid transparent;
@@ -4336,7 +4341,7 @@ textarea.form-control-lg {
   align-items: center;
   width: 100%;
   padding: 1rem 1.25rem;
-  font-size: 1rem;
+  font-size: 0.938rem;
   color: #212529;
   text-align: left;
   background-color: #fff;
@@ -4524,7 +4529,7 @@ textarea.form-control-lg {
 
 .pagination-lg .page-link {
   padding: 0.75rem 1.5rem;
-  font-size: 1.25rem;
+  font-size: 1.1725rem;
 }
 .pagination-lg .page-item:first-child .page-link {
   border-top-left-radius: 8px;
@@ -4537,7 +4542,7 @@ textarea.form-control-lg {
 
 .pagination-sm .page-link {
   padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.82075rem;
 }
 .pagination-sm .page-item:first-child .page-link {
   border-top-left-radius: 0.2rem;
@@ -4677,7 +4682,7 @@ textarea.form-control-lg {
   display: flex;
   height: 1rem;
   overflow: hidden;
-  font-size: 0.75rem;
+  font-size: 0.7035rem;
   background-color: #e9ecef;
   border-radius: 0.25rem;
 }
@@ -5442,7 +5447,7 @@ textarea.form-control-lg {
   word-spacing: normal;
   white-space: normal;
   line-break: auto;
-  font-size: 0.875rem;
+  font-size: 0.82075rem;
   word-wrap: break-word;
   opacity: 0;
 }
@@ -5544,7 +5549,7 @@ textarea.form-control-lg {
   word-spacing: normal;
   white-space: normal;
   line-break: auto;
-  font-size: 0.875rem;
+  font-size: 0.82075rem;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: padding-box;
@@ -5638,7 +5643,7 @@ textarea.form-control-lg {
 .popover-header {
   padding: 0.5rem 1.25rem;
   margin-bottom: 0;
-  font-size: 1rem;
+  font-size: 0.938rem;
   background-color: #f0f0f0;
   border-bottom: 1px solid #d8d8d8;
   border-top-left-radius: 7px;
@@ -7116,23 +7121,23 @@ textarea.form-control-lg {
 }
 
 .fs-2 {
-  font-size: calc(1.2875rem + 0.45vw) !important;
+  font-size: calc(1.35rem + 1.2vw) !important;
 }
 
 .fs-3 {
-  font-size: calc(1.275rem + 0.3vw) !important;
+  font-size: calc(1.3rem + 0.6vw) !important;
 }
 
 .fs-4 {
-  font-size: 0.95rem !important;
+  font-size: calc(1.2875rem + 0.45vw) !important;
 }
 
 .fs-5 {
-  font-size: 0.875rem !important;
+  font-size: 0.95rem !important;
 }
 
 .fs-6 {
-  font-size: 1rem !important;
+  font-size: 0.875rem !important;
 }
 
 .fst-italic {
@@ -10671,11 +10676,15 @@ textarea.form-control-lg {
   }
 
   .fs-2 {
-    font-size: 1.625rem !important;
+    font-size: 2.25rem !important;
   }
 
   .fs-3 {
-    font-size: 1.5rem !important;
+    font-size: 1.75rem !important;
+  }
+
+  .fs-4 {
+    font-size: 1.625rem !important;
   }
 }
 @media print {
@@ -10736,11 +10745,11 @@ textarea.form-control-lg {
 }
 
 .qu-txt-small {
-  font-size: 0.8rem !important;
+  font-size: 0.813rem !important;
 }
 
 .qu-txt-sm {
-  font-size: 0.95rem !important;
+  font-size: 0.875rem !important;
 }
 
 .qu-txt-medium {
@@ -10748,6 +10757,10 @@ textarea.form-control-lg {
 }
 
 .qu-txt-large {
+  font-size: 1.25rem !important;
+}
+
+.qu-txt-xl {
   font-size: 1.5rem !important;
 }
 
@@ -10759,6 +10772,10 @@ textarea.form-control-lg {
   font-size: 0.875rem !important;
 }
 
+.qu-heading-medium {
+  font-size: 1.625rem !important;
+}
+
 .qu-heading-xl {
   font-size: 2.625rem !important;
 }
@@ -10768,40 +10785,38 @@ textarea.form-control-lg {
 }
 
 body {
+  font-size: 0.938rem;
   color: #555;
 }
 
-.project-phase {
+.qu-numeric {
   padding: 0;
   margin-top: 40px;
 }
 
-.project-phase h3, .project-phase .h3 {
-  color: #333;
+.qu-numeric h4, .qu-numeric .h4 {
   margin-top: -10px;
   margin-bottom: 10px;
   padding-left: 10px;
-  font-weight: 700;
   white-space: nowrap;
 }
 
-.project-phase h3::after, .project-phase .h3::after {
+.qu-numeric h4::after, .qu-numeric .h4::after {
   content: url("../assets/images/Arrow.png");
   margin-left: 30px;
 }
 
-.project-phase img {
+.qu-numeric img {
   opacity: 0.3;
 }
 
-.project-phase p {
+.qu-numeric p {
   color: #333;
-  font-size: 0.95rem;
   padding-left: 10px;
   padding-right: 40px;
 }
 
-.project-phase.-last h3::after, .project-phase.-last .h3::after {
+.qu-numeric.-last h3::after, .qu-numeric.-last .h3::after {
   content: "";
 }
 
@@ -10809,6 +10824,15 @@ h1, .h1 {
   line-height: 1.1;
   letter-spacing: -2px;
   font-weight: 400;
+}
+
+h1, .h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
   color: #333;
 }
 
@@ -11045,7 +11069,6 @@ strong {
 
 .qu-nav-sitemap__link {
   color: #FFF;
-  font-weight: 500;
 }
 
 .qu-nav-sitemap__link:hover {
@@ -11141,7 +11164,7 @@ strong {
   }
 }
 .qu-form {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
 }
 
@@ -11170,10 +11193,8 @@ strong {
   background: #000;
   color: #FFF;
   border: none;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: inherit;
-  padding: 6px 12px;
-  width: 100%;
   margin-top: 15px;
 }
 
@@ -11183,34 +11204,27 @@ strong {
   opacity: 0.8;
 }
 
-.highlights .col {
+.qu-highlights .col {
   padding-right: 20px;
 }
 
-.highlights h3, .highlights .h3 {
+.qu-highlights h3, .qu-highlights .h3 {
   margin-top: 20px;
-  font-size: 28px;
-  font-weight: 500;
   color: #FFF;
 }
 
-.highlights p {
+.qu-highlights p {
   color: #333;
   padding-right: 30px;
 }
 
-.highlights img {
+.qu-highlights img {
   min-height: 55px;
 }
 
 .qu-testimonial__quote {
   font-size: 1.625rem;
   font-style: italic;
-  color: #333;
-}
-
-.qu-content-list {
-  font-size: 0.95rem;
 }
 
 .qu-content-list__item:hover {
@@ -11261,7 +11275,6 @@ strong {
 }
 
 .qu-download-list {
-  font-size: 0.95rem;
   min-height: 630px;
 }
 
@@ -11309,11 +11322,11 @@ strong {
 }
 
 .-narrow .qu-list {
-  font-size: 0.8rem;
+  font-size: 0.875rem;
 }
 
 .-narrow .qu-list__title {
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: 600;
   margin-bottom: 0;
 }

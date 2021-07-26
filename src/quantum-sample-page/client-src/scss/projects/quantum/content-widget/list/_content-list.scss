@@ -2,7 +2,6 @@
 @use "mixins";
 
 .qu-content-list {
-    @include mixins.default-list;
 
     &__item {
 

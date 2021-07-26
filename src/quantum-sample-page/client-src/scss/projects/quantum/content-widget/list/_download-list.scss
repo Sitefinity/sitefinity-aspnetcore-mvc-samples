@@ -2,8 +2,6 @@
 @use "mixins";
 
 .qu-download-list {
-    @include mixins.default-list;
-
     min-height: settings.$download-list-min-height;
 
     &__item {

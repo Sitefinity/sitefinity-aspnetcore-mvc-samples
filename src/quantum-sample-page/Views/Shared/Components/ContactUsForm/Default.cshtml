@@ -3,7 +3,7 @@
 
 @using (Html.BeginForm("Index", "FormValues", FormMethod.Post, new { id = "submitForm", novalidate = "", @class = "qu-form -gray" }))
 {
-    <h3>@Model.Heading</h3>
+    <h3 class="qu-heading-medium">@Model.Heading</h3>
     <div class="form-group">
         <label asp-for="FirstName">First Name</label>
         <input class="form-control" asp-for="FirstName" required>
@@ -36,7 +36,7 @@
         <label asp-for="YourMessage">Your Message</label>
         <textarea class="form-control" asp-for="YourMessage" placeholder="Tell us more about your project"></textarea>
     </div>
-    <button class="btn" id="submitButton" type="submit">Submit</button>
+    <button class="btn w-100" id="submitButton" type="submit">Submit</button>
 }
 
 <!-- <div id="submitSuccess" class="d-none mt-4">
