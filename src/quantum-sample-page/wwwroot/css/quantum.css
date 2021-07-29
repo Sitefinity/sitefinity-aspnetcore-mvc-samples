@@ -10816,7 +10816,7 @@ body {
   padding-right: 40px;
 }
 
-.qu-numeric.-last h3::after, .qu-numeric.-last .h3::after {
+.qu-numeric.-last h4::after, .qu-numeric.-last .h4::after {
   content: "";
 }
 
