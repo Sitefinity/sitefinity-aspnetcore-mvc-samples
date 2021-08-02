@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="By" xml:space="preserve">
-    <value>By</value>
+    <value>by</value>
+  </data>
+  <data name="Featured" xml:space="preserve">
+    <value>Featured</value>
   </data>
 </root>
