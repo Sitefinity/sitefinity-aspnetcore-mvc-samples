@@ -20,7 +20,7 @@
 
             .qu-content-list__title:not(:hover),
             .qu-content-list__author {
-                color: inherit;
+                color: settings.$featured-color;
             }
         }
     }

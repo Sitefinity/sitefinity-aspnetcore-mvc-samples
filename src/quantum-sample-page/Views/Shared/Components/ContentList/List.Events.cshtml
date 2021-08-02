@@ -1,8 +1,9 @@
 ﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
 
-@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
+@model Renderer.ViewModels.Extends.ExtendedContentListViewModel
 
-<div class="qu-list">
+<h4 class="text-uppercase qu-heading-xs">@Model.Heading</h4>
+<div class='qu-list @(Model.SmallList ? "-small" : "")'>
     @{
         var first = Model.Items.FirstOrDefault();
     }
@@ -25,7 +26,7 @@
                 <h5 class="qu-list__title">
                     @if (itemUrl != null)
                     {
-                        <a href="@itemUrl.ToString()">@title</a>
+                        <a href="/@itemUrl.ToString()">@title</a>
                     }
                     else
                     {

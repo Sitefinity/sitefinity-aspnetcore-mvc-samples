@@ -28,9 +28,15 @@
     <Content Remove="wwwroot\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.0.7700.31934-PrBuild" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.0.7700.31934-PrBuild" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.0.7700.31934-PrBuild" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.0.7700.31934-PrBuild" />
+    <None Remove="Scripts\contact-us-form.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\contact-us-form.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.0.7700.34456" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.0.7700.34456" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.0.7700.34456" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.0.7700.34456" />
   </ItemGroup>
 </Project>

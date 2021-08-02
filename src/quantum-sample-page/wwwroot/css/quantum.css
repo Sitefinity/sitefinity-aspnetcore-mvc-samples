@@ -11243,7 +11243,7 @@ strong {
 
 .qu-content-list__item.-featured .qu-content-list__title:not(:hover),
 .qu-content-list__item.-featured .qu-content-list__author {
-  color: inherit;
+  color: #FFF;
 }
 
 .qu-content-list__author {
@@ -11321,17 +11321,18 @@ strong {
   color: #777;
 }
 
-.-narrow .qu-list {
+.qu-list.-small {
   font-size: 0.875rem;
 }
 
-.-narrow .qu-list__title {
+.qu-list.-small .qu-list__title {
   font-size: 0.875rem;
   font-weight: 600;
   margin-bottom: 0;
 }
 
-.-narrow .qu-list__summary, .-narrow .qu-list__separator {
+.qu-list.-small .qu-list__summary,
+.qu-list.-small .qu-list__separator {
   display: none;
 }
 

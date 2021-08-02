@@ -29,13 +29,19 @@ namespace Renderer.Models.Extends
         public override async Task<object> InitializeViewModel(ContentListEntity entity)
         {
             var extendedEntity = entity as ExtendedContentListEntity;
-            ContentListViewModel viewModel = await base.InitializeViewModel(entity).ConfigureAwait(false) as ContentListViewModel;
-            var extendedViewModel = new ExtendedContentListViewModel(viewModel);
+            var viewModel = await base.InitializeViewModel(entity);
 
-            extendedViewModel.Heading = extendedEntity.Heading;
-            extendedViewModel.IsNarrowed = extendedEntity.IsNarrowed;
+            if (viewModel is ContentListViewModel listViewModel)
+            {
+                var extendedViewModel = new ExtendedContentListViewModel(listViewModel);
 
-            return extendedViewModel;
+                extendedViewModel.Heading = extendedEntity.Heading;
+                extendedViewModel.SmallList = extendedEntity.SmallList;
+
+                return extendedViewModel;
+            }
+
+            return viewModel;
         }
     }
 }

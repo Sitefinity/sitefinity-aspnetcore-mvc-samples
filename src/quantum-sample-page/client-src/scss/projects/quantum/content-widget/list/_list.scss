@@ -16,17 +16,17 @@
         color: settings.$info-color;
     }
 
-    .-narrow & {
+    &.-small {
         font-size: settings.$small-font-size;
 
-        &__title {
+        .qu-list__title {
             font-size: settings.$small-font-size;
             font-weight: settings.$small-heading-font-weight;
             margin-bottom: 0;
         }
 
-        &__summary,
-        &__separator {
+        .qu-list__summary,
+        .qu-list__separator {
             display: none;
         }
     }

@@ -1,14 +1,12 @@
-﻿@using Renderer.Dto;
-@using Progress.Sitefinity.RestSdk.Dto;
+﻿@using Progress.Sitefinity.RestSdk.Dto;
 
-@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
+@model Renderer.ViewModels.Extends.ExtendedContentListViewModel
 
 <div class="qu-location">
     <div id="map" class="qu-location__map"></div>
     
     <div class="container qu-location__list">
-        @* TODO: Provide heading with extended list *@
-        <h1>Contact Us</h1>
+        <h1 class="mb-4">@Model.Heading</h1>
         <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4 qu-content-list">
             @foreach (var item in Model.Items)
             {
@@ -454,7 +452,7 @@
         @foreach (var item in Model.Items)
         {
             var address = item.GetValue<Address>("Address");
-            var lat = address.Latitude.ToString().Replace(',', '.');
+            var lat = address.Latittude.ToString().Replace(',', '.');
             var lon = address.Longitude.ToString().Replace(',', '.');
             var title = item.GetValue<string>("Title");
 

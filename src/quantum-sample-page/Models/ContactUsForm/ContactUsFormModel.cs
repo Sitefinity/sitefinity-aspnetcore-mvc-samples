@@ -20,7 +20,7 @@ namespace Renderer.Models.ContactUsForm
 
         [Required]
         [Display(Name = "PhoneNumber")]
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [MaxLength(150)]
         [Display(Name = "YourMessage")]
@@ -30,5 +30,10 @@ namespace Renderer.Models.ContactUsForm
         /// Gets or sets the heading of the form.
         /// </summary>
         public string Heading { get; set; }
+
+        /// <summary>
+        /// Gets or sets the message upon successfull form submition.
+        /// </summary>
+        public string SuccessMessage { get; set; }
     }
 }

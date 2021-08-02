@@ -31,7 +31,7 @@ namespace Renderer.Models.Document
         /// <returns>The generated view models.</returns>
         public async Task<IList<DocumentDto>> GetViewModels(DocumentEntity entity)
         {
-            var response = await this.service.GetItems<DocumentDto>(entity.Documents, new GetAllArgs() { Fields = new List<string>() { "Id", "Image", "Title", "Url", "TotalSize", "Extension" } }).ConfigureAwait(true);
+            var response = await this.service.GetItems<DocumentDto>(entity.Documents, new GetAllArgs() { Fields = new List<string>() { "Image", "Title", "Url", "TotalSize", "Extension" } }).ConfigureAwait(true);
             return response.Items.Select(x => this.GetItemViewModel(x)).ToArray();
         }
 

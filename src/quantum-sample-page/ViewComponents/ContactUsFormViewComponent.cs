@@ -13,6 +13,7 @@ namespace Renderer.ViewComponents
         {
             var model = new ContactUsFormModel();
             model.Heading = context.Entity.Heading;
+            model.SuccessMessage = context.Entity.SuccessMessage;
 
             return this.View(model);
         }

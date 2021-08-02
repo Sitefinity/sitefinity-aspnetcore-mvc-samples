@@ -4,8 +4,6 @@
   "description": "Assets managment project for Sitefinity .Net core renderer",
   "scripts": {
     "start": "run-s build watch",
-    "start:quantum": "run-s build:quantum watch",
-    "build:quantum": "run-s lint-scss scss:quantum scss:quantum-edit copy:assets",
     "build:scss": "run-s lint-scss scss copy:assets",
     "build:js": "run-s copy:js uglifyjs",
     "build": "run-s build:scss build:js copy:favicon",

@@ -6,6 +6,6 @@ namespace Renderer.Entities.Extends
     {
         public string Heading { get; set; }
 
-        public bool IsNarrowed { get; set; }
+        public bool SmallList { get; set; }
     }
 }

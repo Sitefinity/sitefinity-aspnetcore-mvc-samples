@@ -3,6 +3,7 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 
 @inject IViewLocalizer Localizer
+@inject Progress.Sitefinity.AspNetCore.Web.IRequestContext RequestContext
 
 @model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
 
@@ -34,7 +35,7 @@
                 <div class="card-body">
                     @if (!string.IsNullOrEmpty(title))
                     {
-                        <h4 class="card-title qu-txt-medium"><a href="@Model.GetItemUrl(this.Context, item)" class="qu-content-list__title">@title</a></h4>
+                        <h4 class="card-title qu-txt-medium"><a href="/@Model.GetItemUrl(this.Context, item)" class="qu-content-list__title">@title</a></h4>
                     }
                     @{
                         DateTime publicationDate;
