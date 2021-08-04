@@ -6,6 +6,7 @@
 
     &__title {
         font-size: settings.$large-heading-font-size;
+        margin-bottom: settings.$large-heading-offset;
 
         a {
             @include mixins.list-title;

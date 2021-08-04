@@ -1,4 +1,5 @@
 ﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+@using Progress.Sitefinity.RestSdk.Dto;
 
 @model Renderer.ViewModels.Extends.ExtendedContentListViewModel
 
@@ -13,10 +14,11 @@
         var endDate = Model.GetFieldValue<DateTime>(item, "End date");
         var title = Model.GetFieldValue<string>(item, "Title");
         var text = Model.GetFieldValue<string>(item, "Text");
+        var city = item.GetValue<string>("City");
 
         if (!item.Equals(first))
         {
-            <hr class="qu-list__separator">
+            <hr class="qu-list__separator mb-4 mt-4">
         }
 
         <div>
@@ -35,7 +37,9 @@
                 </h5>
             }
 
-            <p class="qu-list__info">@Html.FormatDate(startDate, this.Context) - @Html.FormatDate(endDate, this.Context)</p>
+            <p class="qu-list__info">
+                @Html.FormatDate(startDate, this.Context) - @Html.FormatDate(endDate, this.Context)@{ if (!String.IsNullOrEmpty(city)) { @Html.Raw(", " + city) } }
+            </p>
 
             @if (text != null)
             {

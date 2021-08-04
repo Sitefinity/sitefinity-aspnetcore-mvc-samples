@@ -11307,6 +11307,7 @@ strong {
 
 .qu-list__title {
   font-size: 1.625rem;
+  margin-bottom: 5px;
 }
 
 .qu-list__title a {
