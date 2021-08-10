@@ -24,7 +24,7 @@ namespace extended_content_block
             services.AddSitefinity();
             services.AddViewComponentModels();
 
-            services.AddSingleton<IContentBlockModel, ExtendedContentBlockModel>();
+            services.AddScoped<IContentBlockModel, ExtendedContentBlockModel>();
             services.AddSingleton<IEntityExtender, EntityExtender<ContentBlockEntity, ExtendedContentBlockEntity>>();
         }
 
