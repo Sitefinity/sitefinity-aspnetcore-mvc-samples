@@ -235,6 +235,9 @@ namespace all_properties.Entities.AllProperties
         [TaxonomyContent(Type = "geographical-regions")]
         public MixedContentContext CustomTaxonomy { get; set; }
 
+        [Content]
+        public MixedContentContext AllItems { get; set; }
+
         #endregion
     }
 
