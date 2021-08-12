@@ -1,0 +1,35 @@
+@using Progress.Sitefinity.AspNetCore.TagHelpers;
+@using Progress.Sitefinity.AspNetCore.Widgets.Models.Navigation;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.Navigation.NavigationViewModel
+
+<div class="@Model.WrapperCssClass">
+    <nav class="qu-nav-sitemap">
+        @* @Html.Action("GetView", new { viewName = "Dropdown", model= Model}) *@
+
+        <ul class="nav">
+            @foreach (var node in Model.Nodes)
+            {
+                RenderSubLevelsRecursive(node, true);
+            }
+        </ul>
+    </nav>
+</div>
+
+@*Here is specified the rendering for the sub levels*@
+@{ void RenderSubLevelsRecursive(PageViewModel node, Boolean isWrapper)
+    {
+        <li class="nav-item">
+            <a class="nav-link qu-nav-sitemap__link @(isWrapper ? "-wrapper" : "")" href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+
+            @if (node.ChildNodes.Count > 0)
+            {
+                <ul class="nav flex-column">
+                    @foreach (var childNode in node.ChildNodes)
+                    {
+                        RenderSubLevelsRecursive(childNode, false);
+                    }
+                </ul>}
+        </li>
+    }
+}

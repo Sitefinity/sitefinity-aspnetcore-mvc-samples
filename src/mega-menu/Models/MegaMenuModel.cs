@@ -12,6 +12,8 @@ using Progress.Sitefinity.AspNetCore.Widgets.Models.Section;
 using mega_menu.Entities;
 using mega_menu.ViewModels;
 using System;
+using Progress.Sitefinity.AspNetCore.RestSdk;
+using Progress.Sitefinity.RestSdk.Clients.Pages.Dto;
 
 namespace mega_menu.Models
 {

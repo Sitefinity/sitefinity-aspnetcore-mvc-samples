@@ -1,0 +1,59 @@
+﻿@use "../settings/variables";
+@use "../settings/text";
+@use "../settings/colors";
+
+.#{variables.$selector-prefix}-txt-white {
+    color: colors.$white !important;
+}
+
+.#{variables.$selector-prefix}-txt-black {
+    color: colors.$black !important;
+}
+
+.#{variables.$selector-prefix}-txt-light-gray {
+    color: colors.$light-gray !important;
+}
+
+.#{variables.$selector-prefix}-txt-gray {
+    color: colors.$gray !important;
+}
+
+.#{variables.$selector-prefix}-txt-small {
+    font-size: text.$font-size-small !important;
+}
+
+.#{variables.$selector-prefix}-txt-sm {
+    font-size: text.$font-size-sm !important;
+}
+
+.#{variables.$selector-prefix}-txt-medium {
+    font-size: text.$font-size-medium !important;
+}
+
+.#{variables.$selector-prefix}-txt-large {
+    font-size: text.$font-size-large !important;
+}
+
+.#{variables.$selector-prefix}-txt-xl {
+    font-size: text.$font-size-xl !important;
+}
+
+.#{variables.$selector-prefix}-txt-uppercase {
+    text-transform: uppercase !important;
+}
+
+.#{variables.$selector-prefix}-heading-xs {
+    font-size: text.$heading-size-xs !important;
+}
+
+.#{variables.$selector-prefix}-heading-medium {
+    font-size: text.$heading-size-m !important;
+}
+
+.#{variables.$selector-prefix}-heading-xl {
+    font-size: text.$heading-size-xl !important;
+}
+
+.#{variables.$selector-prefix}-heading-3xl {
+    font-size: text.$heading-size-3xl !important;
+}

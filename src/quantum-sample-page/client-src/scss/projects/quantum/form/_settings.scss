@@ -1,0 +1,14 @@
+@use "../../../common/settings/colors";
+@use "../../../common/settings/text";
+@use "../settings/bootstrap-variables";
+
+$background-gray: #F3F4F6;
+$form-border-radius: bootstrap-variables.$border-radius-lg;
+$label-font-size: text.$font-size-sm;
+$label-font-weight: text.$font-weight-normal;
+$button-font-size: text.$font-size-medium;
+$button-background: #000;
+$button-color: colors.$white;
+
+$check-color: colors.$complementary;
+$check-font-size: text.$font-size-xl;

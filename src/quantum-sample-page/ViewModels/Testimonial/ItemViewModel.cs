@@ -25,5 +25,10 @@
         /// Gets or sets the company.
         /// </summary>
         public string Company { get; set; }
+
+        /// <summary>
+        /// Gets or sets the job title.
+        /// </summary>
+        public string JobTitle { get; set; }
     }
 }

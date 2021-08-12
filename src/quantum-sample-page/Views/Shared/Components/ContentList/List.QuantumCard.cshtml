@@ -1,0 +1,75 @@
+﻿@using Progress.Sitefinity.RestSdk.Dto;
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@inject Progress.Sitefinity.AspNetCore.Web.IRequestContext RequestContext
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
+
+<div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4 qu-content-list">
+    @foreach (var item in Model.Items)
+    {
+        var title = Model.GetFieldValue<string>(item, "Title");
+        var image = Model.GetFirstRelatedMedia(item, "Image");
+        var thumbnail = image != null ? image.GetThumbnail() : null;
+
+        bool featured;
+        item.TryGetValue<bool>("Featured", out featured);
+        var contentListClassList = featured ? "qu-content-list__item col -featured" : "qu-content-list__item col";
+        <div>
+            <div class="card h-100 @contentListClassList">
+                @if (featured)
+                {
+                    <span class="qu-content-list__ribbon">@Localizer["Featured"]</span>
+                }
+                @if (thumbnail != null)
+                {
+                    <img class="card-img-top qu-content-list__image" src='@(thumbnail.Url)' alt='@(image.AlternativeText)' title='@(thumbnail.Title)' />
+                }
+                else if (image != null)
+                {
+                    <img class="card-img-top qu-content-list__image" src='@(image.Url)' alt='@(image.AlternativeText)' title='@(image.Title)' />
+                }
+
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(title))
+                    {
+                        <h4 class="card-title qu-txt-medium"><a href="@Model.GetItemUrl(this.Context, item)" class="qu-content-list__title">@title</a></h4>
+                    }
+                    @{
+                        DateTime publicationDate;
+                        string author;
+                        if (item.TryGetValue<DateTime>("PublicationDate", out publicationDate) && item.TryGetValue<string>("Author", out author))
+                        {
+                            <div class="qu-content-list__author qu-txt-small mb-2">
+                                @Html.FormatDate(@publicationDate, this.Context)
+                                <div>
+                                    @Localizer["By"]
+                                    @author
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <div class="card-text">
+                        @{
+                            string text;
+                            if (item.TryGetValue<string>("Summary", out text))
+                            {
+                                <p>@Html.HtmlSanitize(text)</p>
+                            }
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@if (Model.Pager != null)
+{
+    <div class="mt-2">
+        @await Html.PartialAsync("ContentPager", Model.Pager)
+    </div>
+}

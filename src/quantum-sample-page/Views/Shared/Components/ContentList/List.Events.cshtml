@@ -1,0 +1,56 @@
+﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+@using Progress.Sitefinity.RestSdk.Dto;
+
+@model Renderer.ViewModels.Extends.ExtendedContentListViewModel
+
+<h4 class="text-uppercase qu-heading-xs">@Model.Heading</h4>
+<div class='qu-list @(Model.SmallList ? "-small" : "")'>
+    @{
+        var first = Model.Items.FirstOrDefault();
+    }
+    @foreach (var item in Model.Items)
+    {
+        var startDate = Model.GetFieldValue<DateTime>(item, "Start date");
+        var endDate = Model.GetFieldValue<DateTime>(item, "End date");
+        var title = Model.GetFieldValue<string>(item, "Title");
+        var text = Model.GetFieldValue<string>(item, "Text");
+        var city = item.GetValue<string>("City");
+
+        if (!item.Equals(first))
+        {
+            <hr class="qu-list__separator mb-4 mt-4">
+        }
+
+        <div>
+            @if (title != null)
+            {
+                var itemUrl = Model.GetItemUrl(this.Context, item);
+                <h5 class="qu-list__title">
+                    @if (itemUrl != null)
+                    {
+                        <a href="@itemUrl.ToString()">@title</a>
+                    }
+                    else
+                    {
+                        @Html.HtmlSanitize(title)
+                    }
+                </h5>
+            }
+
+            <p class="qu-list__info">
+                @Html.FormatDate(startDate, this.Context) - @Html.FormatDate(endDate, this.Context)@{ if (!String.IsNullOrEmpty(city)) { @Html.Raw(", " + city) } }
+            </p>
+
+            @if (text != null)
+            {
+                <p class="qu-list__summary">@Html.HtmlSanitize(text)</p>
+            }
+        </div>
+    }
+</div>
+@if (Model.Pager != null)
+{
+    <div class="mt-2">
+        @await Html.PartialAsync("ContentPager", Model.Pager)
+    </div>
+}

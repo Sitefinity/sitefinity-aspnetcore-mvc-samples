@@ -21,7 +21,7 @@ namespace mega_menu
             services.AddSitefinity();
             services.AddViewComponentModels();
 
-            services.AddSingleton<IMegaMenuModel, MegaMenuModel>();
+            services.AddScoped<IMegaMenuModel, MegaMenuModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

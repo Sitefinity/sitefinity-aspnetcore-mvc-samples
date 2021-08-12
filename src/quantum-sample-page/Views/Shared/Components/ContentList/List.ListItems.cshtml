@@ -1,0 +1,22 @@
+﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
+
+<div class="row row-cols-1 row-cols-md-3 qu-highlights">
+    @foreach (var item in Model.Items)
+    {
+        var text = Model.GetFieldValue<string>(item, "Text");
+
+        <div class="col">
+            <div class="h-100">
+                <div>
+                    @if (text != null)
+                    {
+                        <p>@Html.HtmlSanitize(text)</p>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

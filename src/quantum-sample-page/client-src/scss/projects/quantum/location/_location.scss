@@ -1,0 +1,40 @@
+@use "settings";
+@use "../settings/common";
+
+.qu-location {
+    position: relative;
+
+    &__map {
+        height: settings.$map-mobile-height;
+    }
+
+    &__list {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        width: 100%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (min-width: common.$sm-breakpoint) {
+    .qu-location {
+
+        &__map {
+            height: settings.$map-height;
+        }
+        
+        &__list {
+            top: 25%;
+        }
+    }
+}
+
+@media (min-width: common.$lg-breakpoint) {
+    .qu-location {
+        
+        &__list {
+            top: 50%;
+        }
+    }
+}

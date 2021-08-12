@@ -1,0 +1,32 @@
+@use "settings";
+
+.qu-numeric {
+    padding: 0;
+    margin-top: settings.$top-offset;
+
+     h4 {
+        margin-top: -#{settings.$heading-offset};
+        margin-bottom: settings.$heading-offset;
+        padding-left: settings.$heading-offset;
+        white-space: nowrap;
+
+        &::after{
+            content: url("../assets/images/Arrow.png");
+            margin-left: settings.$heading-arrow-offset;
+        }        
+    }
+
+    img {
+        opacity: 0.3;
+    }
+
+    p {
+        color: settings.$color;
+        padding-left: settings.$text-left-offset;
+        padding-right: settings.$text-right-offset;
+    }
+}
+
+.qu-numeric.-last h4::after{
+    content: "";
+}

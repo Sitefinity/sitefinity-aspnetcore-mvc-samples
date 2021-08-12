@@ -16,11 +16,12 @@
     position: absolute;
     visibility: hidden;
     opacity: 0;
-    transition: all 0.1s ease;
+    transition: opacity 0.1s ease;
 }
 
-.mega-menu .nav-item:hover > .mega-menu__item {
+.mega-menu .nav-item .mega-menu__item.show {
     visibility: visible;
     opacity: 1;
+    display: flex;
 }
 

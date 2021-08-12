@@ -1,0 +1,39 @@
+﻿@using Progress.Sitefinity.RestSdk.Dto;
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@model IList<DocumentDto>
+<div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4 qu-download-list">
+    @for (var i = 0; i < this.Model.Count; i++)
+    {
+
+        var item = this.Model[i];
+        var sizeInKb = item.TotalSize / 1024;
+        var image = item.GetValue<List<ImageDto>>("Image").FirstOrDefault();
+        <div>
+            <div class="card h-100 qu-download-list__item text-center col p-2">
+                @{
+                    string widthAttr = image.Width != 0 ? string.Format(@"width={0}", image.Width) : string.Empty;
+                    string heightAttr = image.Height != 0 ? string.Format(@"height={0}", image.Height) : string.Empty;
+                    string altAttr = string.IsNullOrEmpty(image.AlternativeText) ? string.Empty : string.Format(@"alt=""{0}""", image.AlternativeText);
+                    var sortedList = image.Thumbnails.OrderBy(t => t.Width).ToList();
+                }
+                <picture>
+                    @foreach (var thumbnail in sortedList)
+                    {
+                        <source media="(max-width: @(thumbnail.Width)px)" srcset="@thumbnail.Url" type="@thumbnail.MimeType">
+                    }
+                    <img @widthAttr @heightAttr class="img-fluid" loading="lazy" src="@image.Url" title="@image.Title" @Html.Raw(altAttr)>
+                </picture>
+                <div class="h-100 d-flex flex-column">
+                    <h4 class="card-title m-4"><a href="@item.Url" class="qu-download-list__title" target="_blank">@item.Title</a></h4>
+                    <div class="mt-auto">
+                        <a class="btn btn-primary" href="@item.Url" target="_blank">@Localizer["Download"]</a>
+                        <div class="qu-download-list__extension mt-3 mb-3">@item.Extension.Replace(".", string.Empty) (@sizeInKb KB)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

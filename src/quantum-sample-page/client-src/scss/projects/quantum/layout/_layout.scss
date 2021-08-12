@@ -1,0 +1,7 @@
+@use "../../../common/settings/colors";
+@use "../../../common/settings/text";
+
+body { 
+  font-size: text.$font-size-base;
+  color: colors.$dark-gray;
+}

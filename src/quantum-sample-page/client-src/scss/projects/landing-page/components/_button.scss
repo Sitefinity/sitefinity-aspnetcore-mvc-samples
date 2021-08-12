@@ -1,0 +1,44 @@
+@use "../../../common/settings/colors";
+
+.btn {
+
+    &,
+    &:focus,
+    &:not(:disabled):not(.disabled):active {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 178px;
+        height: 46px;
+        font-size: 15px;
+        font-weight: 700;
+        color: colors.$primary;
+        background-color: colors.$white;
+        border: 2px solid colors.$primary;
+        border-radius: 25px;
+        text-transform: uppercase;
+        box-shadow: none !important;
+    }
+
+    &:hover {
+        color: colors.$primary;
+        text-decoration: none;
+        background-color: rgba($color: colors.$primary, $alpha: .05);
+        border-color: colors.$primary;
+    }
+
+    &.btn-secondary {
+
+        &,
+        &:focus,
+        &:not(:disabled):not(.disabled):active {
+            background: colors.$white;
+            border-color: colors.$white;
+        }
+
+        &:hover {
+            background-color: darken(colors.$white, 5%);
+            border-color: darken(colors.$white, 5%);
+        }
+    }
+}
