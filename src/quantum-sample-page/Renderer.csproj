@@ -28,9 +28,6 @@
     <Content Remove="wwwroot\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Scripts\contact-us-form.js" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Scripts\contact-us-form.js" />
   </ItemGroup>
   <ItemGroup>
