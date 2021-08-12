@@ -1,0 +1,16 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@* This tag helper is necessary for the section-name to work and include the script *@
+@addTagHelper *, Progress.Sitefinity.AspNetCore
+
+<environment include="Development">
+    <script src="scripts/hello-insight.js" section-name="Bottom"></script>
+</environment>
+<environment exclude="Development">
+    <script src="scripts/hello-insight.min.js" section-name="Bottom"></script>
+</environment>
+
+<div>
+    <a href="https://google.com">Tracked link </a>
+</div>
+

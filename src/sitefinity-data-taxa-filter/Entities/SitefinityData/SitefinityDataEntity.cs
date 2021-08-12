@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using Progress.Sitefinity.Renderer.Designers.Attributes;
 using Progress.Sitefinity.Renderer.Entities.Content;
+using Progress.Sitefinity.RestSdk;
 
 namespace sitefinity_data_taxa_filter.Models.SitefinityData
 {

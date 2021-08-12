@@ -10,6 +10,7 @@ namespace Renderer.Controllers
     public class FormValuesController : Controller
     {
         private readonly IODataRestClient client;
+
         public FormValuesController(IODataRestClient client)
         {
             this.client = client;

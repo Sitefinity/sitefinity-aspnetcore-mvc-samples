@@ -6,6 +6,7 @@ using Progress.Sitefinity.AspNetCore.Widgets.Models.Section;
 using Progress.Sitefinity.Renderer.Designers;
 using Progress.Sitefinity.Renderer.Designers.Attributes;
 using Progress.Sitefinity.Renderer.Entities.Content;
+using Progress.Sitefinity.RestSdk;
 
 namespace mega_menu.Entities
 {

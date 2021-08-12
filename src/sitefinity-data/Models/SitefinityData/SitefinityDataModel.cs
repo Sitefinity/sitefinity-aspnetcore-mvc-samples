@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Progress.Sitefinity.AspNetCore.SitefinityApi;
+using Progress.Sitefinity.RestSdk;
+using Progress.Sitefinity.RestSdk.Client.Args;
 using Progress.Sitefinity.Renderer.Entities.Content;
 using sitefinity_data.Dto;
 using sitefinity_data.ViewModels.SitefinityData;

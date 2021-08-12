@@ -9,6 +9,7 @@ Follow the instructions [here](https://www.progress.com/documentation/sitefinity
 ## Samples list
 * Hello World sample - for creating a hello world widget and configuring the different types of properties of the SitefinityWidget attribute.
 
+* all-fields - for reading & rendering the diffrent kinds of custom fields on the front-end
 * all-properties - for creating designers
 * change-grid-system - for using a TailWind, a different css grid system
 * conditional-rendering-in-editor - demonstrates how conditional rendering can be applied based on the current context - edit, preview or live
@@ -25,5 +26,6 @@ Follow the instructions [here](https://www.progress.com/documentation/sitefinity
 * sitefinity-data - basic example for accessing data through OData Web Services and limiting access to the Sitefinity OData service.
 * sitefinity-data-complex - a more complex example for accessing and filtering data through OData Web Services
 * sitefinity-data-taxa-filter - an example on how to filter items by selected taxons
+* sitefinity-insight - for submitting custom data to sitefinity insight connector
 * starter-template - for basing your project with everything set-upped.
 * widget-library - for building your custom distributed widget libraries and templates. Additionally this sample includes information on how to add your own custom scripts alongside the views.

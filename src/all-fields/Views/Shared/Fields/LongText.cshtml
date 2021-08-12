@@ -1,0 +1,6 @@
+@model Progress.Sitefinity.RestSdk.Dto.SdkItem
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+
+@* LongText *@
+<h1>Long text</h1>
+<div>@Html.HtmlSanitize(@Model.GetValue<string>("TestLongText"))</div>

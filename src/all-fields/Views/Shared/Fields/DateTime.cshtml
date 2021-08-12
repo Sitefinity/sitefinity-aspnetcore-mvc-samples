@@ -1,0 +1,6 @@
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+@model Progress.Sitefinity.RestSdk.Dto.SdkItem
+
+@* DateTime *@
+<h1>Date time</h1>
+<div>@Html.FormatDate(@Model.GetValue<DateTime?>("TestDateTime"), this.Context)</div>

@@ -1,0 +1,9 @@
+@using Progress.Sitefinity.RestSdk.Dto;
+
+@model Progress.Sitefinity.RestSdk.Dto.SdkItem
+
+@* Address *@
+<h1>Address</h1>
+<div>
+    @(Model.GetValue<Address>("Address").GetAddressString("#=Street#, #=City#, #=State#, #=Country#"))
+</div>
