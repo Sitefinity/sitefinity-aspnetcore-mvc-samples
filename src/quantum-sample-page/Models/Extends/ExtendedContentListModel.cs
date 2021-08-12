@@ -1,6 +1,7 @@
 ﻿using Progress.Sitefinity.AspNetCore.Configuration;
 using Progress.Sitefinity.AspNetCore.Web;
 using Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList;
+using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.OData;
 using Renderer.Entities.Extends;
 using Renderer.ViewModels.Extends;

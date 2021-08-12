@@ -42,27 +42,13 @@
       "fieldType": "Text"
     }
   ],
-  "NewsAndBlogsList": [
-    {
-      "fieldTitle": "Image",
-      "fieldType": "RelatedImage"
-    },
-    {
-      "fieldTitle": "Title",
-      "fieldType": "ShortText"
-    },
-    {
-      "fieldTitle": "Summary",
-      "fieldType": "ShortText"
-    }
-  ],
-  "ListItems": [
+  "List.ListItems": [
     {
       "fieldTitle": "Text",
       "fieldType": "LongText"
     }
   ],
-  "QuantumCardList": [
+  "List.QuantumCard": [
     {
       "fieldTitle": "Image",
       "fieldType": "RelatedImage"
@@ -72,7 +58,7 @@
       "fieldType": "ShortText"
     }
   ],
-  "Events": [
+  "List.Events": [
     {
       "fieldTitle": "Title",
       "fieldType": "ShortText"

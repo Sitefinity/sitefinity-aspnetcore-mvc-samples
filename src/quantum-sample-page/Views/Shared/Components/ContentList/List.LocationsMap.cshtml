@@ -452,7 +452,7 @@
         @foreach (var item in Model.Items)
         {
             var address = item.GetValue<Address>("Address");
-            var lat = address.Latittude.ToString().Replace(',', '.');
+            var lat = address.Latitude.ToString().Replace(',', '.');
             var lon = address.Longitude.ToString().Replace(',', '.');
             var title = item.GetValue<string>("Title");
 

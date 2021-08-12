@@ -43,17 +43,6 @@ namespace Renderer
             app.UseRouting();
             app.UseSitefinity();
 
-            app.Use(async (context, next) =>
-            {
-                if (context.Items.ContainsKey("sfpagemodel"))
-                {
-                    var pageNodeDto = context.Items["sfpagemodel"] as PageModelDto;
-                    pageNodeDto.UrlParameters = new string[0];
-                }
-
-                await next();
-            });
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
