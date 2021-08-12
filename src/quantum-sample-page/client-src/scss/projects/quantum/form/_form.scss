@@ -1,7 +1,6 @@
-@use "../../../common/settings/variables";
 @use "settings";
 
-.#{variables.$selector-prefix}-form {
+.qu-form {
     font-size: settings.$label-font-size;
     font-weight: settings.$label-font-weight;
 
