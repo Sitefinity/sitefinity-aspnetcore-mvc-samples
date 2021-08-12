@@ -1,0 +1,13 @@
+﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+@using Progress.Sitefinity.RestSdk.Dto;
+@using Progress.Sitefinity.RestSdk;
+
+@inject IRestClient restClient;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentDetailViewModel
+
+<div>
+    <h3>
+        <span>@(Model.Item.GetValue<string>("Title"))</span>
+    </h3>
+</div>

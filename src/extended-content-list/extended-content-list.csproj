@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>extended_content_list</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.0.7700.36562" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.0.7700.36562" />
+  </ItemGroup>
+
+</Project>
