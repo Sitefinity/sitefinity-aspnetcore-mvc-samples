@@ -1,4 +1,5 @@
-﻿using Progress.Sitefinity.RestSdk.Client.Dto;
+﻿
+using Progress.Sitefinity.RestSdk.Dto;
 
 namespace Renderer.Dto
 {
@@ -9,6 +10,8 @@ namespace Renderer.Dto
         public string Quote { get; set; }
 
         public string Company { get; set; }
+
+        public string JobTitle { get; set; }
 
         public Image[] Photo { get; set; }
     }

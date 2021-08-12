@@ -1,0 +1,21 @@
+@use "../../../common/settings/colors";
+@use "../../../common/settings/text";
+
+h1 {
+    line-height: 1.1;
+    letter-spacing: -2px;
+    font-weight: text.$font-weight-normal;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: colors.$black;
+}
+
+h4,
+b,
+strong {
+    font-weight: text.$font-weight-semibold;
+}

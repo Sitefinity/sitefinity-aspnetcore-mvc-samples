@@ -1,9 +1,8 @@
-﻿@import "./vendors/bootstrap";
+﻿@use "sass:meta";
 
-@import "./settings/all";
+@import "projects/landing-page/vendors/bootstrap";
 
-@import "./base/all";
-@import "./layout/all";
-@import "./trumps/all";
-
-@import "./components/all";
+@include meta.load-css("common/trumps");
+@include meta.load-css("projects/landing-page/base");
+@include meta.load-css("projects/landing-page/layout");
+@include meta.load-css("projects/landing-page/components");

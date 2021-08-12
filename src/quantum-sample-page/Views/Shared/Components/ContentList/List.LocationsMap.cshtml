@@ -1,0 +1,473 @@
+﻿@using Progress.Sitefinity.RestSdk.Dto;
+
+@model Renderer.ViewModels.Extends.ExtendedContentListViewModel
+
+<div class="qu-location">
+    <div id="map" class="qu-location__map"></div>
+    
+    <div class="container qu-location__list">
+        <h1 class="mb-4">@Model.Heading</h1>
+        <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4 qu-content-list">
+            @foreach (var item in Model.Items)
+            {
+                var title = item.GetValue<string>("Title");
+                var image = item.GetValue<List<ImageDto>>("Image").FirstOrDefault();
+                var thumbnail = image != null ? image.GetThumbnail() : null;
+
+                <div>
+                    <div class="card h-100 qu-content-list__item col">
+                        @if (thumbnail != null)
+                        {
+                            <img class="card-img-top qu-content-list__image" src='@(thumbnail.Url)' alt='@(image.AlternativeText)' title='@(thumbnail.Title)' />
+                        }
+                        else if (image != null)
+                        {
+                            <img class="card-img-top qu-content-list__image" src='@(image.Url)' alt='@(image.AlternativeText)' title='@(image.Title)' />
+                        }
+
+                        <div class="card-body">
+                            @if (!string.IsNullOrEmpty(title))
+                            {
+                                <h4 class="card-title qu-txt-medium"><a href="@Model.GetItemUrl(this.Context, item)" class="qu-content-list__title">@title</a></h4>
+                            }
+
+                            <div class="card-text">
+                                @{
+                                    Address address;
+                                    if (item.TryGetValue<Address>("Address", out address))
+                                    {
+                                        var street = address.Street.ToString().Replace(',', '.');
+                                        var city = address.City.ToString().Replace(',', '.');
+                                        var countryCode = address.CountryCode?.ToString().Replace(',', '.');
+                                        <div>
+                                            <div class="fa fa-globe"></div>
+                                            <span>
+                                                @street, @city, @countryCode
+                                            </span>
+                                        </div>
+
+                                    }
+                                    string workingHours;
+                                    if (item.TryGetValue<string>("WorkingHours", out workingHours))
+                                    {
+                                        <div>
+                                            <div class="far fa-clock"></div>
+                                            <span>@workingHours</span>
+                                        </div>
+                                    }
+                                    string phone;
+                                    if (item.TryGetValue<string>("Phone", out phone))
+                                    {
+                                        <div>
+                                            <div class="fa fa-mobile"></div>
+                                            <a class="text-decoration-none" href="tel:@phone">@phone</a>
+                                        </div>
+                                    }
+                                    string fax;
+                                    if (item.TryGetValue<string>("Fax", out fax))
+                                    {
+                                        <div>
+                                            <div class="fa fa-fax"></div>
+                                            <a class="text-decoration-none" href="tel:@fax">@fax</a>
+                                        </div>
+                                    }
+                                    string email;
+                                    if (item.TryGetValue<string>("Email", out email))
+                                    {
+                                        <div>
+                                            <div class="fa fa-envelope"></div>
+                                            <a class="text-decoration-none" href="mailto:@email">@email</a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function initMap() {
+
+        var myLatLng = {lat: 10.581651, lng: 32.430719};
+
+        var styledMapType = new google.maps.StyledMapType(
+        [
+{
+    "elementType": "geometry",
+    "stylers": [
+    {
+        "color": "#1d2c4d"
+    }
+    ]
+},
+{
+    "elementType": "labels",
+    "stylers": [
+    {
+        "visibility": "off"
+    }
+    ]
+},
+{
+    "elementType": "labels.text.fill",
+    "stylers": [
+    {
+        "color": "#8ec3b9"
+    }
+    ]
+},
+{
+    "elementType": "labels.text.stroke",
+    "stylers": [
+    {
+        "color": "#1a3646"
+    }
+    ]
+},
+{
+    "featureType": "administrative",
+    "elementType": "geometry",
+    "stylers": [
+    {
+        "visibility": "off"
+    }
+    ]
+},
+{
+    "featureType": "administrative.country",
+    "elementType": "geometry.stroke",
+    "stylers": [
+    {
+        "color": "#4b6878"
+    }
+    ]
+},
+{
+    "featureType": "administrative.land_parcel",
+    "stylers": [
+    {
+        "visibility": "off"
+    }
+    ]
+},
+{
+    "featureType": "administrative.land_parcel",
+    "elementType": "labels.text.fill",
+    "stylers": [
+    {
+        "color": "#64779e"
+    }
+    ]
+},
+{
+    "featureType": "administrative.neighborhood",
+    "stylers": [
+    {
+        "visibility": "off"
+    }
+    ]
+},
+{
+    "featureType": "administrative.province",
+    "elementType": "geometry.stroke",
+    "stylers": [
+    {
+        "color": "#4b6878"
+    }
+    ]
+},
+{
+    "featureType": "landscape.man_made",
+    "elementType": "geometry.stroke",
+    "stylers": [
+    {
+        "color": "#334e87"
+    }
+    ]
+},
+{
+    "featureType": "landscape.natural",
+    "elementType": "geometry",
+    "stylers": [
+    {
+        "color": "#023e58"
+    }
+    ]
+},
+{
+    "featureType": "landscape.natural.landcover",
+    "stylers": [
+    {
+        "color": "#75d3dd"
+    }
+    ]
+},
+{
+    "featureType": "landscape.natural.landcover",
+    "elementType": "geometry",
+    "stylers": [
+    {
+        "color": "#75d3dd"
+    },
+    {
+        "visibility": "simplified"
+    }
+    ]
+},
+{
+    "featureType": "landscape.natural.terrain",
+    "elementType": "geometry.fill",
+    "stylers": [
+    {
+        "color": "#51b7c6"
+    }
+    ]
+},
+{
+    "featureType": "poi",
+    "stylers": [
+    {
+        "visibility": "off"
+    }
+    ]
+},
+{
+    "featureType": "poi",
+    "elementType": "geometry",
+    "stylers": [
+    {
+        "color": "#283d6a"
+    }
+    ]
+},
+{
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [
+    {
+        "color": "#6f9ba5"
+    }
+    ]
+},
+{
+    "featureType": "poi",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+    {
+        "color": "#1d2c4d"
+    }
+    ]
+},
+{
+    "featureType": "poi.park",
+    "elementType": "geometry.fill",
+    "stylers": [
+    {
+        "color": "#023e58"
+    }
+    ]
+},
+{
+    "featureType": "poi.park",
+    "elementType": "labels.text.fill",
+    "stylers": [
+    {
+        "color": "#3C7680"
+    }
+    ]
+},
+{
+    "featureType": "road",
+    "stylers": [
+    {
+        "visibility": "off"
+    }
+    ]
+},
+{
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": [
+    {
+        "color": "#304a7d"
+    }
+    ]
+},
+{
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+    {
+        "visibility": "off"
+    }
+    ]
+},
+{
+    "featureType": "road",
+    "elementType": "labels.text.fill",
+    "stylers": [
+    {
+        "color": "#98a5be"
+    }
+    ]
+},
+{
+    "featureType": "road",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+    {
+        "color": "#1d2c4d"
+    }
+    ]
+},
+{
+    "featureType": "road.highway",
+    "elementType": "geometry",
+    "stylers": [
+    {
+        "color": "#2c6675"
+    }
+    ]
+},
+{
+    "featureType": "road.highway",
+    "elementType": "geometry.stroke",
+    "stylers": [
+    {
+        "color": "#255763"
+    }
+    ]
+},
+{
+    "featureType": "road.highway",
+    "elementType": "labels.text.fill",
+    "stylers": [
+    {
+        "color": "#b0d5ce"
+    }
+    ]
+},
+{
+    "featureType": "road.highway",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+    {
+        "color": "#023e58"
+    }
+    ]
+},
+{
+    "featureType": "transit",
+    "stylers": [
+    {
+        "visibility": "off"
+    }
+    ]
+},
+{
+    "featureType": "transit",
+    "elementType": "labels.text.fill",
+    "stylers": [
+    {
+        "color": "#98a5be"
+    }
+    ]
+},
+{
+    "featureType": "transit",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+    {
+        "color": "#1d2c4d"
+    }
+    ]
+},
+{
+    "featureType": "transit.line",
+    "elementType": "geometry.fill",
+    "stylers": [
+    {
+        "color": "#283d6a"
+    }
+    ]
+},
+{
+    "featureType": "transit.station",
+    "elementType": "geometry",
+    "stylers": [
+    {
+        "color": "#3a4762"
+    }
+    ]
+},
+{
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [
+    {
+        "color": "#0e1626"
+    }
+    ]
+},
+{
+    "featureType": "water",
+    "elementType": "geometry.fill",
+    "stylers": [
+    {
+        "color": "#51b7c6"
+    }
+    ]
+},
+{
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
+    {
+        "color": "#4e6d70"
+    }
+    ]
+}
+        ],
+        {name: 'Styled Map'});
+
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 3,
+			minZoom: 3,
+			maxZoom: 15,
+			scrollwheel: false,
+			center: myLatLng,
+			mapTypeControlOptions: {
+			    mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+                        'styled_map']
+			}
+		});
+
+		map.mapTypes.set('styled_map', styledMapType);
+		map.setMapTypeId('styled_map');
+
+        @foreach (var item in Model.Items)
+        {
+            var address = item.GetValue<Address>("Address");
+            var lat = address.Latitude.ToString().Replace(',', '.');
+            var lon = address.Longitude.ToString().Replace(',', '.');
+            var title = item.GetValue<string>("Title");
+
+			<text>
+            var iconBase = '/assets/images/Quantum_flag.png'
+				new google.maps.Marker({
+                    position: { lat: @lat, lng: @lon},
+				    map: map,
+                    icon: iconBase,
+				    title: '@title',
+				    animation: google.maps.Animation.DROP
+				});
+			</text>
+		}
+
+	}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKP_DsimIlPT9uwxumfjeVUkDh8mW8TY4&callback=initMap"></script>

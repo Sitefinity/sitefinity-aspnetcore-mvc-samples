@@ -1,0 +1,20 @@
+﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentDetailViewModel
+
+<div class="qu-content-detail">
+    <h2 class="qu-content-detail__title">@(Model.Item.GetValue<string>("Title"))</h2>
+
+    <p class="text-muted mb-3">
+        @{
+            var startDate = Model.Item.GetValue<DateTime>("EventStart");
+            var endDate = Model.Item.GetValue<DateTime>("EventEnd");
+        }
+
+        @Html.FormatDate(startDate, this.Context) - @Html.FormatDate(endDate, this.Context)
+    </p>
+
+    <p>@Html.HtmlSanitize(Model.Item.GetValue<string>("Summary"))</p>
+
+    <div>@Html.HtmlSanitize(Model.Item.GetValue<string>("Content"))</div>
+</div>

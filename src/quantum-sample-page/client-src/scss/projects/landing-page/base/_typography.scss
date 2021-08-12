@@ -1,0 +1,26 @@
+@use "../../../common/settings/text";
+
+h1 {
+    font-size: text.$heading-size-2xl;
+    line-height: 1.1;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: text.$heading-size-l;
+}
+
+h4 {
+    font-size: text.$heading-size-s;
+}
+
+h1,
+h2 {
+    font-weight: text.$font-weight-light;
+}
+
+h4,
+b,
+strong {
+    font-weight: text.$font-weight-semibold;
+}

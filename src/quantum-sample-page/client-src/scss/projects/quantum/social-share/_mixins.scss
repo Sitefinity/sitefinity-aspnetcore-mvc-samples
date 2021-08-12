@@ -1,0 +1,26 @@
+@mixin default {
+  border-radius: 100%;
+  color: white;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@mixin round {
+  @include default;
+
+  padding: 6px;
+}
+
+@mixin high {
+  @include default;
+
+  padding: 7px 5px;
+}
+
+@mixin wide {
+  @include default;
+
+  padding: 5px 8px;
+}

@@ -1,0 +1,16 @@
+@use "../../../common/settings/colors";
+
+hr {
+    display: block;
+    height: 2px;
+    width: 178px;
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: colors.$primary;
+    border: 0;
+
+    &.-white {
+        background-color: colors.$white;
+    }
+}

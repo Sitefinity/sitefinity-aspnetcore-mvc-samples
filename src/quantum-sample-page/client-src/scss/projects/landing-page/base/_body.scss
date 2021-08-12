@@ -1,0 +1,20 @@
+@use "../../../common/settings/colors";
+@use "../../../common/settings/text";
+@use "../../../common/settings/variables";
+
+body {
+    color: colors.$black;
+    font-family: variables.$font-family;
+    font-size: text.$font-size-base;
+    font-weight: text.$font-weight-light;
+    font-style: normal;
+    line-height: normal;
+}
+
+html, body {
+    height: 100%;
+}
+
+p {
+    margin-bottom: 0;
+}

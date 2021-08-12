@@ -1,9 +1,9 @@
 ﻿using Renderer.Models;
 using Microsoft.AspNetCore.Mvc;
-using Progress.Sitefinity.RestSdk;
-using Progress.Sitefinity.RestSdk.Client.Args;
-using Progress.Sitefinity.RestSdk.Client.OData;
 using System.Threading.Tasks;
+using Progress.Sitefinity.RestSdk.OData;
+using Progress.Sitefinity.RestSdk;
+using Renderer.Models.ContactUsForm;
 
 namespace Renderer.Controllers
 {
@@ -17,16 +17,47 @@ namespace Renderer.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(DemoRequestModel model)
+        public async Task<IActionResult> ContactUs(ContactUsFormModel model)
         {
+            await this.client.Init(new RequestArgs());
+
             await this.client.ExecuteBoundAction(new BoundActionArgs()
             {
-                Type = "form-drafts",
+                Type = "Telerik.Sitefinity.Forms.Model.FormDraft",
+                Name = "Default.SubmitForm()",
+                Data = new
+                {
+                    formData = new FormData()
+                    {
+                        FormName = "sf_" + model.Heading.Replace(" ", "").ToLower(),
+                        Fields = new FormField[]
+                        {
+                            new FormField() { Name = nameof(ContactUsFormModel.FirstName), Value = model.FirstName },
+                            new FormField() { Name = nameof(ContactUsFormModel.LastName), Value = model.LastName },
+                            new FormField() { Name = nameof(ContactUsFormModel.Email), Value = model.Email },
+                            new FormField() { Name = nameof(ContactUsFormModel.PhoneNumber), Value = model.PhoneNumber },
+                            new FormField() { Name = nameof(ContactUsFormModel.YourMessage), Value = model.YourMessage }
+                        }
+                    }
+                }
+            });
+
+            return this.NoContent();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(DemoRequestModel model)
+        {
+            await this.client.Init(new RequestArgs());
+
+            await this.client.ExecuteBoundAction(new BoundActionArgs()
+            {
+                Type = "Telerik.Sitefinity.Forms.Model.FormDraft",
                 Name = "Default.SubmitForm()",
                 Data = new {
                     formData = new FormData()
                     {
+                        FormName = "sf_register",
                         Fields = new FormField[]
                         {
                             new FormField() { Name = nameof(DemoRequestModel.Name), Value = model.Name },
@@ -36,7 +67,7 @@ namespace Renderer.Controllers
                         }
                     }
                 }
-            });
+            });;
 
             return this.NoContent();
         }
@@ -44,6 +75,8 @@ namespace Renderer.Controllers
         public class FormData
         {
             public FormField[] Fields { get; set; }
+
+            public string FormName { get; set; }
         }
 
         public class FormField

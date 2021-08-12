@@ -1,0 +1,9 @@
+@use "settings";
+
+@mixin list-title {
+    text-decoration: none;
+
+    &:hover {
+        color: settings.$link-hover-color;
+    }
+}
