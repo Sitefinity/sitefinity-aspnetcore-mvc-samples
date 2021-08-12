@@ -58,4 +58,4 @@ Model.Item.GetValue<string>("MyShortTextFieldName")).
 
 ## Fields
 
-To render the diffrent kinds of fields in both details and list mode refer to [this sample project](../all-fields)
+To render the diffrent kinds of fields in both details and list mode refer to [this sample project](../all-fields/Views/Shared/Fields)
