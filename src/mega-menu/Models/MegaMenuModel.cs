@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Progress.Sitefinity.AspNetCore.SitefinityApi;
 using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.Client;
-using Progress.Sitefinity.RestSdk.Client.Args;
 using Progress.Sitefinity.RestSdk.Client.Dto;
 using Progress.Sitefinity.RestSdk.Clients.Pages.Dto;
 using Progress.Sitefinity.AspNetCore.Web;
@@ -13,7 +11,6 @@ using mega_menu.Entities;
 using mega_menu.ViewModels;
 using System;
 using Progress.Sitefinity.AspNetCore.RestSdk;
-using Progress.Sitefinity.RestSdk.Clients.Pages.Dto;
 
 namespace mega_menu.Models
 {

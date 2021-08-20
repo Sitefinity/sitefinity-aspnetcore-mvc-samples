@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Progress.Sitefinity.AspNetCore.SitefinityApi;
 using Progress.Sitefinity.RestSdk;
-using Progress.Sitefinity.RestSdk.Client.Args;
-using Progress.Sitefinity.RestSdk.Client.Dto;
-using Progress.Sitefinity.RestSdk.Client.Filters;
+using Progress.Sitefinity.RestSdk.Dto;
+using Progress.Sitefinity.RestSdk.Filters;
 using Progress.Sitefinity.Renderer.Entities.Content;
+using Progress.Sitefinity.AspNetCore.RestSdk;
 using sitefinity_data_taxa_filter.Dto;
 using sitefinity_data_taxa_filter.ViewModels.SitefinityData;
 
@@ -40,7 +39,7 @@ namespace sitefinity_data_taxa_filter.Models.SitefinityData
             // get all the news items and filter them by items containing one of the specified tag ids
             var getAllArgs = new GetAllArgs
             {
-                Type = KnownContentTypes.News,
+                Type = RestClientContentTypes.News,
                 Filter = new FilterClause()
                 {
                     FieldName = "Tags",

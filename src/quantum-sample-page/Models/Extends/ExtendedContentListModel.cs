@@ -5,7 +5,9 @@ using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.OData;
 using Renderer.Entities.Extends;
 using Renderer.ViewModels.Extends;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace Renderer.Models.Extends
 {
@@ -27,10 +29,10 @@ namespace Renderer.Models.Extends
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns>The view model.</returns>
-        public override async Task<object> InitializeViewModel(ContentListEntity entity)
+        public override async Task<object> InitializeViewModel(ContentListEntity entity, ReadOnlyCollection<string> urlParameters, IQueryCollection query)
         {
             var extendedEntity = entity as ExtendedContentListEntity;
-            var viewModel = await base.InitializeViewModel(entity);
+            var viewModel = await base.InitializeViewModel(entity, urlParameters, query);
 
             if (viewModel is ContentListViewModel listViewModel)
             {

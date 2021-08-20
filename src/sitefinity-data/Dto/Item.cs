@@ -1,4 +1,4 @@
-using Progress.Sitefinity.RestSdk.Client.Dto;
+using Progress.Sitefinity.RestSdk.Dto;
 
 namespace sitefinity_data.Dto
 {

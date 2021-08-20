@@ -1,5 +1,5 @@
 ﻿using System;
-using Progress.Sitefinity.RestSdk.Client.Dto;
+using Progress.Sitefinity.RestSdk.Dto;
 
 namespace content_selectors.ViewModels.SelectorDemoUsage
 {
