@@ -10,8 +10,6 @@ Follow the instructions [here](https://www.progress.com/documentation/sitefinity
 Follow the instructions [here](./RestSDK.md)
 
 ## Samples list
-* Hello World sample - for creating a hello world widget and configuring the different types of properties of the SitefinityWidget attribute.
-
 * all-fields - for reading & rendering the diffrent kinds of custom fields on the front-end
 * all-properties - for creating designers
 * change-grid-system - for using a TailWind, a different css grid system
@@ -20,8 +18,9 @@ Follow the instructions [here](./RestSDK.md)
 * custom-layout - for creating custom base templates
 * custom-section - for creating a custom layout widget with hard-coded columns and passing data to child widgets.
 * extended-content-block - for overriding the logic of the content block. (valid for any OOB widget)
+* extended-content-list - for creating custom views for the content list widget.
 * form - for building a custom form widget to post data.
-* hello-world - for building a simple hello world widget
+* hello-world - for creating a hello world widget and configuring the different types of properties of the SitefinityWidget attribute.
 * localization - for localizing your Layouts and ViewComponents
 * mega-menu - for building a complex menu with dropdowns and placing custom/personalized content in those dropdowns.
 * quantum-sample-page - for working with the Quantum sample demo.
