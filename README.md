@@ -21,6 +21,7 @@ Follow the instructions [here](./RestSDK.md)
 * extended-content-list - for creating custom views for the content list widget.
 * form - for building a custom form widget to post data.
 * hello-world - for creating a hello world widget and configuring the different types of properties of the SitefinityWidget attribute.
+* language-selector - for creating a language selector dropdown widget that holds the languages of the current site.
 * localization - for localizing your Layouts and ViewComponents
 * mega-menu - for building a complex menu with dropdowns and placing custom/personalized content in those dropdowns.
 * quantum-sample-page - for working with the Quantum sample demo.
