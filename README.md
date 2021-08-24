@@ -6,6 +6,9 @@ This is a repository contains the samples to demonstrate how to develop your fro
 ## How to setup
 Follow the instructions [here](https://www.progress.com/documentation/sitefinity-cms/setup-the-asp.net-core-renderer)
 
+## How to use the Rest SDK
+Follow the instructions [here](./RestSDK.md)
+
 ## Samples list
 * Hello World sample - for creating a hello world widget and configuring the different types of properties of the SitefinityWidget attribute.
 
