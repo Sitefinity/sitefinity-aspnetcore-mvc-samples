@@ -1,6 +1,6 @@
 # Ovierview
 
-With the .NET Core Renderer version 14.0, we introduced a C# RestSdk that can work with Sitefinity content. This REST SDK can be used for both retrieveing and creating content.
+With the .NET Core Renderer version 14.0, we introduced a C# RestSdk that can work with Sitefinity content. This REST SDK can be used for both retrieving and creating content.
 
 ## Setup procedure
 
@@ -52,7 +52,7 @@ services.AddScoped<IRestClient>((x) =>
 **This is automatically done for the Sitefinity .NET Core Renderer projects**
 
 ## The SdkItem class and ISdkItem interface
-The **SdkItem** class is the base class for working with hthe **IRestClient** interface and Sitefinity content. It holds the following signature:
+The **SdkItem** class is the base class for working with the **IRestClient** interface and Sitefinity content. It holds the following signature:
 ``` C#
 
 /// <summary>
@@ -81,7 +81,7 @@ public class SdkItem : ISdkItem
 
 ```
 
-This class can be used for any kind of content (both static and dynamic) and is usefull if the model is not known in advance, or the model will be changed in the future. The two static properties - Id and Provider are always there on any kind of Sitefinity content item and can be used for other calls to the REST API. The method **GetValue<T>** is more intresting since it provides access to any kind of defined fields on the server. For examples on the diffrent kinds of fields that this method supports refer to this sample [project](../all-fields/Views/Shared/Fields).
+This class can be used for any kind of content (both static and dynamic) and is useful if the model is not known in advance, or the model will be changed in the future. The two static properties - Id and Provider are always there on any kind of Sitefinity content item and can be used for other calls to the REST API. The method **GetValue<T>** is more interesting since it provides access to any kind of defined fields on the server. For examples on the different kinds of fields that this method supports refer to this sample [project](../all-fields/Views/Shared/Fields).
 
 ## Explicitly typed content
 Sometimes it is better to work with explicitly typed content since the model is known in advance. This is the case for the news item class, but is valid for any kind of dynamic content as well. Here is how the NewsDto represents the News content:
@@ -149,7 +149,7 @@ There are three things to note here:
 
 ## Taxa items
 
-Working with taxa items is siilar to the way we work with content items. They all must inherit from the TaxonDto class, which in turn inherits from the SdkItem class.
+Working with taxa items is similar to the way we work with content items. They all must inherit from the TaxonDto class, which in turn inherits from the SdkItem class.
 
 ``` C#
 
@@ -184,7 +184,7 @@ The TagDto class is defined like so:
 
 ```
 
-The diffrence here is in the **RestClientContentTypes.Tags** constant. It holds the value of "Taxonomy_Tags", which if we generalize is "Taxonomy_{TaxonomyDeveloperName}". If you wish to have a static model defined for a custom taxonomy with the developer name "geographical-regions", then the way you would map it is:
+The difference here is in the **RestClientContentTypes.Tags** constant. It holds the value of "Taxonomy_Tags", which if we generalize is "Taxonomy_{TaxonomyDeveloperName}". If you wish to have a static model defined for a custom taxonomy with the developer name "geographical-regions", then the way you would map it is:
 
 ``` c#
     /// <summary>
@@ -245,7 +245,7 @@ restClient.GetItem<NewsDto>(Guid.NewGuid().ToString());
 
 ```
 
-An alternative method that allows more granular control over the retriving of a single item can be found on the IRestClient interface.
+An alternative method that allows more granular control over the retrieving of a single item can be found on the IRestClient interface.
 ``` C#
 
     /// <summary>
@@ -277,7 +277,7 @@ The **GetItemArgs** argument holds properties that enable more granular control 
 
 ### Refreshing an item
 
-Sometimes it is usefull if we have made changes to an item - e.g. Published, Scheduled, Updated to refresh the item. This can be done with the following methods:
+Sometimes it is useful if we have made changes to an item - e.g. Published, Scheduled, Updated to refresh the item. This can be done with the following methods:
 
 ``` C#
 
@@ -315,11 +315,11 @@ news = restClient.RefreshItem(news);
 
 ```
 
-The "Provider" property is automatically passed since NewsDto inherits from the SdkItem class and thus is not needed as an additonal argument.
+The "Provider" property is automatically passed since NewsDto inherits from the SdkItem class and thus is not needed as an additional argument.
 
 ## Filtering items
 
-Retriving a collection of items can be done by using the methods:
+Retrieving a collection of items can be done by using the methods:
 
 ``` C#
     /// <summary>
@@ -589,7 +589,7 @@ var combinedFilter = new CombinedFilter()
 
 ```
 
-The two filtering strategies can be mixed with the bellow method. It simplifies the usage of the filters and provides a parameter to control the pagination, ordering, totalcount and projection.
+The two filtering strategies can be mixed with the bellow method. It simplifies the usage of the filters and provides a parameter to control the pagination, ordering, total count and projection.
 
 ``` C#
 
