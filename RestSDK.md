@@ -18,6 +18,39 @@ The RestSdk works with the **IRestClient** interface and can be used through DI.
 * DeleteItem
 * CreateItem
 
+In order to register the IRestClient through DI in your custom dotnet core project, you can use the following code:
+
+``` C#
+
+services.AddHttpClient("sfservice", (servicesProvider, client) =>
+{
+    client.BaseAddress = new Uri("http://your.sitefinity.site/api/default");
+
+    // optional. this key is used for restriction of the Web Service. it is not used for managing content.
+    client.DefaultRequestHeaders.Add("X-SF-APIKEY", "your api key");
+
+}).ConfigurePrimaryHttpMessageHandler(configure =>
+{
+    return new HttpClientHandler
+    {
+        AllowAutoRedirect = false,
+        UseCookies = false,
+    };
+})
+
+services.AddScoped<IRestClient>((x) =>
+{
+    var factory = x.GetRequiredService<IHttpClientFactory>();
+    var httpClient = factory.CreateClient("sfservice");
+
+    var restClient = new RestClient(httpClient);
+    return restClient;
+});
+
+```
+
+**This is automatically done for the Sitefinity .NET Core Renderer projects**
+
 ## The SdkItem class and ISdkItem interface
 The **SdkItem** class is the base class for working with hthe **IRestClient** interface and Sitefinity content. It holds the following signature:
 ``` C#
@@ -284,7 +317,7 @@ news = restClient.RefreshItem(news);
 
 The "Provider" property is automatically passed since NewsDto inherits from the SdkItem class and thus is not needed as an additonal argument.
 
-### Filtering items
+## Filtering items
 
 Retriving a collection of items can be done by using the methods:
 
@@ -424,7 +457,7 @@ For more complex filters, an alternative method is provided on the IRestClient i
 
 ```
 
-The **GetAllArgs** argumnet allows the user to provide additional parameters for projection, filtering, sorting, pagination and total count. Here is the signature:
+The **GetAllArgs** argument allows the user to provide additional parameters for projection, filtering, sorting, pagination and total count. Here is the signature:
 
 ``` C#
 
