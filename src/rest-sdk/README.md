@@ -10,7 +10,7 @@ This assembly is automatically referenced for newly created projects using the [
 
 ## The IRestClient interface
 
-The RestSdk works with the IRestClient interface and can be used through DI. The IRestClient interface has the following primary methods for working with Data ->
+The RestSdk works with the **IRestClient** interface and can be used through DI. The **IRestClient** interface has the following primary methods for working with Data ->
 
 * GetItem
 * GetItems
@@ -18,13 +18,8 @@ The RestSdk works with the IRestClient interface and can be used through DI. The
 * DeleteItem
 * CreateItem
 
-The API can be split down into two levels:
-
-* Low level API that works with the argument types directly.
-* High level API that works with C# classes and LINQ expressions that is entirely based on extension methods calling the low-level APIs. This makes the code reusable and more maintanable.
-
 ## The SdkItem class and ISdkItem interface
-The SdkItem class is the base class for working with Sitefinity content. It holds the following signature:
+The **SdkItem** class is the base class for working with hthe **IRestClient** interface and Sitefinity content. It holds the following signature:
 ``` C#
 
 /// <summary>
@@ -53,7 +48,7 @@ public class SdkItem : ISdkItem
 
 ```
 
-This class can hold any kind of content(both static and dynamic) retrieved from the server and is usefull if the model is not known in advance, or the model can be changed in the future. The two static properties - Id and Provider are always there on any kind of Sitefinity content item and can be used for other calls to the REST API. The method ****GetValue<T>** is more intresting since it provides access to any kind of defined fields on the server. For examples on the diffrent kinds of fields that this method supports refer to this sample [project](../all-fields/Views/Shared/Fields).
+This class can be used for any kind of content (both static and dynamic) and is usefull if the model is not known in advance, or the model will be changed in the future. The two static properties - Id and Provider are always there on any kind of Sitefinity content item and can be used for other calls to the REST API. The method **GetValue<T>** is more intresting since it provides access to any kind of defined fields on the server. For examples on the diffrent kinds of fields that this method supports refer to this sample [project](../all-fields/Views/Shared/Fields).
 
 ## Explicitly typed content
 Sometimes it is better to work with explicitly typed content since the model is known in advance. This is the case for the news item class, but is valid for any kind of dynamic content as well. Here is how the NewsDto represents the News content:
@@ -64,8 +59,33 @@ Sometimes it is better to work with explicitly typed content since the model is 
 /// Class mapped to the news item class in Sitefinity.
 /// </summary>
 [MappedSitefinityTypeAttribute(RestClientContentTypes.News)]
-public class NewsDto : ContentBaseDto
+public class NewsDto : SdkItem
 {
+    /// <summary>
+    /// Gets or sets the title.
+    /// </summary>
+    public string Title { get; set; }
+
+    /// <summary>
+    /// Gets or sets the publication date.
+    /// </summary>
+    public DateTime PublicationDate { get; set; }
+
+    /// <summary>
+    /// Gets or sets the date of creation.
+    /// </summary>
+    public DateTime DateCreated { get; set; }
+
+    /// <summary>
+    /// Gets or sets the url name.
+    /// </summary>
+    public string UrlName { get; set; }
+
+    /// <summary>
+    /// Gets or sets the item default url.
+    /// </summary>
+    public string ItemDefaultUrl { get; set; }
+
     /// <summary>
     /// Gets or sets the summary.
     /// </summary>
@@ -84,11 +104,11 @@ public class NewsDto : ContentBaseDto
 
 ```
 
-**NOTE - The REST SDK provides dtos for all of the static types - news, events, lists, taxons, taxonomies, media, pages and page templates, so you do not need to define them yourself unless you wish for your custom fields to be defined in a custom DTO class**
+**NOTE - The REST SDK provides dtos for all of the static types - news, events, lists, taxons, taxonomies, media, pages and page templates, so you do not need to define them yourself unless you wish for your custom fields to be defined in a custom DTO class. In this case it is best to inherit from the already defined types and add your custom fields there.**
 
 There are three things to note here:
 
-1. The NewsDto inherits from ContentBaseDto(that holds a generic set of properties), which in turn inherits from SdkItem. This gives us the method GetValue<T>, and the properties Id and Provider
+1. The NewsDto inherits from from SdkItem. This gives us the method GetValue<T>, and the properties Id and Provider.
 
 2. The class is marked with the attribute - **MappedSitefinityTypeAttribute** that basically holds the clr type of the mapped sitefinity type. In this case RestClientContentTypes.News = "Telerik.Sitefinity.News.Model.NewsItem"
 
@@ -138,52 +158,49 @@ The diffrence here is in the **RestClientContentTypes.Tags** constant. It holds 
     /// The taxon class.
     /// </summary>
     [MappedSitefinityTypeAttribute("Taxonomy_geographical-regions")]
-    public class TagDto : TaxonDto
+    public class GeographicalRegion : TaxonDto
     {
     }
 
 ```
 
+## Retrieving a single item
 
-We will first look at the high-level API and some useful examples for retrieving content.
-
-### Retrieving a single item
-
-Retrieving a single item can be achieved through the extensions methods:
+Retrieving a single item can be achieved through these methods:
 
 ``` C#
-/// <summary>
-/// Gets a single item.
-/// </summary>
-/// <typeparam name="T">The type of the item.</typeparam>
-/// <param name="restClient">The rest client.</param>
-/// <param name="id">The id of the item.</param>
-/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
-public static Task<T> GetItem<T>(this IRestClient restClient, string id)
-    where T : class, ISdkItem
+    /// <summary>
+    /// Gets a single item.
+    /// </summary>
+    /// <typeparam name="T">The type of the item.</typeparam>
+    /// <param name="restClient">The rest client.</param>
+    /// <param name="id">The id of the item.</param>
+    /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+    public static Task<T> GetItem<T>(this IRestClient restClient, string id)
+        where T : class, ISdkItem
 
-/// <summary>
-/// Gets a single item.
-/// </summary>
-/// <typeparam name="T">The type of the item.</typeparam>
-/// <param name="restClient">The rest client.</param>
-/// <param name="id">The id of the item.</param>
-/// <param name="provider">The provider of the item.</param>
-/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
-public static Task<T> GetItem<T>(this IRestClient restClient, string id, string provider)
-    where T : class, ISdkItem
+    /// <summary>
+    /// Gets a single item.
+    /// </summary>
+    /// <typeparam name="T">The type of the item.</typeparam>
+    /// <param name="restClient">The rest client.</param>
+    /// <param name="id">The id of the item.</param>
+    /// <param name="provider">The provider of the item.</param>
+    /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+    public static Task<T> GetItem<T>(this IRestClient restClient, string id, string provider)
+        where T : class, ISdkItem
 
-/// <summary>
-/// Gets a single item.
-/// </summary>
-/// <typeparam name="T">The type of the item.</typeparam>
-/// <param name="restClient">The rest client.</param>
-/// <param name="id">The id of the item.</param>
-/// <param name="provider">The provider of the item.</param>
-/// <param name="culture">The culture, in which to get the item.</param>
-/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
-public static Task<T> GetItem<T>(this IRestClient restClient, string id, string provider, string culture)
-    where T : class, ISdkItem
+    /// <summary>
+    /// Gets a single item.
+    /// </summary>
+    /// <typeparam name="T">The type of the item.</typeparam>
+    /// <param name="restClient">The rest client.</param>
+    /// <param name="id">The id of the item.</param>
+    /// <param name="provider">The provider of the item.</param>
+    /// <param name="culture">The culture, in which to get the item.</param>
+    /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+    public static Task<T> GetItem<T>(this IRestClient restClient, string id, string provider, string culture)
+        where T : class, ISdkItem
 ```
 
 **Note that these methods retrieve all of the fields of the item both plain and related.**
@@ -195,17 +212,62 @@ restClient.GetItem<NewsDto>(Guid.NewGuid().ToString());
 
 ```
 
+An alternative method that allows more granular control over the retriving of a single item can be found on the IRestClient interface.
+``` C#
+
+    /// <summary>
+    /// Gets a single item.
+    /// </summary>
+    /// <typeparam name="T">The type of the item.</typeparam>
+    /// <param name="args">The arguments to be passed to the service.</param>
+    /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+    Task<T> GetItem<T>(GetItemArgs args)
+        where T : class;
+
+```
+
+The **GetItemArgs** argument holds properties that enable more granular control over the fetching of an item. Here is an example:
+
+``` C#
+
+    restClient.GetItem<NewsDto>(new GetItemArgs()
+    {
+        Type = RestClientContentTypes.News,
+        Provider = "random provider",
+        Id = item.Id,
+        Fields = new [] { "Title" },
+        Culture = "en",
+    });
+
+```
+**Type property** is note required if the generic argument (in this case \<NewsDto\>) is decorated with the MapppedSitefinityContentTypeAttribute.
+
 ### Refreshing an item
 
 Sometimes it is usefull if we have made changes to an item - e.g. Published, Scheduled, Updated to refresh the item. This can be done with the following methods:
 
 ``` C#
-public static Task<T> RefreshItem<T>(this IRestClient restClient, T item)
-    where T : class, ISdkItem
 
+    /// <summary>
+    /// Fetches the item again with the latest data.
+    /// </summary>
+    /// <typeparam name="T">The type of the item to create.</typeparam>
+    /// <param name="restClient">The rest client.</param>
+    /// <param name="item">The item dto.</param>
+    /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+    public static Task<T> RefreshItem<T>(this IRestClient restClient, T item)
+        where T : class, ISdkItem
 
-public static Task<T> RefreshItem<T>(this IRestClient restClient, T item, string cultureName)
-    where T : class, ISdkItem
+    /// <summary>
+    /// Fetches the item again with the latest data.
+    /// </summary>
+    /// <typeparam name="T">The type of the item to create.</typeparam>
+    /// <param name="restClient">The rest client.</param>
+    /// <param name="item">The item dto.</param>
+    /// <param name="cultureName">The culture name.</param>
+    /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+    public static Task<T> RefreshItem<T>(this IRestClient restClient, T item, string cultureName)
+        where T : class, ISdkItem
 
 ```
 
@@ -222,35 +284,24 @@ news = restClient.RefreshItem(news);
 
 The "Provider" property is automatically passed since NewsDto inherits from the SdkItem class and thus is not needed as an additonal argument.
 
-### Get items
+### Filtering items
 
 Retriving a collection of items can be done by using the methods:
 
 ``` C#
-/// <summary>
-/// Gets the first 50 items that matches the filter
-/// </summary>
-/// <typeparam name="T">The type of the item.</typeparam>
-/// <param name="restClient">The rest client.</param>
-/// <param name="expression">The LINQ expression to pass as a filter.</param>
-/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
-public static Task<CollectionResponse<T>> GetItems<T>(this IRestClient restClient, Expression<Func<T, bool>> expression)
-    where T : class, ISdkItem
-
-/// <summary>
-/// Gets the first 50 items that matches the filter
-/// </summary>
-/// <typeparam name="T">The type of the item.</typeparam>
-/// <param name="restClient">The rest client.</param>
-/// <param name="expression">The LINQ expression to pass as a filter.</param>
-/// <param name="args">The LINQ expression to pass as a filter.</param>
-/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
-public static Task<CollectionResponse<T>> GetItems<T>(this IRestClient restClient, Expression<Func<T, bool>> expression, GetAllArgs args)
-    where T : class, ISdkItem
+    /// <summary>
+    /// Gets the first 50 items that matches the filter
+    /// </summary>
+    /// <typeparam name="T">The type of the item.</typeparam>
+    /// <param name="restClient">The rest client.</param>
+    /// <param name="expression">The LINQ expression to pass as a filter.</param>
+    /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+    public static Task<CollectionResponse<T>> GetItems<T>(this IRestClient restClient, Expression<Func<T, bool>> expression)
+        where T : class, ISdkItem
 
 ```
 
-These methods accespt an **expression** parameter that is automatically converted to a REST call. These expressions are limited to the bellow usages:
+These methods accept an **expression** parameter that is automatically converted to a REST call. These expressions are limited to the bellow usages:
 
 Example usages:
 
@@ -266,6 +317,13 @@ var result = await restService.GetItems<NewsDto>(x => ids.Contains(x.Id));
 
 // filtering by classifications(tags, categories, custom classifications)
 var result = await restService.GetItems<NewsDto>(x => x.Tags.Contains(tag.Id));
+
+```
+
+``` C#
+
+// filtering by multiple classifications(tags, categories, custom classifications)
+var result = await restService.GetItems<NewsDto>(x => x.Tags.Contains(tag.Id) || x.Tags.Contains(tag2.Id));
 
 ```
 
@@ -350,3 +408,167 @@ var result = await restService.GetItems<NewsDto>(x => ((x.Id == item.Id) || (x.I
 ```
 
 All of the above expressions can be combined in any binary operator form (&& ||).
+
+For more complex filters, an alternative method is provided on the IRestClient interface
+
+``` C#
+
+    /// <summary>
+    /// Gets a collection of items.
+    /// </summary>
+    /// <typeparam name="T">The type of the item.</typeparam>
+    /// <param name="args">The arguments to be passed to the service.</param>
+    /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+    Task<CollectionResponse<T>> GetItems<T>(GetAllArgs args)
+        where T : class;
+
+```
+
+The **GetAllArgs** argumnet allows the user to provide additional parameters for projection, filtering, sorting, pagination and total count. Here is the signature:
+
+``` C#
+
+    /// <summary>
+    /// The args class used for getting a collection of items.
+    /// </summary>
+    public class GetAllArgs : GetCommonArgs
+    {
+        /// <summary>
+        /// Gets or sets a value indicating whether to retrieve the total count of the items.
+        /// </summary>
+        public bool Count { get; set; }
+
+        /// <summary>
+        /// Gets or sets the order by clauses.
+        /// </summary>
+        public IList<OrderBy> OrderBy { get; set; } = new List<OrderBy>();
+
+        /// <summary>
+        /// Gets or sets the skip count.
+        /// </summary>
+        public int Skip { get; set; }
+
+        /// <summary>
+        /// Gets or sets the take count.
+        /// </summary>
+        public int Take { get; set; }
+
+        /// <summary>
+        /// Gets or sets the filter <see cref="Progress.Sitefinity.RestSdk.Filters.FilterClause"/> or <see cref="Progress.Sitefinity.RestSdk.Filters.CombinedFilter"/>.
+        /// </summary>
+        public object Filter { get; set; }
+    }
+
+```
+
+An example usage for it:
+
+``` C#
+
+    var combinedFilter = new CombinedFilter()
+    {
+        Operator = CombinedFilter.LogicalOperators.Or,
+        ChildFilters = new[]
+        {
+            new FilterClause()
+            {
+                FieldName = nameof(NewsDto.Title),
+                Operator = FilterClause.StringOperators.Contains,
+                FieldValue = uniqueFilter,
+            },
+
+            new FilterClause()
+            {
+                FieldName = nameof(NewsDto.Title),
+                Operator = FilterClause.StringOperators.Contains,
+                FieldValue = secondItemUniqueFilter,
+            },
+        },
+    };
+
+    var items = await restClient.GetItems<NewsDto>(new GetAllArgs()
+    {
+        Filter = combinedFilter,
+        Count = true,
+        Fields = new[] { "Id", "Title" },
+        OrderBy = new[] { new OrderBy() { Name = "Title", Type = OrderType.Descending } }
+    });
+
+```
+
+This filter expression is a hierarchical object structure of the types ***FilterClause* and **CombinedFilter**. Examples for such filters are:
+
+The operators available for this basic filter(**FilterClause**) are listed below:
+
+#### Logical operators
+* Equals= "eq"
+* Does not equal = "ne"
+* Greater than (for numbers) = "gt"
+* Less than (for numbers) = "lt";
+* Greater than or equal (for numbers) = "ge"
+* Less than or equal (for numbers) = "le";
+* Contains any of the collection = "any+or";
+* Contains all of the collection = "any+and";
+* Does not contain any of the collection = "not+(any+or)";
+
+#### Specific string operators
+* Starts with = "startswith";
+* Ends with = "endswith";
+* Contains = "contains";
+
+``` C#
+
+    new FilterClause()
+    {
+        FieldName = nameof(NewsDto.Title),
+        Operator = FilterClause.StringOperators.Contains,
+        FieldValue = secondItemUniqueFilter,
+    },
+
+```
+
+The properties here are self-explanatory. FieldName maps to the name of the custom field for the selected content type. Operator maps to the logical operator and FieldValue maps to the value with which to execute the logical operation.
+
+The combined filter is recursive and can contain child combined filters as well. The combined filter has an additional property called Operator which can have the value of “And” or “Or” which correspond to Logical AND and logical OR between the child filters.
+
+``` c#
+
+var combinedFilter = new CombinedFilter()
+{
+    Operator = CombinedFilter.LogicalOperators.Or,
+    ChildFilters = new[]
+    {
+        new FilterClause()
+        {
+            FieldName = nameof(NewsDto.Title),
+            Operator = FilterClause.StringOperators.Contains,
+            FieldValue = uniqueFilter,
+        },
+
+        new FilterClause()
+        {
+            FieldName = nameof(NewsDto.Title),
+            Operator = FilterClause.StringOperators.Contains,
+            FieldValue = secondItemUniqueFilter,
+        },
+    },
+};
+
+```
+
+The two filtering strategies can be mixed with the bellow method. It simplifies the usage of the filters and provides a parameter to control the pagination, ordering, totalcount and projection.
+
+``` C#
+
+/// <summary>
+/// Gets the first 50 items that matches the filter
+/// </summary>
+/// <typeparam name="T">The type of the item.</typeparam>
+/// <param name="restClient">The rest client.</param>
+/// <param name="expression">The LINQ expression to pass as a filter.</param>
+/// <param name="args">The LINQ expression to pass as a filter.</param>
+/// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
+public static Task<CollectionResponse<T>> GetItems<T>(this IRestClient restClient, Expression<Func<T, bool>> expression, GetAllArgs args)
+    where T : class, ISdkItem
+
+```
