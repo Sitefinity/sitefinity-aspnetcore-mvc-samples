@@ -606,6 +606,19 @@ public static Task<CollectionResponse<T>> GetItems<T>(this IRestClient restClien
 
 ```
 
+## Useful filtering examples
+
+``` C#
+    // filter translated tags in the "en" culture
+    var getAllArgs = new GetAllArgs()
+    {
+        Culture = "en",
+    };
+
+    var items = await restClient.GetItems<TagDto>(x => x.Title != null && ids.Contains(x.Id), getAllArgs);
+
+```
+
 ## Projection of items
 
 To control the returned fields (both related and non-related) from the service, the **Fields** property is used for both getting a single item and a collection of items. The fields are passed as a comma separated list of values. E.g.
