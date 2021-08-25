@@ -605,3 +605,45 @@ public static Task<CollectionResponse<T>> GetItems<T>(this IRestClient restClien
     where T : class, ISdkItem
 
 ```
+
+## Projection of items
+
+To control the returned fields (both related and non-related) from the service, the **Fields** property is used for both getting a single item and a collection of items. The fields are passed as a comma separated list of values. E.g.
+
+``` C#
+
+await restClient.GetItems<NewsDto>(new GetAllArgs()
+{
+    Fields = new[] { "Id", "Title" },
+});
+
+```
+
+If you wish to retrieve all of the fields (related and non-related) a "*" value can be passed.
+
+``` C#
+
+await restClient.GetItems<NewsDto>(new GetAllArgs()
+{
+    Fields = new[] { "*" },
+});
+
+```
+
+If you wish to expand more than one level of relations, you can use the following syntax.
+
+``` C#
+
+await restClient.GetItems<NewsDto>(new GetAllArgs()
+{
+    Fields = new[] { "Id", "Title", "Thumbnail(Title, ThumbnailUrl, Parent(Title, Description), Tags)" },
+});
+
+```
+
+In the above example Thumbnail is a Related image and Parent is the Library of that image.
+**Note that the expansion of levels is limited to 2 by default. If you wish to expand more than two levels, the configuration for the web service must be changed in Sitefinity (under Administration/Advanced/WebServices/)**
+
+## Limitations
+
+The only operations that work with related items is the projection of fields. Filtering, sorting, paging is not supported.
