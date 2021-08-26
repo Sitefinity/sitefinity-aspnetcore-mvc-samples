@@ -26,7 +26,6 @@ namespace Renderer
             services.AddScoped<IMegaMenuModel, MegaMenuModel>();
             services.AddSitefinity();
             services.AddViewComponentModels();
-            services.AddMvc().AddViewLocalization();
             services.AddScoped<IContentListModel, ExtendedContentListModel>();
             services.AddSingleton<IEntityExtender, EntityExtender<ContentListEntity, ExtendedContentListEntity>>();
         }
