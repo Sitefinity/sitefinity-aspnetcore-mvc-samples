@@ -1,9 +1,11 @@
+using all_properties.Extensibility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Progress.Sitefinity.AspNetCore;
+using Progress.Sitefinity.Renderer.Designers;
 
 namespace all_properties
 {
@@ -15,6 +17,7 @@ namespace all_properties
         {
             services.AddSitefinity();
             services.AddViewComponentModels();
+            services.AddSingleton<IPropertyConfigurator, ExternalChoicePropertyConfigurator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
