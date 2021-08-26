@@ -1,0 +1,22 @@
+﻿@using Progress.Sitefinity.AspNetCore.TagHelpers;
+@using Progress.Sitefinity.AspNetCore.Models;
+@using Progress.Sitefinity.AspNetCore.Widgets.Models.Common;
+@using Progress.Sitefinity.RestSdk.Dto;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
+
+<div class="row row-cols-1 row-cols-md-3">
+    @foreach (var item in Model.Items)
+    {
+        var title = Model.GetFieldValue<string>(item, "Heading");
+        <h3><a href="@Model.GetItemUrl(this.Context, item)">@title</a></h3>
+    }
+</div>
+
+@* Model.Pager contains the necessary information to render a view for paging *@
+@if (Model.Pager != null)
+{
+    <div class="mt-2">
+        @await Html.PartialAsync("ContentPager", Model.Pager)
+    </div>
+}

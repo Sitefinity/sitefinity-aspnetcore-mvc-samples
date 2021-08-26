@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Progress.Sitefinity.AspNetCore.Configuration;
-using Progress.Sitefinity.AspNetCore.SitefinityApi;
+using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.AspNetCore.Widgets.Models.ContentBlock;
-
+using extended_content_block.ViewModels;
+using extended_content_block.Entities;
 namespace extended_content_block.Models
 {
     /// <summary>
@@ -28,9 +29,10 @@ namespace extended_content_block.Models
         public override async Task<ContentBlockViewModel> InitializeViewModel(ContentBlockEntity entity)
         {
             var viewModel = await base.InitializeViewModel(entity).ConfigureAwait(false);
-            viewModel.Content += " From extended model";
-
-            return viewModel;
+            return new ExtendedContentBlockViewModel(viewModel)
+            {
+                ModifiedContent = viewModel.Content + (entity as ExtendedContentBlockEntity).TextToAppend
+            };
         }
     }
 }

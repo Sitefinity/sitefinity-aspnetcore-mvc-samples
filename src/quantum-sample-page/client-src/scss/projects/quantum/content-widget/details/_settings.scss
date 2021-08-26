@@ -1,0 +1,11 @@
+@use "../../../../common/settings/text";
+@use "../../../../common/settings/colors";
+
+$default-font-size: text.$font-size-medium;
+$heading-font-size: text.$heading-size-xl;
+$heading-color: colors.$black;
+
+$summary-border: 1px solid colors.$light-gray;
+$summary-offset: 30px;
+$summary-font-weight: text.$font-weight-semibold;
+$summary-font-style: italic;

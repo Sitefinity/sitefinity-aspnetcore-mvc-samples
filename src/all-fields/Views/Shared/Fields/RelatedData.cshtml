@@ -1,0 +1,10 @@
+@using Progress.Sitefinity.RestSdk.Dto;
+
+@model Progress.Sitefinity.RestSdk.Dto.SdkItem
+
+@* Related data *@
+<h1>Related data</h1>
+@foreach (var relatedItem in (Model.GetValue<IEnumerable<SdkItem>>("TestRelatedData")))
+{
+    <div>@(relatedItem.GetValue<string>("Title"))</div>
+}

@@ -1,0 +1,9 @@
+@use "settings";
+
+.qu-testimonial {
+
+    &__quote {
+        font-size: settings.$quote-font-size;
+        font-style: settings.$quote-font-style;
+    }
+}

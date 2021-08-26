@@ -31,7 +31,7 @@ namespace Renderer.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(IViewComponentContext<TestimonialEntity> context)
         {
             var viewModels = await this.model.GetViewModels(context.Entity);
-            return this.View(viewModels);
+            return this.View(context.Entity.ViewName, viewModels);
         }
     }
 }

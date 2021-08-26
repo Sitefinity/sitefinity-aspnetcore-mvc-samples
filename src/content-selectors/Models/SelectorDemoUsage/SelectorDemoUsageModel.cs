@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
-using Progress.Sitefinity.AspNetCore.SitefinityApi;
-using Progress.Sitefinity.AspNetCore.SitefinityApi.Exceptions;
-using Progress.Sitefinity.AspNetCore.SitefinityApi.Filters;
+using Progress.Sitefinity.RestSdk;
+using Progress.Sitefinity.RestSdk.Exceptions;
+using Progress.Sitefinity.AspNetCore.RestSdk;
 using content_selectors.ViewModels;
 using content_selectors.ViewModels.SelectorDemoUsage;
 using content_selectors.Entities.SelectorDemoUsage;
@@ -43,7 +43,7 @@ namespace content_selectors.Models.SelectorDemoUsage
         {
             var viewModels = new List<ItemCollection>();
 
-            // GetItems is an extension method from the class RestClientExtensions in the namespace Progress.Sitefinity.AspNetCore.SitefinityApi
+            // GetItems is an extension method from the class RestClientExtensions in the namespace Progress.Sitefinity.RestSdk
             // In order to use it the generic type must inherit from ISdkItem
             var newsItems = await this.restService.GetItems<ItemDto>(entity.News).ConfigureAwait(true);
             viewModels.Add(new ItemCollection()

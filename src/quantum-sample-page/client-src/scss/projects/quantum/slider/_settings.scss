@@ -1,0 +1,6 @@
+@use "../../../common/settings/colors";
+
+$indicator-bg-color: colors.$primary;
+$indicator-dimension: 10px;
+$indicator-dimension-active: 12px;
+$indicator-border-color: colors.$gray;

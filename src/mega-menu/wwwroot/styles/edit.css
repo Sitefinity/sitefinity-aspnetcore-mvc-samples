@@ -2,4 +2,5 @@
     position: relative !important;
     top: 0 !important;
     margin-bottom: 30px !important;
+    display: flex !important;
 }

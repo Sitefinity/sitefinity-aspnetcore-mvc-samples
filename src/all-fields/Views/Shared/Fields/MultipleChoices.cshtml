@@ -1,0 +1,15 @@
+@model Progress.Sitefinity.RestSdk.Dto.SdkItem
+
+@functions {
+    [Flags]
+    enum TestChoicesMultiple
+    {
+        Choice1 = 0x01,
+        Choice2 = 0x02,
+        Choice3 = 0x04
+    }
+}
+
+@* Choices Multiple *@
+<h1>Choices Multiple</h1>
+<div>@(Model.GetValue<TestChoicesMultiple>("TestChoicesMultiple"))</div>

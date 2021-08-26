@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
-using Progress.Sitefinity.AspNetCore.SitefinityApi;
-using Progress.Sitefinity.AspNetCore.SitefinityApi.Exceptions;
-using Progress.Sitefinity.AspNetCore.SitefinityApi.Filters;
+using Progress.Sitefinity.RestSdk.Exceptions;
+using Progress.Sitefinity.RestSdk.Filters;
+using Progress.Sitefinity.RestSdk;
 using sitefinity_data.Dto;
 using sitefinity_data.ViewModels;
 using sitefinity_data.ViewModels.SitefinityData;
@@ -186,7 +186,7 @@ namespace sitefinity_data.Models.SitefinityData
                     Tags = new [] { Guid.NewGuid() },
                     UrlName = "test" + Guid.NewGuid().ToString(),
                     YesNo = true,
-                    
+
                     // related, properties are added through relation request
                     // RelatedMediaSingle
                 },

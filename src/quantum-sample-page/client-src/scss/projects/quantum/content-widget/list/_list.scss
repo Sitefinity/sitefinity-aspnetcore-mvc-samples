@@ -1,0 +1,34 @@
+@use "mixins";
+@use "settings";
+
+.qu-list {
+    font-size: settings.$large-font-size;
+
+    &__title {
+        font-size: settings.$large-heading-font-size;
+        margin-bottom: settings.$large-heading-offset;
+
+        a {
+            @include mixins.list-title;
+        }
+    }
+
+    &__info {
+        color: settings.$info-color;
+    }
+
+    &.-small {
+        font-size: settings.$small-font-size;
+
+        .qu-list__title {
+            font-size: settings.$small-font-size;
+            font-weight: settings.$small-heading-font-weight;
+            margin-bottom: 0;
+        }
+
+        .qu-list__summary,
+        .qu-list__separator {
+            display: none;
+        }
+    }
+}

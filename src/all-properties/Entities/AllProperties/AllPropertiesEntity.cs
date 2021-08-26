@@ -7,6 +7,7 @@ using Progress.Sitefinity.AspNetCore.ViewComponents.AttributeConfigurator.Attrib
 using Progress.Sitefinity.Renderer.Designers;
 using Progress.Sitefinity.Renderer.Designers.Attributes;
 using Progress.Sitefinity.Renderer.Models;
+using Progress.Sitefinity.RestSdk;
 
 namespace all_properties.Entities.AllProperties
 {
@@ -233,6 +234,9 @@ namespace all_properties.Entities.AllProperties
 
         [TaxonomyContent(Type = "geographical-regions")]
         public MixedContentContext CustomTaxonomy { get; set; }
+
+        [Content]
+        public MixedContentContext AllItems { get; set; }
 
         #endregion
     }

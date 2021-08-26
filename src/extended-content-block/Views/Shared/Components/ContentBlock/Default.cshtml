@@ -1,10 +1,16 @@
 ﻿@using Progress.Sitefinity.AspNetCore.TagHelpers;
 @using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
 
-@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentBlock.ContentBlockViewModel
+@model extended_content_block.ViewModels.ExtendedContentBlockViewModel
 
     <sf-wrapper tag-name="@Model.TagName" class="@Model.WrapperCssClass clearfix">
+        <h1>Original</h1>
         @{
             @Html.HtmlSanitize(@Model.Content)
+        }
+
+        <h1>Modified</h1>
+        @{
+            @Html.HtmlSanitize(@Model.ModifiedContent)
         }
     </sf-wrapper>

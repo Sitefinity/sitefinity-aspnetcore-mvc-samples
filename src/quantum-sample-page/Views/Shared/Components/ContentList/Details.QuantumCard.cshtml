@@ -1,0 +1,39 @@
+﻿@using Progress.Sitefinity.RestSdk.Dto;
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentDetailViewModel
+
+<div class="qu-content-detail">
+    <h2 class="qu-content-detail__title">@(Model.Item.GetValue<string>("Title"))</h2>
+
+    <p class="text-muted">
+        @Html.FormatDate(Model.Item.GetValue<DateTime>("PublicationDate"), this.Context)
+        @Localizer["By"]
+        @(Model.Item.GetValue<string>("Author"))
+    </p>
+    
+    <div class="mb-3">
+        @{
+            var image = Model.Item.GetValue<List<ImageDto>>("Thumbnail").FirstOrDefault();
+            string widthAttr = image.Width != 0 ? string.Format(@"width={0}", image.Width) : string.Empty;
+            string heightAttr = image.Height != 0 ? string.Format(@"height={0}", image.Height) : string.Empty;
+            string altAttr = string.IsNullOrEmpty(image.AlternativeText) ? string.Empty : string.Format(@"alt=""{0}""", image.AlternativeText);
+            var sortedList = image.Thumbnails.OrderBy(t => t.Width).ToList();
+        }
+
+        <picture>
+            @foreach (var thumbnail in sortedList)
+            {
+                <source media="(max-width: @(thumbnail.Width)px)" srcset="@thumbnail.Url" type="@thumbnail.MimeType">
+            }
+            <img @widthAttr @heightAttr class="img-fluid" loading="lazy" src="@image.Url" title="@image.Title" @Html.Raw(altAttr)>
+        </picture>
+    </div>  
+
+    <div class="qu-content-detail__summary">@Html.HtmlSanitize(Model.Item.GetValue<string>("Summary"))</div>
+
+    <div>@Html.HtmlSanitize(Model.Item.GetValue<string>("Content"))</div>
+</div>

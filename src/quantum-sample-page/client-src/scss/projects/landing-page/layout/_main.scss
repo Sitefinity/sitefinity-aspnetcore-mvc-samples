@@ -1,0 +1,6 @@
+@use "../../../common/settings/variables";
+
+.#{variables.$selector-prefix}-main {
+    background: rgb(0,180,201);
+    background: linear-gradient(180deg, rgba(0,180,201,1) 0%, rgba(129,223,176,1) 25%, rgba(255,255,255,1) 58%, rgba(255,255,255,1) 100%);
+}
