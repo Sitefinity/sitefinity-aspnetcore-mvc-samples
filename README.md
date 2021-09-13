@@ -10,7 +10,7 @@ Follow the instructions [here](https://www.progress.com/documentation/sitefinity
 Follow the instructions [here](./RestSDK.md)
 
 ## Samples list
-* all-fields - for reading & rendering the diffrent kinds of custom fields on the front-end
+* all-fields - for reading & rendering the different kinds of custom fields on the front-end
 * all-properties - for creating designers
 * change-grid-system - for using a TailWind, a different css grid system
 * conditional-rendering-in-editor - demonstrates how conditional rendering can be applied based on the current context - edit, preview or live
@@ -25,6 +25,7 @@ Follow the instructions [here](./RestSDK.md)
 * localization - for localizing your Layouts and ViewComponents
 * mega-menu - for building a complex menu with dropdowns and placing custom/personalized content in those dropdowns.
 * quantum-sample-page - for working with the Quantum sample demo.
+* share-data-between-widgets - for sharing data between two widgets in a very early stage of the pipeline before the page is executed.
 * separate-widget-per-component - example on how to create a separate entry for each widget view inside the Select widget dialog.
 * sitefinity-data - basic example for accessing data through OData Web Services and limiting access to the Sitefinity OData service.
 * sitefinity-data-complex - a more complex example for accessing and filtering data through OData Web Services
