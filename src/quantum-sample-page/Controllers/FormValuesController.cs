@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Progress.Sitefinity.RestSdk.OData;
 using Progress.Sitefinity.RestSdk;
 using Renderer.Models.ContactUsForm;
+using System.Collections.Generic;
+using Microsoft.Net.Http.Headers;
 
 namespace Renderer.Controllers
 {
@@ -39,6 +41,12 @@ namespace Renderer.Controllers
                             new FormField() { Name = nameof(ContactUsFormModel.YourMessage), Value = model.YourMessage }
                         }
                     }
+                },
+
+                // user agent is necessary for intraction submission to Sitefinity insight
+                AdditionalHeaders = new Dictionary<string, string>()
+                {
+                    { HeaderNames.UserAgent, this.Request.Headers[HeaderNames.UserAgent] }
                 }
             });
 
