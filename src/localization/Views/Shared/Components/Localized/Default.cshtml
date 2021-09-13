@@ -1,3 +1,8 @@
 @model string
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer;
 
 <h1>Localized string: @Model</h1>
+
+<h1>Localized string in view: @Localizer["Hello World !"]</h1>
