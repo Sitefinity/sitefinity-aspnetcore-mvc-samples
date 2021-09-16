@@ -1,0 +1,28 @@
+@use "../../../../common/settings/colors";
+@use "../../../../common/settings/text";
+
+$featured-color: colors.$white;
+$featured-bg-color: colors.$complementary;
+
+$box-shadow-color: colors.$lightest-gray;
+$box-shadow-dimensions: 0 4px 15px;
+
+// Typography
+$small-font-size: text.$font-size-sm;
+$large-font-size: text.$font-size-medium;
+$large-heading-font-size: text.$heading-size-m;
+$large-heading-offset: 5px;
+$small-heading-font-weight: text.$font-weight-semibold;
+
+$link-hover-color: colors.$action;
+
+$image-height: 142px;
+
+$info-color: colors.$gray;
+
+// Download
+$download-list-bg-color: #F3F4F5;
+$download-list-min-height: 630px;
+$download-title-color: colors.$black;
+$download-extension-color: colors.$light-gray;
+$download-extension-font-size: text.$font-size-medium;

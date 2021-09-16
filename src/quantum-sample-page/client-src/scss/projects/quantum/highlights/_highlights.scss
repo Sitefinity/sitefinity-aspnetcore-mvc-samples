@@ -1,0 +1,22 @@
+@use "settings";
+
+.qu-highlights {
+
+    .col {
+        padding-right: settings.$col-h-offset;
+    }
+
+    h3 {
+        margin-top: settings.$heading-top-offset;
+        color: settings.$heading-color;
+    }
+
+    p {
+        color: settings.$text-color;
+        padding-right: settings.$text-h-offset;
+    }
+
+    img {
+        min-height: settings.$image-min-height;
+    }
+}

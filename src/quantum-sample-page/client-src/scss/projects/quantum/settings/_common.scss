@@ -1,0 +1,6 @@
+@use "sass:map";
+@use "bootstrap-variables";
+
+$sm-breakpoint: map.get(bootstrap-variables.$grid-breakpoints, sm);
+$md-breakpoint: map.get(bootstrap-variables.$grid-breakpoints, md);
+$lg-breakpoint: map.get(bootstrap-variables.$grid-breakpoints, lg);

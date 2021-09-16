@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Progress.Sitefinity.AspNetCore;
+using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Progress.Sitefinity.AspNetCore.Widgets.Models.ContentBlock;
+using extended_content_block.Entities;
 
 namespace extended_content_block
 {
@@ -22,7 +24,8 @@ namespace extended_content_block
             services.AddSitefinity();
             services.AddViewComponentModels();
 
-            services.AddSingleton<IContentBlockModel, ExtendedContentBlockModel>();
+            services.AddScoped<IContentBlockModel, ExtendedContentBlockModel>();
+            services.AddSingleton<IEntityExtender, EntityExtender<ContentBlockEntity, ExtendedContentBlockEntity>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

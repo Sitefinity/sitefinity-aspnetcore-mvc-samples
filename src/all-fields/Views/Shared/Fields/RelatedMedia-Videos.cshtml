@@ -1,0 +1,12 @@
+@using Progress.Sitefinity.RestSdk.Dto;
+
+@model Progress.Sitefinity.RestSdk.Dto.SdkItem
+
+@* Related Media - Videos, OpenGraphVideo *@
+<h1>Related Media - Videos</h1>
+@foreach (var video in (Model.GetValue<IEnumerable<VideoDto>>("TestRelatedVideos")))
+{
+    <video controls width="@video.Width" height="@video.Height">
+        <source src='@video.Url'>
+    </video>
+}

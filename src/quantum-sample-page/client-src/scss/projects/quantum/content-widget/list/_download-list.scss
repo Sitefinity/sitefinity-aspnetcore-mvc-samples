@@ -1,0 +1,26 @@
+@use "settings";
+@use "mixins";
+
+.qu-download-list {
+    min-height: settings.$download-list-min-height;
+
+    &__item {
+        background-color: settings.$download-list-bg-color;
+
+        &:hover {
+            box-shadow: settings.$box-shadow-dimensions settings.$box-shadow-color;
+        }
+    }
+
+    &__title {
+        @include mixins.list-title;
+
+        color: settings.$download-title-color;
+    }
+
+    &__extension {
+        color: settings.$download-extension-color;
+        font-size: settings.$download-extension-font-size;
+        text-transform: uppercase;
+    }
+}

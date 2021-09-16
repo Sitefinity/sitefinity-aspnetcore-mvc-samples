@@ -1,0 +1,51 @@
+@use "settings";
+@use "mixins";
+
+.qu-content-list {
+
+    &__item {
+
+        &:hover {
+            box-shadow: settings.$box-shadow-dimensions settings.$box-shadow-color;
+        }
+
+        &.-featured {
+            color: settings.$featured-color;
+            background-color: settings.$featured-bg-color;
+            border-color: settings.$featured-bg-color;
+
+            &:hover {
+                box-shadow: settings.$box-shadow-dimensions settings.$featured-bg-color;
+            }
+
+            .qu-content-list__title:not(:hover),
+            .qu-content-list__author {
+                color: settings.$featured-color;
+            }
+        }
+    }
+    
+    &__author {
+        color: settings.$info-color;
+    }
+
+    &__title {
+        @include mixins.list-title;
+    }
+
+    &__image {
+        height: settings.$image-height;
+    }
+
+    &__ribbon {
+        right: -1px;
+        color: settings.$featured-bg-color;
+        text-transform: uppercase;
+        padding: 7px 12px;
+        line-height: 20px;
+        display: block;
+        background: settings.$featured-color;
+        position: absolute;
+        top: 15px;
+    }
+}

@@ -1,16 +1,17 @@
-﻿using Progress.Sitefinity.AspNetCore.SitefinityApi.Dto;
+﻿
+using Progress.Sitefinity.RestSdk.Dto;
 
 namespace Renderer.Dto
 {
-    public class TestimonialItem: ISdkItem
+    public class TestimonialItem: SdkItem
     {
-        public string Id { get; set; }
-
         public string TestimonialAuthor { get; set; }
 
         public string Quote { get; set; }
 
         public string Company { get; set; }
+
+        public string JobTitle { get; set; }
 
         public Image[] Photo { get; set; }
     }

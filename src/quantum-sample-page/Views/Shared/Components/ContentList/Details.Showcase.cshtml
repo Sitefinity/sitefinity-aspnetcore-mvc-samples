@@ -1,0 +1,63 @@
+﻿@using Progress.Sitefinity.RestSdk.Dto;
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentDetailViewModel
+
+<div class="qu-txt-medium">
+    @{
+        var title = Model.Item.GetValue<string>("Title");
+        var client = Model.Item.GetValue<string>("Client");
+        var website = Model.Item.GetValue<string>("Website");
+        var challenge = Model.Item.GetValue<string>("Challenge");
+        var solution = Model.Item.GetValue<string>("Solution");
+        var results = Model.Item.GetValue<string>("Results");
+        var image = Model.Item.GetValue<List<ImageDto>>("Thumbnail").FirstOrDefault();
+        var download = Model.Item.GetValue<List<DocumentDto>>("Download").FirstOrDefault();
+    }
+
+    <h2 class="qu-heading-xl qu-txt-black mb-4">@title</h2>
+    <div class="row">
+        <div class="col-md-4">
+            @{
+                string widthAttr = image.Width != 0 ? string.Format(@"width={0}", image.Width) : string.Empty;
+                string heightAttr = image.Height != 0 ? string.Format(@"height={0}", image.Height) : string.Empty;
+                string altAttr = string.IsNullOrEmpty(image.AlternativeText) ? string.Empty : string.Format(@"alt=""{0}""", image.AlternativeText);
+                var sortedList = image.Thumbnails.OrderBy(t => t.Width).ToList();
+            }
+            <picture>
+                @foreach (var thumbnail in sortedList)
+                {
+                    <source media="(max-width: @(thumbnail.Width)px)" srcset="@thumbnail.Url" type="@thumbnail.MimeType">
+                }
+                <img @widthAttr @heightAttr class="img-fluid" loading="lazy" src="@image.Url" title="@image.Title" @Html.Raw(altAttr)>
+            </picture>
+        </div>
+        <div class="col-md-8">
+            <div class="row pt-3 pb-3 border-1 border-top border-bottom">
+                <div class="col-md-6">
+                    <strong class="qu-txt-uppercase">@Localizer["Client"]</strong>
+                    <div class="pt-2">@client</div>
+                </div>
+                <div class="col-md-6">
+                    <strong class="qu-txt-uppercase">@Localizer["Website"]</strong>
+                    <b class="d-block pt-2"><a class="text-decoration-none" href="@website" target="_blank">@website</a></b>
+                </div>
+            </div>
+            <div class="pt-3 pb-3 border-1 border-bottom">
+                <strong class="qu-txt-uppercase">@Localizer["Challenge"]</strong>
+                <div class="pt-2">@Html.Raw(challenge)</div>
+            </div>
+            <div class="pt-3 pb-3 border-1 border-bottom">
+                <strong class="qu-txt-uppercase">@Localizer["Solution"]</strong>
+                <div class="pt-2">@Html.Raw(solution)</div>
+            </div>
+            <div class="pt-3 pb-3 border-1 border-bottom">
+                <strong class="qu-txt-uppercase">@Localizer["Results"]</strong>
+                <div class="pt-2">@Html.Raw(results)</div>
+            </div>
+            <a class="btn btn-secondary mt-3 ps-4 pe-4" href="@download.Url" target="_blank">@Localizer["ReadStoryLabel"]</a>
+        </div>
+    </div>
+</div>

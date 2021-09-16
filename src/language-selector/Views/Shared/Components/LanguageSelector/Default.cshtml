@@ -1,0 +1,17 @@
+@using language_selector.ViewModels.LanguageSelector;
+
+@model LanguageSelectorViewModel
+
+<select>
+    @foreach (var item in Model.Languages)
+    {
+        if (item.Selected)
+        {
+            <option value="@item.Name" selected>@item.Value</option>
+        }
+        else
+        {
+            <option value="@item.Name">@item.Value</option>
+        }
+    }
+</select>

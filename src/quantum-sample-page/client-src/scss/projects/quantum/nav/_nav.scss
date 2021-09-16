@@ -1,0 +1,23 @@
+@use "../../../common/settings/colors";
+@use "../../../common/settings/text";
+
+.qu-nav-sitemap {
+
+    &__link {
+        color: colors.$white;
+
+        &:hover {
+            color: colors.$action;
+        }
+
+        &.-wrapper {
+            text-transform: uppercase;
+            color: colors.$gray;
+            font-weight: text.$font-weight-bold;
+
+            &:hover {
+                background-color: colors.$lightest-gray;
+            }
+        }
+    }
+}

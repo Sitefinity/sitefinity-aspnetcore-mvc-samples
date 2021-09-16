@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Progress.Sitefinity.AspNetCore.SitefinityApi;
+using Progress.Sitefinity.AspNetCore.RestSdk;
+using Progress.Sitefinity.RestSdk;
 using Renderer.Dto;
 using Renderer.Entities.Testimonial;
 using Renderer.ViewModels.Testimonial;
@@ -31,7 +32,7 @@ namespace Renderer.Models.Testimonial
         /// <returns>The generated view models.</returns>
         public async Task<IList<ItemViewModel>> GetViewModels(TestimonialEntity entity)
         {
-            var response = await this.service.GetItems<TestimonialItem>(entity.Testimonials, new GetAllArgs() { Fields = new List<string>() { "Id", "Photo", "TestimonialAuthor", "Quote", "Company" } }).ConfigureAwait(true);
+            var response = await this.service.GetItems<TestimonialItem>(entity.Testimonials, new GetAllArgs() { Fields = new List<string>() { "Id", "Photo", "TestimonialAuthor", "Quote", "Company", "JobTitle" } }).ConfigureAwait(true);
             return response.Items.Select(x => this.GetItemViewModel(x)).ToArray();
         }
 
@@ -41,7 +42,8 @@ namespace Renderer.Models.Testimonial
             {
                 Title = item.TestimonialAuthor,
                 Quote = item.Quote,
-                Company = item.Company
+                Company = item.Company,
+                JobTitle = item.JobTitle
             };
 
             if (item.Photo != null && item.Photo.Length == 1)

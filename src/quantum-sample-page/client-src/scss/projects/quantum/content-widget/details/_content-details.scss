@@ -1,0 +1,25 @@
+@use "settings";
+
+.qu-content-detail {
+    font-size: settings.$default-font-size;
+
+    &__title {
+        color: settings.$heading-color;
+        font-size: settings.$heading-font-size;
+    }
+
+    &__summary {
+        display: flex;
+        font-weight: settings.$summary-font-weight;
+        font-style: settings.$summary-font-style;
+        border-top: settings.$summary-border;
+        border-bottom: settings.$summary-border;
+        padding: settings.$summary-offset;
+        margin-bottom: settings.$summary-offset;
+
+        &::before {
+            content: url("../assets/images/quote-small.png");
+            margin-right: 10px;
+        }
+    }
+}

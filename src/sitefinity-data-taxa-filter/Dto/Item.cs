@@ -1,14 +1,9 @@
-using Progress.Sitefinity.AspNetCore.SitefinityApi.Dto;
+using Progress.Sitefinity.RestSdk.Dto;
 
 namespace sitefinity_data_taxa_filter.Dto
 {
-    public class Item : ISdkItem
+    public class Item : SdkItem
     {
-        /// <summary>
-        /// Gets or sets the Id.
-        /// </summary>
-        public string Id { get; set; }
-
         /// <summary>
         /// Gets or sets the title.
         /// </summary>
@@ -19,7 +14,7 @@ namespace sitefinity_data_taxa_filter.Dto
         /// </summary>
         public Image[] Thumbnail { get; set; }
     }
-    
+
     /// <summary>
     /// The image view model.
     /// </summary>

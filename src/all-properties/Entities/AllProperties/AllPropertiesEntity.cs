@@ -7,6 +7,7 @@ using Progress.Sitefinity.AspNetCore.ViewComponents.AttributeConfigurator.Attrib
 using Progress.Sitefinity.Renderer.Designers;
 using Progress.Sitefinity.Renderer.Designers.Attributes;
 using Progress.Sitefinity.Renderer.Models;
+using all_properties.Extensibility;
 
 namespace all_properties.Entities.AllProperties
 {
@@ -182,6 +183,11 @@ namespace all_properties.Entities.AllProperties
         [DataType(customDataType: KnownFieldTypes.ChipChoice)]
         public EnumSingle EnumChipChoice { get; set; }
 
+        [DisplayName("Select an option")]
+        [DataType(customDataType: "choices")]
+        [ExternalDataChoice]
+        public string ExternalChoice { get; set; }
+
         #endregion
 
         #region complex
@@ -233,6 +239,9 @@ namespace all_properties.Entities.AllProperties
 
         [TaxonomyContent(Type = "geographical-regions")]
         public MixedContentContext CustomTaxonomy { get; set; }
+
+        [Content]
+        public MixedContentContext AllItems { get; set; }
 
         #endregion
     }

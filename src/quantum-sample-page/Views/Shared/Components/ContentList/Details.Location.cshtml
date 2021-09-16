@@ -1,0 +1,61 @@
+﻿@using Progress.Sitefinity.RestSdk.Dto;
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentDetailViewModel
+
+<div class="border-top pt-5 pb-5">
+    <div class="container">
+        <h1 class="text-center mb-5">@(Model.Item.GetValue<string>("Title"))</h1>
+
+        <div class="row">
+            <div class="qu-txt-medium col-lg-6">
+                <div class="mb-2">
+                    <b class="d-block">@Localizer["WorkingHours"]:</b>
+                    <span>@(Model.Item.GetValue<string>("WorkingHours"))</span>
+                </div>
+                <div class="mb-2">
+                    <b class="d-block">@Localizer["Email"]:</b>
+                    <span>@(Model.Item.GetValue<string>("Email"))</span>
+                </div>
+                <div class="mb-2">
+                    <b class="d-block">@Localizer["Fax"]:</b>
+                    <span>@(Model.Item.GetValue<string>("Fax"))</span>
+                </div>
+                <div class="mb-2">
+                    <b class="d-block">@Localizer["Phone"]:</b>
+                    <span>@(Model.Item.GetValue<string>("Phone"))</span>
+                </div>
+                <div>
+                    @{
+                        var address = Model.Item.GetValue<Address>("Address");
+                        var street = address.Street.ToString().Replace(',', '.');
+                        var city = address.City.ToString().Replace(',', '.');
+                        var countryCode = address.CountryCode?.ToString().Replace(',', '.');
+                    }
+                    <b class="d-block">@Localizer["Address"]:</b>
+                    <span>@street, @city, @countryCode</span>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                @{
+                    var image = Model.Item.GetValue<List<ImageDto>>("Image").FirstOrDefault();
+                    string widthAttr = image.Width != 0 ? string.Format(@"width={0}", image.Width) : string.Empty;
+                    string heightAttr = image.Height != 0 ? string.Format(@"height={0}", image.Height) : string.Empty;
+                    string altAttr = string.IsNullOrEmpty(image.AlternativeText) ? string.Empty : string.Format(@"alt=""{0}""", image.AlternativeText);
+                    var sortedList = image.Thumbnails.OrderBy(t => t.Width).ToList();
+                }
+
+                <picture>
+                    @foreach (var thumbnail in sortedList)
+                    {
+                        <source media="(max-width: @(thumbnail.Width)px)" srcset="@thumbnail.Url" type="@thumbnail.MimeType">
+                    }
+                    <img @widthAttr @heightAttr class="img-fluid" loading="lazy" src="@image.Url" title="@image.Title" @Html.Raw(altAttr)>
+                </picture>
+            </div>
+        </div>
+    </div>
+</div>
+

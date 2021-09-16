@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Progress.Sitefinity.AspNetCore.SitefinityApi;
+using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.Renderer.Entities.Content;
 using sitefinity_data.Dto;
 using sitefinity_data.ViewModels.SitefinityData;
@@ -37,7 +37,7 @@ namespace sitefinity_data.Models.SitefinityData
             var getAllArgs = new GetAllArgs
             {
                 // required parameter, specifies the items to work with
-                Type = KnownContentTypes.News
+                Type = RestClientContentTypes.News
             };
 
             // optional parameter, specifies the fields to be returned, if not specified

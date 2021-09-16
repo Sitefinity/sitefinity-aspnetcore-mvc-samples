@@ -1,0 +1,143 @@
+﻿@use "mixins";
+@use "../../../common/settings/colors";
+
+.footer_social {
+    font-size: 1.5em;
+    margin-bottom: 5%;
+
+    a {
+        text-decoration: none;
+        color: colors.$white;
+        border-right: 1px solid #444;
+        padding-left: 9px;
+        padding-right: 12px;
+
+        &:hover {
+            text-decoration: none;
+            color: colors.$action;
+        }
+    }
+}
+
+.social-button-icon {
+    font-size: 4em;
+
+    @media(max-width: 750px) {
+        font-size: 2.5em;
+    }
+}
+
+.social-group {
+    position: fixed;
+    left: 0;
+    z-index: 1;
+}
+
+.social {
+    @include mixins.default;
+}
+
+.social-round {
+    @include mixins.round;
+}
+
+.social-high {
+    @include mixins.high;
+}
+
+.social-wide {
+    @include mixins.wide;
+}
+
+.fa-share-alt-square {
+    color: colors.$action;
+    box-shadow: none !important;
+}
+
+.social-facebook {
+    @include mixins.wide;
+
+    background: #3b5998;
+}
+
+.social-twitter {
+    @include mixins.round;
+
+    background: #1dcaff;
+}
+
+.social-linkedin {
+    @include mixins.round;
+
+    background: #0077b5;
+}
+
+.social-tumblr {
+   @include mixins.wide;
+
+    background: #35465c;
+}
+
+.social-digg {
+    @include mixins.high;
+
+    background: #356AA0;
+}
+
+.social-blogger {
+   @include mixins.wide;
+
+    background: #f57d00;
+}
+
+.social-book {
+    @include mixins.round;
+
+    background: #34a853;
+}
+
+.social-delicious {
+    @include mixins.round;
+
+    background: #3399ff;
+}
+
+.social-myspace {
+    @include mixins.round;
+
+    background: #000000;
+}
+
+.social-stumbleupon {
+    @include mixins.round;
+
+    background: #eb4924;
+}
+
+.social-reddit {
+    border-radius: 100%;
+    background: #ff4500;
+    color: white;
+    padding: 6px;
+}
+
+.social-mail {
+    @include mixins.round;
+
+    background: #00b4c9;
+}
+
+.gooo {
+    padding-left: 20px !important;
+    padding-top: 5px !important;
+}
+
+.tag-color {
+    color: colors.$action;
+}
+
+.tags-count-color {
+   @include mixins.wide;
+
+    background-color: lightgray;
+}
