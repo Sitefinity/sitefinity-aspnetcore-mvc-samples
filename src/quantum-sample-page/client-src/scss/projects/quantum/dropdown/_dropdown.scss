@@ -2,7 +2,8 @@
 
 .dropdown {
 
-    .nav-item {
+    .nav-item,
+    &.nav-item {
         position: relative;
         padding: 10px;
     
