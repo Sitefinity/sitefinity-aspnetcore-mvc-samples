@@ -11385,13 +11385,14 @@ strong {
   display: none;
 }
 
-.dropdown .nav-item {
+.dropdown .nav-item, .dropdown.nav-item {
   position: relative;
   padding: 10px;
 }
 
 .dropdown .nav-item .nav-link,
-.dropdown .nav-item .dropdown-item {
+.dropdown .nav-item .dropdown-item, .dropdown.nav-item .nav-link,
+.dropdown.nav-item .dropdown-item {
   color: #333;
 }
 
@@ -11399,12 +11400,16 @@ strong {
 .dropdown .nav-item .dropdown-item:hover,
 .dropdown .nav-item .dropdown-item:focus,
 .dropdown .nav-item .dropdown-item:active,
-.dropdown .nav-item .dropdown-item.active {
+.dropdown .nav-item .dropdown-item.active, .dropdown.nav-item .nav-link:hover, .dropdown.nav-item .nav-link:focus, .dropdown.nav-item .nav-link:active, .dropdown.nav-item .nav-link.active,
+.dropdown.nav-item .dropdown-item:hover,
+.dropdown.nav-item .dropdown-item:focus,
+.dropdown.nav-item .dropdown-item:active,
+.dropdown.nav-item .dropdown-item.active {
   color: #00B4C9;
   background-color: transparent;
 }
 
-.dropdown .nav-item .dropdown-menu {
+.dropdown .nav-item .dropdown-menu, .dropdown.nav-item .dropdown-menu {
   border: 1px solid #ccc;
   border-radius: 1px;
   box-shadow: 3px 3px 10px 0 #ccc;
