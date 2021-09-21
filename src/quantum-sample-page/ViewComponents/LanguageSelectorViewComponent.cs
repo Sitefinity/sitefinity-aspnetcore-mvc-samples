@@ -1,11 +1,11 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
-using language_selector.Entities.LanguageSelector;
+using Renderer.Entities.LanguageSelector;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
-using language_selector.Models.LanguageSelector;
+using Renderer.Models.LanguageSelector;
 using System.Threading.Tasks;
 
-namespace language_selector.ViewComponents
+namespace Renderer.ViewComponents
 {
     /// <summary>
     /// Language selector widget.

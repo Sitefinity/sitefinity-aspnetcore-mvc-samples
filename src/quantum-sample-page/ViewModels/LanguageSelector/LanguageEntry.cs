@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using Progress.Sitefinity.AspNetCore.Web;
-
-namespace language_selector.ViewModels.LanguageSelector
+namespace Renderer.ViewModels.LanguageSelector
 {
     public class LanguageEntry
     {
