@@ -1,12 +1,12 @@
 using System.Globalization;
 using System.Threading.Tasks;
-using language_selector.Entities.LanguageSelector;
-using language_selector.ViewModels.LanguageSelector;
+using Renderer.Entities.LanguageSelector;
+using Renderer.ViewModels.LanguageSelector;
 using Progress.Sitefinity.AspNetCore.Web;
 using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.Clients.Pages.Dto;
 
-namespace language_selector.Models.LanguageSelector
+namespace Renderer.Models.LanguageSelector
 {
     public class LanguageSelectorModel
     {
