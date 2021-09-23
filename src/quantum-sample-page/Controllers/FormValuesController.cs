@@ -23,6 +23,19 @@ namespace Renderer.Controllers
         {
             await this.client.Init(new RequestArgs());
 
+            // user agent is necessary for intraction submission to Sitefinity insight
+            var headers = new Dictionary<string, string>()
+            {
+                { HeaderNames.UserAgent, this.Request.Headers[HeaderNames.UserAgent] },
+            };
+
+            // Cookie is necessary so that the context information is sent along with the request to Sitefinity
+            string cookieValue = this.Request.Headers["Cookie"];
+            if (!string.IsNullOrEmpty(cookieValue))
+            {
+                headers.Add(HeaderNames.Cookie, cookieValue);
+            }
+
             await this.client.ExecuteBoundAction(new BoundActionArgs()
             {
                 Type = "Telerik.Sitefinity.Forms.Model.FormDraft",
@@ -43,11 +56,7 @@ namespace Renderer.Controllers
                     }
                 },
 
-                // user agent is necessary for intraction submission to Sitefinity insight
-                AdditionalHeaders = new Dictionary<string, string>()
-                {
-                    { HeaderNames.UserAgent, this.Request.Headers[HeaderNames.UserAgent] }
-                }
+                AdditionalHeaders = headers
             });
 
             return this.NoContent();
