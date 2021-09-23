@@ -10,7 +10,7 @@ namespace language_selector.ViewModels.LanguageSelector
         public string Value { get; set; }
 
         public bool Selected { get; set; }
-        
+
         public string PageUrl { get; set; }
     }
 }
