@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using language_selector.Entities.LanguageSelector;
 using language_selector.ViewModels.LanguageSelector;
 using Progress.Sitefinity.AspNetCore.Web;
@@ -24,22 +25,36 @@ namespace language_selector.Models.LanguageSelector
             var cultures = this.requestContext.Site.Cultures;
 
             var viewModel = new LanguageSelectorViewModel();
+            var culturePageMap = new Dictionary<string, Task<PageNodeDto>>();
+            if (this.requestContext.PageNode != null)
+            {
+                var batchBuilder = this.restClient.StartBatch();
+                foreach (var culture in cultures)
+                {
+                    var response = batchBuilder.GetItem<PageNodeDto>(this.requestContext.PageNode.Id, this.requestContext.PageNode.Provider, culture);
+                    culturePageMap.Add(culture, response);
+                }
+
+                await batchBuilder.Execute();
+            }
+
+
             foreach (var culture in cultures)
             {
                 var ci = CultureInfo.GetCultureInfo(culture);
-                PageNodeDto page = null;
-                if (this.requestContext.PageNode != null)
-                {
-                    page = await this.restClient.GetItem<PageNodeDto>(this.requestContext.PageNode.Id, this.requestContext.PageNode.Provider, ci.Name);
-                }
-
-                viewModel.Languages.Add(new LanguageEntry()
+                var entry = new LanguageEntry()
                 {
                     Name = ci.EnglishName,
                     Value = ci.Name,
-                    Selected = ci.Name == this.requestContext.Culture.Name,
-                    PageUrl = page?.ViewUrl
-                });
+                    Selected = ci.Name == this.requestContext.Culture.Name
+                };
+
+                if (culturePageMap.TryGetValue(culture, out Task<PageNodeDto> task))
+                {
+                    entry.PageUrl = task.Result.ViewUrl;
+                }
+
+                viewModel.Languages.Add(entry);
             }
 
             return viewModel;
