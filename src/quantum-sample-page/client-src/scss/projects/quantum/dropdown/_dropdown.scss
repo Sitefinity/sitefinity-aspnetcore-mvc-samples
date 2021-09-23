@@ -1,0 +1,40 @@
+@use "settings";
+
+.dropdown {
+
+    .nav-item,
+    &.nav-item {
+        position: relative;
+        padding: 10px;
+    
+        .nav-link,
+        .dropdown-item {
+            color: settings.$link-color;
+    
+            &:hover,
+            &:focus,
+            &:active,
+            &.active {
+                color: settings.$link-hover-color;
+                background-color: transparent;
+            }
+        }
+    
+        .dropdown-menu {
+            border: 1px solid settings.$dropdown-border-color;
+            border-radius: 1px;
+            box-shadow: 3px 3px 10px 0 settings.$dropdown-border-color;
+            padding: 0;
+        }
+    }
+}
+
+.navbar-nav > .nav-item > .nav-link {
+    font-weight: settings.$nav-link-font-weight;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: settings.$nav-link-hover-color;
+    }
+}

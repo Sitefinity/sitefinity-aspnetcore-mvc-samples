@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using Progress.Sitefinity.AspNetCore.Web;
-
-namespace language_selector.ViewModels.LanguageSelector
+namespace Renderer.ViewModels.LanguageSelector
 {
     public class LanguageEntry
     {
@@ -10,7 +7,7 @@ namespace language_selector.ViewModels.LanguageSelector
         public string Value { get; set; }
 
         public bool Selected { get; set; }
-
+        
         public string PageUrl { get; set; }
     }
 }

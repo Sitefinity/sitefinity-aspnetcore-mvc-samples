@@ -7,7 +7,21 @@
 
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'WebApp' " />
+
+
+
   <ItemGroup>
+    <Compile Remove="client-src\scss\landing-page\**" />
+    <Compile Remove="client-src\scss\quantum\**" />
+    <Content Remove="client-src\scss\landing-page\**" />
+    <Content Remove="client-src\scss\quantum\**" />
+    <EmbeddedResource Remove="client-src\scss\landing-page\**" />
+    <EmbeddedResource Remove="client-src\scss\quantum\**" />
+    <None Remove="client-src\scss\landing-page\**" />
+    <None Remove="client-src\scss\quantum\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\LanguageSelector\" />
     <Folder Include="Entities\Testimonial\" />
     <Folder Include="Models\Testimonial\" />
     <Folder Include="ViewModels\Testimonial\" />
@@ -20,9 +34,6 @@
     <Folder Include="Models\MegaMenu\" />
     <Folder Include="ViewModels\MegaMenu\" />
     <Folder Include="Views\Shared\Components\MegaMenu\" />
-    <Folder Include="client-src\scss\landing-page\" />
-    <Folder Include="client-src\scss\quantum\" />
-    <Folder Include="client-src\scss\quantum\components\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\favicon.ico" />

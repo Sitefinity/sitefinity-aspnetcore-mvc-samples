@@ -11106,32 +11106,6 @@ strong {
   height: 100%;
 }
 
-.mega-menu .nav-item {
-  position: relative;
-  padding: 10px;
-}
-
-.mega-menu .nav-item .nav-link,
-.mega-menu .nav-item .dropdown-item {
-  color: #333;
-}
-
-.mega-menu .nav-item .nav-link:hover, .mega-menu .nav-item .nav-link:focus, .mega-menu .nav-item .nav-link:active, .mega-menu .nav-item .nav-link.active,
-.mega-menu .nav-item .dropdown-item:hover,
-.mega-menu .nav-item .dropdown-item:focus,
-.mega-menu .nav-item .dropdown-item:active,
-.mega-menu .nav-item .dropdown-item.active {
-  color: #00B4C9;
-  background-color: transparent;
-}
-
-.mega-menu .nav-item .dropdown-menu {
-  border: 1px solid #ccc;
-  border-radius: 1px;
-  box-shadow: 3px 3px 10px 0 #ccc;
-  padding: 0;
-}
-
 .mega-menu .nav-item .mega-menu__item {
   display: none;
   opacity: 0;
@@ -11143,14 +11117,6 @@ strong {
 .mega-menu .nav-item .mega-menu__item.show {
   display: flex;
   opacity: 1;
-}
-
-.navbar-nav > .nav-item > .nav-link {
-  font-weight: 600;
-}
-
-.navbar-nav > .nav-item > .nav-link:hover, .navbar-nav > .nav-item > .nav-link:focus, .navbar-nav > .nav-item > .nav-link:active {
-  color: #555;
 }
 
 @media (min-width: 768px) {
@@ -11406,6 +11372,56 @@ strong {
   .qu-location__list {
     top: 50%;
   }
+}
+.qu-language-selector__button {
+  color: #304546 !important;
+  font-size: 20px;
+  padding: 10px 15px;
+  background-color: transparent;
+  border: none;
+}
+
+.qu-language-selector__button::after {
+  display: none;
+}
+
+.dropdown .nav-item, .dropdown.nav-item {
+  position: relative;
+  padding: 10px;
+}
+
+.dropdown .nav-item .nav-link,
+.dropdown .nav-item .dropdown-item, .dropdown.nav-item .nav-link,
+.dropdown.nav-item .dropdown-item {
+  color: #333;
+}
+
+.dropdown .nav-item .nav-link:hover, .dropdown .nav-item .nav-link:focus, .dropdown .nav-item .nav-link:active, .dropdown .nav-item .nav-link.active,
+.dropdown .nav-item .dropdown-item:hover,
+.dropdown .nav-item .dropdown-item:focus,
+.dropdown .nav-item .dropdown-item:active,
+.dropdown .nav-item .dropdown-item.active, .dropdown.nav-item .nav-link:hover, .dropdown.nav-item .nav-link:focus, .dropdown.nav-item .nav-link:active, .dropdown.nav-item .nav-link.active,
+.dropdown.nav-item .dropdown-item:hover,
+.dropdown.nav-item .dropdown-item:focus,
+.dropdown.nav-item .dropdown-item:active,
+.dropdown.nav-item .dropdown-item.active {
+  color: #00B4C9;
+  background-color: transparent;
+}
+
+.dropdown .nav-item .dropdown-menu, .dropdown.nav-item .dropdown-menu {
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  box-shadow: 3px 3px 10px 0 #ccc;
+  padding: 0;
+}
+
+.navbar-nav > .nav-item > .nav-link {
+  font-weight: 600;
+}
+
+.navbar-nav > .nav-item > .nav-link:hover, .navbar-nav > .nav-item > .nav-link:focus, .navbar-nav > .nav-item > .nav-link:active {
+  color: #555;
 }
 
 /*# sourceMappingURL=quantum.css.map */
