@@ -1,12 +1,22 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using native_chat.Client;
+using Newtonsoft.Json;
 using Progress.Sitefinity.Renderer.Designers;
 using Progress.Sitefinity.Renderer.Designers.Dto;
 
 namespace native_chat.Attributes
 {
-    public class ExternalPropertyConfigurator//  : IPropertyConfigurator
+    internal class ExternalPropertyConfigurator : IPropertyConfigurator
     {
+        private INativeChatClient nativeChatClient;
+
+        public ExternalPropertyConfigurator(INativeChatClient nativeChatClient)
+        {
+            this.nativeChatClient = nativeChatClient;
+        }
+
         public virtual void ProcessPropertyMetadataContainer(PropertyDescriptor descriptor, PropertyMetadataContainerDto propertyContainer, string componentName)
         {
             foreach (Attribute attr in descriptor.Attributes)
@@ -15,7 +25,7 @@ namespace native_chat.Attributes
             }
         }
 
-        private static void ProcessConfigurationExternalDataChoiceAttribute(Attribute attribute, PropertyMetadataContainerDto propertyContainer)
+        private void ProcessConfigurationExternalDataChoiceAttribute(Attribute attribute, PropertyMetadataContainerDto propertyContainer)
         {
             var externalChoiceAttr = attribute as ExternalDataChoiceAttribute;
             if (externalChoiceAttr != null)
@@ -35,20 +45,17 @@ namespace native_chat.Attributes
             }
         }
 
-        private static string FetchChoices()
+        private string FetchChoices()
         {
-            var apiKey = Config.Get<NativeChatConfig>().ApiKey;
+            var bots = this.nativeChatClient.Bots().Result;
             var choices = new List<ChoiceValueDto>() { new ChoiceValueDto("Select", "") };
 
-            using (var client = new NativeChatClient(apiKey))
+            foreach (var bot in bots)
             {
-                foreach (var bot in client.Bots())
-                {
-                    choices.Add(new ChoiceValueDto(bot.Name, bot.Id));
-                }
+                choices.Add(new ChoiceValueDto(bot.Name, bot.Id));
             }
 
-            return JsonSerializer.Serialize(choices);
+            return JsonConvert.SerializeObject(choices);
         }
 
         private const string externalUrl = "https://api.nativechat.com/v1/";

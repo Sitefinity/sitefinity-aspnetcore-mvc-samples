@@ -3,28 +3,26 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using native_chat.Client.DTO;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using native_chat.Config;
+using Newtonsoft.Json;
 
 namespace native_chat.Client
 {
-    internal class NativeChatClient : IDisposable
+    internal class NativeChatClient : INativeChatClient, IDisposable
     {
         private string NativeChatApiEndpoint = "https://api.nativechat.com/v1/";
 
-        private string ApiKey { get; set; }
-
         private HttpClient HttpClient { get; set; }
 
-        public NativeChatClient(string apiKey)
+        public NativeChatClient(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
-            this.ApiKey = apiKey;
-            this.SetupHttpClient();
-        }
+            var config = new NativeChatConfig();
+            configuration.Bind("NativeChat", config);
 
-        private void SetupHttpClient()
-        {
-            this.HttpClient = new HttpClient();
-            this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("api-token", this.ApiKey);
+            this.HttpClient = httpClientFactory.CreateClient();
+            this.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("api-token", config.ApiKey);
             this.HttpClient.BaseAddress = new Uri(this.NativeChatApiEndpoint);
         }
 
@@ -40,31 +38,31 @@ namespace native_chat.Client
             return false;
         }
 
-        public List<NativeChatBotDTO> Bots()
+        public async Task<List<NativeChatBotDto>> Bots()
         {
-            var bots = new List<NativeChatBotDTO>();
-            HttpResponseMessage response = this.HttpClient.GetAsync("bots").Result;
+            var bots = new List<NativeChatBotDto>();
+            HttpResponseMessage response = await this.HttpClient.GetAsync("bots");
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                var result = response.Content.ReadAsStringAsync().Result;
-                bots = JsonSerializer.Deserialize<List<NativeChatBotDTO>>(result);
+                var result = await response.Content.ReadAsStringAsync();
+                bots = JsonConvert.DeserializeObject<List<NativeChatBotDto>>(result);
             }
 
             return bots;
         }
 
-        public List<NativeChatChannelDTO> BotChannels(string botId)
+        public async Task<List<NativeChatChannelDto>> BotChannels(string botId)
         {
-            var channels = new List<NativeChatChannelDTO>();
+            var channels = new List<NativeChatChannelDto>();
             if (!string.IsNullOrEmpty(botId))
             {
-                HttpResponseMessage response = this.HttpClient.GetAsync($"bots/{botId}/channels").Result;
+                var response = await this.HttpClient.GetAsync($"bots/{botId}/channels");
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    var result = response.Content.ReadAsStringAsync().Result;
-                    channels = JsonSerializer.Deserialize<List<NativeChatChannelDTO>>(result);
+                    var result = await response.Content.ReadAsStringAsync();
+                    channels = JsonConvert.DeserializeObject<List<NativeChatChannelDto>>(result);
                 }
             }
 

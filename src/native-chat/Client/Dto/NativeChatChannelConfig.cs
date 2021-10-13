@@ -1,5 +1,5 @@
 
-namespace native_chat.Client.DTO
+namespace native_chat.Client
 {
     public class NativeChatChannelConfig
     {

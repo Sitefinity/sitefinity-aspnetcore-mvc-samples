@@ -6,9 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="13.3.7600.17345" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="13.3.7600.17345" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="13.3.7600.17345" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.0.7700.38136" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.0.7700.38136" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.0.7700.38136" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.0.7700.38136" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
-namespace native_chat.Client.DTO
+namespace native_chat.Client
 {
-    public class NativeChatChannelDTO
+    public class NativeChatChannelDto
     {
         public string Id { get; set; }
 

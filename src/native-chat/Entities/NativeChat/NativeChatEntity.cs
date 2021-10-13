@@ -13,7 +13,7 @@ namespace native_chat.Entities.NativeChat
     /// The test model for the load tests widget.
     /// </summary>
     public class NativeChatEntity
-    {// TODO: upgrade
+    {
         [Progress.Sitefinity.Renderer.Designers.Attributes.ContentSection("Chatbot", 0)]
         [DisplayName("Select a chatbot")]
         [DataType(customDataType: "choices")]

@@ -1,0 +1,44 @@
+@model native_chat.ViewModels.NativeChatViewModel
+
+<script src="https://web-chat.nativechat.com/2.21.0/sdk/nativechat.js"></script>
+<link href="https://web-chat.nativechat.com/2.21.0/sdk/nativechat.css" rel="stylesheet" type="text/css">
+
+<script>
+    var chatSettings = {
+        bot: {
+            id: "@Model.BotId",
+            name: "@Model.Nickname",
+            avatarUrl: "@Model.BotAvatarUrl"
+        },
+        channel: {
+            id: "@Model.ChannelId",
+            token: "@Model.ChannelAuthToken"
+        },
+        session: {
+            clear: true,
+            userMessage: "@Model.UserMessage"
+        },
+        placeholder: "@Model.Placeholder",
+        showFilePicker: @Model.ShowFilePicker,
+        showLocationPicker: @Model.ShowLocationPicker,
+        submitLocationText: "@Model.LocationPickerLabel",
+        googleApiKey: "@Model.GoogleApiKey",
+        locale: "@Model.Locale",
+        css: "@Model.CustomCss",
+        defaultLocation: @(Model.Latitude != null && Model.Longitude != null ? string.Format("{{ latitude: {0}, longitude: {1} }}", Model.Latitude, Model.Longitude) : "undefined")
+    };
+
+    window.NativeChat.load({
+        id: "kcChatWindow",
+        origin: "",
+        display: {
+            mode: "@Model.ChatMode",
+            launcher: {
+                openIconUrl: "@Model.OpeningChatIconUrl",
+                closeIconUrl: "@Model.ClosingChatIconUrl"
+            },
+            containerId: "@Model.ContainerId"
+        },
+        chat: chatSettings
+    });
+</script>
