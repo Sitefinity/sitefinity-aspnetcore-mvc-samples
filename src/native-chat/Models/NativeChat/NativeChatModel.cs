@@ -7,18 +7,21 @@ using System.Threading.Tasks;
 using Progress.Sitefinity.RestSdk.Dto;
 using Progress.Sitefinity.AspNetCore.RestSdk;
 using System;
+using Progress.Sitefinity.AspNetCore.Web;
 
 namespace native_chat.Models
 {
-    class NativeChatModel
+    internal class NativeChatModel : INativeChatModel
     {
         private IRestClient restClient;
         private INativeChatClient nativeChatClient;
+        private IRequestContext requestContext;
 
-        public NativeChatModel(IRestClient restClient, INativeChatClient nativeChatClient)
+        public NativeChatModel(IRestClient restClient, INativeChatClient nativeChatClient, IRequestContext requestContext)
         {
             this.restClient = restClient;
             this.nativeChatClient = nativeChatClient;
+            this.requestContext = requestContext;
         }
 
         public async Task<NativeChatViewModel> GetViewModel(NativeChatEntity entity)
@@ -42,7 +45,7 @@ namespace native_chat.Models
             viewModel.GoogleApiKey = entity.GoogleApiKey;
             this.SetDefaultLocation(entity.DefaultLocation, viewModel);
             viewModel.CustomCss = entity.CustomCss;
-            viewModel.Locale = entity.Locale;
+            viewModel.Locale = entity.Locale ?? this.requestContext.Culture.Name;
 
             return viewModel;
         }
@@ -62,8 +65,14 @@ namespace native_chat.Models
 
         private async Task<string> GetImageUrl(MixedContentContext image)
         {
-            var images = await this.restClient.GetItems<ImageDto>(image);
-            return images.Items[0].Url;
+            if (image.ItemIdsOrdered != null && image.ItemIdsOrdered.Length == 1)
+            {
+                var images = await this.restClient.GetItems<ImageDto>(image);
+                if (images.Items.Count == 1 && images.Items[0].Id == image.ItemIdsOrdered[0])
+                    return images.Items[0].Url;
+            }
+
+            return null;
         }
 
         private void SetChatPickers(ChatPickers showPickers, NativeChatViewModel viewModel)

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using native_chat.Attributes;
 using native_chat.Client;
+using native_chat.Models;
 using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.Renderer.Designers;
 
@@ -18,6 +19,7 @@ namespace native_chat
         {
             services.AddSitefinity();
             services.AddViewComponentModels();
+            services.AddScoped<INativeChatModel, NativeChatModel>();
             services.AddSingleton<INativeChatClient, NativeChatClient>();
             services.AddSingleton<IPropertyConfigurator, ExternalPropertyConfigurator>();
         }

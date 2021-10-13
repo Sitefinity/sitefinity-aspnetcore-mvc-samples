@@ -10,7 +10,6 @@ namespace native_chat.Attributes
     [DataContract(Name = "Choice")]
     public class ExternalDataChoiceAttribute : ChoiceAttribute
     {
-        // TODO: upgrade
         public ExternalDataChoiceAttribute()
             : base(null)
         {
