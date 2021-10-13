@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Progress.Sitefinity.RestSdk.OData;
 using Progress.Sitefinity.RestSdk;
 using Renderer.Models.ContactUsForm;
+using System.Collections.Generic;
+using Microsoft.Net.Http.Headers;
 
 namespace Renderer.Controllers
 {
@@ -20,6 +22,19 @@ namespace Renderer.Controllers
         public async Task<IActionResult> ContactUs(ContactUsFormModel model)
         {
             await this.client.Init(new RequestArgs());
+
+            // user agent is necessary for intraction submission to Sitefinity insight
+            var headers = new Dictionary<string, string>()
+            {
+                { HeaderNames.UserAgent, this.Request.Headers[HeaderNames.UserAgent] },
+            };
+
+            // Cookie is necessary so that the context information is sent along with the request to Sitefinity
+            string cookieValue = this.Request.Headers["Cookie"];
+            if (!string.IsNullOrEmpty(cookieValue))
+            {
+                headers.Add(HeaderNames.Cookie, cookieValue);
+            }
 
             await this.client.ExecuteBoundAction(new BoundActionArgs()
             {
@@ -39,7 +54,9 @@ namespace Renderer.Controllers
                             new FormField() { Name = nameof(ContactUsFormModel.YourMessage), Value = model.YourMessage }
                         }
                     }
-                }
+                },
+
+                AdditionalHeaders = headers
             });
 
             return this.NoContent();

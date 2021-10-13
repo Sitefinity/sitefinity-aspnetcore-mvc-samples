@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using language_selector.Entities.LanguageSelector;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using language_selector.Models.LanguageSelector;
+using System.Threading.Tasks;
 
 namespace language_selector.ViewComponents
 {
@@ -20,14 +21,14 @@ namespace language_selector.ViewComponents
         }
 
         /// <inheritdoc/>
-        public IViewComponentResult Invoke(IViewComponentContext<LanguageSelectorEntity> context)
+        public async Task<IViewComponentResult> InvokeAsync(IViewComponentContext<LanguageSelectorEntity> context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var viewModel = this.languageSelectorModel.GetViewModel(context.Entity);
+            var viewModel = await this.languageSelectorModel.GetViewModel(context.Entity);
             return this.View(viewModel);
         }
     }

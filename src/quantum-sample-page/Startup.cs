@@ -5,11 +5,11 @@ using Microsoft.Extensions.Hosting;
 using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList;
-using Progress.Sitefinity.Clients.LayoutService.Dto;
 using Renderer.Entities.Extends;
 using Renderer.Models;
 using Renderer.Models.Document;
 using Renderer.Models.Extends;
+using Renderer.Models.LanguageSelector;
 using Renderer.Models.Testimonial;
 
 namespace Renderer
@@ -24,9 +24,9 @@ namespace Renderer
             services.AddScoped<ITestimonialModel, TestimonialModel>();
             services.AddScoped<IDocumentModel, DocumentModel>();
             services.AddScoped<IMegaMenuModel, MegaMenuModel>();
+            services.AddScoped<LanguageSelectorModel>();
             services.AddSitefinity();
             services.AddViewComponentModels();
-            services.AddMvc().AddViewLocalization();
             services.AddScoped<IContentListModel, ExtendedContentListModel>();
             services.AddSingleton<IEntityExtender, EntityExtender<ContentListEntity, ExtendedContentListEntity>>();
         }

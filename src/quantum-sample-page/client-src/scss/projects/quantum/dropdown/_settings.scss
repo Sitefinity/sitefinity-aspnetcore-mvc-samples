@@ -1,0 +1,8 @@
+@use "../../../common/settings/colors";
+@use "../../../common/settings/text";
+
+$nav-link-font-weight: text.$font-weight-semibold;
+$nav-link-hover-color: colors.$dark-gray;
+$link-color: colors.$black;
+$link-hover-color: colors.$primary;
+$dropdown-border-color: colors.$light-gray;

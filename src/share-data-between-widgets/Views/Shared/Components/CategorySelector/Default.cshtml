@@ -1,0 +1,23 @@
+@using Entities.CategorySelector;
+@using ViewModels;
+@using Progress.Sitefinity.AspNetCore.Web;
+
+@model CategorySelectorViewModel
+@inject IRequestContext requestContext;
+
+<ul>
+    @foreach (var category in this.Model.Categories)
+    {
+        var url = requestContext.PageNode.ViewUrl + category.Key;
+        <li>
+            @if (this.Model.SelectedCategory != null && this.Model.SelectedCategory == category.Key)
+            {
+                <b><a href="@url">@category.Value</a></b>
+            }
+            else
+            {
+                <a href="@url">@category.Value</a>
+            }
+        </li>
+    }
+</ul>

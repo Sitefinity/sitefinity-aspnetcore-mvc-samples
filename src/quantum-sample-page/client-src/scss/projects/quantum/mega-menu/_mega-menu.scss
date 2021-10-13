@@ -1,8 +1,7 @@
-@use "settings";
 @use "../settings/common";
 
 .mega-menu {
-    margin-top: settings.$mobile-menu-offset;
+    margin-top: -50px;
 
     .mega-menu__item {
         padding: 0;
@@ -22,28 +21,6 @@
     }
 
     .nav-item {
-        position: relative;
-        padding: 10px;
-
-        .nav-link,
-        .dropdown-item {
-            color: settings.$link-color;
-
-            &:hover,
-            &:focus,
-            &:active,
-            &.active {
-                color: settings.$link-hover-color;
-                background-color: transparent;
-            }
-        }
-
-        .dropdown-menu {
-            border: 1px solid settings.$dropdown-border-color;
-            border-radius: 1px;
-            box-shadow: 3px 3px 10px 0 settings.$dropdown-border-color;
-            padding: 0;
-        }
 
         .mega-menu__item {
             display: none;
@@ -57,16 +34,6 @@
                 opacity: 1;
             }
         }
-    }
-}
-
-.navbar-nav > .nav-item > .nav-link {
-    font-weight: settings.$nav-link-font-weight;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: settings.$nav-link-hover-color;
     }
 }
 
