@@ -5,8 +5,7 @@
 @inject IViewLocalizer Localizer
 @model Renderer.Models.ContactUsForm.ContactUsFormModel
 
-@using (Html.BeginForm("Index", "FormValues", FormMethod.Post, new { id = "submitForm", @class = "qu-form -gray" }))
-{
+<form id="submitForm" class="qu-form -gray" method="post" asp-antiforgery="false">
     <h3 class="qu-heading-medium">@Model.Heading</h3>
     <div class="form-group">
         <label asp-for="FirstName">@Localizer["FirstName"]</label>
@@ -30,7 +29,7 @@
     </div>
     <button class="btn w-100" id="submitButton" type="submit">Submit</button>
     <input type="hidden" asp-for="Heading" value="@Model.Heading" />
-}
+</form>
 
 <script src="Scripts/contact-us-form.js" section-name="Bottom" assembly-ref="Renderer"></script>
 
