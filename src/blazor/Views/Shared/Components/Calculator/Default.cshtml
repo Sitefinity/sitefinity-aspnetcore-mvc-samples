@@ -1,0 +1,4 @@
+@model blazor.Entities.Calculator.CalculatorEntity
+@using blazor.Components;
+
+@(await Html.RenderComponentAsync<CalculatorComponent>(RenderMode.Server, new {Title = @Model.Title }))

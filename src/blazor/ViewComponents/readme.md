@@ -1,0 +1,1 @@
+This is where all the view components are recommended to be placed. For more info on how to create those visit the [documentation](https://www.progress.com/documentation/sitefinity-cms/asp.net-core-widget-components)
