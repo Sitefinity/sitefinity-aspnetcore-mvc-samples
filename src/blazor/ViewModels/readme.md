@@ -1,0 +1,1 @@
+This is where all the view models are recommended to be placed.
