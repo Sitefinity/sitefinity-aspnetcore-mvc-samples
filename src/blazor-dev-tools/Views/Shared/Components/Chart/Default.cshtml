@@ -1,0 +1,6 @@
+@using blazor_dev_tools.Components;
+@using Entities.Chart;
+
+@model ChartEntity
+
+@(await Html.RenderComponentAsync<ChartComponent>(RenderMode.ServerPrerendered))

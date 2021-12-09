@@ -1,0 +1,70 @@
+
+@*TelerikRootComponent is used for improving the rendering, when we have a component and a popup inside it for example
+the popup is also component, so we have two razor component which could not be rendered correctly without TelerikRootComponent
+There may be some visual limitatiosn, which are handeled by the TelerikRootComponent
+
+It is documented here https://docs.telerik.com/blazor-ui/getting-started/server-blazor it should be added to the layout when working with pure blazor app
+in our case we want to render widgets, not whole application, and we are not able to add the blazor layoyt since we are using the .net core MVC layout
+so wrapping each component in TelerikRootComponent is a suitable workaround
+*@
+<TelerikRootComponent>
+    <TelerikChart>
+        <ChartTitle Text="What is you favourite sport?"></ChartTitle>
+        <ChartLegend Visible="true" Position="ChartLegendPosition.Top"></ChartLegend>
+
+        <ChartSeriesItems>
+            <ChartSeries Type="ChartSeriesType.Donut"
+                        Data="@Data"
+                        Field="@nameof(ModelData.Value)"
+                        CategoryField="@nameof(ModelData.Category)">
+                <ChartSeriesTooltip Visible="true" Context="item">
+                    <Template>
+                        @item.Percentage.ToString("P")
+                    </Template>
+                </ChartSeriesTooltip>
+                <ChartSeriesLabels Position="ChartSeriesLabelsPosition.OutsideEnd"
+                                Visible="true"
+                                Background="transparent"
+                                Template="#= dataItem.Category # - #= percentage*100 #%">
+                </ChartSeriesLabels>
+            </ChartSeries>
+        </ChartSeriesItems>
+    </TelerikChart>
+</TelerikRootComponent>
+
+@code {
+    public class ModelData
+    {
+        public string Category { get; set; }
+        public int Value { get; set; }
+    }
+
+    public List<ModelData> Data = new List<ModelData>()
+    {
+        new ModelData()
+        {
+            Category = "Football",
+            Value = 35
+        },
+        new ModelData()
+        {
+            Category = "Basketball",
+            Value = 25
+        },
+        new ModelData()
+        {
+            Category = "Volleyball",
+            Value = 20
+        },
+        new ModelData()
+        {
+            Category = "Rugby",
+            Value = 10
+        },
+        new ModelData()
+        {
+            Category = "Tennis",
+            Value = 10
+        }
+    };
+}
