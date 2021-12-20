@@ -42,6 +42,24 @@ Additionally a special [layout file](./Views/Shared/BlazorLayout.cshtml) was cre
 
 ```
 
+Finally create an _Imports.razor file that contains the following imports:
+
+``` c#
+
+@using System.Net.Http
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.JSInterop
+@using System.IO
+
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+
+```
+
 ### The chart component
 
 The chart component(./ViewComponents/ChartViewComponent) uses the [**TelerikChart** blazor component](./Components/ChartComponent.razor) by rendering it directly through the view(./Views/Shared/Components/Chart/Default.cshtml).
