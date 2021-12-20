@@ -5,11 +5,15 @@ using Microsoft.Extensions.Hosting;
 using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList;
+using Progress.Sitefinity.Renderer.Designers;
+using Renderer.Attributes;
+using Renderer.Client;
 using Renderer.Entities.Extends;
 using Renderer.Models;
 using Renderer.Models.Document;
 using Renderer.Models.Extends;
 using Renderer.Models.LanguageSelector;
+using Renderer.Models.NativeChat;
 using Renderer.Models.Testimonial;
 
 namespace Renderer
@@ -29,6 +33,9 @@ namespace Renderer
             services.AddViewComponentModels();
             services.AddScoped<IContentListModel, ExtendedContentListModel>();
             services.AddSingleton<IEntityExtender, EntityExtender<ContentListEntity, ExtendedContentListEntity>>();
+            services.AddScoped<INativeChatModel, NativeChatModel>();
+            services.AddSingleton<INativeChatClient, NativeChatClient>();
+            services.AddSingleton<IPropertyConfigurator, ExternalPropertyConfigurator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

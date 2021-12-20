@@ -51,6 +51,22 @@ services.AddScoped<IRestClient>((x) =>
 
 **This is automatically done for the Sitefinity .NET Core Renderer projects**
 
+
+### Initialization
+
+Before usage the IRestClient must be initialized by calling the function Init:
+
+``` C#
+
+var restClient = new RestClient(httpClient);
+
+// the RequestArgs class contains headers and query parameters that will be passed to subsequent service calls
+await restClient.Init(new RequestArgs());
+
+```
+
+**This is automatically done for the Sitefinity .NET Core Renderer projects**
+
 ## The SdkItem class and ISdkItem interface
 The **SdkItem** class is the base class for working with the **IRestClient** interface and Sitefinity content. It holds the following signature:
 ``` C#

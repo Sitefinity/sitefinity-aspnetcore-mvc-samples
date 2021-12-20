@@ -14,7 +14,7 @@ This is achieved by calling the **RenderComponent method**
 @(await Html.RenderComponentAsync<CalculatorComponent>(RenderMode.Server, new {Title = @Model.Title }))
 
 ```
-
+Note that the blazor widgets works with the Rendering modes - **Server** and **ServerPrerendered**
 ### The framework
 The blazor framework was integrated by modifying the startup file to include the necessary blazor services and endpoints
 
