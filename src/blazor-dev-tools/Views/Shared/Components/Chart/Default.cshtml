@@ -1,6 +1,21 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Progress.Sitefinity.AspNetCore
+
+@using Progress.Sitefinity.AspNetCore.ViewComponents;
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+
 @using blazor_dev_tools.Components;
+@using Progress.Sitefinity.AspNetCore.Web;
 @using Entities.Chart;
 
 @model ChartEntity
+@inject IRenderContext renderContext;
 
 @(await Html.RenderComponentAsync<ChartComponent>(RenderMode.ServerPrerendered))
+
+@* Since the chart component has some client side logic, we need to rerender the whole page when a widget of that kind is dropped *@
+@* Valid only when editing widgets *@
+@if (renderContext.IsEdit)
+{
+    <script src="scripts/chart.js" section-name="Bottom"></script>
+}
