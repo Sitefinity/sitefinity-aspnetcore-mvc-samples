@@ -41,3 +41,9 @@ Additionally a special [layout file](./Views/Shared/BlazorLayout.cshtml) was cre
 <script src="_content/Telerik.UI.for.Blazor.Trial/js/telerik-blazor.js" defer></script>
 
 ```
+
+### The chart component
+
+The chart component(./ViewComponents/ChartViewComponent) uses the [**TelerikChart** blazor component](./Components/ChartComponent.razor) by rendering it directly through the view(./Views/Shared/Components/Chart/Default.cshtml).
+
+One thing that is specific for the TelerikChart component is that it cannot render standalone (e.g. when a widget is dropped). For this reason a custom script is injected only in edit mode of the page to ensure that the page is loaded and is responsive when the widget is inserted. For reference see the view(./Views/Shared/Components/Chart/Default.cshtml) of the chart component.
