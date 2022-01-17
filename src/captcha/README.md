@@ -1,8 +1,12 @@
-# Starter template
+# Captcha widget sample
 
-This project serves the purpose of providing a started template to get you started with the overall structure of the renderer project. 
+This example demonstrates how to create a captcha widget using Google reCAPTCHA v2 or Google reCAPTCHA v3.
 
-* The launch settings file is configured to host the application with ports 5000 for http and 5001 for https.
-* The overall project folder structure is configured for developing with the Sitefinity .Net Core Renderer.
-* The necessary service registrations and pipeline configurations are added to the Startup.cs file.
-* Additionaly we have included a sample layout page, in which there are examples for referencing javascript and css files.
+## Sitefinity setup
+
+To start using reCAPTCHA, you need to [sign up for an API key pair](http://www.google.com/recaptcha/admin) for your site.
+The keys are created for either reCAPTCHA v2 or reCAPTCHA v3 and can be used with the corresponding widget from the sample.
+
+In order to run this sample, you must populate the captcha configuration in your Sitefinity system config with the generated site key and secret key. The verification URL for Google reCAPTCHA is https://www.google.com/recaptcha/api/siteverify and the response key is g-recaptcha-response.
+
+Once you have everything set-upped, you should see two new widgets for forms that are ready for use - Captcha2 (for reCAPTCHA v2) and Captcha3 (for reCAPTCHA v3).

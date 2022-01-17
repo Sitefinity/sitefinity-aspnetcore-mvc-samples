@@ -14,6 +14,7 @@ Follow the instructions [here](./RestSDK.md)
 * all-properties - for creating designers
 * blazor-dev-tools - for integrating Telerik UI for blazor components in the .Net ViewComponent widgets
 * blazor - for integrating blazor components in the .Net ViewComponent widgets
+* captcha - for creating a captcha widget for forms by using google recaptcha v2 or v3.
 * change-grid-system - for using a TailWind, a different css grid system
 * conditional-rendering-in-editor - demonstrates how conditional rendering can be applied based on the current context - edit, preview or live
 * content-selectors - for working with Sitefinity content in the widget designers
