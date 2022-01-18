@@ -1,7 +1,12 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Progress.Sitefinity.AspNetCore
+
+@using Progress.Sitefinity.AspNetCore.ViewComponents;
+
 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
         section-name="Bottom"
         async defer></script>
-<script src="Scripts/captcha2.js" section-name="Top" assembly-ref="SandboxWebApp"></script>
+<script src="scripts/captcha2.js" section-name="Top"></script>
 
 <div>
     <div id="captchav2"></div>

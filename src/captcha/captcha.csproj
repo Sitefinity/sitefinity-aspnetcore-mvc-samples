@@ -1,25 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>starter_template</RootNamespace>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>captcha</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Scripts\captcha2.js" />
-    <None Remove="Scripts\captcha3.js" />
+    <EmbeddedResource Include="wwwroot\scripts\captcha2.js" />
+    <EmbeddedResource Include="wwwroot\scripts\captcha3.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\captcha2.js" />
-    <EmbeddedResource Include="Scripts\captcha3.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.1.7800.62448" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.1.7800.62448" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.1.7800.62448" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.1.7800.62448" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.0.7700-DevBuild" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.0.7700-DevBuild" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.0.7700-DevBuild" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.0.7700-DevBuild" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.0.7700-DevBuild" />
   </ItemGroup>
 
 </Project>

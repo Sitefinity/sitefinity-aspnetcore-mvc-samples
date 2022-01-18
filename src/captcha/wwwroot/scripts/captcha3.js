@@ -18,12 +18,10 @@
                     form.onsubmit();
                 };
                 submitButton.classList.add('g-recaptcha');
-                submitButton.setAttribute('data-sitekey', '6Lcif_UdAAAAALSL5A5RAC7q_bUqvQZi8hYxJTWr');
+                submitButton.setAttribute('data-sitekey', <Captcha V3 site key>);
                 submitButton.setAttribute('data-callback', submitId);
             }
         });
     }
     document.addEventListener('DOMContentLoaded', init);
 })();
-
-//// TODO: get site key from config
