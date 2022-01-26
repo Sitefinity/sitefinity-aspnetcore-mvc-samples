@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "form-hidden-input", "form-hidden-input\form-hidden-input.csproj", "{3F1016F7-77B9-4048-A99E-DCDDE791C9A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "form-hidden-input", "form-hidden-input.csproj", "{3F1016F7-77B9-4048-A99E-DCDDE791C9A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
