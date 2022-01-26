@@ -3,7 +3,7 @@ This sample demonstrates how to setup a custom layout file that can be used as a
 
 Your MVC .Net Core pages start from layout file just like in native site. This layout file is meant to contain the common HTML page structure like its head, body tags, common scripts and the styles for the page.
 
-We provide a default layout file which you can use to start your pages even when you don’t have any custom layouts created. The default layout file, provided with the renderer, references Bootstrap4 css, since it’s one of the most popular and used css frameworks. The default section widget templates also contain the Bootstrap4 grid system markup.
+We provide a default layout file which you can use to start your pages even when you don’t have any custom layouts created. The default layout file, provided with the renderer, references Bootstrap5 css, since it’s one of the most popular and used css frameworks. The default section widget templates also contain the Bootstrap5 grid system markup.
 
 As of this moment template inheritance is not available for templates, created with the new .NET COre REnderer, but this is planned for implementation in the future. For now, each template in the backend has a physical representation as a layout file.
 
