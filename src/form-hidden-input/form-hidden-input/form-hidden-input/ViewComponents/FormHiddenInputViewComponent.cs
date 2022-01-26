@@ -4,9 +4,6 @@ using Progress.Sitefinity.AspNetCore.ViewComponents;
 
 namespace form_hidden_input.ViewComponents
 {
-    /// <summary>
-    /// Test widget with different kind of restrictions for its properties.
-    /// </summary>
     [SitefinityFormWidget("Hidden", Title = "Hidden input", EmptyIconText = "Custom empty text", EmptyIcon = "eye-slash")]
     public class FormHiddenInputViewComponent : ViewComponent
     {
