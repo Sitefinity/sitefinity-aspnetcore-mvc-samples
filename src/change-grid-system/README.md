@@ -4,8 +4,10 @@ An example on how to change the css grid system.
 This example demonstrates how to:
 
 1. Create a custom layout file and load your own css framework.
-2. Change the template of the section widget
-3. Create a tag helper for building custom grid system classes for the section widget columns.
+2. Override form default layout file and load your own css framework.
+3. Change the template of the section widget
+3. Change the template of the form section widget
+4. Create a tag helper for building custom grid system classes for the section widget columns.
 
 ## Custom layout:
 
@@ -15,9 +17,25 @@ Add a stylesheet link to your prefered css framework (in this example we're usin
 
 In Sitefinity base your page on this new _Layout template.
 
+## Override form layout:
+
+In order to override the form default layout file create a new layout cshtml file in the Views/Shared directory. The file should be called FormsDefault.cshtml, so that Sitefinity recognizes it.
+
+Add a stylesheet link to your prefered css framework (in this example we're using https://tailwindcss.com/)
+
+Now all forms will use the provided layout file instead of the default one.
+
 ## Custom template for section widget:
 
 Add a Default.cshtml file under Views/Shared/Components/Section. This replaces the default template of the widget.
+
+In it we build the tailwind classes using a custom Tag helper. 
+
+## Custom template for form section widget:
+
+The process here is the same as with a page widget.
+
+Add a Default.cshtml file under Views/Shared/Components/FormSection. This replaces the default template of the widget.
 
 In it we build the tailwind classes using a custom Tag helper. 
 
