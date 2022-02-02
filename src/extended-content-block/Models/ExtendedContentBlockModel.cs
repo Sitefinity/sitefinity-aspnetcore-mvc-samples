@@ -15,9 +15,8 @@ namespace extended_content_block.Models
         /// Initializes a new instance of the <see cref="ExtendedContentBlockModel"/> class.
         /// </summary>
         /// <param name="restClient">The HTTP client.</param>
-        /// <param name="widgetConfig">The widget config.</param>
-        public ExtendedContentBlockModel(IRestClient restClient, IWidgetConfig widgetConfig)
-            : base(restClient, widgetConfig)
+        public ExtendedContentBlockModel(IRestClient restClient)
+            : base(restClient)
         {
         }
 

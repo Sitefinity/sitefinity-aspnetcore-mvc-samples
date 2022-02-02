@@ -8,10 +8,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.11" />
     <PackageReference Include="Telerik.UI.for.Blazor.Trial" Version="2.30.0" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.0.7700.38136" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.0.7700.38136" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.0.7700.38136" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.0.7700.38136" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.1.7800.33829" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.1.7800.33829" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.1.7800.33829" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.1.7800.33829" />
   </ItemGroup>
 
 </Project>

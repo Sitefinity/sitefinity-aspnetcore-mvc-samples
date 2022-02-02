@@ -17,10 +17,9 @@ namespace Renderer.Models.Extends
         /// Initializes a new instance of the <see cref="ExtendedContentListModel"/> class.
         /// </summary>
         /// <param name="restClient">The HTTP client.</param>
-        /// <param name="widgetConfig">The widget config.</param>
         /// <param name="requestContext">The context.</param>
-        public ExtendedContentListModel(IODataRestClient restClient, IWidgetConfig widgetConfig, IRequestContext requestContext)
-            : base(restClient, widgetConfig, requestContext)
+        public ExtendedContentListModel(IODataRestClient restClient, IRequestContext requestContext)
+            : base(restClient, requestContext)
         {
         }
 
@@ -29,10 +28,10 @@ namespace Renderer.Models.Extends
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns>The view model.</returns>
-        public override async Task<object> InitializeViewModel(ContentListEntity entity, ReadOnlyCollection<string> urlParameters, IQueryCollection query)
+        public override async Task<object> HandleListView(ContentListEntity entity, ReadOnlyCollection<string> urlParameters, IQueryCollection query)
         {
             var extendedEntity = entity as ExtendedContentListEntity;
-            var viewModel = await base.InitializeViewModel(entity, urlParameters, query);
+            var viewModel = await base.HandleListView(entity, urlParameters, query);
 
             if (viewModel is ContentListViewModel listViewModel)
             {
