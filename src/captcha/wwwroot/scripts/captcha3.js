@@ -15,7 +15,7 @@
             if (submitButton) {
                 var submitId = 'onCaptchaSubmit' + i;
                 window[submitId] = function () {
-                    form.onsubmit();
+                    form.dispatchEvent(new Event('submit'));
                 };
                 submitButton.classList.add('g-recaptcha');
                 submitButton.setAttribute('data-sitekey', <Captcha V3 site key>);
