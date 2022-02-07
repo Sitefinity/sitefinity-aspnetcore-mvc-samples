@@ -8,7 +8,7 @@ namespace SandboxWebApp.ViewComponents
     /// <summary>
     /// Captcha-V2 view component.
     /// </summary>
-    [SitefinityFormWidget(FormFieldType.Captcha, Title = "Captcha2", Order = 1, Section = WidgetSection.Other)]
+    [SitefinityFormWidget(FormFieldType.Captcha, Title = "CAPTCHA 2", Order = 1, Section = WidgetSection.Other)]
     public class Captcha2ViewComponent : ViewComponent
     {
         /// <summary>
