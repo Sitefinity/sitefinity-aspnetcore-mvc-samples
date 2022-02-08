@@ -31,6 +31,7 @@
             font-size: settings.$button-font-size;
             font-weight: inherit;
             margin-top: 15px;
+            width: 100%;
 
             &:hover{
                 background: settings.$button-background;
@@ -38,5 +39,9 @@
                 opacity: .8;
             }
         }
+    }
+
+    &.-w-auto-button .btn {
+        width: auto !important;
     }
 }

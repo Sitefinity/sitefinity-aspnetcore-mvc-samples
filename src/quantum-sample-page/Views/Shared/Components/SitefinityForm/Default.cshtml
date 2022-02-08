@@ -1,0 +1,62 @@
+@using System.Threading.Tasks;
+@using Progress.Sitefinity.AspNetCore.ViewComponents;
+@model Renderer.ViewModels.Extends.ExtendedFormViewModel;
+@inject Progress.Sitefinity.AspNetCore.Web.IRenderContext renderContext;
+
+<environment include="Development">
+    <script src="Scripts/form-all.js" defer section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.FormWidgets"></script>
+</environment>
+<environment exclude="Development">
+    <script src="Scripts/form-all.min.js" defer section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.FormWidgets"></script>
+</environment>
+
+@if (@Model.FormModel != null)
+{
+    if (!renderContext.IsEdit)
+    {
+        <div data-sf-role='form-visibility-wrapper' style='display: none'>
+            @RenderForm();
+        </div>
+    }
+    else
+    {
+        await RenderForm();
+    }
+}
+
+@{ async Task RenderForm()
+    {
+        <!form action="@Html.Raw(Model.SubmitUrl)" method="post" class="qu-form -gray" novalidate>
+            <h3 class="qu-heading-medium">@Model.Heading</h3>
+            <div class="@Model.CssClass" data-sf-role="form-container">
+                @if (!string.IsNullOrEmpty(Model.Rules))
+                {
+                    <input type="hidden" data-sf-role="form-rules" value='@Model.Rules' />
+                    <input type="hidden" data-sf-role="form-rules-hidden-fields" name="sf_FormHiddenFields" value="@Model.HiddenFields" autocomplete="off"/>
+                    <input type="hidden" data-sf-role="form-rules-skip-fields" name="sf_FormSkipFields" autocomplete="off"/>
+                    <input type="hidden" data-sf-role="form-rules-notification-emails" name="sf_FormNotificationEmails" autocomplete="off"/>
+                    <input type="hidden" data-sf-role="form-rules-message" name="sf_FormMessage" autocomplete="off"/>
+                    <input type="hidden" data-sf-role="form-rules-redirect-page" name="sf_FormRedirectPage" autocomplete="off"/>
+                }
+
+                <input type="hidden" data-sf-role="redirect-url" value="@Model.RedirectUrl" />
+                <input type="hidden" data-sf-role="custom-submit-action" value="@Model.CustomSubmitAction.ToString()" />
+                <div data-sf-role="success-message" class="valid-feedback" role="alert" aria-live="assertive">@Model.SuccessMessage</div>
+                <div data-sf-role="error-message" class="invalid-feedback" role="alert" aria-live="assertive"></div>
+                <div data-sf-role="loading" style="display: none;">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                @if (@Model.SkipDataSubmission)
+                {
+                    <span data-sf-role="skip-data-submission"></span>
+                }
+                <div data-sf-role="fields-container" data-sfcontainer not-editable="true" container-context="@Model.FormModel.ContainerContext("Body", null)">
+                </div>
+            </div>
+        </!form>
+    }
+}

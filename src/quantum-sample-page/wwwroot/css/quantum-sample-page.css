@@ -10885,27 +10885,27 @@ strong {
   border-color: #f2f2f2;
 }
 
-.form-group {
+.qu-landing-form {
   margin-bottom: 40px;
 }
 
-.form-group.form-check {
+.qu-landing-form .form-check {
   margin-top: -10px;
   margin-bottom: 30px;
   padding-left: 0;
   display: flex;
 }
 
-.form-group label {
+.qu-landing-form label {
   color: #FFF;
 }
 
-.form-group label:not(.form-check-label) {
+.qu-landing-form label:not(.form-check-label) {
   font-weight: 600;
   text-transform: uppercase;
 }
 
-.form-group .form-control {
+.qu-landing-form .form-control {
   color: #FFF;
   background-color: transparent !important;
   height: 50px;
@@ -10913,11 +10913,11 @@ strong {
   border: 1px solid #FFF;
 }
 
-.form-group textarea.form-control {
+.qu-landing-form textarea.form-control {
   height: 145px;
 }
 
-.form-group .qu-checkbox {
+.qu-landing-form .qu-checkbox {
   position: relative;
   height: 15px;
   width: 22px;
@@ -10925,7 +10925,7 @@ strong {
   margin-top: 5px;
 }
 
-.form-group .qu-checkbox .form-check-input {
+.qu-landing-form .qu-checkbox .form-check-input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -10935,7 +10935,7 @@ strong {
   border: none;
 }
 
-.form-group .qu-checkbox .qu-checkbox-checkmark {
+.qu-landing-form .qu-checkbox .qu-checkbox-checkmark {
   position: absolute;
   top: 0;
   left: 0;
@@ -10944,11 +10944,11 @@ strong {
   border: 1px solid #FFF;
 }
 
-.form-group .qu-checkbox .qu-checkbox-checkmark:hover {
+.qu-landing-form .qu-checkbox .qu-checkbox-checkmark:hover {
   cursor: pointer;
 }
 
-.form-group .qu-checkbox .qu-checkbox-checkmark::after {
+.qu-landing-form .qu-checkbox .qu-checkbox-checkmark::after {
   content: "";
   position: relative;
   top: -4px;
@@ -10958,7 +10958,7 @@ strong {
   color: #FFF;
 }
 
-.form-group .qu-checkbox .form-check-input:checked ~ .qu-checkbox-checkmark:after {
+.qu-landing-form .qu-checkbox .form-check-input:checked ~ .qu-checkbox-checkmark:after {
   display: block;
 }
 
