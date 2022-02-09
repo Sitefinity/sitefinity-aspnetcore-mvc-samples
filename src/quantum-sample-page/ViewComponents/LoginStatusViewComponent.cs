@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
-using Renderer.Entities.Document;
 using Renderer.Entities.LoginStatus;
 using Renderer.Models.LoginStatus;
 

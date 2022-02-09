@@ -20,6 +20,7 @@
     <None Remove="client-src\scss\landing-page\**" />
     <None Remove="client-src\scss\quantum\**" />
     <None Remove="Views\Shared\Components\LoginStatus\" />
+    <None Remove="ViewModels\LoginStatus\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\LanguageSelector\" />
@@ -34,6 +35,7 @@
     <Folder Include="ViewModels\MegaMenu\" />
     <Folder Include="Views\Shared\Components\MegaMenu\" />
     <Folder Include="Views\Shared\Components\LoginStatus\" />
+    <Folder Include="ViewModels\LoginStatus\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\favicon.ico" />

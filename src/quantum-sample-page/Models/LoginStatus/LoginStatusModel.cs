@@ -1,16 +1,10 @@
-﻿using Progress.Sitefinity.AspNetCore.RestSdk;
+﻿using System.Threading.Tasks;
+using Progress.Sitefinity.AspNetCore.RestSdk;
 using Progress.Sitefinity.AspNetCore.Web;
-using Progress.Sitefinity.Renderer.Entities.Content;
 using Progress.Sitefinity.RestSdk;
-using Progress.Sitefinity.RestSdk.Client;
 using Progress.Sitefinity.RestSdk.Clients.Pages.Dto;
-using Progress.Sitefinity.RestSdk.Dto;
-using Renderer.Dto;
 using Renderer.Entities.LoginStatus;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+using Renderer.ViewModels.LoginStatus;
 
 namespace Renderer.Models.LoginStatus
 {
@@ -38,31 +32,14 @@ namespace Renderer.Models.LoginStatus
         /// </summary>
         /// <param name="entity">The entity object.</param>
         /// <returns>The generated view models.</returns>
-        public async Task<LoginStatusItem> GetViewModels(LoginStatusEntity entity)
+        public async Task<LoginStatusViewModel> GetViewModels(LoginStatusEntity entity)
         {
-            var viewModel = new LoginStatusItem();
+            var viewModel = new LoginStatusViewModel();
 
-            viewModel.LoginPage = await this.GetItem<PageNodeDto>(entity.LoginPage).ConfigureAwait(true);
-            viewModel.RegistrationPage = await this.GetItem<PageNodeDto>(entity.RegistrationPage).ConfigureAwait(true);
+            viewModel.LoginPage = await this.restService.GetItem<PageNodeDto>(entity.LoginPage).ConfigureAwait(true);
+            viewModel.RegistrationPage = await this.restService.GetItem<PageNodeDto>(entity.RegistrationPage).ConfigureAwait(true);
 
             return viewModel;
-        }
-
-        private async Task<T> GetItem<T>(MixedContentContext contentContext)
-           where T : class, ISdkItem
-        {
-            if (contentContext == null)
-                return null;
-
-            var getAllArgsDictionary = contentContext.Content.ToDictionary(x => x.Type, y => new GetAllArgs());
-            var result = await this.restService.GetItems<T>(contentContext, getAllArgsDictionary);
-
-            if (result.Items.Count != 1)
-            {
-                return null;
-            }
-
-            return result.Items.FirstOrDefault();
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Renderer.Entities.LoginStatus;
-using Renderer.Dto;
+using Renderer.ViewModels.LoginStatus;
 
 namespace Renderer.Models.LoginStatus
 {
@@ -14,6 +13,6 @@ namespace Renderer.Models.LoginStatus
         /// Gets the view models.
         /// </summary>
         /// <returns>The generated view models.</returns>
-        Task<LoginStatusItem> GetViewModels(LoginStatusEntity entity);
+        Task<LoginStatusViewModel> GetViewModels(LoginStatusEntity entity);
     }
 }
