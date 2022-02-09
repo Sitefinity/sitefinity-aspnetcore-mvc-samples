@@ -11129,12 +11129,9 @@ strong {
     width: 380px;
   }
 }
-.qu-form {
+.qu-form.-gray {
   font-size: 0.875rem;
   font-weight: 400;
-}
-
-.qu-form.-gray {
   background: #F3F4F6;
   opacity: 0.93;
   border-radius: 8px;
@@ -11162,12 +11159,17 @@ strong {
   font-size: 1.125rem;
   font-weight: inherit;
   margin-top: 15px;
+  width: 100%;
 }
 
 .qu-form.-gray .btn:hover {
   background: #000;
   color: #FFF;
   opacity: 0.8;
+}
+
+.qu-form.-w-auto-button .btn {
+  width: auto !important;
 }
 
 .qu-highlights .col {
@@ -11373,18 +11375,6 @@ strong {
     top: 50%;
   }
 }
-.qu-language-selector__button {
-  color: #304546 !important;
-  font-size: 20px;
-  padding: 10px 15px;
-  background-color: transparent;
-  border: none;
-}
-
-.qu-language-selector__button::after {
-  display: none;
-}
-
 .dropdown .nav-item, .dropdown.nav-item {
   position: relative;
   padding: 10px;
@@ -11422,6 +11412,22 @@ strong {
 
 .navbar-nav > .nav-item > .nav-link:hover, .navbar-nav > .nav-item > .nav-link:focus, .navbar-nav > .nav-item > .nav-link:active {
   color: #555;
+}
+
+.qu-dropdown-selector__button {
+  color: #304546 !important;
+  font-size: 20px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.qu-dropdown-selector__button::after {
+  display: none;
+}
+
+.qu-dropdown-selector__menu {
+  margin-top: 10px !important;
 }
 
 /*# sourceMappingURL=quantum.css.map */

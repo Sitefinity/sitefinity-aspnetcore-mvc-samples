@@ -2,10 +2,10 @@
 @use "../../../common/settings/text";
 @use "../../../common/settings/variables";
 
-.form-group {
+.#{variables.$selector-prefix}-landing-form {
     margin-bottom: 40px;
 
-    &.form-check {
+    .form-check {
         margin-top: -10px;
         margin-bottom: 30px;
         padding-left: 0;
@@ -50,7 +50,7 @@
             border: none;
         }
 
-        .qu-checkbox-checkmark {
+        .#{variables.$selector-prefix}-checkbox-checkmark {
             position: absolute;
             top: 0;
             left: 0;

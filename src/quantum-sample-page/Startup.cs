@@ -5,6 +5,8 @@ using Microsoft.Extensions.Hosting;
 using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList;
+using Progress.Sitefinity.AspNetCore.Widgets.Models.Form;
+using Progress.Sitefinity.AspNetCore.FormWidgets;
 using Progress.Sitefinity.Renderer.Designers;
 using Renderer.Attributes;
 using Renderer.Client;
@@ -15,6 +17,7 @@ using Renderer.Models.Extends;
 using Renderer.Models.LanguageSelector;
 using Renderer.Models.NativeChat;
 using Renderer.Models.Testimonial;
+using Renderer.Models.LoginStatus;
 
 namespace Renderer
 {
@@ -31,11 +34,15 @@ namespace Renderer
             services.AddScoped<LanguageSelectorModel>();
             services.AddSitefinity();
             services.AddViewComponentModels();
+            services.AddFormViewComponentModels();
             services.AddScoped<IContentListModel, ExtendedContentListModel>();
             services.AddSingleton<IEntityExtender, EntityExtender<ContentListEntity, ExtendedContentListEntity>>();
+            services.AddScoped<IFormModel, ExtendedFormModel>();
+            services.AddSingleton<IEntityExtender, EntityExtender<FormEntity, ExtendedFormEntity>>();
             services.AddScoped<INativeChatModel, NativeChatModel>();
             services.AddSingleton<INativeChatClient, NativeChatClient>();
             services.AddSingleton<IPropertyConfigurator, ExternalPropertyConfigurator>();
+            services.AddScoped<ILoginStatusModel, LoginStatusModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

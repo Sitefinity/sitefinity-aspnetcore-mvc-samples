@@ -1,14 +1,18 @@
-﻿.qu-language-selector {
+﻿.qu-dropdown-selector {
 
     &__button {
         color: #304546 !important;
         font-size: 20px;
-        padding: 10px 15px;
+        padding: 0;
         background-color: transparent;
         border: none;
 
         &::after {
             display: none;
         }
+    }
+
+    &__menu {
+        margin-top: 10px !important;
     }
 }

@@ -19,14 +19,14 @@
     <EmbeddedResource Remove="client-src\scss\quantum\**" />
     <None Remove="client-src\scss\landing-page\**" />
     <None Remove="client-src\scss\quantum\**" />
+    <None Remove="Views\Shared\Components\LoginStatus\" />
+    <None Remove="ViewModels\LoginStatus\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\LanguageSelector\" />
     <Folder Include="Entities\Testimonial\" />
     <Folder Include="Models\Testimonial\" />
     <Folder Include="ViewModels\Testimonial\" />
-    <Folder Include="Models\DemoRequest\" />
-    <Folder Include="Views\Shared\Components\DemoRequestForm\" />
     <Folder Include="Controllers\" />
     <Folder Include="Entities\StaticSection\" />
     <Folder Include="Views\Shared\Components\StaticSection\" />
@@ -34,17 +34,17 @@
     <Folder Include="Models\MegaMenu\" />
     <Folder Include="ViewModels\MegaMenu\" />
     <Folder Include="Views\Shared\Components\MegaMenu\" />
+    <Folder Include="Views\Shared\Components\LoginStatus\" />
+    <Folder Include="ViewModels\LoginStatus\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\contact-us-form.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.1.7800.33829" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.1.7800.33829" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.1.7800.33829" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.1.7800.33829" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.1.7800.37092" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.1.7800.37092" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.1.7800.37092" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.1.7800.37092" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.1.7800.37092" />
   </ItemGroup>
 </Project>
