@@ -17,6 +17,7 @@ using Renderer.Models.Extends;
 using Renderer.Models.LanguageSelector;
 using Renderer.Models.NativeChat;
 using Renderer.Models.Testimonial;
+using Renderer.Models.LoginStatus;
 
 namespace Renderer
 {
@@ -41,6 +42,7 @@ namespace Renderer
             services.AddScoped<INativeChatModel, NativeChatModel>();
             services.AddSingleton<INativeChatClient, NativeChatClient>();
             services.AddSingleton<IPropertyConfigurator, ExternalPropertyConfigurator>();
+            services.AddScoped<ILoginStatusModel, LoginStatusModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

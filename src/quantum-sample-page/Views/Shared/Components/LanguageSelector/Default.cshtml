@@ -8,11 +8,11 @@
         asp-fallback-href="Scripts/bootstrap.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
-<div class="qu-dropdown-selector dropdown">
+<div class="qu-dropdown-selector dropdown d-flex justify-content-center">
     <a class="nav-link dropdown-toggle qu-dropdown-selector__button" href="#" id="qu_language_selector" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="fa fa-globe"></span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="qu_language_selector">
+    <ul class="dropdown-menu qu-dropdown-selector__menu" aria-labelledby="qu_language_selector">
         @foreach (var item in Model.Languages)
         {
             <li class="nav-item">

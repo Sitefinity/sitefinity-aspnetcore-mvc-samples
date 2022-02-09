@@ -19,6 +19,7 @@
     <EmbeddedResource Remove="client-src\scss\quantum\**" />
     <None Remove="client-src\scss\landing-page\**" />
     <None Remove="client-src\scss\quantum\**" />
+    <None Remove="Views\Shared\Components\LoginStatus\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\LanguageSelector\" />
@@ -32,6 +33,7 @@
     <Folder Include="Models\MegaMenu\" />
     <Folder Include="ViewModels\MegaMenu\" />
     <Folder Include="Views\Shared\Components\MegaMenu\" />
+    <Folder Include="Views\Shared\Components\LoginStatus\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\favicon.ico" />
