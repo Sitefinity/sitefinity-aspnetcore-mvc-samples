@@ -14,11 +14,22 @@ namespace Renderer.Models.Extends
 {
     public class ExtendedFormModel : FormModel
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExtendedFormModel"/> class.
+        /// </summary>
+        /// <param name="restService">The HTTP client.</param>
+        /// <param name="requestContext">The request context.</param>
+        /// <param name="styles">The style classes provider.</param>
+        /// <param name="renderContext">The render context.</param>
+        /// <param name="localizer">The localizer.</param>
+        /// <param name="viewComponentTreeBuilder">The view component tree builder.</param>
+        /// <param name="sfConfig">Sitefinity configuration settings.</param>
         public ExtendedFormModel(IODataRestClient restService, IRequestContext requestContext, IStyleClassesProvider styles, IViewComponentTreeBuilder viewComponentTreeBuilder, IRenderContext renderContext, IStringLocalizer<FormModel> localizer, ISitefinityConfig sfConfig)
             : base(restService, requestContext, styles, viewComponentTreeBuilder, renderContext, localizer, sfConfig)
         {
         }
-        
+
+        /// <inheritdoc/>
         public override async Task<FormViewModel> InitializeViewModel(FormEntity entity, IQueryCollection query)
         {
             var extendedEntity = entity as ExtendedFormEntity;
