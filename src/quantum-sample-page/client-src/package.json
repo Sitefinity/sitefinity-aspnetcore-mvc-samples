@@ -4,7 +4,7 @@
   "description": "Assets managment project for Sitefinity .Net core renderer",
   "scripts": {
     "start": "run-s build watch",
-    "build:scss": "run-s lint-scss scss copy:assets",
+    "build:scss": "run-s scss copy:assets",
     "build:js": "run-s copy:js uglifyjs",
     "build": "run-s build:scss build:js copy:favicon",
     "scss:landing-page": "sass --style=expanded scss/quantum-sample-page.scss ../wwwroot/css/quantum-sample-page.css && sass --style=compressed scss/quantum-sample-page.scss ../wwwroot/css/quantum-sample-page.min.css",
@@ -14,7 +14,6 @@
     "watch:scss": "onchange \"scss/**/*.scss\" -- npm run build:scss",
     "watch:js": "onchange \"scripts/**/*.js\" -- npm run build:js",
     "watch": "run-p watch:scss watch:js",
-    "lint-scss": "stylelint scss/**/*.scss --syntax scss",
     "postcss": "postcss --config postcss.config.js -r ../wwwroot/css/*",
     "copy:assets": "copyfiles assets/**/*.* ../wwwroot",
     "copy:js": "copyfiles scripts/quantum-sample-page.js ../wwwroot",
@@ -23,14 +22,13 @@
   },
   "author": "Sitefinity",
   "devDependencies": {
-    "copyfiles": "2.4.0",
+    "copyfiles": "2.4.1",
     "npm-run-all": "4.1.5",
     "onchange": "7.1.0",
-    "sass": "1.32.8",
-    "stylelint": "13.7.2",
-    "uglify-js": "3.11.5"
+    "sass": "1.49.7",
+    "uglify-js": "3.15.1"
   },
   "dependencies": {
-    "bootstrap": "5.0.0-beta3"
+    "bootstrap": "5.1.3"
   }
 }

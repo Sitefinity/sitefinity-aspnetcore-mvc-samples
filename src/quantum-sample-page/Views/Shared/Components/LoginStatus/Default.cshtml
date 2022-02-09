@@ -1,4 +1,8 @@
-﻿@model Renderer.ViewModels.LoginStatus.LoginStatusViewModel;
+﻿@using Microsoft.AspNetCore.Mvc.Localization;
+
+@model Renderer.ViewModels.LoginStatus.LoginStatusViewModel;
+
+@inject IViewLocalizer Localizer
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         section-name="Top"
@@ -15,7 +19,7 @@
             var path = Context.Request.Scheme + "://" + Context.Request.Host + "/Sitefinity/SignOut";
 
             <li class="nav-item">
-                <a class="dropdown-item" href="@path" target="_self">Logout</a>
+                <a class="dropdown-item" href="@path" target="_self">@Localizer["Logout"]</a>
             </li>
         }
         else
@@ -24,13 +28,13 @@
             @if (Model.LoginPage != null)
             {
                 <li class="nav-item">
-                    <a class="dropdown-item nav-link" href="@Model.LoginPage.ViewUrl" target="_self">Login</a>
+                    <a class="dropdown-item nav-link" href="@Model.LoginPage.ViewUrl" target="_self">@Localizer["Login"]</a>
                 </li>
             }
             @if (Model.RegistrationPage != null)
             {
                 <li class="nav-item">
-                    <a class="dropdown-item nav-link" href="@Model.RegistrationPage.ViewUrl" target="_self">Register now</a>
+                    <a class="dropdown-item nav-link" href="@Model.RegistrationPage.ViewUrl" target="_self">@Localizer["RegisterNow"]</a>
                 </li>
             }
         }
