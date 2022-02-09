@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>big_commerce</RootNamespace>
+	<MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.0.7728.36592" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.0.7728.36592" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.0.7728.36592" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.0.7728.36592" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Progress.Sitefinity.AspNetCore.BigCommerce\Progress.Sitefinity.AspNetCore.BigCommerce.csproj" />
+  </ItemGroup>
+
+</Project>

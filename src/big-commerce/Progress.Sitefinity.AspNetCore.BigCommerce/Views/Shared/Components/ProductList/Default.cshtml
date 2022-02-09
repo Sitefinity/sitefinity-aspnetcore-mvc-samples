@@ -1,0 +1,11 @@
+﻿@using Progress.Sitefinity.AspNetCore.TagHelpers;
+
+@model Progress.Sitefinity.AspNetCore.BigCommerce.ViewModels.ProductListViewModel
+
+@foreach (var product in this.Model.Products)
+{
+    <h2>@product.Name</h2>
+    <div>
+        @Html.Raw(product.Description)
+    </div>
+}

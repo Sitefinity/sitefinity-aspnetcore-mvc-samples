@@ -1,0 +1,55 @@
+@using Progress.Sitefinity.AspNetCore.BigCommerce.ViewModels;
+@using Progress.Sitefinity.AspNetCore.Web;
+
+@model CategoryNavigationViewModel
+
+@inject IRequestContext context;
+
+<div class="navPages-container" id="menu" data-menu="">
+    <nav class="navPages">
+        <div class="navPages-quickSearch">
+            <div class="container">
+                <section class="quickSearchResults" data-bind="html: results"></section>
+                <p role="status" aria-live="polite" class="aria-description--hidden" data-search-aria-message-predefined-text="product results for"></p>
+            </div>
+        </div>
+    <ul class="navPages-list">
+        @foreach (var category in Model.Categories)
+        {
+            <li class="navPages-item">
+                @{
+                    var url = context.PageNode.ViewUrl + category.CustomUrl.Url.TrimEnd('/');
+                }
+                <a class="navPages-action" href="@url" aria-label="@category.Name">@category.Name</a>
+            </li>
+        }
+
+        @* <li class="navPages-item navPages-item-page">
+            <a class="navPages-action" href="https://test877.mybigcommerce.com/shipping-returns/" aria-label="Shipping &amp; Returns">
+                Shipping &amp; Returns
+            </a>
+        </li>
+        <li class="navPages-item navPages-item-page">
+            <a class="navPages-action" href="https://test877.mybigcommerce.com/contact-us/" aria-label="Contact Us">
+                Contact Us
+            </a>
+        </li>
+        <li class="navPages-item navPages-item-page">
+            <a class="navPages-action" href="https://test877.mybigcommerce.com/blog/" aria-label="Blog">
+                Blog
+            </a>
+        </li> *@
+    </ul>
+    @* <ul class="navPages-list navPages-list--user">
+            <li class="navPages-item">
+                <a class="navPages-action" href="/login.php" aria-label="Sign in">
+                    Sign in
+                </a>
+                    or
+                    <a class="navPages-action" href="/login.php?action=create_account" aria-label="Register">
+                        Register
+                    </a>
+            </li>
+    </ul> *@
+    </nav>
+</div>

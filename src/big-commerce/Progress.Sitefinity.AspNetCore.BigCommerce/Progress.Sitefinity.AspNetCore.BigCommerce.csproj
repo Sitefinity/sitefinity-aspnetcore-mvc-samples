@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyName>Progress.Sitefinity.AspNetCore.BigCommerce</AssemblyName>
+    <PackageId>Progress.Sitefinity.AspNetCore.BigCommerce</PackageId>
+    <description>This package contains Sitefinity .NET Core MVC widgets for BigCommerce</description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.0.7728.36592" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.0.7728.36592" />
+		<PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.0.7728.36592" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+</Project>
