@@ -17,7 +17,7 @@ namespace Renderer.Models.LoginStatus
         private readonly IRenderContext renderContext;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TestimonialViewComponent"/> class.
+        /// Initializes a new instance of the <see cref="LoginStatusModel"/> class.
         /// </summary>
         /// <param name="restService">The rest service.</param>
         /// <param name="renderContext">The render context.</param>
