@@ -16,7 +16,7 @@
     <ul class="dropdown-menu qu-dropdown-selector__menu" aria-labelledby="qu_language_selector">
         @if (Context.User != null && Context.User.Identity.IsAuthenticated)
         {
-            var path = Context.Request.Scheme + "://" + Context.Request.Host + "/Sitefinity/SignOut";
+            var path = Context.Request.Scheme + "://" + Context.Request.Host + "/Sitefinity/SignOut?redirect_uri=/netcore-renderer/home";
 
             <li class="nav-item">
                 <a class="dropdown-item" href="@path" target="_self">@Localizer["Logout"]</a>
