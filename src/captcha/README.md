@@ -2,6 +2,8 @@
 
 This example demonstrates how to create a captcha widget using Google reCAPTCHA v2 or Google reCAPTCHA v3.
 
+Note: You will need to update your privacy and GDPR statements according to Google reCAPTCHA policies.
+
 ## Sitefinity setup
 
 To start using reCAPTCHA, you need to [sign up for an API key pair](http://www.google.com/recaptcha/admin) for your site.
