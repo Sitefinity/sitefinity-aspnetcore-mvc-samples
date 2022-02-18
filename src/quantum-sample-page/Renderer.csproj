@@ -41,10 +41,10 @@
     <Content Remove="wwwroot\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.1.7800.38844" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.1.7800.38844" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.1.7800.38844" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.1.7800.38844" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.1.7800.38844" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.1.7800.43145" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.1.7800.43145" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.1.7800.43145" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.1.7800.43145" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.1.7800.43145" />
   </ItemGroup>
 </Project>
