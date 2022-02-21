@@ -3,7 +3,7 @@
 @using Progress.Sitefinity.AspNetCore.Widgets.Models.Common;
 @using Progress.Sitefinity.RestSdk.Dto;
 
-@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
+@model extended_content_list.ViewModels.ExtendedContentListViewModel
 
 <div class="row row-cols-1 row-cols-md-3">
     @foreach (var item in Model.Items)
@@ -11,12 +11,44 @@
         var title = Model.GetFieldValue<string>(item, "Heading");
         <h3><a href="@Model.GetItemUrl(this.Context, item)">@title</a></h3>
     }
+
+    <div class="contentListEntity" style="display:none">
+        @Newtonsoft.Json.JsonConvert.SerializeObject(@Model.Entity)
+    </div>
+
+    <script src="/Scripts/scripts.js" section-name="Bottom"></script>
 </div>
 
 @* Model.Pager contains the necessary information to render a view for paging *@
 @if (Model.Pager != null)
 {
     <div class="mt-2">
-        @await Html.PartialAsync("ContentPager", Model.Pager)
+        @if (Model.Pager.EndPageIndex > 1)
+        {
+            <ul class="pagination">
+                @if (Model.Pager.IsPreviousButtonVisible)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Model.Pager.GetPagerUrl(Model.Pager.PreviousPageIndex, this.Context)" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                }
+                @for (var pageNumber = Model.Pager.StartPageIndex; pageNumber <= Model.Pager.EndPageIndex; pageNumber++)
+                {
+                    <li class="page-item @(Model.Pager.CurrentPage == pageNumber ? "active" : "")">
+                        <a data-pageNumber='@pageNumber' class="page-link" href="@Model.Pager.GetPagerUrl(pageNumber, this.Context)">@pageNumber</a>
+                    </li>
+                }
+                @if (Model.Pager.IsNextButtonVisible)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Model.Pager.GetPagerUrl(Model.Pager.NextPageIndex, this.Context)" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
     </div>
 }

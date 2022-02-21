@@ -1,8 +1,10 @@
+using extended_content_list.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Progress.Sitefinity.AspNetCore;
+using Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList;
 
 namespace extended_content_list
 {
@@ -14,6 +16,7 @@ namespace extended_content_list
         {
             services.AddSitefinity();
             services.AddViewComponentModels();
+            services.AddScoped<IContentListModel, ExtendedContentListModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -24,12 +27,15 @@ namespace extended_content_list
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseSitefinity();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapSitefinityEndpoints();
+                var diagnosticUrl = Constants.PrefixRendererUrl("{controller}/{action=Index}");
+                endpoints.MapControllerRoute("Content List", diagnosticUrl, null);
             });
         }
     }
