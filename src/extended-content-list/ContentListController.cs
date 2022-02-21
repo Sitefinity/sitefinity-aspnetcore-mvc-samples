@@ -24,6 +24,7 @@ namespace extended_content_list
         [HttpPost]
         public async Task<JsonResult> Index([FromBody] ContentListEntity contentListEntity)
         {
+            contentListEntity.PagerMode = PagerMode.QueryParameter;
             await this.restClient.Init(new RequestArgs());
             this.requestContext.GetType().GetProperty("Model").SetValue(this.requestContext, new PageModel(new Progress.Sitefinity.Clients.LayoutService.Dto.PageModelDto()));
 
