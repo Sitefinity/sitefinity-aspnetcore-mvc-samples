@@ -28,7 +28,7 @@ namespace Renderer.Models.Extends
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns>The view model.</returns>
-        public override async Task<object> HandleListView(ContentListEntity entity, ReadOnlyCollection<string> urlParameters, IQueryCollection query)
+        public override async Task<object> HandleListView(ContentListEntity entity, ReadOnlyCollection<string> urlParameters, HttpContext httpContext)
         {
             var extendedEntity = entity as ExtendedContentListEntity;
             var viewModel = await base.HandleListView(entity, urlParameters, query);
