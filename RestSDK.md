@@ -637,7 +637,7 @@ public static Task<CollectionResponse<T>> GetItems<T>(this IRestClient restClien
 
 ## Projection of items
 
-To control the returned fields (both related and non-related) from the service, the **Fields** property is used for both getting a single item and a collection of items. The fields are passed as a comma separated list of values. E.g.
+To control the returned fields (**related items, related media** and non-related fields) from the service, the **Fields** property is used for both getting a single item and a collection of items. The fields are passed as a comma separated list of values. E.g.
 
 ``` C#
 
