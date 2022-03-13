@@ -1,6 +1,8 @@
 # Migrate data to CMS
 This example demonstrates how you can create items with the C# RestSdk and authenticate to the CMS.
 
+**NOTE:** The example is build with the .Net 6 Framework, but can be adapted to .Net Framework or earlier versions of .Net as long as they support the .Net Standard 2 Framework (since the RestSdk is built with it).
+
 ## Prerequisites - Configure Sitefinity CMS
 
 ### Create a user
