@@ -1,5 +1,6 @@
 ﻿using IdentityModel.Client;
 using Progress.Sitefinity.RestSdk;
+using Progress.Sitefinity.RestSdk.Management;
 using Progress.Sitefinity.RestSdk.Client;
 using Progress.Sitefinity.RestSdk.Dto;
 using System;
@@ -42,6 +43,13 @@ namespace migrate_data_to_cms
             foreach (var newsItem in GetNewsSource())
             {
                 var createdItem = await restClient.CreateItem(newsItem);
+
+                // you can then manage the item if you wish using the bellow methods
+                // await restClient.PublishItem(createdItem);
+                // await restClient.SaveDraft(createdItem);
+                // await restClient.Schedule(createdItem);
+                // await restClient.Unpublish(createdItem);
+
                 Console.WriteLine($"Created news item with Id - {createdItem.Id}");
             }
         }
