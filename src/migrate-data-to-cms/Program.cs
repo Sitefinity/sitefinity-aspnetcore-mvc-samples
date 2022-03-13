@@ -22,26 +22,22 @@ namespace migrate_data_to_cms
                 ClientSecret = "your_client_secret",
                 Username = "your_username",
                 Password = "your_password",
-                Url = "http://localhost/api/default"
+                Url = "http://localhost/api/default/"
             };
 
             var httpClient = CreateClient(config);
             var restClient = new RestClient(httpClient);
+            restClient.Init(new RequestArgs()).Wait();
+
             MigrateContent(restClient).Wait();
         }
 
         public static async Task MigrateContent(IRestClient restClient)
         {
-            var newsDto = new NewsDto()
-            {
-                Title = "test"
-            };
-
-            await restClient.CreateItem(newsDto);
-
             foreach (var newsItem in GetNewsSource())
             {
-                await restClient.CreateItem(newsItem);
+                var createdItem = await restClient.CreateItem(newsItem);
+                Console.WriteLine($"Created news item with Id - {createdItem.Id}");
             }
         }
 
@@ -63,10 +59,6 @@ namespace migrate_data_to_cms
             var client = new HttpClient();
             client.BaseAddress = new Uri(config.Url);
             var token = GetAuthenticationToken(client, config);
-            if (token.IsError)
-            {
-                throw new InvalidOperationException(token.Error);
-            }
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token.TokenType, token.AccessToken);
 
@@ -91,6 +83,11 @@ namespace migrate_data_to_cms
             })
             {
                 var tokenResponse = client.RequestPasswordTokenAsync(token).Result;
+                if (tokenResponse.IsError)
+                {
+                    throw new InvalidOperationException(tokenResponse.Error);
+                }
+
                 return tokenResponse;
             }
         }
