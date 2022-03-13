@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using IdentityModel.Client;
 using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.Client;
-
+using Progress.Sitefinity.RestSdk.Dto;
+using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Progress.Sitefinity.RestSdk.Dto;
-using IdentityModel.Client;
+using System.Threading.Tasks;
 
 namespace migrate_data_to_cms
 {
@@ -16,19 +14,26 @@ namespace migrate_data_to_cms
     {
         public static void Main()
         {
+            // enter the required information in the SitefinityConfig class.
             var config = new SitefinityConfig()
             {
                 ClientId = "your_client_id",
                 ClientSecret = "your_client_secret",
                 Username = "your_username",
                 Password = "your_password",
-                Url = "http://localhost/api/default/"
+                Url = "http://localhost/api/default/" // forwardslash at the end is important
             };
 
+            // create the http client that holds the Bearer Token
             var httpClient = CreateClient(config);
+
+            // create the RestClient that is resposible for creating the items in the CMS
             var restClient = new RestClient(httpClient);
+
+            // initialize the client
             restClient.Init(new RequestArgs()).Wait();
 
+            // now the client is ready for creating items, provided that the user has sufficient permissions
             MigrateContent(restClient).Wait();
         }
 
