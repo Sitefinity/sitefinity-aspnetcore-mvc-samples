@@ -1,0 +1,97 @@
+﻿@use "../../../common/settings/colors";
+@use "../../../common/settings/text";
+@use "../../../common/settings/variables";
+
+.#{variables.$selector-prefix}-landing-form {
+    margin-bottom: 40px;
+
+    .form-check {
+        margin-top: -10px;
+        margin-bottom: 30px;
+        padding-left: 0;
+        display: flex;
+    }
+
+    label {
+        color: colors.$white;
+
+        &:not(.form-check-label) {
+            font-weight: text.$font-weight-semibold;
+            text-transform: uppercase;
+        }
+    }
+
+    .form-control {
+        color: colors.$white;
+        background-color: transparent !important;
+        height: 50px;
+        border-radius: 0;
+        border: 1px solid colors.$white;
+    }
+
+    textarea.form-control {
+        height: 145px;
+    }
+
+    .#{variables.$selector-prefix}-checkbox {
+        position: relative;
+        height: 15px;
+        width: 22px;
+        margin-right: 10px;
+        margin-top: 5px;
+
+        .form-check-input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+            background: none;
+            border: none;
+        }
+
+        .#{variables.$selector-prefix}-checkbox-checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 15px;
+            width: 15px;
+            border: 1px solid colors.$white;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &::after {
+                content: "\f00c";
+                position: relative;
+                top: -4px;
+                display: none;
+                font-family: variables.$font-family-fa;
+                font-size: 18px;
+                color: colors.$white;
+            }
+        }
+
+        .form-check-input:checked ~ .qu-checkbox-checkmark:after {
+            display: block;
+        }
+    }
+}
+
+.form-check.invalid {
+
+    .qu-checkbox-checkmark {
+        border-color: colors.$red;
+    }
+
+    .form-check-label {
+        color: colors.$red;
+    }
+}
+
+.form-validated .form-control:invalid ~ .invalid-feedback {
+    display: block;
+    color: colors.$red;
+    font-size: text.$font-size-base;
+}

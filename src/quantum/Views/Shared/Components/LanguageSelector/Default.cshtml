@@ -1,0 +1,36 @@
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+@using Renderer.ViewModels.LanguageSelector;
+
+@model LanguageSelectorViewModel
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        section-name="Top"
+        asp-fallback-href="Scripts/bootstrap.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+<div class="qu-dropdown-selector dropdown d-flex justify-content-center">
+    <a class="nav-link dropdown-toggle qu-dropdown-selector__button" href="#" id="qu_language_selector" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="fa fa-globe"></span>
+    </a>
+    <ul class="dropdown-menu qu-dropdown-selector__menu" aria-labelledby="qu_language_selector">
+        @foreach (var item in Model.Languages)
+        {
+            <li class="nav-item">
+                <a class="dropdown-item nav-link @GetClass(item.Selected)" href="@item.PageUrl" target="_self">@item.Name</a>
+            </li>
+        }
+    </ul>
+</div>
+
+@*Resolves the active class for the selected culture*@
+@{Microsoft.AspNetCore.Html.IHtmlContent GetClass(bool selected)
+    {
+
+        if (selected)
+        {
+            return Html.HtmlSanitize("active");
+        }
+
+        return null;
+    }
+}

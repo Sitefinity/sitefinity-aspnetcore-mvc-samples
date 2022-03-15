@@ -24,10 +24,10 @@
 <div class="@Model.NavigationViewModel.WrapperCssClass mega-menu">
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container-fluid">
-            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target='@Model.NavigationViewModel.GetUniqueId("#navbar", string.Empty)' aria-controls='@Model.NavigationViewModel.GetUniqueId("navbar", string.Empty)' aria-expanded="false" aria-label="Toggle Navigation">
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target='@Html.GetUniqueId("#navbar")' aria-controls='@Html.GetUniqueId("navbar")' aria-expanded="false" aria-label="Toggle Navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="@Model.NavigationViewModel.GetUniqueId("navbar", string.Empty)">
+            <div class="collapse navbar-collapse" id="@Html.GetUniqueId("navbar")">
                 <ul class="navbar-nav mb-2 mb-md-0 flex-wrap">
                     @foreach (var node in @Model.NavigationViewModel.Nodes)
                     {
@@ -51,12 +51,12 @@
         if (hasSection || node.ChildNodes.Count > 0)
         {
             <li class="nav-item me-md-3 dropdown @GetClass(node)">
-                <a class="nav-link dropdown-toggle" href="#" id='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node?.Key)' data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@node.Title</a>
+                <a class="nav-link dropdown-toggle" href="#" id='@Html.GetUniqueId("navbarDropdownMenuLink" + node?.Key)' data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@node.Title</a>
 
-                @{ 
+                @{
                     if (!hasSection)
                     {
-                        <ul class="dropdown-menu" aria-labelledby='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node?.Key)'>
+                        <ul class="dropdown-menu" aria-labelledby='@Html.GetUniqueId("navbarDropdownMenuLink" + node?.Key)'>
                             @{ await RenderSubLevelsRecursive(node); }
                         </ul>
                     }
@@ -135,7 +135,7 @@
         {
             @if (this.Model.FirstSectionProportions.Count > 0)
             {
-                <section class="row mega-menu__item dropdown-menu @this.Model.FirstSectionCss" aria-labelledby='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node?.Key)' style="@style">
+                <section class="row mega-menu__item dropdown-menu @this.Model.FirstSectionCss" aria-labelledby='@Html.GetUniqueId("navbarDropdownMenuLink" + node?.Key)' style="@style">
                     @for (var i = 0; i < this.Model.FirstSectionProportions.Count; i++)
                     {
                         <div class="col-md-@this.Model.FirstSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column1" + i, "Column 1." + i)">
@@ -151,7 +151,7 @@
         {
             @if (this.Model.SecondSectionProportions.Count > 0)
             {
-                <section class="row @this.Model.SecondSectionCss mega-menu__item dropdown-menu" aria-labelledby='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node?.Key)' style="@style">
+                <section class="row @this.Model.SecondSectionCss mega-menu__item dropdown-menu" aria-labelledby='@Html.GetUniqueId("navbarDropdownMenuLink" + node?.Key)' style="@style">
                     @for (var i = 0; i < this.Model.SecondSectionProportions.Count; i++)
                     {
                         <div class="col-md-@this.Model.SecondSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column2" + i, "Column 2." + i)">
@@ -167,7 +167,7 @@
         {
             @if (this.Model.ThirdSectionProportions.Count > 0)
             {
-                <section class="row @this.Model.ThirdSectionCss mega-menu__item dropdown-menu" aria-labelledby='@Model.NavigationViewModel.GetUniqueId("navbarDropdownMenuLink", node?.Key)' style="@style">
+                <section class="row @this.Model.ThirdSectionCss mega-menu__item dropdown-menu" aria-labelledby='@Html.GetUniqueId("navbarDropdownMenuLink" + node?.Key)' style="@style">
                     @for (var i = 0; i < this.Model.ThirdSectionProportions.Count; i++)
                     {
                         <div class="col-md-@this.Model.ThirdSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column3" + i, "Column 3." + i)">

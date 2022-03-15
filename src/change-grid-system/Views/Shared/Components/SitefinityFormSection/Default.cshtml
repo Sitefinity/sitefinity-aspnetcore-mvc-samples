@@ -1,0 +1,10 @@
+﻿@model Progress.Sitefinity.AspNetCore.FormWidgets.ViewModels.FormSection.FormSectionViewModel;
+@inject Progress.Sitefinity.AspNetCore.Configuration.IWidgetConfig widgetConfig;
+
+<section class="row">
+    @for (var i = 0; i < this.Model.ColumnsCount; i++)
+    {
+        <div grid-size="@widgetConfig.Styling.CssGridSystemColumnCount" css-cols-per-row-col="@this.Model.ColumnProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext(this.Model.ColumnNames[i], null)">
+        </div>
+    }
+</section>

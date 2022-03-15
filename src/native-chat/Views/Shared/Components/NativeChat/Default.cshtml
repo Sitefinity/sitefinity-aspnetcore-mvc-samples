@@ -1,7 +1,7 @@
 @model native_chat.ViewModels.NativeChatViewModel
 
-<script src="https://web-chat.nativechat.com/2.21.0/sdk/nativechat.js"></script>
-<link href="https://web-chat.nativechat.com/2.21.0/sdk/nativechat.css" rel="stylesheet" type="text/css">
+<script src="https://web-chat.nativechat.com/3.1.0/sdk/nativechat.js"></script>
+<link href="https://web-chat.nativechat.com/3.1.0/sdk/nativechat.css" rel="stylesheet" type="text/css">
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -50,8 +50,9 @@
             chatSettings.session.context = {
                 insight: {
                     apiKey: window.DataIntelligenceSubmitScript._client.apiKey,
-                    datasource: window.DataIntelligenceSubmitScript._client.source,
-                    subject: window.DataIntelligenceSubmitScript._client.sentenceClient.subjectKey
+                    dataSource: window.DataIntelligenceSubmitScript._client.source,
+                    subject: window.DataIntelligenceSubmitScript._client.sentenceClient.subjectKey,
+                    apiServerUrl: window.DataIntelligenceSubmitScript._client.apiServerUrl
                 }
             };
         }

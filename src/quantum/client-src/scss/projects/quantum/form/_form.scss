@@ -1,0 +1,47 @@
+@use "settings";
+
+.qu-form {
+
+    &.-gray {
+        font-size: settings.$label-font-size;
+        font-weight: settings.$label-font-weight;
+        background: settings.$background-gray;
+        opacity: .93;
+        border-radius: settings.$form-border-radius;
+        border: none;
+        padding: 20px;
+
+        label,
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            font-size: inherit;
+        }
+
+        textarea {
+            min-height: 90px;
+        }
+
+        .btn {
+            background: settings.$button-background;
+            color: settings.$button-color;
+            border: none;
+            font-size: settings.$button-font-size;
+            font-weight: inherit;
+            margin-top: 15px;
+            width: 100%;
+
+            &:hover {
+                background: settings.$button-background;
+                color: settings.$button-color;
+                opacity: .8;
+            }
+        }
+    }
+
+    &.-w-auto-button .btn {
+        width: auto !important;
+    }
+}

@@ -18,7 +18,9 @@ The RestSdk works with the **IRestClient** interface and can be used through DI.
 * DeleteItem
 * CreateItem
 
-In order to register the IRestClient through DI in your custom dotnet core project, you can use the following code:
+In order to register the IRestClient through DI in your **custom** dotnet core project, you can use the following code:
+
+**This is automatically done for the Sitefinity .NET Core Renderer projects**
 
 ``` C#
 
@@ -49,12 +51,11 @@ services.AddScoped<IRestClient>((x) =>
 
 ```
 
-**This is automatically done for the Sitefinity .NET Core Renderer projects**
-
-
 ### Initialization
 
 Before usage the IRestClient must be initialized by calling the function Init:
+
+**This is automatically done for widgets in the Sitefinity .NET Core Renderer projects. For any custom controller implementations the bellow code must be executed.**
 
 ``` C#
 
@@ -65,7 +66,6 @@ await restClient.Init(new RequestArgs());
 
 ```
 
-**This is automatically done for the Sitefinity .NET Core Renderer projects**
 
 ## The SdkItem class and ISdkItem interface
 The **SdkItem** class is the base class for working with the **IRestClient** interface and Sitefinity content. It holds the following signature:
@@ -637,7 +637,7 @@ public static Task<CollectionResponse<T>> GetItems<T>(this IRestClient restClien
 
 ## Projection of items
 
-To control the returned fields (both related and non-related) from the service, the **Fields** property is used for both getting a single item and a collection of items. The fields are passed as a comma separated list of values. E.g.
+To control the returned fields (**related items, related media** and non-related fields) from the service, the **Fields** property is used for both getting a single item and a collection of items. The fields are passed as a comma separated list of values. E.g.
 
 ``` C#
 

@@ -14,6 +14,7 @@ Follow the instructions [here](./RestSDK.md)
 * all-properties - for creating designers
 * blazor-dev-tools - for integrating Telerik UI for blazor components in the .Net ViewComponent widgets
 * blazor - for integrating blazor components in the .Net ViewComponent widgets
+* captcha - for creating a captcha widget for forms by using google recaptcha v2 or v3.
 * change-grid-system - for using a TailWind, a different css grid system
 * conditional-rendering-in-editor - demonstrates how conditional rendering can be applied based on the current context - edit, preview or live
 * content-selectors - for working with Sitefinity content in the widget designers
@@ -27,7 +28,7 @@ Follow the instructions [here](./RestSDK.md)
 * localization - for localizing your Layouts and ViewComponents
 * mega-menu - for building a complex menu with dropdowns and placing custom/personalized content in those dropdowns.
 * native-chat - for creating a NativeChat widget and binding a dropdown to a custom data source.
-* quantum-sample-page - for working with the Quantum sample demo.
+* quantum - for working with the Quantum sample demo.
 * share-data-between-widgets - for sharing data between two widgets in a very early stage of the pipeline before the page is executed.
 * separate-widget-per-component - example on how to create a separate entry for each widget view inside the Select widget dialog.
 * sitefinity-data - basic example for accessing data through OData Web Services and limiting access to the Sitefinity OData service.
