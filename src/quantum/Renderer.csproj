@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'WebApp' " />
+
+
+
+  <ItemGroup>
+    <Compile Remove="client-src\scss\landing-page\**" />
+    <Compile Remove="client-src\scss\quantum\**" />
+    <Content Remove="client-src\scss\landing-page\**" />
+    <Content Remove="client-src\scss\quantum\**" />
+    <EmbeddedResource Remove="client-src\scss\landing-page\**" />
+    <EmbeddedResource Remove="client-src\scss\quantum\**" />
+    <None Remove="client-src\scss\landing-page\**" />
+    <None Remove="client-src\scss\quantum\**" />
+    <None Remove="Views\Shared\Components\LoginStatus\" />
+    <None Remove="ViewModels\LoginStatus\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\LanguageSelector\" />
+    <Folder Include="Entities\Testimonial\" />
+    <Folder Include="Models\Testimonial\" />
+    <Folder Include="ViewModels\Testimonial\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Entities\StaticSection\" />
+    <Folder Include="Views\Shared\Components\StaticSection\" />
+    <Folder Include="Entities\MegaMenu\" />
+    <Folder Include="Models\MegaMenu\" />
+    <Folder Include="ViewModels\MegaMenu\" />
+    <Folder Include="Views\Shared\Components\MegaMenu\" />
+    <Folder Include="Views\Shared\Components\LoginStatus\" />
+    <Folder Include="ViewModels\LoginStatus\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.1.7800.48306" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.1.7800.48306" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.1.7800.48306" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.1.7800.48306" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.1.7800.48306" />
+  </ItemGroup>
+</Project>

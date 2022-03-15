@@ -28,7 +28,7 @@ Follow the instructions [here](./RestSDK.md)
 * localization - for localizing your Layouts and ViewComponents
 * mega-menu - for building a complex menu with dropdowns and placing custom/personalized content in those dropdowns.
 * native-chat - for creating a NativeChat widget and binding a dropdown to a custom data source.
-* quantum-sample-page - for working with the Quantum sample demo.
+* quantum - for working with the Quantum sample demo.
 * share-data-between-widgets - for sharing data between two widgets in a very early stage of the pipeline before the page is executed.
 * separate-widget-per-component - example on how to create a separate entry for each widget view inside the Select widget dialog.
 * sitefinity-data - basic example for accessing data through OData Web Services and limiting access to the Sitefinity OData service.
