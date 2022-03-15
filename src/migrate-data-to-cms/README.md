@@ -11,8 +11,6 @@ Create a user that has sufficent permissions to create items - preferably Admin 
 
 ### When using Default authentication protocol
 
-1. Navigate to *Administration* -> *Settings* -> *Advanced* -> *Security*.
-
 1. Navigate to *Administration* -> *Settings* -> *Advanced* -> *Authentication* -> *OAuthServer* -> *AuthorizedClients*.
 
 1. Click *Create new*. For **ClientId** enter *your_client_id*, For **Secret** enter *your_client_secret*.
