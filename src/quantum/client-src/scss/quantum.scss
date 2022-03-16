@@ -1,0 +1,19 @@
+﻿@use "sass:meta";
+
+@import "projects/quantum/vendors/bootstrap";
+
+@include meta.load-css("common/trumps");
+@include meta.load-css("projects/quantum/layout");
+@include meta.load-css("projects/quantum/numeric");
+@include meta.load-css("projects/quantum/typography");
+@include meta.load-css("projects/quantum/social-share");
+@include meta.load-css("projects/quantum/nav");
+@include meta.load-css("projects/quantum/mega-menu");
+@include meta.load-css("projects/quantum/form");
+@include meta.load-css("projects/quantum/highlights");
+@include meta.load-css("projects/quantum/testimonial");
+@include meta.load-css("projects/quantum/content-widget/list");
+@include meta.load-css("projects/quantum/content-widget/details");
+@include meta.load-css("projects/quantum/slider");
+@include meta.load-css("projects/quantum/location");
+@include meta.load-css("projects/quantum/dropdown");

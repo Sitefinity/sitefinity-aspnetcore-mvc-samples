@@ -1,0 +1,202 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Progress.Sitefinity.AspNetCore
+
+@using Progress.Sitefinity.AspNetCore.ViewComponents;
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+@using Renderer.ViewModels;
+@using Progress.Sitefinity.AspNetCore.Web;
+@using Progress.Sitefinity.AspNetCore.Widgets.Models.Navigation;
+
+@inject IRenderContext renderContext;
+
+@model MegaMenuViewModel
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        section-name="Top"
+        asp-fallback-href="Scripts/bootstrap.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+<div class="@Model.NavigationViewModel.WrapperCssClass mega-menu">
+    <nav class="navbar navbar-expand-md navbar-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target='@Html.GetUniqueId("#navbar")' aria-controls='@Html.GetUniqueId("navbar")' aria-expanded="false" aria-label="Toggle Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="@Html.GetUniqueId("navbar")">
+                <ul class="navbar-nav mb-2 mb-md-0 flex-wrap">
+                    @foreach (var node in @Model.NavigationViewModel.Nodes)
+                    {
+                        await RenderRootLevelNode(node);
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    @if (this.renderContext.IsEdit)
+    {
+        await RenderSections(null);
+    }
+</div>
+
+@*Here is specified the rendering for the root level*@
+@{ async Task RenderRootLevelNode(PageViewModel node)
+    {
+        var hasSection = await HasSection(node);
+        if (hasSection || node.ChildNodes.Count > 0)
+        {
+            <li class="nav-item me-md-3 dropdown @GetClass(node)">
+                <a class="nav-link dropdown-toggle" href="#" id='@Html.GetUniqueId("navbarDropdownMenuLink" + node?.Key)' data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@node.Title</a>
+
+                @if (!hasSection)
+                {
+                    <ul class="dropdown-menu" aria-labelledby='@Html.GetUniqueId("navbarDropdownMenuLink" + node?.Key)'>
+                        @{ await RenderSubLevelsRecursive(node); }
+                    </ul>
+                }
+                else
+                {
+                    await RenderSections(node);
+                }
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link @GetClass(node)" href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+                @{ await RenderSections(node); }
+            </li>
+        }
+    }
+}
+
+@*Here is specified the rendering for all child levels*@
+@{ async Task RenderSubLevelsRecursive(PageViewModel node)
+    {
+        foreach (var childNode in node.ChildNodes)
+        {
+            if (childNode.ChildNodes.Count > 0)
+            {
+    <li class="dropdown-submenu nav-item">
+        <a class="dropdown-item nav-link @GetClass(childNode)" href="@childNode.Url" target="@childNode.LinkTarget">
+            @childNode.Title
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+            </svg>
+        </a>
+        <ul class="dropdown-menu">
+            @{ await RenderSubLevelsRecursive(childNode); }
+        </ul>
+        @{ await RenderSections(node); }
+    </li>
+            }
+            else
+            {
+    <li class="nav-item">
+        <a class="dropdown-item nav-link @GetClass(childNode)" href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+        @{ await RenderSections(node); }
+    </li>
+            }
+        }
+    }
+}
+@*Resolves the class that will be added for each node depending whether it is selected*@
+@{Microsoft.AspNetCore.Html.IHtmlContent GetClass(PageViewModel node)
+    {
+
+        if (node.IsCurrentlyOpened)
+        {
+            return Html.HtmlSanitize("active");
+        }
+
+        return null;
+    }
+}
+
+@{ async Task<bool> RenderSections(PageViewModel node)
+    {
+        // do not render the sections in edit mode this way
+        if (node != null && this.renderContext.IsEdit)
+            return false;
+
+        var style = string.Empty;
+        var renderedSection = false;
+        if (this.Model.HideSectionsInEdit && this.renderContext.IsEdit)
+            style = "display: none !important";
+
+    @if (node == null || node?.Key.ToUpperInvariant() == this.Model.FirstPageId.ToUpperInvariant())
+        {
+    @if (this.Model.FirstSectionProportions.Count > 0)
+            {
+    <section class="row mega-menu__item dropdown-menu @this.Model.FirstSectionCss" aria-labelledby='@Html.GetUniqueId("navbarDropdownMenuLink" + node?.Key)' style="@style">
+        @for (var i = 0; i < this.Model.FirstSectionProportions.Count; i++)
+                    {
+        <div class="col-md-@this.Model.FirstSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column1" + i, "Column 1." + i)">
+        </div>
+                    }
+    </section>
+
+                renderedSection = true;
+            }
+        }
+
+    @if (node == null || node?.Key.ToUpperInvariant() == this.Model.SecondPageId.ToUpperInvariant())
+        {
+    @if (this.Model.SecondSectionProportions.Count > 0)
+            {
+    <section class="row @this.Model.SecondSectionCss mega-menu__item dropdown-menu" aria-labelledby='@Html.GetUniqueId("navbarDropdownMenuLink" + node?.Key)' style="@style">
+        @for (var i = 0; i < this.Model.SecondSectionProportions.Count; i++)
+                    {
+        <div class="col-md-@this.Model.SecondSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column2" + i, "Column 2." + i)">
+        </div>
+                    }
+    </section>
+
+                renderedSection = true;
+            }
+        }
+
+    @if (node == null || node?.Key.ToUpperInvariant() == this.Model.ThirdPageId.ToUpperInvariant())
+        {
+    @if (this.Model.ThirdSectionProportions.Count > 0)
+            {
+    <section class="row @this.Model.ThirdSectionCss mega-menu__item dropdown-menu" aria-labelledby='@Html.GetUniqueId("navbarDropdownMenuLink" + node?.Key)' style="@style">
+        @for (var i = 0; i < this.Model.ThirdSectionProportions.Count; i++)
+                    {
+        <div class="col-md-@this.Model.ThirdSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column3" + i, "Column 3." + i)">
+        </div>
+                    }
+    </section>
+
+                renderedSection = true;
+            }
+        }
+
+        return renderedSection;
+    }
+}
+
+@{ async Task<bool> HasSection(PageViewModel node)
+    {
+        if (node == null || this.renderContext.IsEdit)
+            return false;
+
+
+    @if (node.Key.ToUpperInvariant() == this.Model.FirstPageId.ToUpperInvariant() && this.Model.FirstSectionProportions.Count > 0)
+        {
+            return true;
+        }
+
+    @if (node.Key.ToUpperInvariant() == this.Model.SecondPageId.ToUpperInvariant() && this.Model.SecondSectionProportions.Count > 0)
+        {
+            return true;
+        }
+
+    @if (node.Key.ToUpperInvariant() == this.Model.ThirdPageId.ToUpperInvariant() && this.Model.ThirdSectionProportions.Count > 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+}

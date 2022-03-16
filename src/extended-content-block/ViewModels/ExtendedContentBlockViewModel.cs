@@ -11,7 +11,6 @@ namespace extended_content_block.ViewModels
         {
             this.Content = source.Content;
             this.WrapperCssClass = source.WrapperCssClass;
-            this.Title = source.Title;
             this.TagName = source.TagName;
         }
 

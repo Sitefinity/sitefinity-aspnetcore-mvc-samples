@@ -1,0 +1,24 @@
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+@model Progress.Sitefinity.AspNetCore.FormWidgets.ViewModels.MultipleChoice.MultipleChoiceViewModel;
+
+<script data-sf-role='start_field_@Model.FieldName' data-sf-role-field-name='@Model.FieldName'></script>
+<fieldset data-sf-role="checkboxes-field-container" class="mb-3 @Model.CssClass"
+    aria-labelledby="choice-field-label-@Model.FieldName choice-field-description-@Model.FieldName">
+    @for (var i = 0; i < Model.Choices?.Count; i++)
+    {
+        var choiceOptionId = Html.GetUniqueId($"choiceOption-{i}-{Model.FieldName}");
+        var choiceOption = Model.Choices[i];
+
+        <div class="form-check">
+            <label class="qu-checkbox">
+                <input class="form-check-input" type="checkbox" name="@Model.FieldName" id="@choiceOptionId"
+                value="@choiceOption.Value" data-sf-role="checkboxes-field-input" checked="@choiceOption.Selected"
+                @(Model.Required ? "required" : null)>
+                <span class="qu-checkbox-checkmark"></span>
+            </label>
+            <label class="form-check-label ml-2" for="@choiceOptionId">@choiceOption.Name</label>
+        </div>
+    }
+
+</fieldset>
+<script data-sf-role='end_field_@Model.FieldName'></script>
