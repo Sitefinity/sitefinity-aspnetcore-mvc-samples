@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Samples\Media\Data\image.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Samples\Media\Data\image.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="IdentityModel" Version="4.5.0" />
 	  <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.1.7800.48306" />
   </ItemGroup>

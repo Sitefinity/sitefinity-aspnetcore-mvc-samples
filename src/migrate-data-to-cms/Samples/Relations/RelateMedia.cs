@@ -48,6 +48,8 @@ namespace migrate_data_to_cms.Samples.Relations
 
             Debug.Assert(createResponse.Photo[0] != null);
             Debug.Assert(createResponse.Photo[0].Id == fisrtImage.Id);
+
+            Console.WriteLine($"Related an image item");
         }
     }
 }

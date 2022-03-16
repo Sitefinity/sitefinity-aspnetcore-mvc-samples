@@ -8,7 +8,7 @@ namespace migrate_data_to_cms.Samples
     /// <summary>
     /// Basic sample that demonstrates how to create news items.
     /// </summary>
-    internal class BasicSample: ISample
+    internal class CreateNews: ISample
     {
         public async Task Run(IRestClient restClient)
         {
