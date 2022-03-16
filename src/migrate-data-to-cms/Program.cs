@@ -10,7 +10,13 @@ namespace migrate_data_to_cms
         {
             var restClient = RestClientFactory.GetRestClient().Result;
 
-            var samples = new ISample[] { new CreateNews(), new RelateMedia(), new CreateImage() };
+            var samples = new ISample[] 
+            { 
+                new CreateNews(), 
+                new RelateMedia(), 
+                new CreateImage(),
+                new AutoCleanUp(),
+            };
             foreach (var sample in samples)
             {
                 sample.Run(restClient).Wait();
