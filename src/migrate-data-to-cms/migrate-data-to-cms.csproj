@@ -8,6 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="IdentityModel" Version="4.5.0" />
-	<PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.0.7728.36592" />
+	  <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.1.7800.48306" />
   </ItemGroup>
 </Project>
