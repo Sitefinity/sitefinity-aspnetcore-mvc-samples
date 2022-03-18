@@ -1,6 +1,7 @@
 ﻿using migrate_data_to_cms.Samples;
 using migrate_data_to_cms.Samples.Media;
 using migrate_data_to_cms.Samples.Relations;
+using migrate_data_to_cms.Samples.Sync;
 
 namespace migrate_data_to_cms
 {
@@ -16,6 +17,7 @@ namespace migrate_data_to_cms
                 new RelateMedia(), 
                 new CreateImage(),
                 new AutoCleanUp(),
+                new SyncData(),
             };
             foreach (var sample in samples)
             {
