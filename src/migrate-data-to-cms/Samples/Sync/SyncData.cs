@@ -16,7 +16,7 @@ namespace migrate_data_to_cms.Samples.Sync
         {
             // create an item with an external id
             var externalKey = Guid.NewGuid().ToString();
-            var newsDto = new ExtendedNewsDto()
+            var newsDto = new NewsDto()
             {
                 Title = Guid.NewGuid().ToString(),
 
@@ -28,7 +28,7 @@ namespace migrate_data_to_cms.Samples.Sync
             await restClient.CreateItem(newsDto);
 
             // look for the item with the external identifier
-            var getItemsResponse = await restClient.GetItems<ExtendedNewsDto>(x => x.SystemSourceKey == externalKey);
+            var getItemsResponse = await restClient.GetItems<NewsDto>(x => x.SystemSourceKey == externalKey);
             Debug.Assert(getItemsResponse.Items.Count > 0);
 
             // assert that the correct item was fetched

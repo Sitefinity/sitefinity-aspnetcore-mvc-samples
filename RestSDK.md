@@ -450,6 +450,12 @@ var result = await restService.GetItems<NewsDto>(x => x.PublicationDate < refere
 ```
 
 ``` C#
+// filtering by dynamic fields
+var result = await restService.GetItems<NewsDto>(x => x.GetValue<string>("Title") == "searchTitle");
+
+```
+
+``` C#
 
 // filtering by more complex expressions
 var result = await restService.GetItems<NewsDto>(x => ((x.Id == item.Id) || (x.Id == item2.Id)));
