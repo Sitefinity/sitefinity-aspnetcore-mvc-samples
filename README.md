@@ -12,8 +12,8 @@ Follow the instructions [here](./RestSDK.md)
 ## Samples list
 * all-fields - for reading & rendering the different kinds of custom fields on the front-end
 * all-properties - for creating designers
-* blazor-dev-tools - for integrating Telerik UI for blazor components in the .Net ViewComponent widgets
 * blazor - for integrating blazor components in the .Net ViewComponent widgets
+* blazor-dev-tools - for integrating Telerik UI for blazor components in the .Net ViewComponent widgets
 * captcha - for creating a captcha widget for forms by using google recaptcha v2 or v3.
 * change-grid-system - for using a TailWind, a different css grid system
 * conditional-rendering-in-editor - demonstrates how conditional rendering can be applied based on the current context - edit, preview or live
@@ -23,14 +23,15 @@ Follow the instructions [here](./RestSDK.md)
 * extended-content-block - for overriding the logic of the content block. (valid for any OOB widget)
 * extended-content-list - for creating custom views for the content list widget.
 * form - for building a custom form widget to post data.
+* form-hidden-input - for building a custom form widget.
 * hello-world - for creating a hello world widget and configuring the different types of properties of the SitefinityWidget attribute.
 * language-selector - for creating a language selector dropdown widget that holds the languages of the current site.
 * localization - for localizing your Layouts and ViewComponents
 * mega-menu - for building a complex menu with dropdowns and placing custom/personalized content in those dropdowns.
 * native-chat - for creating a NativeChat widget and binding a dropdown to a custom data source.
 * quantum - for working with the Quantum sample demo.
-* share-data-between-widgets - for sharing data between two widgets in a very early stage of the pipeline before the page is executed.
 * separate-widget-per-component - example on how to create a separate entry for each widget view inside the Select widget dialog.
+* share-data-between-widgets - for sharing data between two widgets in a very early stage of the pipeline before the page is executed.
 * sitefinity-data - basic example for accessing data through OData Web Services and limiting access to the Sitefinity OData service.
 * sitefinity-data-complex - a more complex example for accessing and filtering data through OData Web Services
 * sitefinity-data-taxa-filter - an example on how to filter items by selected taxons

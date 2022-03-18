@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Progress.Sitefinity.AspNetCore;
+using Progress.Sitefinity.AspNetCore.FormWidgets;
 
 namespace starter_template
 {
@@ -19,6 +20,7 @@ namespace starter_template
         {
             services.AddSitefinity();
             services.AddViewComponentModels();
+            services.AddFormViewComponentModels();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
