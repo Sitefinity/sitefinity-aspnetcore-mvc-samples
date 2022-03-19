@@ -18,10 +18,10 @@ namespace migrate_data_to_cms
             // enter the required information in the SitefinityConfig class.
             var config = new SitefinityConfig()
             {
-                ClientId = "iris",
-                ClientSecret = "secret",
-                Username = "admin@test.test",
-                Password = "admin@2",
+                ClientId = "your_client_id",
+                ClientSecret = "your_client_secret",
+                Username = "your_username",
+                Password = "your_password",
                 Url = "http://localhost/api/default/" // forwardslash at the end is important
             };
 
