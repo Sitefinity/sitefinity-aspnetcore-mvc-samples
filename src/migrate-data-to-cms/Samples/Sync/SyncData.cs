@@ -10,7 +10,7 @@ namespace migrate_data_to_cms.Samples.Sync
     /// Basic sample that demonstrates how to sync news items periodically from an external system.
     /// Valid from 14.2 onwards
     /// </summary>
-    internal class SyncData: ISample
+    internal class SyncData : ISample
     {
         public async Task Run(IRestClient restClient)
         {
