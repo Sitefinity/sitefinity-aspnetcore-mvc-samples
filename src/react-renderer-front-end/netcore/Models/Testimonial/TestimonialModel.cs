@@ -32,7 +32,7 @@ namespace SandboxWebApp.Models.Testimonial
         /// <returns>The generated view models.</returns>
         public async Task<IList<ItemViewModel>> GetViewModels(TestimonialEntity entity)
         {
-            var response = await this.service.GetItems<TestimonialItem>(entity.Testimonials, new GetAllArgs() { Fields = new List<string>() { "Id", "Photo", "TestimonialAuthor", "Quote", "Company", "JobTitle" } }).ConfigureAwait(true);
+            var response = await this.service.GetItems<TestimonialItem>(entity.Testimonials, new GetAllArgs() { Fields = new List<string>() { "Photo", "TestimonialAuthor", "Quote", "Company", "JobTitle" } }).ConfigureAwait(true);
             return response.Items.Select(x => this.GetItemViewModel(x)).ToArray();
         }
 
