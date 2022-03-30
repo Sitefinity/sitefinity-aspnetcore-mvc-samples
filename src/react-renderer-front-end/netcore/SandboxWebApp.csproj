@@ -4,27 +4,11 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
-
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="ViewComponents\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="wwwroot\js\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="6.0.1" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -41,10 +25,5 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>
   </ItemGroup>
-  <PropertyGroup>
-    <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
-    <AspNetCoreModuleHostingModel>inprocess</AspNetCoreModuleHostingModel>
-    <UserSecretsId>c30c6c61-8e1a-45af-9632-f0fb6c089e06</UserSecretsId>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'HttpOnly' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'WebApp' " />
 </Project>
