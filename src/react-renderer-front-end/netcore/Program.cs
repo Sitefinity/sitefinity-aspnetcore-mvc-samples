@@ -1,41 +1,39 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Progress.Sitefinity.AspNetCore;
+using Progress.Sitefinity.AspNetCore.FormWidgets;
+using SandboxWebApp.Models.Testimonial;
 
-namespace SandboxWebApp
+var builder = WebApplication.CreateBuilder(args);
+
+// add sitefinity related services
+builder.Services.AddScoped<ITestimonialModel, TestimonialModel>();
+builder.Services.AddSitefinity();
+builder.Services.AddViewComponentModels();
+builder.Services.AddFormViewComponentModels();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
 {
-    /// <summary>
-    /// The Program file.
-    /// </summary>
-    public sealed class Program
-    {
-        /// <summary>
-        /// The Main method.
-        /// </summary>
-        /// <param name="args">The arguments.</param>
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
-
-        /// <summary>
-        /// Creates the host builder.
-        /// </summary>
-        /// <param name="args">The arguments.</param>
-        /// <returns>The web host builder.</returns>
-        public static IHostBuilder CreateHostBuilder(string[] args)
-        {
-            return Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder
-                .UseStartup<Startup>();
-            }).ConfigureLogging((hostContext, loggingProvider) =>
-            {
-                loggingProvider.ClearProviders();
-                loggingProvider.AddConsole();
-                loggingProvider.AddAzureWebAppDiagnostics();
-            });
-        }
-    }
+    app.UseDeveloperExceptionPage();
 }
+else
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseStaticFiles();
+app.UseRouting();
+app.UseSitefinity();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapSitefinityEndpoints();
+});
+
+app.Run();
