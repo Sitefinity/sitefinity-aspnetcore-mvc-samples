@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 const Testimonial = props => {
   ReactDOM.render(
     <div key={props.Id}>
-      <h2>from React</h2>
       <p>{props.Quote}</p>
       <div>
         {props.ThumbnailUrl ? (
