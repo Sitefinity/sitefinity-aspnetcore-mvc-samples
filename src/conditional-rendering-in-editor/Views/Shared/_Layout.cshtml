@@ -16,14 +16,10 @@
     @Html.RenderSeoMeta(this.Model)
 
     <environment include="Development">
-        <link rel="stylesheet" href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("Styles/bootstrap.css")" />
+          <link rel="stylesheet" href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("Styles/bootstrap.css")" />
     </environment>
     <environment exclude="Development">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-              crossorigin="anonymous"
-              asp-fallback-href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("Styles/bootstrap.min.css")"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+       <link rel="stylesheet" href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("Styles/bootstrap.min.css")" />
     </environment>
 
     @* Scripts for the OOB Sitefinity widgets *@
