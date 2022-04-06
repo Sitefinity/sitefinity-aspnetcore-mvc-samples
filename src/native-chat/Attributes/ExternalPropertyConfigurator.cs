@@ -52,7 +52,7 @@ namespace native_chat.Attributes
 
             foreach (var bot in bots)
             {
-                choices.Add(new ChoiceValueDto(bot.Name, bot.Id));
+                choices.Add(new ChoiceValueDto(bot.DisplayName ?? bot.Name, bot.Id));
             }
 
             return JsonConvert.SerializeObject(choices);
