@@ -1,4 +1,3 @@
-/react/node_modules
-/react/build
+/angular/node_modules
 /netcore/bin
 /netcore/obj
