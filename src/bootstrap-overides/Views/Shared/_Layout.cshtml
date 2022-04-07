@@ -1,0 +1,26 @@
+﻿@model Progress.Sitefinity.AspNetCore.Models.PageModel
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Progress.Sitefinity.AspNetCore
+
+@inject Progress.Sitefinity.AspNetCore.Web.IRequestContext requestContext;
+
+<!DOCTYPE html>
+<html id="html" lang="@requestContext.Culture">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    @Html.RenderSeoMeta(this.Model)
+
+    <link rel="stylesheet" href="~/css/project.min.css" />
+</head>
+
+<body class="container-fluid">
+    @RenderSection("Scripts")
+</body>
+
+</html>
