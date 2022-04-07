@@ -15,10 +15,9 @@ export class AppModule {
   }
 
   ngDoBootstrap(){
-    // Convert `PopupComponent` to a custom element.
     const elementConfig: NgElementConfig = { injector: this.injector };
-    const PopupElement = createCustomElement(TestimonialComponent, elementConfig);
+    const TestimonialElement = createCustomElement(TestimonialComponent, elementConfig);
     // Register the custom element with the browser.
-    customElements.define('sf-testimonial', PopupElement);
+    customElements.define('sf-testimonial', TestimonialElement);
   }
 }
