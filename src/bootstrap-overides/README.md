@@ -1,9 +1,9 @@
 # Customize Bootstrap variables
 
 ## Using npm scripts to generate CSS bundle
-1. Navigate to `clienr-src` and open terminal
+1. Navigate to `client-src` and open terminal
 2. Run `npm i` - this will install all the needed dependencies
-3. Run `npm start` - this will generate CSS bundle that contains the **Bootstrap** and **Sitefinity** (`_sitefinity.scss`) stylesheets. The bundle is called `project[.min].css` and it is located inside `wwwroot` direcotry. Also this script will what the `.scss` files inside `client-src/scss` and if changed will generate new CSS bundle.
+3. Run `npm start` - this will generate CSS bundle that contains the **Bootstrap** and **Sitefinity** (`_sitefinity.scss`) stylesheets. The bundle is called `project[.min].css` and it is located inside `wwwroot` direcotry. Also this script will watch the `.scss` files inside `client-src/scss` and will generate new CSS bundle if changed.
 
 ## Below are shown 2 options to overide the !default Bootstrap variables
 ### Using Dart sass modules
