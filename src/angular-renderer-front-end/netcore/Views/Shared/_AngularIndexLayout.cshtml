@@ -1,0 +1,25 @@
+@using Progress.Sitefinity.AspNetCore.Web;
+@inject IRenderContext renderContext;
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>React App</title>
+        <environment include="Development">
+            <link rel="stylesheet" href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("styles/bootstrap.css")" />
+            <link rel="stylesheet" href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("styles/main.css")" />
+        </environment>
+        <environment exclude="Development">
+             <link rel="stylesheet" href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("styles/bootstrap.min.css")" />
+            <link rel="stylesheet" href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("styles/main.min.css")" />
+        </environment>
+
+        <script src="runtime.js" type="module"></script>
+        <script src="polyfills.js" type="module"></script>
+        <script src="main.js" type="module"></script>
+    </head>
+    <body>
+        @RenderSection("Scripts")
+    </body>
+</html>
