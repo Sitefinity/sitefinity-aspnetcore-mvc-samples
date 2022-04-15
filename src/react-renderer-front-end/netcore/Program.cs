@@ -4,12 +4,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.FormWidgets;
-using SandboxWebApp.Models.Testimonial;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // add sitefinity related services
-builder.Services.AddScoped<ITestimonialModel, TestimonialModel>();
 builder.Services.AddSitefinity();
 builder.Services.AddViewComponentModels();
 builder.Services.AddFormViewComponentModels();

@@ -1,4 +1,4 @@
-﻿namespace SandboxWebApp.ViewModels.Testimonial
+﻿namespace SandboxWebApp.ViewComponents.Testimonial
 {
     /// <summary>
     /// The view model.
