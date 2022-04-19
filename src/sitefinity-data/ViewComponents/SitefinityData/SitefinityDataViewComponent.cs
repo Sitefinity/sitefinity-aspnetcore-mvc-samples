@@ -40,6 +40,8 @@ namespace sitefinity_data.SitefinityData
         {
             // when using the OData client, the url is automatically prefixed with the value of web the service and the sitefinity instance url
             // we use an expand the get the related image
+            // for more complex queries checkout this sample doc:
+            // https://github.com/Sitefinity/sitefinity-aspnetcore-mvc-samples/blob/master/RestSDK.md
 
             var getAllArgs = new GetAllArgs
             {

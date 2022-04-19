@@ -36,8 +36,6 @@ Follow the instructions [here](./RestSDK.md)
 * separate-widget-per-component - example on how to create a separate entry for each widget view inside the Select widget dialog.
 * share-data-between-widgets - for sharing data between two widgets in a very early stage of the pipeline before the page is executed.
 * sitefinity-data - basic example for accessing data through OData Web Services and limiting access to the Sitefinity OData service.
-* sitefinity-data-complex - a more complex example for accessing and filtering data through OData Web Services
-* sitefinity-data-taxa-filter - an example on how to filter items by selected taxons
 * sitefinity-insight - for submitting custom data to sitefinity insight connector
 * starter-template - for basing your project with everything set-upped.
 * widget-library - for building your custom distributed widget libraries and templates. Additionally this sample includes information on how to add your own custom scripts alongside the views.
