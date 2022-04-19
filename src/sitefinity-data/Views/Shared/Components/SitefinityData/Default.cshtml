@@ -1,4 +1,5 @@
-@model IList<sitefinity_data.ViewModels.SitefinityData.ItemViewModel>
+@using Progress.Sitefinity.RestSdk.Dto
+@model IList<Progress.Sitefinity.RestSdk.Dto.SdkItem>
 
 <h1>News items</h1>
 
@@ -6,10 +7,18 @@
 {
     <ul>
         <li>
-            @item.Title
-            @if (item.ThumbnailUrl != null)
+            @(item.GetValue<string>("Title"))
+            @{
+                string thumbnailUrl = null;
+                if (item.TryGetValue<SdkItem[]>("Thumbnail", out SdkItem[] thumbnails) && thumbnails.Length > 0)
+                {
+                    thumbnailUrl = thumbnails[0].GetValue<string>("ThumbnailUrl");
+                }
+                
+            }
+            @if (thumbnailUrl != null)
             {
-                <img src="@item.ThumbnailUrl" />
+                <img src="@thumbnailUrl" />
             }
         </li>
     </ul>
