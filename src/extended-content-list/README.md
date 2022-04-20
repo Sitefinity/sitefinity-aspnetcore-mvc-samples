@@ -1,11 +1,11 @@
 # Extend Content List Widget
-An example on how to extend the views of the content list widget by providing an implementation for a [custom list view](./Views/Shared/Components/ContentList/CardsListCustom.cshtml) and a [custom details view](./Views/Shared/Components/ContentList/Details.Custom.cshtml)
+An example on how to extend the views of the content list widget by providing an implementation for a [custom list view](./Views/Shared/Components/SitefinityContentList/CardsListCustom.cshtml) and a [custom details view](./Views/Shared/Components/SitefinityContentList/Details.Custom.cshtml)
 
 ## List Views
 
 To define your own set of detail views in the code, you must do the following:
 
-1. Create a .cshtml file under Views/Shared/Componenents/ContentList/ directory in the root web app (the directory structure must be manually created if not already present).
+1. Create a .cshtml file under Views/Shared/Componenents/SitefinityContentList/ directory in the root web app (the directory structure must be manually created if not already present).
 
 2. The file name must not start or end with “Details”
 
@@ -18,10 +18,10 @@ Additionally, the ContentListViewModel has a property called “Items” which c
 
 ## ViewsMetadata.json
 
-The ViewsMetadata.json file must reside in the directory "Views/Shared/Componenents/ContentList/ViewsMetadata.json". It contains all of the mappings between views and their coresspnding metadata.
+The ViewsMetadata.json file must reside in the directory "Views/Shared/Componenents/SitefinityContentList/ViewsMetadata.json". It contains all of the mappings between views and their coresspnding metadata.
 
 ### Mappings
-The metadata for mappings serves the purpose to create reusable views that can be used across diffrent content types. This is achieved by providing a list of fields and their types as a json entry in the ViewsMetadata.json file. Thus when selecting different content types, each of the provided fields by the view can be mapped to a coresponding field of the selected content type. An example can be found [here](./Views/Shared/Componenents/ContentList/ViewsMetadata.json)
+The metadata for mappings serves the purpose to create reusable views that can be used across diffrent content types. This is achieved by providing a list of fields and their types as a json entry in the ViewsMetadata.json file. Thus when selecting different content types, each of the provided fields by the view can be mapped to a coresponding field of the selected content type. An example can be found [here](./Views/Shared/Componenents/SitefinityContentList/ViewsMetadata.json)
 
 The supported field types are the following:
 * ShortText - for string fields
@@ -43,7 +43,12 @@ All of these fields are almost a 1:1 mapping with the custom fields dialog in th
 
 To define your own set of detail views in the code, you must do the following:
 
-1. Create a .cshtml file under Views/Shared/Componenents/ContentList/ directory in the root web app (the directory structure must be manually created if not already present).
+1. Create a .cshtml file under Views/Shared/Componenents/Sitefinity
+  
+  
+  
+  
+  / directory in the root web app (the directory structure must be manually created if not already present).
 
 2. The file name must be in the format “Details.{customname}.cshtml”
 
