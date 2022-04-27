@@ -38,3 +38,4 @@ Follow the instructions [here](./RestSDK.md)
 * sitefinity-insight - for submitting custom data to sitefinity insight connector
 * starter-template - for basing your project with everything set-upped.
 * widget-library - for building your custom distributed widget libraries and templates. Additionally this sample includes information on how to add your own custom scripts alongside the views.
+* tabs-section widget - for building custom widget that can be used to create 2 tabs layout
