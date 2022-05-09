@@ -16,10 +16,10 @@
     @Html.RenderSeoMeta(this.Model)
 
     <environment include="Development">
-          <link rel="stylesheet" href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("Styles/bootstrap.css")" />
+        <link rel="stylesheet" href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("Styles/bootstrap.css")" />
     </environment>
     <environment exclude="Development">
-       <link rel="stylesheet" href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("Styles/bootstrap.min.css")" />
+        <link rel="stylesheet" href="@Progress.Sitefinity.AspNetCore.Constants.PrefixRendererUrl("Styles/bootstrap.min.css")" />
     </environment>
 
     @* Scripts for the OOB Sitefinity widgets *@
