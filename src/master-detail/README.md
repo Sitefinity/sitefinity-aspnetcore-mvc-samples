@@ -1,4 +1,4 @@
-# Shared data between widgets
+# Master - detail sample
 
 This project serves the purpose of providing an example for a custom implementation of a master/detail widget where the data comes from an external data source.
 
