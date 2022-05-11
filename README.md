@@ -28,6 +28,7 @@ Follow the instructions [here](./RestSDK.md)
 * hello-world - for creating a hello world widget and configuring the different types of properties of the SitefinityWidget attribute.
 * language-selector - for creating a language selector dropdown widget that holds the languages of the current site.
 * localization - for localizing your Layouts and ViewComponents
+* master-detail - for implementing a custom master/detail navigation from an external data source.
 * mega-menu - for building a complex menu with dropdowns and placing custom/personalized content in those dropdowns.
 * native-chat - for creating a NativeChat widget and binding a dropdown to a custom data source.
 * quantum - for working with the Quantum sample demo.
