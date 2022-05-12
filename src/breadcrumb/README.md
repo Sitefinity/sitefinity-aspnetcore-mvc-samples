@@ -1,5 +1,5 @@
-# Language selector widget
-An example on how to create a language selector widget.
+# Breadcrumb widget
+An example on how to create a breadcrumb widget.
 
-This example demonstrates how to create a ViewComponent that will be used to display a language selector dropdown.
+This example demonstrates how to create a ViewComponent that will be used to display a breadcrumb.
 
