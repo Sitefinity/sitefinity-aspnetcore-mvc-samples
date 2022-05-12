@@ -21,7 +21,7 @@ namespace master_detail
             if (this.restClient == null)
             {
                 var httpClient = this.httpClientFactory.CreateClient("system");
-                httpClient.BaseAddress = new Uri("http://localhost:8080/api/default/");
+                httpClient.BaseAddress = new Uri("http://yourothersitefinitywebsiteurl/api/default/");
 
                 var restClient = new RestClient(httpClient);
                 await restClient.Init(new Progress.Sitefinity.RestSdk.RequestArgs());
