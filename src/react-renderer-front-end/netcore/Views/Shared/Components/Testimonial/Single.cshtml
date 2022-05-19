@@ -1,0 +1,10 @@
+@using SandboxWebApp.ViewComponents.Testimonial;
+@using Newtonsoft.Json;
+
+@model IList<ItemViewModel>
+
+@if (this.Model.Count > 0)
+{
+    var item = this.Model[0];
+    <div data-sfwidget="Testimonial">@JsonConvert.SerializeObject(item)</div>
+}

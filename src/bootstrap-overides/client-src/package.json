@@ -1,0 +1,22 @@
+{
+    "name": "bootstrap-overides",
+    "version": "1.0.0",
+    "description": "Sample for how to overide Bootstrap variables project for Sitefinity .Net core renderer",
+    "scripts": {
+        "start": "run-s build watch",
+        "build": "run-s scss copy:favicon",
+        "scss": "sass --style=expanded scss/project.scss ../wwwroot/css/project.css && sass --style=compressed scss/project.scss ../wwwroot/css/project.min.css",
+        "watch": "onchange \"scss/**/*.scss\" -- npm run scss",
+        "copy:favicon": "copyfiles favicon.ico ../wwwroot"
+    },
+    "author": "Sitefinity",
+    "devDependencies": {
+        "copyfiles": "2.4.1",
+        "npm-run-all": "4.1.5",
+        "onchange": "7.1.0",
+        "sass": "1.50.0"
+    },
+    "dependencies": {
+        "bootstrap": "5.1.3"
+    }
+}

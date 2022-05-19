@@ -1,0 +1,1 @@
+This is where all the views for the view components are placed. 

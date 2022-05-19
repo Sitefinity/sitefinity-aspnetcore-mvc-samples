@@ -1,0 +1,20 @@
+@using Progress.Sitefinity.AspNetCore.Web;
+@using Progress.Sitefinity.RestSdk.Client;
+@using Progress.Sitefinity.RestSdk.Dto;
+@using master_detail;
+
+@model CollectionResponse<EventDto>
+
+<ul>
+    @foreach (var eventItem in this.Model.Items)
+    {
+        <li>
+            @{
+                var path = this.Context.Request.Path.Value;
+                var eventUrlInDetail = $"{path}/{ContentViewComponent.DetailItemPrefix}{eventItem.Id}";
+            }
+
+            <a href="@eventUrlInDetail">@eventItem.Title</a>
+        </li>
+    }
+</ul>

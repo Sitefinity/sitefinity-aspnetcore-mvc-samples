@@ -1,0 +1,66 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Progress.Sitefinity.AspNetCore
+
+@using Progress.Sitefinity.AspNetCore.ViewComponents;
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+@using Progress.Sitefinity.AspNetCore.Web;
+@using tabs_section.ViewModels;
+
+@inject IRenderContext renderContext;
+
+@model TabsSectionViewModel
+
+<environment include="Development">
+    <script src="Scripts/bootstrap.bundle.min.js" section-name="Top" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="Scripts/accordion.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+</environment>
+<environment exclude="Development">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            section-name="Top"
+            asp-fallback-href="Scripts/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="Scripts/accordion.min.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+</environment>
+
+@{
+    var firstTabId = Html.GetUniqueId("firstTab");
+    var secondTabId = Html.GetUniqueId("secondTab");
+}
+
+
+@if (!(string.IsNullOrEmpty(Model.FirstTabLabel) && string.IsNullOrEmpty(Model.SecondTabLabel)))
+{
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#@firstTabId" type="button" data-bs-toggle="tab">@Model.FirstTabLabel</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#@secondTabId" type="button" data-bs-toggle="tab">@Model.SecondTabLabel</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane container active" id="@firstTabId">
+            <section class="row @this.Model.FirstTabSectionCss">
+                @for (var i = 0; i < this.Model.FirstTabSectionProportions.Count; i++)
+                {
+                    <div class="col-md-@this.Model.FirstTabSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column1" + i, "Column 1." + i)">
+                    </div>
+                }
+            </section>
+        </div>
+        <div class="tab-pane container" id="@secondTabId">
+            <section class="row @this.Model.SecondTabSectionCss">
+                @for (var i = 0; i < this.Model.SecondTabSectionProportions.Count; i++)
+                {
+                    <div class="col-md-@this.Model.SecondTabSectionProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext("Column2" + i, "Column 2." + i)">
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+}
+else
+{
+    <div>No tabs selected</div>
+}

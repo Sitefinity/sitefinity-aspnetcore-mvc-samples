@@ -1,0 +1,25 @@
+@using SandboxWebApp.ViewComponents.Testimonial;
+
+@model IList<ItemViewModel>
+
+@for (var i = 0; i < this.Model.Count; i++)
+{
+    var item = this.Model[i];
+
+    <div class="qu-txt-white @(i != 0 ? "mt-5" : "")">
+        <p>ID: @item.Id</p>
+        <div class="qu-icon-quote"></div>
+        <p class="qu-txt-medium mb-4">@item.Quote</p>
+
+        <div class="media align-items-center">
+            @if (item.ThumbnailUrl != null)
+            {
+                <img class="mr-2 rounded-circle" width="50" height="50" src="@item.ThumbnailUrl" alt="Profile picture of @item.Title" />
+            }
+            <div class="media-body">
+                <h4 class="mb-0">@item.Title</h4>
+                <b class="qu-txt-uppercase">@item.Company</b>
+            </div>
+        </div>
+    </div>
+}

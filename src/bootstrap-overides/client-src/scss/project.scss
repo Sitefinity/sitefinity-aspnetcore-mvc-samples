@@ -1,0 +1,49 @@
+// Load the whole Bootstrap stylesheet
+/*#region Dart sass modules */
+// Bootstrap stylesheet
+@use "../node_modules/bootstrap/scss/bootstrap.scss" with (
+    $body-bg: #789,
+    $grid-breakpoints: (
+        xs: 0,
+        sm: 371px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px
+    )
+);
+// Sitefinity stylesheet
+@use "sitefinity/sitefinity";
+/*#endregion Dart sass modules */
+
+// Or load only what you need. Note that you should use @import as shown in the Bootstrap documentation https://getbootstrap.com/docs/5.0/customize/sass/
+/*#region @Import Sass */
+/*
+// Required
+@import "../node_modules/bootstrap/scss/functions";
+
+// Default variable overrides
+$body-bg: #789;
+$grid-breakpoints: (
+    xs: 0,
+    sm: 371px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+);
+
+// Required
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
+// Optional Bootstrap components here
+@import "../node_modules/bootstrap/scss/root";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+// etc
+        
+// Sitefinity stylesheet
+@import "sitefinity/sitefinity";
+*/
+/*#endregion @Import Sass */

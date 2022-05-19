@@ -1,0 +1,10 @@
+<div *ngIf="testimonial">
+  <p>{{testimonial.Quote}}</p>
+  <div>
+    <img *ngIf="testimonial.ThumbnailUrl" width="50" height="50" src={{testimonial.ThumbnailUrl}} alt="Test" />
+    <div>
+      <h4>{{testimonial.Title}}</h4>
+      <b>{{testimonial.Company}}</b>
+    </div>
+  </div>
+</div>
