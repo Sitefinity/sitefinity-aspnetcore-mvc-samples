@@ -11,7 +11,7 @@
         <li>
             @{
                 var path = this.Context.Request.Path.Value;
-                var eventUrlInDetail = $"{path}/{ContentViewComponent.DetailItemPrefix}{eventItem.Id}";
+                var eventUrlInDetail = $"{path}/{ContentViewComponent.DetailItemPrefix}{eventItem.ItemDefaultUrl}";
             }
 
             <a href="@eventUrlInDetail">@eventItem.Title</a>
