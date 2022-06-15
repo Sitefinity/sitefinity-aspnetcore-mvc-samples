@@ -71,20 +71,15 @@ General information about tag helpers can be found here: https://docs.microsoft.
 - sets the classes used to align the buttons in Button widget
 
 **Left** - aligns buttons to the left
-
 **Center** - centers the buttons
-
 **Right** - aligns buttons to the right
-
 **Justify** - positions the buttons in the left and the right side respectively 
 
 ### ButtonClasses
 - a list of all button variations, which can be applied to the primary in the secondary buttons in the CTA widget. Each variation is represented by an object with the following properties:
 
  **Key** - The unique identifier of the button variation, used by the system
-
  **Title** - The title of the button variation, displayed in the
-
  **Value** - css classes applied to the primary buttons
 
 ### OffsetClasses
