@@ -51,3 +51,86 @@ We pass those as attributes of the div element that represend the column wrapper
 One thing to keep in mind is that property names in tag helpers follow pascall case naming convention in the class, but kebap case when used in the html. 
 
 General information about tag helpers can be found here: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-3.1 
+
+## appsettings.json Styling documentation
+- used to configure preferred css classes for different styling options
+
+###Root properties
+
+**CssGridSystemColumnCount** - the number of grid columns in the grid system
+
+**VideoBackgroundClass** - sets the background video class of the section widget
+
+**ImageBackgroundClass** - sets the background image class of the section widget
+
+**DefaultPadding** - sets the default padding size for all widget designers, can be None, S, M, L
+
+**DefaultMargin** - sets the default margin size for all widget designers, can be None, S, M, L
+
+### AlignmentClasses
+- sets the classes used to align the buttons in Button widget
+
+**Left** - aligns buttons to the left
+
+**Center** - centers the buttons
+
+**Right** - aligns buttons to the right
+
+**Justify** - positions the buttons in the left and the right side respectively 
+
+### ButtonClasses
+- a list of all button variations, which can be applied to the primary in the secondary buttons in the CTA widget. Each variation is represented by an object with the following properties:
+
+ **Key** - The unique identifier of the button variation, used by the system
+
+ **Title** - The title of the button variation, displayed in the
+
+ **Value** - css classes applied to the primary buttons
+
+### OffsetClasses
+
+- all offset (padding, margin) classes used by the widgets
+
+ **PaddingTopNONE** - class that sets no padding top
+ **PaddingTopS** - class that sets S size padding top 
+ **PaddingTopM** - class that sets M size padding top
+ **PaddingTopL** - class that sets L size padding top
+ **PaddingLeftNONE** - class that sets no padding left
+ **PaddingLeftS** - class that sets S size padding left
+ **PaddingLeftM"** - class that sets M size padding left
+ **PaddingLeftL** - class that sets L size padding left
+ **PaddingBottomNONE** - class that sets no padding bottom
+ **PaddingBottomS** - class that sets S size padding bottom
+ **PaddingBottomM** - class that sets M size padding bottom
+ **PaddingBottomL** - class that sets L size padding bottom
+ **PaddingRightNONE** - class that sets no padding right
+ **PaddingRightS** - class that sets S size padding right
+ **PaddingRightM** - class that sets M size padding right
+ **PaddingRightL** - class that sets L size padding right
+ **MarginTopNONE** - class that sets no margin top
+ **MarginTopS"** - class that sets S size margin top
+ **MarginTopM"** - class that sets M size margin top
+ **MarginTopL"** - class that sets L size margin top
+ **MarginLeftNONE** - class that sets no margin left
+ **MarginLeftS** - class that sets S size margin left
+ **MarginLeftM** - class that sets M size margin left
+ **MarginLeftL** - class that sets L size margin left
+ **MarginBottomNONE** - class that sets no margin bottom
+ **MarginBottomS** - class that sets S size margin bottom
+ **MarginBottomM** - class that sets M size margin bottom
+ **MarginBottomL** - class that sets L size margin bottom
+ **MarginRightNONE** - class that sets no margin right
+ **MarginRightS** - class that sets S size margin right
+ **MarginRightM** - class that sets M size margin right
+ **MarginRightL** - class that sets L size margin right
+
+### FieldSizeClasses
+- set of predefined form field widths 
+
+ **WidthNONE** - class that sets no width
+
+ **WidthS** - class that sets S size width
+
+ **WidthM** - class that sets M size width
+
+ **WidthL** - class that sets L size width
