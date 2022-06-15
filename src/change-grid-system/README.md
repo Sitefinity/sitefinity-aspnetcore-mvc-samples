@@ -128,9 +128,6 @@ General information about tag helpers can be found here: https://docs.microsoft.
 - set of predefined form field widths 
 
  **WidthNONE** - class that sets no width
-
  **WidthS** - class that sets S size width
-
  **WidthM** - class that sets M size width
-
  **WidthL** - class that sets L size width
