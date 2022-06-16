@@ -68,7 +68,7 @@ General information about tag helpers can be found here: https://docs.microsoft.
 **DefaultMargin** - sets the default margin size for all widget designers, can be None, S, M, L
 
 ### AlignmentClasses
-- sets the classes used to align the buttons in Button widget
+- sets the classes used to align the buttons in the CTA widget
 
 **Left** - aligns buttons to the left
 **Center** - centers the buttons
