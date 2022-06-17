@@ -23,6 +23,8 @@ In order to override the form default layout file create a new layout cshtml fil
 
 Add a stylesheet link to your prefered css framework (in this example we're using https://tailwindcss.com/)
 
+Note that if your Web security module is turned on you need to add the tailwindcss.com domain as a Trusted source. 
+
 Now all forms will use the provided layout file instead of the default one.
 
 ## Custom template for section widget:
