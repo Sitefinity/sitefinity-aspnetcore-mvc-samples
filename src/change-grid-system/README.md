@@ -23,6 +23,8 @@ In order to override the form default layout file create a new layout cshtml fil
 
 Add a stylesheet link to your prefered css framework (in this example we're using https://tailwindcss.com/)
 
+Note that if your Web security module is turned on you need to add the tailwindcss.com domain as a Trusted source. 
+
 Now all forms will use the provided layout file instead of the default one.
 
 ## Custom template for section widget:
@@ -102,7 +104,7 @@ General information about tag helpers can be found here: https://docs.microsoft.
 
  **PaddingLeftS** - class that sets S size padding left
 
- **PaddingLeftM"** - class that sets M size padding left
+ **PaddingLeftM** - class that sets M size padding left
 
  **PaddingLeftL** - class that sets L size padding left
 
@@ -124,11 +126,11 @@ General information about tag helpers can be found here: https://docs.microsoft.
 
  **MarginTopNONE** - class that sets no margin top
 
- **MarginTopS"** - class that sets S size margin top
+ **MarginTopS** - class that sets S size margin top
 
- **MarginTopM"** - class that sets M size margin top
+ **MarginTopM** - class that sets M size margin top
 
- **MarginTopL"** - class that sets L size margin top
+ **MarginTopL** - class that sets L size margin top
 
  **MarginLeftNONE** - class that sets no margin left
 
