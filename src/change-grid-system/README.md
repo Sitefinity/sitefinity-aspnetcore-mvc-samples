@@ -57,7 +57,7 @@ General information about tag helpers can be found here: https://docs.microsoft.
 ## appsettings.json Styling documentation
 - used to configure preferred css classes for different styling options
 
-###Root properties
+### Root properties
 
 **CssGridSystemColumnCount** - the number of grid columns in the grid system
 
