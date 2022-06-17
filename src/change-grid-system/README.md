@@ -83,7 +83,6 @@ General information about tag helpers can be found here: https://docs.microsoft.
  **Value** - css classes applied to the primary buttons
 
 ### OffsetClasses
-
 - all offset (padding, margin) classes used by the widgets
 
  **PaddingTopNONE** - class that sets no padding top
@@ -120,7 +119,7 @@ General information about tag helpers can be found here: https://docs.microsoft.
  **MarginRightL** - class that sets L size margin right
 
 ### FieldSizeClasses
-- set of predefined form field widths 
+- set of predefined form field widths (set in the property editor of each form widget)
 
  **WidthNONE** - class that sets no width
  **WidthS** - class that sets S size width
