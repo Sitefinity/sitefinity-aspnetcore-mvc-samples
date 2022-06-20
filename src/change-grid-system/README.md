@@ -11,9 +11,9 @@ This example demonstrates how to:
 
 ## Custom layout:
 
-Create a new layout cshtml file in the Views/Shared directory. In the example it is called _Layout.cshtml ((the name of the layout file should contain "Layout" or "Template", so that Sitefinity recognizes it).
+Create a new layout cshtml file in the Views/Shared directory. In the example it is called _Layout.cshtml (the name of the layout file should contain "Layout" or "Template", so that Sitefinity recognizes it).
 
-Add a stylesheet link to your prefered css framework (in this example we're using https://tailwindcss.com/)
+Add a stylesheet link to your preferred css framework (in this example we're using https://tailwindcss.com/). Note: You need to add the reference as a trusted source in the Web security module, otherwise it will be blocked by Sitefinity (Administration -> Settings -> Web Security -> Trusted sources) 
 
 In Sitefinity base your page on this new _Layout template.
 
