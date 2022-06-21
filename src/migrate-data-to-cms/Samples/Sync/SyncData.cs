@@ -22,13 +22,14 @@ namespace migrate_data_to_cms.Samples.Sync
 
                 // the SystemSourceKey is special since it has an index on it and allows
                 // items to be searched/filterd by it
-                SystemSourceKey = externalKey,
             };
+
+            newsDto.SetValue<string>("SystemSourceKey", externalKey);
 
             await restClient.CreateItem(newsDto);
 
             // look for the item with the external identifier
-            var getItemsResponse = await restClient.GetItems<NewsDto>(x => x.SystemSourceKey == externalKey);
+            var getItemsResponse = await restClient.GetItems<NewsDto>(x => x.GetValue<string>("SystemSourceKey") == externalKey);
             Debug.Assert(getItemsResponse.Items.Count > 0);
 
             // assert that the correct item was fetched
