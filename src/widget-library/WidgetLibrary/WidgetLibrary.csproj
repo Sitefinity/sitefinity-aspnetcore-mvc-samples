@@ -8,8 +8,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.1.7800.48306" />
-        <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.1.7800.48306" />
-		<PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.1.7800.48306" />
+		<PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.2.7900.145" />
+        <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.2.7900.145" />
+		<PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.2.7900.145" />
 	</ItemGroup>
 </Project>

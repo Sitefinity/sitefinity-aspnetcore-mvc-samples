@@ -25,20 +25,20 @@ namespace master_detail
         {
             // get the category selector widget
             var contentViewWidget = pageModel.AllViewComponentsFlat.FirstOrDefault(x => typeof(IViewComponentContext<ContentViewEntity>).IsAssignableFrom(x.GetType()));
-            if (contentViewWidget != null && pageModel.UrlParameters.Count == 1)
+            if (contentViewWidget != null && pageModel.UrlParameters.Count > 0)
             {
                 var parameter = pageModel.UrlParameters[0];
                 if (parameter.StartsWith(ContentViewComponent.DetailItemPrefix, System.StringComparison.OrdinalIgnoreCase))
                 {
-                    var eventId = parameter.Replace(ContentViewComponent.DetailItemPrefix, string.Empty);
+                    // skip the first parameter as it is our prefix
+                    // default urls begin with "/"
+                    var eventUrl = "/" + string.Join("/", pageModel.UrlParameters.Skip(1));
                     var client = await this.restClientFactory.GetClient();
-                    var eventItem = await client.GetItem<EventDto>(new GetItemArgs()
-                    {
-                        Id = eventId
-                    });
+                    var eventItemsResult = await client.GetItems<EventDto>(x => x.ItemDefaultUrl == eventUrl);
 
-                    if (eventItem != null)
+                    if (eventItemsResult.Items.Count == 1)
                     {
+                        var eventItem = eventItemsResult.Items[0];
                         contentViewWidget.State.Add(EventPreparation.SelectedEvent, eventItem);
                         pageModel.MarkUrlParametersResolved();
                     }

@@ -18,7 +18,7 @@ namespace master_detail
     [SitefinityWidget]
     public class ContentViewComponent : ViewComponent
     {
-        internal const string DetailItemPrefix = "event-";
+        internal const string DetailItemPrefix = "events";
 
         private EventsRestClientFactory clientFactory;
 
