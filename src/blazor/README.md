@@ -21,9 +21,10 @@ The blazor framework was integrated by modifying the startup file to include the
 ``` c#
 
 /// adds the needed services
-services.AddServerSideBlazor();
+builder.Services.AddServerSideBlazor();
 
-...
+/// static files are necessary in order to be able to deliver the blazor framework scripts 
+app.UseStaticFiles();
 
 // configures the blazor endpoints
 endpoints.MapBlazorHub();

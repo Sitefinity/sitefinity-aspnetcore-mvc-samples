@@ -14,10 +14,11 @@ The blazor and telerik frameworks were integrated by modifying the startup file 
 ``` c#
 
 /// adds the needed services
-services.AddServerSideBlazor();
-services.AddTelerikBlazor();
+builder.Services.AddServerSideBlazor();
+builder.Services.AddTelerikBlazor();
 
-...
+/// static files are necessary in order to be able to deliver the blazor framework scripts 
+app.UseStaticFiles();
 
 // configures the blazor endpoints
 endpoints.MapBlazorHub();
