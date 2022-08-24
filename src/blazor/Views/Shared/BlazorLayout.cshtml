@@ -54,10 +54,20 @@
                 
                 const savedVal = window["rendererContract"];
                 window["rendererContract"] = undefined;
+
                 Blazor.start().then(() => {
-                    window["rendererContract"] = savedVal;
-                    window.dispatchEvent(new Event('contractReady'));
-                })
+                    let handle = null;
+                    window.componentRendered = function() {
+                        if (handle) {
+                            clearTimeout(handle);
+                        }
+
+                        handle = setTimeout(() => {
+                            window["rendererContract"] = savedVal;
+                            window.dispatchEvent(new Event('contractReady'));
+                        }, 100);
+                    };
+                });
             });
         </script>
     }

@@ -1,4 +1,6 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace blazor.Components
 {
@@ -6,7 +8,10 @@ namespace blazor.Components
     {
         [Inject]
         private NavigationManager navigationManager { get; set; }
-        
+
+        [Inject]
+        private IJSRuntime JS { get; set; }
+
         public bool IsEdit
         {
             get
@@ -21,6 +26,12 @@ namespace blazor.Components
             {
                 return this.navigationManager.Uri.Contains("sfaction=preview");
             }
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await JS.InvokeVoidAsync("componentRendered");
+            await base.OnAfterRenderAsync(firstRender);
         }
     }
 }
