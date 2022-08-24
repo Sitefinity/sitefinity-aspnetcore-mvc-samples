@@ -30,7 +30,10 @@ namespace blazor.Components
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await JS.InvokeVoidAsync("componentRendered");
+            if (this.IsEdit)
+            {
+                await JS.InvokeVoidAsync("componentRendered");
+            } 
             await base.OnAfterRenderAsync(firstRender);
         }
     }
