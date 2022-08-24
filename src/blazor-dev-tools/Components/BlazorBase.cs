@@ -2,9 +2,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace blazor.Components
+namespace blazor_dev_tools.Components
 {
-    public class BlazorBase: ComponentBase 
+    public class BlazorBase : ComponentBase 
     {
         [Inject]
         private NavigationManager navigationManager { get; set; }
