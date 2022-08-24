@@ -47,14 +47,27 @@
         @* Important to be at the end of the body tag *@
         <script src="_framework/blazor.server.js" autostart="false"></script>
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                
+           document.addEventListener("DOMContentLoaded", function() {
                 const savedVal = window["rendererContract"];
                 window["rendererContract"] = undefined;
+
+                function triggerTimeout(timeout) {
+                    return setTimeout(() => {
+                        window["rendererContract"] = savedVal;
+                        window.dispatchEvent(new Event('contractReady'));
+                    }, timeout);
+                }
+
                 Blazor.start().then(() => {
-                    window["rendererContract"] = savedVal;
-                    window.dispatchEvent(new Event('contractReady'));
-                })
+                    let handle = triggerTimeout(1000);
+                    window.componentRendered = function() {
+                        if (handle) {
+                            clearTimeout(handle);
+                        }
+
+                        handle = triggerTimeout(100);
+                    };
+                });
             });
         </script>
     }
