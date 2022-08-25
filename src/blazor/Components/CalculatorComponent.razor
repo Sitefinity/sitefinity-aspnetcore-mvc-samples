@@ -1,5 +1,10 @@
-<h1>@Title</h1>
-<hr />
+@inherits BlazorBase
+@if (this.IsEdit)
+{
+    <h1>@Title</h1>
+    <hr />
+}
+
 <div>
     <div class="row">
         <div class="col-md-3">

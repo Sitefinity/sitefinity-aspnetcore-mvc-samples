@@ -5,6 +5,7 @@
 @addTagHelper *, Progress.Sitefinity.AspNetCore
 
 @inject Progress.Sitefinity.AspNetCore.Web.IRequestContext requestContext;
+@inject Progress.Sitefinity.AspNetCore.Web.IRenderContext renderContext;
 
 <!DOCTYPE html>
 <html id="html" lang="@requestContext.Culture">
@@ -33,8 +34,48 @@
 <body class="container-fluid">
     @RenderSection("Scripts")
 
-    @* Important to be at the end of the body tag *@
-    <script src="_framework/blazor.server.js"></script>
+    @* Start - Code valid for versions < 14.2.7921 *@
+        @* For Older versions you can include the file directly in edit and live, 
+        but it causes a 'race condition' during editing of the page and inconsistently breaks the rendering in the dom  *@
+        
+        @* <script src="_framework/blazor.server.js"></script> *@
+    @* End - Code valid for versions < 14.2.7921 *@
+
+    @* Start - Code valid for versions >= 14.2.7921 *@
+    @if (renderContext.IsEdit)
+    {
+        @* Important to be at the end of the body tag *@
+        <script src="_framework/blazor.server.js" autostart="false"></script>
+        <script>
+           document.addEventListener("DOMContentLoaded", function() {
+                const savedVal = window["rendererContract"];
+                window["rendererContract"] = undefined;
+
+                function triggerTimeout(timeout) {
+                    return setTimeout(() => {
+                        window["rendererContract"] = savedVal;
+                        window.dispatchEvent(new Event('contractReady'));
+                    }, timeout);
+                }
+
+                Blazor.start().then(() => {
+                    let handle = triggerTimeout(1000);
+                    window.componentRendered = function() {
+                        if (handle) {
+                            clearTimeout(handle);
+                        }
+
+                        handle = triggerTimeout(100);
+                    };
+                });
+            });
+        </script>
+    }
+    else
+    {
+        <script src="_framework/blazor.server.js"></script>
+    }
+    @* End - Code valid for versions >= 14.2.7921 *@
 
     @* Telerik component scripts *@
     <script src="_content/Telerik.UI.for.Blazor.Trial/js/telerik-blazor.js" defer></script>

@@ -640,6 +640,22 @@ public static Task<CollectionResponse<T>> GetItems<T>(this IRestClient restClien
     var items = await restClient.GetItems<TagDto>(x => x.Title != null && ids.Contains(x.Id), getAllArgs);
 
 ```
+    
+``` C#
+    // filter by parent items with sdk object
+    var children = await this.restService.GetItems<SdkItem>(x => x.GetValue<string>("ParentId") == "myparentguid");
+    
+    // filter by parent items with mapped object
+    [MappedSitefinityType("Telerik.Sitefinity.DynamicTypes.Model.Pressreleases.Child")]
+    public class ChildDto : SdkItem
+    {
+        public string Title { get; set; }
+
+        public string ParentId { get; set; }
+    }
+    
+    var children = await this.restService.GetItems<ChildDto>(x => x.ParentId =="myparentguid");
+```
 
 ## Projection of items
 

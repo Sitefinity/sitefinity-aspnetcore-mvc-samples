@@ -21,9 +21,10 @@ The blazor framework was integrated by modifying the startup file to include the
 ``` c#
 
 /// adds the needed services
-services.AddServerSideBlazor();
+builder.Services.AddServerSideBlazor();
 
-...
+/// static files are necessary in order to be able to deliver the blazor framework scripts 
+app.UseStaticFiles();
 
 // configures the blazor endpoints
 endpoints.MapBlazorHub();
@@ -40,3 +41,6 @@ Additionally a special [layout file](./Views/Shared/BlazorLayout.cshtml) was cre
 <script src="_framework/blazor.server.js"></script>
 
 ```
+
+### Rendering content in edit or preview mode
+There is the option to conditionally display content during editing of the page. This is achieved with the help of the NavigationManager class. The [Calculator component](./Components/CalculatorComponent.razor) inherits from a base class called [BlazorBase](./Components/BlazorBase.cs) that holds two Methods IsEdit and IsPreview. They are used to detirmine the current state of the page - whether it is opened in edit or not.
