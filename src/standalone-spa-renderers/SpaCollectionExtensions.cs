@@ -2,11 +2,9 @@
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Progress.Sitefinity.AspNetCore;
-using Progress.Sitefinity.AspNetCore.Web;
 using Progress.Sitefinity.Clients.LayoutService.Dto;
 /// The extensions for the service collection.
 /// </summary>
@@ -20,9 +18,7 @@ public static class SpaCollectionExtensions
             if (context.Items.TryGetValue("sfpagemodel", out object model) && model is PageModelDto pageModelDto)
             {
                 if (!pageModelDto.MetaInfo.Title.Contains("React", System.StringComparison.OrdinalIgnoreCase) && !pageModelDto.MetaInfo.Title.Contains("Angular", System.StringComparison.OrdinalIgnoreCase))
-                {
-                        return true;
-                }
+                    return true;
             }
 
             return false;
@@ -48,9 +44,7 @@ public static class SpaCollectionExtensions
             if (context.Items.TryGetValue("sfpagemodel", out object model) && model is PageModelDto pageModelDto)
             {
                 if (pageModelDto.MetaInfo.Title.Contains(rendererName, System.StringComparison.OrdinalIgnoreCase))
-                {
-                        return true;
-                }
+                    return true;
             }
 
             if (env.IsDevelopment() && !string.IsNullOrEmpty(devServerUrl))
@@ -62,24 +56,15 @@ public static class SpaCollectionExtensions
             return false;
         }), (appInner) =>
         {
-            appInner.UseWhen((context) =>
+            appInner.UseSpa((config) =>
             {
-                var renderContext = context.RequestServices.GetRequiredService<IRenderContext>();
-                return renderContext.IsLive();
-            }, appInnerInner =>
-            {
-                appInnerInner.UseSpa((config) =>
+                config.Options.DefaultPageStaticFileOptions = new StaticFileOptions
                 {
-                    config.Options.DefaultPageStaticFileOptions = new StaticFileOptions
-                    {
-                        FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/renderers/{rendererName}"))
-                    };
+                    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/renderers/{rendererName}"))
+                };
 
-                    if (env.IsDevelopment() && !string.IsNullOrEmpty(devServerUrl))
-                    {
-                        config.UseProxyToSpaDevelopmentServer(devServerUrl);
-                    }
-                });
+                if (env.IsDevelopment() && !string.IsNullOrEmpty(devServerUrl))
+                    config.UseProxyToSpaDevelopmentServer(devServerUrl);
             });
         });
     }
