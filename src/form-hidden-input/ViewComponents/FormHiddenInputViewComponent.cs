@@ -1,10 +1,11 @@
 ﻿using form_hidden_input.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
+using Progress.Sitefinity.Renderer.Forms;
 
 namespace form_hidden_input.ViewComponents
 {
-    [SitefinityFormWidget("Hidden", Title = "Hidden input", EmptyIconText = "Custom empty text", EmptyIcon = "eye-slash")]
+    [SitefinityFormWidget(FormFieldType.ShortText, Title = "Hidden input", EmptyIconText = "Custom empty text", EmptyIcon = "eye-slash")]
     public class FormHiddenInputViewComponent : ViewComponent
     {
         /// <summary>

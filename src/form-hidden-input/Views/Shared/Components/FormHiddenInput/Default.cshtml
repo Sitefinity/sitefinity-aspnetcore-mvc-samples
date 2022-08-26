@@ -1,5 +1,16 @@
 @using form_hidden_input.Entities;
+@inject Progress.Sitefinity.AspNetCore.Web.IRenderContext renderContext;
 
 @model FormHiddenInputEntity
 
-<input type="hidden" id="@Model.Name" name="@Model.Name" value="@Model.Value" />
+@if (renderContext.IsEdit)
+{
+    <div class="mb-3">
+        <label class="h6" for='@Model.SfFieldName'>@Model.Label</label>
+        <input type="text" name="@Model.SfFieldName" value="@Model.Value" />
+    </div>
+}
+else
+{
+    <input type="hidden" id="@Model.SfFieldName" name="@Model.SfFieldName" value="@Model.Value" />
+}
