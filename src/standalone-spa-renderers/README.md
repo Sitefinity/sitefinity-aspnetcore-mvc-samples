@@ -35,3 +35,7 @@ One option is to use the .NET Renderer (only the proxy part) to enable end-user 
 /wwwroot/sfrenderer/renderers/React 
  
 This approach can be used for production deployment as well and will enables the seemless switch between .NET, Angular and React technologies by just changing the template. Additionally, this approach can be used for the PaaS scenario as well.
+
+### Seeing it all in action
+
+Once you have deployed the files through one of the above methods, go to administration to create a page and you will automatically be presented with an option to create a page based on the ‘Default’ React/Angular template. Once you click on it, you will be navigated to the page editor interface and will be able to select any of the widgets that are present in the renderer.
