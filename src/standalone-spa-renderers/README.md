@@ -2,9 +2,9 @@
 
 ## Developing with the Client Side Renderers 
 
-In addition to the .NET Core Renderer, Sitefinity offers samples of how to work with both React and Angular as standalone renderers. These types of renderers are called 'standalone', because they are not dependent on anything external other than the CMS itself. This means that developers can build widgets **only** knowing a specific client-side technology - React or Angular. Integrations with other client-side frameworks is possible by [building a custom Renderer](link to custom renderer developement).
+In addition to the .NET Core Renderer, Sitefinity offers samples of how to work with both React and Angular as standalone renderers. These types of renderers are called 'standalone', because they are not dependent on anything external other than the CMS itself. This means that developers can build widgets **only** knowing a specific client-side technology - React or Angular. Integrations with other client-side frameworks is possible by [building a custom Renderer](./CustomRenderers.md).
 
-The source code of the two samples for [Angular]() and [React]()
+The source code of the two samples for [Angular](https://github.com/Sitefinity/angular-standalone-renderer) and [React](https://github.com/Sitefinity/react-standalone-renderer)
 
 One of the issues that needs to be addressed is the way developers will be working with these client-side renderers during the ‘development phase’ and in the ‘production phase’. Or put in other words - how will the developers work locally and how will they deploy their changes.
 
