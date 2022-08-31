@@ -13,7 +13,7 @@ builder.Services.AddViewComponentModels();
 builder.Services.AddFormViewComponentModels();
 
 // registers the renderers within the folders Angular and React
-builder.Services.AddJavaScriptRenderers(app.Environment);
+builder.Services.AddJavaScriptRenderers(builder.Environment);
 
 var app = builder.Build();
 
