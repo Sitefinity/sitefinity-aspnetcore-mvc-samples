@@ -1,0 +1,42 @@
+@using Microsoft.AspNetCore
+@using Progress.Sitefinity.AspNetCore.TagHelpers;
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+
+@model custom_form_fields.DateInputViewModel
+
+@{
+    var dateFieldUniqueId = Model.FieldName;
+    var ariaDescribedByAttribute = string.Empty;
+    var dateFieldErrorMessageId = Html.GetUniqueId("TextboxErrorMessage");
+    @if (Model.HasDescription)
+    {
+        ariaDescribedByAttribute = $"aria-describedby='{dateFieldUniqueId} {dateFieldErrorMessageId}'";
+    }
+    else
+    {
+        ariaDescribedByAttribute = $"aria-describedby='{dateFieldErrorMessageId}'";
+    }
+}
+
+<script data-sf-role='start_field_@dateFieldUniqueId' data-sf-role-field-name='@dateFieldUniqueId'></script>
+<div class="mb-3 @Model.CssClass" data-sf-role="text-field-container">
+    <input data-sf-role="violation-messages" type="hidden" value='@Model.ViolationRestrictionsMessages' />
+
+    <label class="h6" for='@dateFieldUniqueId'>@Model.Label</label>
+    <input id='@dateFieldUniqueId'
+           type="datetime-local"
+           class="form-control"
+           name="@Model.FieldName"
+           data-sf-role="text-field-input"
+           @(Model.Readonly ? "readonly" : "")
+           @Html.Raw(ariaDescribedByAttribute)
+           @Html.Raw(Model.ValidationAttributes) />
+
+    @if (Model.HasDescription)
+    {
+        <div id='@Html.GetUniqueId("TextboxInfo")' class="form-text">@Model.InstructionalText</div>
+    }
+
+    <div id='@dateFieldErrorMessageId' data-sf-role="error-message" role="alert" aria-live="assertive" class="invalid-feedback"></div>
+</div>
+<script data-sf-role='end_field_@dateFieldUniqueId'></script>

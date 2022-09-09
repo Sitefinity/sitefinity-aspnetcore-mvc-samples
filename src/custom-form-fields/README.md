@@ -1,5 +1,5 @@
-# Form Hidden Input widget
-An example on how to create a form hidden input widget.
+# Custom form fields
+An example on how to create a form hidden input widget and a date input widget.
 
 This sample demonstrates how to create a widget that will be used to render a hidden input in the form. This input can be used to include data that cannot be seen or modified by users when a form is submitted. 
 
@@ -7,6 +7,14 @@ This sample demonstrates how to create a widget that will be used to render a hi
 
 We use the [SitefinityFormWidget] attribute in order to load the widget automatically in the Sitefinity Insert widget dialogs.
 It has a number of properties that can be used to tweak the appearance and functionality of the widget:
+
+* fieldType(FormFieldType.ShortText) -> the type of the field. Controls how and if the field will be persisted into the database. If
+one of the following values is selected, the field is marked as persistent: 
+    FormFieldType.ShortText,
+    FormFieldType.File, 
+    FormFieldType.MultipleChoice, 
+    FormFieldType.Checkboxes, 
+    FormFieldType.Dropdown, 
 
 * Title -> the friendly name of the widget
 * Category -> which category the widget is going to appear in- e.g. Content, Layout
