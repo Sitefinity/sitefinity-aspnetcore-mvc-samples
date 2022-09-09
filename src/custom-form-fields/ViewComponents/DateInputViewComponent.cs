@@ -34,7 +34,7 @@ namespace custom_form_fields.ViewComponents
 
             var entity = context.Entity;
             var viewModel = new DateInputViewModel();
-            viewModel.CssClass = entity.CssClass + " "; // + this.formWidgetsStyleGenerator.GetFieldSizeCss(entity.FieldSize);
+            viewModel.CssClass = entity.CssClass + " " + this.formWidgetsStyleGenerator.GetFieldSizeCss(entity.FieldSize);
             viewModel.Label = entity.Label;
             viewModel.InstructionalText = entity.InstructionalText;
             viewModel.FieldName = entity.SfFieldName;
