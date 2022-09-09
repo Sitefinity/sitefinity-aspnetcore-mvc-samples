@@ -1,5 +1,5 @@
-# Form Hidden Input widget
-An example on how to create a form hidden input widget.
+# Custom form fields
+An example on how to create a form hidden input widget and a date input widget.
 
 This sample demonstrates how to create a widget that will be used to render a hidden input in the form. This input can be used to include data that cannot be seen or modified by users when a form is submitted. 
 
