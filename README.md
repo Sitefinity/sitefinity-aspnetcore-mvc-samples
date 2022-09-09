@@ -21,11 +21,11 @@ Follow the instructions [here](./RestSDK.md)
 * change-grid-system - for using a TailWind, a different css grid system
 * conditional-rendering-in-editor - demonstrates how conditional rendering can be applied based on the current context - edit, preview or live
 * content-selectors - for working with Sitefinity content in the widget designers
+* custom-form-fields - for building a custom hidden input widget and a custom date input widget.
 * custom-layout - for creating custom base templates
 * custom-section - for creating a custom layout widget with hard-coded columns and passing data to child widgets.
 * extended-content-block - for overriding the logic of the content block. (valid for any OOB widget)
 * extended-content-list - for creating custom views for the content list widget.
-* form-hidden-input - for building a custom form widget.
 * hello-world - for creating a hello world widget and configuring the different types of properties of the SitefinityWidget attribute.
 * language-selector - for creating a language selector dropdown widget that holds the languages of the current site.
 * localization - for localizing your Layouts and ViewComponents
