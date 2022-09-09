@@ -3,7 +3,7 @@ using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.Renderer.Designers;
 using Progress.Sitefinity.Renderer.Designers.Attributes;
 
-namespace form_hidden_input.Entities
+namespace custom_form_fields.Entities
 {
     public class FormHiddenInputEntity
     {

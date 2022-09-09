@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>form_hidden_input</RootNamespace>
+    <RootNamespace>custom_form_fields</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
