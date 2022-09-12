@@ -18,9 +18,39 @@ The RestSdk works with the **IRestClient** interface and can be used through DI.
 * DeleteItem
 * CreateItem
 
-In order to register the IRestClient through DI in your **custom** dotnet core project, you can use the following code:
+### Usage in custom controllers
 
-**This is automatically done for the Sitefinity .NET Core Renderer projects**
+``` C#
+
+public class TestController : Controller
+{
+    private IRestClient restClient;
+
+    public TestController(IRestClient restClient)
+    {
+        this.restClient = restClient;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetTags()
+    {
+        var taxonType = RestClientContentTypes.GetTaxonType("Tags");
+
+        // necessary to initialize this. automatically done for page requests
+        await this.restClient.Init(new RequestArgs());
+        var result = await this.restClient.GetItems<TaxonDto>(new GetAllArgs()
+        {
+            Type = taxonType,
+            Fields = new[] { "Id", "Title" }
+        });
+
+        return this.Json(result);
+    }
+}
+
+```
+
+### Registration for custom implementations **in external** .NET Core(non .NET Renderer related) applications
 
 ``` C#
 
@@ -58,8 +88,6 @@ Before usage the IRestClient must be initialized by calling the function Init:
 **This is automatically done for widgets in the Sitefinity .NET Core Renderer projects. For any custom controller implementations the bellow code must be executed.**
 
 ``` C#
-
-var restClient = new RestClient(httpClient);
 
 // the RequestArgs class contains headers and query parameters that will be passed to subsequent service calls
 await restClient.Init(new RequestArgs());
@@ -638,6 +666,14 @@ public static Task<CollectionResponse<T>> GetItems<T>(this IRestClient restClien
     };
 
     var items = await restClient.GetItems<TagDto>(x => x.Title != null && ids.Contains(x.Id), getAllArgs);
+    
+    // for custom taxonomies
+    var taxonType = RestClientContentTypes.GetTaxonType("Regions");
+    var result = await this.restClient.GetItems<TaxonDto>(x => x.Title != null && ids.Contains(x.Id), new GetAllArgs()
+    {
+        Type = taxonType,
+        Fields = new[] { "Id", "Title" }
+    });
 
 ```
     
