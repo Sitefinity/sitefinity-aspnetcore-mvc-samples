@@ -37,7 +37,13 @@ public class TestController : Controller
         var taxonType = RestClientContentTypes.GetTaxonType("Tags");
 
         // necessary to initialize this. automatically done for page requests
-        await this.restClient.Init(new RequestArgs());
+        // adds the current cookies if the user is logged-in, so that the request is authenticated
+        var args = new RequestArgs();
+        var requestCookie = this.HttpContext.Request.Headers[HeaderNames.Cookie];
+        if (!string.IsNullOrEmpty(requestCookie))
+            args.AdditionalHeaders.Add(HeaderNames.Cookie, requestCookie);
+
+        await this.restClient.Init(args);
         var result = await this.restClient.GetItems<TaxonDto>(new GetAllArgs()
         {
             Type = taxonType,
