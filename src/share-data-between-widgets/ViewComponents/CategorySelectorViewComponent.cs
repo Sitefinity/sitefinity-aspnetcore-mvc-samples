@@ -5,6 +5,10 @@ using Progress.Sitefinity.AspNetCore.ViewComponents;
 using System.Collections.Generic;
 using ViewModels;
 using share_data_between_widgets;
+using Progress.Sitefinity.RestSdk;
+using Progress.Sitefinity.RestSdk.Dto;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace ViewComponents
 {
@@ -14,32 +18,31 @@ namespace ViewComponents
     [SitefinityWidget]
     public class CategorySelectorViewComponent : ViewComponent
     {
-        public static readonly Dictionary<string, string> Categories = new Dictionary<string, string>()
+        private IRestClient restClient;
+        public CategorySelectorViewComponent(IRestClient restClient)
         {
-            { "/cat1", "Category 1" },
-            { "/cat2", "Category 2" },
-            { "/cat3", "Category 3" },
-        };
+            this.restClient = restClient;
+        }
 
         /// <summary>
         /// Invokes the view.
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public IViewComponentResult Invoke(IViewComponentContext<CategorySelectorEntity> context)
+        public async Task<IViewComponentResult> InvokeAsync(IViewComponentContext<CategorySelectorEntity> context)
         {
             if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var categoriesWithNonExisting = new Dictionary<string, string>(Categories);
-            categoriesWithNonExisting.Add("/cat4", "Non existing category");
+            var categories = await this.restClient.GetItems<CategoryDto>(new GetAllArgs() { Take = 10 });
+            var categorisMap = categories.Items.ToDictionary(x => x.Title, y => y.GetValue<string>("UrlName"));
 
             if (context.State.TryGetValue(CategoryPreparation.SelectedCategory, out object selectedCategory))
-                return this.View(new CategorySelectorViewModel() { Categories = categoriesWithNonExisting, SelectedCategory = selectedCategory.ToString() });
+                return this.View(new CategorySelectorViewModel() { Categories = categorisMap, SelectedCategory = selectedCategory.ToString() });
 
-            return this.View(new CategorySelectorViewModel() { Categories = categoriesWithNonExisting });
+            return this.View(new CategorySelectorViewModel() { Categories = categorisMap });
         }
     }
 }

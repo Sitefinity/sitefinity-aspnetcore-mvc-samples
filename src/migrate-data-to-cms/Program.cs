@@ -14,13 +14,13 @@ namespace migrate_data_to_cms
 
             var samples = new ISample[] 
             {
-                new CreateNews(),
-                new RelateMedia(),
-                new SetChoices(),
+                // new CreateNews(),
+                // new RelateMedia(),
+                // new SetChoices(),
                 new CreateImage(),
-                new AutoCleanUp(),
-                new SyncData(),
-                new Workflow(),
+                // new AutoCleanUp(),
+                // new SyncData(),
+                // new Workflow(),
             };
             foreach (var sample in samples)
             {

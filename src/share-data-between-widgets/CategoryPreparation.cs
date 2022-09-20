@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Progress.Sitefinity.AspNetCore.Models;
 using Progress.Sitefinity.AspNetCore.Preparations;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
+using Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList;
 using Progress.Sitefinity.RestSdk;
 using ViewComponents;
 
@@ -21,26 +22,22 @@ namespace share_data_between_widgets
             var categorySelectorWidget = pageModel.AllViewComponentsFlat.FirstOrDefault(x => typeof(IViewComponentContext<CategorySelectorEntity>).IsAssignableFrom(x.GetType()));
             if (categorySelectorWidget != null)
             {
-                // if more parameters are found in the url, they will be present in the UrlParameters collection
-                // e.g.
-                // localhost/home/cat1 -> [cat1] will be the parameter in the UrlParameters collection
-                // localhost/home/cat1/cat2 -> [cat1, cat2] will be the parameters in the UrlParameters collection
-                var categories = CategorySelectorViewComponent.Categories.Keys.ToList();
                 if (pageModel.UrlParameters.Count == 1)
                 {
                     // if the additional url parameter matches one of the category urls, we mark the parameters as resolved
                     // so there is no 404 thrown
-                    var parameterWithForwardSlash = "/" + pageModel.UrlParameters[0];
-                    if (categories.Contains(parameterWithForwardSlash))
+                    var firstParameter = pageModel.UrlParameters[0];
+                    if (firstParameter.StartsWith("-category-filter-", System.StringComparison.OrdinalIgnoreCase))
                     {
+                        var parsedFilter = firstParameter.Replace("-category-filter-", string.Empty);
                         // add the selected category to the state so we can highlight it in the front-end
-                        categorySelectorWidget.State.Add(SelectedCategory, parameterWithForwardSlash);
+                        categorySelectorWidget.State.Add(SelectedCategory, parsedFilter);
 
-                        var dataBasedOnSelectedCategoryWidget = pageModel.AllViewComponentsFlat.FirstOrDefault(x => typeof(IViewComponentContext<DataBasedOnSelectedCategoryEntity>).IsAssignableFrom(x.GetType()));
-                        if (dataBasedOnSelectedCategoryWidget != null)
+                        var contentListWidget = pageModel.AllViewComponentsFlat.FirstOrDefault(x => typeof(IViewComponentContext<ContentListEntity>).IsAssignableFrom(x.GetType()));
+                        if (contentListWidget != null)
                         {
-                            // add the selected category to the state so we can filter our data based on the selected url parameter
-                            dataBasedOnSelectedCategoryWidget.State.Add(SelectedCategory, parameterWithForwardSlash);
+                            // no access to the widget context here, so we pass it to the http context 
+                            context.Items.Add(SelectedCategory, parsedFilter);
                         }
 
                         pageModel.MarkUrlParametersResolved();
