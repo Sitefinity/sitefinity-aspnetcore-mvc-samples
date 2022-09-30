@@ -1,9 +1,11 @@
-﻿namespace content_selectors.ViewModels.SelectorDemoUsage
+﻿using Progress.Sitefinity.RestSdk.Dto;
+
+namespace content_selectors.ViewModels.SelectorDemoUsage
 {
     public class ItemCollection
     {
         public string GroupTitle { get; set; }
 
-        public ItemDto[] Items { get; set; }
+        public SdkItem[] Items { get; set; }
     }
 }
