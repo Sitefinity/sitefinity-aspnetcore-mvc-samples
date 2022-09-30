@@ -1,0 +1,20 @@
+@using accessing_context_information
+@using System.Security.Claims;
+
+@inject Progress.Sitefinity.AspNetCore.Web.IRequestContext requestContext;
+
+<div>Current page title - @requestContext.PageNode.Title</div>
+<div>Current culture - @requestContext.Culture.Name</div>
+<div>Current site name - @requestContext.Site.Name</div>
+
+@{
+    string username = "Anonymous";
+    if (requestContext.User != null && requestContext.User.Identity.IsAuthenticated)
+    {
+        var nameClaim = (requestContext.User.Identity as ClaimsIdentity).Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
+        if (nameClaim != null)
+            username = nameClaim.Value;
+    }
+    
+}
+<div>Current user - @username</div>

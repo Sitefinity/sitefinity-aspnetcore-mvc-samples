@@ -1,0 +1,12 @@
+@using Progress.Sitefinity.AspNetCore.Web;
+
+@inject Progress.Sitefinity.AspNetCore.Web.IRenderContext renderContext;
+
+@if (renderContext.IsEdit)
+{
+    <h1>Message in edit render mode</h1>
+}
+else if (renderContext.IsLive())
+{
+    <h1>Message in live render mode.</h1>
+}

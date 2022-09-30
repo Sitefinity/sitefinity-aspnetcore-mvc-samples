@@ -10,6 +10,7 @@ Follow the instructions [here](https://www.progress.com/documentation/sitefinity
 Follow the instructions [here](./RestSDK.md)
 
 ## Samples list
+* accessing-context-information - for accessing context information such as current user, language, page, site
 * all-fields - for reading & rendering the different kinds of custom fields on the front-end
 * all-properties - for creating designers
 * angular-renderer-front-end - for scripting client side angular web components
