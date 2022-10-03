@@ -1,0 +1,173 @@
+﻿/*sc- is a selector prefix meaning 'sitefinity core'. It can be changed by your preference*/
+:root {
+    --sf-backgrоund-image: transparent;
+    --sf-backgrоund-image: none;
+    --sf-background-size: auto;
+    --sf-background-position: 0% 0%;
+}
+
+.row,
+[class^="col-"] {
+    --sf-backgrоund-color: transparent;
+    background-color: var(--sf-backgrоund-color);
+}
+
+.sc-video__wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.sc-video__element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.-sc-video {
+    position: relative;
+}
+
+.row.-sc-image {
+    background-color: var(--sf-backgrоund-color);
+    background-image: var(--sf-backgrоund-image);
+    background-size: var(--sf-background-size);
+    background-position: var(--sf-background-position);
+    background-repeat: no-repeat;
+}
+
+/*#region Bootstrap navigation */
+.nav-link.active {
+    color: var(--bs-secondary);
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .nav-link {
+    white-space: nowrap;
+}
+
+.dropdown-submenu:hover > .dropdown-menu,
+.dropdown-submenu .dropdown-item:focus + .dropdown-menu {
+    display: block;
+    left: 100%;
+    top: 0;
+}
+
+.sc-accordion-header {
+    position: relative;
+}
+
+.accordion-button:not(.empty) + .sc-accordion-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 90%;
+    font-size: 1rem;
+    margin-left: 1.25rem;
+    margin-top: 1rem;
+    z-index: 10;
+}
+
+.accordion-button.empty::after {
+    display: none;
+}
+
+.accordion-header .nav-link {
+    font-weight: 500;
+    color: #0c63e4;
+}
+/*#endregion Bootstrap navigation */
+/*#region External login buttons */
+.-sf-google-button {
+    color: #D54F50;
+}
+
+.-sf-google-button:hover {
+    color: #fff;
+    background-color: #D54F50;
+}
+
+.-sf-facebook-button {
+    color: #3E86B4;
+}
+
+.-sf-facebook-button:hover {
+    color: #fff;
+    background-color: #3E86B4;   
+}
+
+.-sf-github-button {
+    color: #333;
+}
+
+.-sf-github-button:hover {
+    color: #fff;
+    background-color: #333;   
+}
+
+.-sf-yahoo-button {
+    color: #410093;
+}
+
+.-sf-yahoo-button:hover {
+    color: #fff;
+    background-color: #410093;   
+}
+
+.-sf-linkedin-button {
+    color: #0077b5;
+}
+
+.-sf-linkedin-button:hover {
+    color: #fff;
+    background-color: #0077b5;   
+}
+
+.-sf-microsoft-button {
+    color: #00a1f1;
+}
+
+.-sf-microsoft-button:hover {
+    color: #fff;
+    background-color: #00a1f1;   
+}
+
+.-sf-adfs-button {
+    color: #00a1f1;
+}
+
+.-sf-adfs-button:hover {
+    color: #fff;
+    background-color: #00a1f1;   
+}
+
+.-sf-windows-button {
+    color: #00bcf2;
+}
+
+.-sf-windows-button:hover {
+    color: #fff;
+    background-color: #00bcf2;   
+}
+
+.-sf-twitter-button {
+    color: #1da1f2;
+}
+
+.-sf-twitter-button:hover {
+    color: #fff;
+    background-color: #1da1f2;   
+}
+/*#endregion External login buttons*/

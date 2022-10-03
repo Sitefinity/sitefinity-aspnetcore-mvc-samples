@@ -11,10 +11,10 @@
             @foreach (var item in collection.Items)
             {
                 <li>
-                    @item.Title
-                    @if (item is ImageDto image)
+                    @(item.GetValue<string>("Title"))
+                    @if (item.TryGetValue("ThumbnailUrl", out string thumbnailUrl))
                     {
-                        <img src="@image.ThumbnailUrl" />
+                        <img src="@thumbnailUrl" />
                     }
                 </li>
             }

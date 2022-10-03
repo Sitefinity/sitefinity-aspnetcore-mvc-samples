@@ -1,0 +1,38 @@
+@using Progress.Sitefinity.RestSdk.Clients.Pages.Dto
+@using accessing_context_information
+@using System.Security.Claims;
+@using Progress.Sitefinity.RestSdk;
+
+@inject Progress.Sitefinity.AspNetCore.Web.IRequestContext requestContext;
+@inject Progress.Sitefinity.RestSdk.IRestClient restClient;
+
+<div>Current page title - @requestContext.PageNode.Title</div>
+<div>Current culture - @requestContext.Culture.Name</div>
+<div>Current site name - @requestContext.Site.Name</div>
+
+@{
+    string username = "Anonymous";
+    if (requestContext.User != null && requestContext.User.Identity.IsAuthenticated)
+    {
+        var nameClaim = (requestContext.User.Identity as ClaimsIdentity).Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
+        if (nameClaim != null)
+            username = nameClaim.Value;
+    }
+    
+}
+<div>Current user - @username</div>
+
+@* Page Custom fields *@
+@*{
+    var pageCustomField = requestContext.PageNode.GetValue<string>("CustomTextField");
+
+    // related fields are not fetch by default, so they need to be explicitly fetched.
+    var pageObjectWithRelatedFields = await restClient.GetItem<PageNodeDto>(requestContext.PageNode.Id);
+    var pageRelatedField = pageObjectWithRelatedFields.GetValue<SdkItem[]>("RelatedImage");
+}*@
+
+@* User custom fields*@
+@*{
+    var currentUser = await restClient.Users().GetCurrentUser();
+    currentUser.GetValue<string>("CustomTextField");
+}*@

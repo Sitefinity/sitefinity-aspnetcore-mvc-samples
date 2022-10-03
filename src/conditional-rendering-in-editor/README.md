@@ -26,4 +26,4 @@ namespace Progress.Sitefinity.AspNetCore.Web
 }
 ```
 
-Please refer to the file in this sample [HelloWorldViewComponent.cs](./ViewComponents/HelloWorldViewComponent.cs) on how this interface can be used.
+Please refer to the file in this sample [Default.cshtml](./Views/Shared/Components/ConditionalRendering/Default.cshtml) on how this interface can be used.

@@ -1,1 +1,0 @@
-This is where all the model classes are recommended to be placed.

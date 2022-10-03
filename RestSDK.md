@@ -392,77 +392,77 @@ Example usages:
 
 // filtering with a collection of ids
 var ids = new string[] { item.Id, item2.Id };
-var result = await restService.GetItems<NewsDto>(x => ids.Contains(x.Id));
+var result = await restClient.GetItems<NewsDto>(x => ids.Contains(x.Id));
 
 ```
 
 ``` C#
 
 // filtering by classifications(tags, categories, custom classifications)
-var result = await restService.GetItems<NewsDto>(x => x.Tags.Contains(tag.Id));
+var result = await restClient.GetItems<NewsDto>(x => x.Tags.Contains(tag.Id));
 
 ```
 
 ``` C#
 
 // filtering by multiple classifications(tags, categories, custom classifications)
-var result = await restService.GetItems<NewsDto>(x => x.Tags.Contains(tag.Id) || x.Tags.Contains(tag2.Id));
+var result = await restClient.GetItems<NewsDto>(x => x.Tags.Contains(tag.Id) || x.Tags.Contains(tag2.Id));
 
 ```
 
 ``` C#
 
 // filtering classifications by inverting the filter
-var result = await restService.GetItems<NewsDto>(x => !x.Tags.Contains(tag.Id));
+var result = await restClient.GetItems<NewsDto>(x => !x.Tags.Contains(tag.Id));
 
 ```
 
 ``` C#
 
 // string filter with StartsWtih
-var result = await restService.GetItems<NewsDto>(x => x.Title.StartsWith(subString));
+var result = await restClient.GetItems<NewsDto>(x => x.Title.StartsWith(subString));
 
 ```
 
 ``` C#
 
 // string filter with EndsWith
-var result = await restService.GetItems<NewsDto>(x => x.Title.EndsWith(subString));
+var result = await restClient.GetItems<NewsDto>(x => x.Title.EndsWith(subString));
 
 ```
 
 ``` C#
 
 // string filter with Equals
-var result = await restService.GetItems<NewsDto>(x => x.Title.Equals(otherString));
+var result = await restClient.GetItems<NewsDto>(x => x.Title.Equals(otherString));
 
 ```
 
 ``` C#
 
 // string filter with Contains
-var result = await restService.GetItems<NewsDto>(x => x.Title.Contains(subString));
+var result = await restClient.GetItems<NewsDto>(x => x.Title.Contains(subString));
 
 ```
 
 ``` C#
 
 // negated string filters
-var result = await restService.GetItems<NewsDto>(x => !x.Title.StartsWith(subString));
+var result = await restClient.GetItems<NewsDto>(x => !x.Title.StartsWith(subString));
 
 ```
 
 ``` C#
 
 // filtering by basic properties with equals
-var result = await restService.GetItems<NewsDto>(x => x.Id == item.Id);
+var result = await restClient.GetItems<NewsDto>(x => x.Id == item.Id);
 
 ```
 
 ``` C#
 
 // filtering by basic properties with not equals
-var result = await restService.GetItems<NewsDto>(x => x.Id != item.Id);
+var result = await restClient.GetItems<NewsDto>(x => x.Id != item.Id);
 
 ```
 
@@ -470,7 +470,7 @@ var result = await restService.GetItems<NewsDto>(x => x.Id != item.Id);
 
 // filtering by greater than operator
 var referenceDate = DateTime.UtcNow;
-var result = await restService.GetItems<NewsDto>(x => x.PublicationDate > referenceDate.AddHours(-24));
+var result = await restClient.GetItems<NewsDto>(x => x.PublicationDate > referenceDate.AddHours(-24));
 
 ```
 
@@ -479,20 +479,27 @@ var result = await restService.GetItems<NewsDto>(x => x.PublicationDate > refere
 
 // filtering by less than operator
 var referenceDate = DateTime.UtcNow;
-var result = await restService.GetItems<NewsDto>(x => x.PublicationDate < referenceDate.AddHours(-24));
+var result = await restClient.GetItems<NewsDto>(x => x.PublicationDate < referenceDate.AddHours(-24));
 
 ```
 
 ``` C#
 // filtering by dynamic fields
-var result = await restService.GetItems<NewsDto>(x => x.GetValue<string>("Title") == "searchTitle");
+var result = await restClient.GetItems<NewsDto>(x => x.GetValue<string>("Title") == "searchTitle");
 
 ```
 
 ``` C#
 
 // filtering by more complex expressions
-var result = await restService.GetItems<NewsDto>(x => ((x.Id == item.Id) || (x.Id == item2.Id)));
+var result = await restClient.GetItems<NewsDto>(x => ((x.Id == item.Id) || (x.Id == item2.Id)));
+
+```
+
+``` C#
+
+// filtering by related items
+var result = await restClient.GetItems<NewsDtoInQuantum>(x => x.Thumbnail.Any(y => y.Title.StartsWith("Sample title", StringComparison.Ordinal) && y.Title.EndsWith(endsWithFilter, StringComparison.Ordinal)));
 
 ```
 
@@ -685,7 +692,7 @@ public static Task<CollectionResponse<T>> GetItems<T>(this IRestClient restClien
     
 ``` C#
     // filter by parent items with sdk object
-    var children = await this.restService.GetItems<SdkItem>(x => x.GetValue<string>("ParentId") == "myparentguid");
+    var children = await this.restClient.GetItems<SdkItem>(x => x.GetValue<string>("ParentId") == "myparentguid");
     
     // filter by parent items with mapped object
     [MappedSitefinityType("Telerik.Sitefinity.DynamicTypes.Model.Pressreleases.Child")]
@@ -696,7 +703,7 @@ public static Task<CollectionResponse<T>> GetItems<T>(this IRestClient restClien
         public string ParentId { get; set; }
     }
     
-    var children = await this.restService.GetItems<ChildDto>(x => x.ParentId =="myparentguid");
+    var children = await this.restClient.GetItems<ChildDto>(x => x.ParentId =="myparentguid");
 ```
 
 ## Projection of items
@@ -737,6 +744,125 @@ await restClient.GetItems<NewsDto>(new GetAllArgs()
 In the above example Thumbnail is a Related image and Parent is the Library of that image.
 **Note that the expansion of levels is limited to 2 by default. If you wish to expand more than two levels, the configuration for the web service must be changed in Sitefinity (under Administration/Advanced/WebServices/)**
 
-## Limitations
+## Create, Update, Delete
 
-The only operations that work with related items is the projection of fields. Filtering, sorting, paging is not supported.
+### Prerequisities
+
+Creating items with the SDK is possible, but there are some prerequisities for this. The main prerequiesite is that the request must be authenticated. The whole authentication is automatically managed if the current user is logged-in (provided he has already been logged-in using the already provided [LoginWidget](https://www.progress.com/documentation/sitefinity-cms/login-form-widget-net-core) and has the necessary permissions. There is no action needed here as the needed data will be sent automatically with the request to authenticate the user with the CMS.
+
+A namespace import is required as well. All of the methods needed are provided in the namespaces 
+
+* **Progress.Sitefinity.RestSdk**
+* **Progress.Sitefinity.RestSdk.Management**
+
+### Creating items
+Items can be created by using the CreateItem method.
+
+```C#
+await restClient.CreateItem(new NewsDto() 
+{ 
+    Title = "Sample title" 
+});
+
+```
+
+Custom fields for predefined types can be set via the following code
+
+``` c#
+var newsItem = new NewsDto() 
+{ 
+    Title = "Sample title" 
+};
+
+newsItem.SetValue<string>("MyCustomFieldName", "My custom field value");
+
+await restClient.CreateItem(newsItem);
+
+```
+
+Also with the dynamic API
+
+``` C#
+var item = await restClient.CreateItem<SdkItem>(new CreateArgs()
+{
+    Type = RestClientContentTypes.News,
+    Data = new 
+    { 
+        Title = "Sample title",
+        MyCustomFieldName = "My custom field value"
+    },
+}, /* optional providerName parameter */);
+
+```
+
+### Updateing items
+Items can be updated by using the UpdateItem method.
+
+```C#
+await restClient.UpdateItem(new NewsDto() 
+{
+    Id = "ID_OF_THE_ITEM",
+    // Privider = "PROVIDER_OF_THE_ITEM" //optional
+    Title = "Sample title" 
+});
+
+```
+
+Custom fields for predefined types can be set via the following code
+
+``` c#
+var newsItem = new NewsDto() 
+{ 
+    Id = "ID_OF_THE_ITEM",
+    // Privider = "PROVIDER_OF_THE_ITEM" //optional
+    Title = "Sample title" 
+};
+
+newsItem.SetValue<string>("MyCustomFieldName", "My custom field value");
+
+await restClient.UpdateItem(newsItem);
+
+```
+
+Also with the dynamic API
+
+``` C#
+await restClient.UpdateItem(new UpdateArgs()
+{
+    Type = RestClientContentTypes.News,
+    Data = new 
+    {
+        Id = "ID_OF_THE_ITEM",
+        // Privider = "PROVIDER_OF_THE_ITEM" //optional
+        Title = "Sample title",
+        MyCustomFieldName = "My custom field value"
+    },
+});
+
+```
+
+### Deleting items
+
+Items can be deleted by using the DeleteItem method.
+
+```C#
+await restClient.DeleteItem(new NewsDto() 
+{
+    Id = "ID_OF_THE_ITEM",
+    // Privider = "PROVIDER_OF_THE_ITEM" //optional
+});
+
+```
+
+Also with the dynamic API
+
+``` C#
+
+await restClient.DeleteItem(new DeleteArgs()
+{
+    Type = RestClientContentTypes.News,
+    Id = item.Id,
+    // Privider = "PROVIDER_OF_THE_ITEM" //optional
+});
+
+```

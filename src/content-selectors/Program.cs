@@ -6,15 +6,12 @@ using Microsoft.Extensions.Hosting;
 using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.FormWidgets;
 
-using content_selectors.Models.SelectorDemoUsage;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSitefinity();
 builder.Services.AddViewComponentModels();
 builder.Services.AddFormViewComponentModels();
-builder.Services.AddScoped<ISelectorDemoUsageModel, SelectorDemoUsageModel>();
 
 var app = builder.Build();
 

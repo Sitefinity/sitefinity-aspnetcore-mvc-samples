@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/sfrenderer/renderers/react/static/css/main.73abfba5.css",
+    "main.js": "/sfrenderer/renderers/react/static/js/main.87c46950.js",
+    "index.html": "/sfrenderer/renderers/react/index.html",
+    "main.73abfba5.css.map": "/sfrenderer/renderers/react/static/css/main.73abfba5.css.map",
+    "main.87c46950.js.map": "/sfrenderer/renderers/react/static/js/main.87c46950.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.73abfba5.css",
+    "static/js/main.87c46950.js"
+  ]
+}
