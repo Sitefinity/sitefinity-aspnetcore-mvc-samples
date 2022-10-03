@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Progress.Sitefinity.AspNetCore.RestSdk;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Progress.Sitefinity.AspNetCore.Web;
+using Progress.Sitefinity.Renderer.Entities.Content;
 using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.Dto;
 using Progress.Sitefinity.RestSdk.Exceptions;
@@ -43,7 +44,7 @@ namespace content_selectors.ViewComponents
 
             // GetItems is an extension method from the class RestClientExtensions in the namespace Progress.Sitefinity.RestSdk
             // In order to use it the generic type must inherit from ISdkItem
-            if (context.Entity.News.HasSelectedItems())
+            if (this.HasSelectedItems(context.Entity.News))
             {
                 var newsItems = await this.restClient.GetItems<SdkItem>(context.Entity.News);
                 viewModels.Add(new ItemCollection()
@@ -53,7 +54,7 @@ namespace content_selectors.ViewComponents
                 });
             }
 
-            if (context.Entity.NewsLive.HasSelectedItems())
+            if (this.HasSelectedItems(context.Entity.NewsLive))
             {
                 var newsItemsLive = await this.restClient.GetItems<SdkItem>(context.Entity.NewsLive);
                 viewModels.Add(new ItemCollection()
@@ -63,7 +64,7 @@ namespace content_selectors.ViewComponents
                 });
             }
 
-            if (context.Entity.Page.HasSelectedItems())
+            if (this.HasSelectedItems(context.Entity.Page))
             {
                  var page = await this.restClient.GetItems<SdkItem>(context.Entity.Page);
                 viewModels.Add(new ItemCollection()
@@ -73,7 +74,7 @@ namespace content_selectors.ViewComponents
                 });
             }
 
-            if (context.Entity.Images.HasSelectedItems())
+            if (this.HasSelectedItems(context.Entity.Images))
             {
                 var images = await this.restClient.GetItems<SdkItem>(context.Entity.Images);
                 viewModels.Add(new ItemCollection()
@@ -83,7 +84,7 @@ namespace content_selectors.ViewComponents
                 });
             }
 
-            if (context.Entity.Tags.HasSelectedItems())
+            if (this.HasSelectedItems(context.Entity.Tags))
             {
                 var tags = await this.restClient.GetItems<SdkItem>(context.Entity.Tags);
                 viewModels.Add(new ItemCollection()
@@ -95,7 +96,7 @@ namespace content_selectors.ViewComponents
 
             try
             {
-                if (context.Entity.GeographicalRegions.HasSelectedItems())
+                if (this.HasSelectedItems(context.Entity.GeographicalRegions))
                 {
                     var geoRegions = await this.restClient.GetItems<SdkItem>(context.Entity.GeographicalRegions).ConfigureAwait(true);
                     viewModels.Add(new ItemCollection()
@@ -119,7 +120,7 @@ namespace content_selectors.ViewComponents
 
             try
             {
-                if (context.Entity.PressReleases.HasSelectedItems())
+                if (this.HasSelectedItems(context.Entity.PressReleases))
                 {
                     var pressReleases = await this.restClient.GetItems<SdkItem>(context.Entity.PressReleases);
                     viewModels.Add(new ItemCollection()
@@ -142,6 +143,11 @@ namespace content_selectors.ViewComponents
             }
 
             return this.View(viewModels);
+        }
+
+        private bool HasSelectedItems(MixedContentContext mixedContentContext)
+        {
+            return mixedContentContext.ItemIdsOrdered != null && mixedContentContext.ItemIdsOrdered.Length > 0;
         }
     }
 }

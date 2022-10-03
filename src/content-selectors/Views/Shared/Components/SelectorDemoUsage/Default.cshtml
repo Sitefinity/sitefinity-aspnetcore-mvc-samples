@@ -11,7 +11,7 @@
             @foreach (var item in collection.Items)
             {
                 <li>
-                    (@item.GetValue<string>("Title"))
+                    @(item.GetValue<string>("Title"))
                     @if (item.TryGetValue("ThumbnailUrl", out string thumbnailUrl))
                     {
                         <img src="@thumbnailUrl" />

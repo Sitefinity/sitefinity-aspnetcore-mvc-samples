@@ -2,17 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>custom_form_fields</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.2.7900.145" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.2.7900.145" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.2.7900.145" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.2.7900.145" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.2.7900.145" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.2.7925.1" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.2.7925.1" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.2.7925.1" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.2.7925.1" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.2.7925.1" />
   </ItemGroup>
 
 </Project>
