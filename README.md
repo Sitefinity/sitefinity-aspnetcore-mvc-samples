@@ -28,7 +28,7 @@ Follow the instructions [here](./RestSDK.md)
 * extended-content-block - for overriding the logic of the content block. (valid for any OOB widget)
 * extended-content-list - for creating custom views for the content list widget.
 * hello-world - for creating a hello world widget and configuring the different types of properties of the SitefinityWidget attribute.
-* html-sanitizer - for overriding the logic for html sanitizer. Used when rendering the content of the content block.
+* html-sanitizer - for overriding the logic for html sanitizer.
 * integration-tests - for writing integration tests.
 * language-selector - for creating a language selector dropdown widget that holds the languages of the current site.
 * localization - for localizing your Layouts and ViewComponents
