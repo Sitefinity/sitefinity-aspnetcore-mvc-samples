@@ -14,13 +14,12 @@ There are two approaches that we will look at – one for PaaS and one for SaaS.
 
 In a PaaS Scenario the developer has access to the CMS files. He can clone the repo and run it locally. When deploying he can choose which files he wishes to deploy. In order to minimize the cost and not host two applications (as the case with the .NET Renderer), the developer can host the production files on the file system of the CMS application under the following folder template(casing is important for the renderer folder):
 
-/sitefinity/public/renderers/{rendererName} 
-/sitefinity/public/renderers/Angular  
-/sitefinity/public/renderers/React 
+/sitefinity/public/renderers/{rendererName}\
+/sitefinity/public/renderers/Angular\
+/sitefinity/public/renderers/React
 
 He can additionally use the above folders to develop his changes with the client-side renderers and to see how they would look like. Using a command like: 
-ng build --watch  
---output-path="C:\...\SitefinityWebApp\Sitefinity\Public\Renderers\Angular" 
+ng build --watch --output-path="C:\...\SitefinityWebApp\Sitefinity\Public\Renderers\Angular" 
 
 This approach eliminates the use of a proxy in the middle and enables a cheaper hosting model.  
 
@@ -30,9 +29,9 @@ In this scenario the user does not have access to the CMS files and there should
 
 One option is to use the .NET Renderer (only the proxy part) to enable end-user development of the client-side renderers. Since the renderer is already configured to host both itself and the CMS under the same domain, it can serve the files from its own file system and both the admin UI and iframe will be loaded under the domain of the renderer. The developer can host the production files on the file system of the renderer application under the following folder: 
 
-/wwwroot/sfrenderer/renderers/{rendererName} 
-/wwwroot/sfrenderer/renderers/Angular 
-/wwwroot/sfrenderer/renderers/React 
+/wwwroot/renderers/{rendererName}\
+/wwwroot/renderers/Angular\
+/wwwroot/renderers/React
  
 This approach can be used for production deployment as well and will enables the seemless switch between .NET, Angular and React technologies by just changing the template. Additionally, this approach can be used for the PaaS scenario as well.
 
