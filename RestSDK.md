@@ -18,7 +18,13 @@ The RestSdk works with the **IRestClient** interface and can be used through DI.
 * DeleteItem
 * CreateItem
 
-### Usage in custom controllers
+### Usage in Sitefinity .NET Renderer projects
+
+The **IRestClient interface** is automatically registered and is initialized for each request. In order to use it, it just needs to be injected into the constructor throuh DI. See the [example here](./src/content-selectors/ViewComponents/SelectorDemoUsageViewComponent.cs#L30)
+
+### Usage in custom controllers in Sitefinity .NET Renderer projects
+
+The **IRestClient interface** needs to be manually initialized for custom controllers.
 
 ``` C#
 
@@ -58,11 +64,14 @@ public class TestController : Controller
 
 ### Registration for custom implementations **in external** .NET Core(non .NET Renderer related) applications
 
+The **IRestClient interface** needs to be manually registered and initialized for custom implementations.
+
 ``` C#
 
 services.AddHttpClient("sfservice", (servicesProvider, client) =>
 {
-    client.BaseAddress = new Uri("http://your.sitefinity.site/api/default");
+    // end slash is important
+    client.BaseAddress = new Uri("http://your.sitefinity.site/api/default/");
 
     // optional. this key is used for restriction of the Web Service. it is not used for managing content.
     client.DefaultRequestHeaders.Add("X-SF-APIKEY", "your api key");
@@ -86,20 +95,6 @@ services.AddScoped<IRestClient>((x) =>
 });
 
 ```
-
-### Initialization
-
-Before usage the IRestClient must be initialized by calling the function Init:
-
-**This is automatically done for widgets in the Sitefinity .NET Core Renderer projects. For any custom controller implementations the bellow code must be executed.**
-
-``` C#
-
-// the RequestArgs class contains headers and query parameters that will be passed to subsequent service calls
-await restClient.Init(new RequestArgs());
-
-```
-
 
 ## The SdkItem class and ISdkItem interface
 The **SdkItem** class is the base class for working with the **IRestClient** interface and Sitefinity content. It holds the following signature:
