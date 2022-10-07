@@ -8,6 +8,6 @@
 
 <div>
     <h3>
-        <span>@(Model.Item.GetValue<string>("Title"))</span>
+        <span>@Html.HtmlSanitize(Model.Item.GetValue<string>("Title"))</span>
     </h3>
 </div>

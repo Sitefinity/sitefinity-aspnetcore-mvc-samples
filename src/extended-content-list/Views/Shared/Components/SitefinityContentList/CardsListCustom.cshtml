@@ -2,6 +2,7 @@
 @using Progress.Sitefinity.AspNetCore.Models;
 @using Progress.Sitefinity.AspNetCore.Widgets.Models.Common;
 @using Progress.Sitefinity.RestSdk.Dto;
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
 
 @model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
 
@@ -9,7 +10,7 @@
     @foreach (var item in Model.Items)
     {
         var title = Model.GetFieldValue<string>(item, "Heading");
-        <h3><a href="@Model.GetItemUrl(this.Context, item)">@title</a></h3>
+        <h3><a href="@Model.GetItemUrl(this.Context, item)">@Html.HtmlSanitize(title)</a></h3>
     }
 </div>
 
