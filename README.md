@@ -27,6 +27,7 @@ Follow the instructions [here](./RestSDK.md)
 * custom-section - for creating a custom layout widget with hard-coded columns and passing data to child widgets.
 * extended-content-block - for overriding the logic of the content block. (valid for any OOB widget)
 * extended-content-list - for creating custom views for the content list widget.
+* graphql - for querying data with graphql
 * hello-world - for creating a hello world widget and configuring the different types of properties of the SitefinityWidget attribute.
 * html-sanitizer - for overriding the logic for html sanitizer.
 * integration-tests - for writing integration tests.

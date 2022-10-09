@@ -1,0 +1,12 @@
+@using graphql.ViewComponents.GraphQL;
+
+@model GraphQLViewModel
+
+@if (Model.Errors != null)
+{
+    @Html.Raw(Model.Errors);
+}
+else
+{
+    @Html.Raw(Model.Data);
+}
