@@ -1,6 +1,10 @@
 @model Progress.Sitefinity.AspNetCore.Widgets.Models.Registration.RegistrationViewModel
 @using Progress.Sitefinity.AspNetCore.Widgets.Models.Registration
 @using Progress.Sitefinity.AspNetCore.Mvc.Rendering
+@using Progress.Sitefinity.AspNetCore.ViewComponents;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Progress.Sitefinity.AspNetCore
 
 @{
     var lbls = Model.Labels;
