@@ -14,7 +14,12 @@
     }
     @for (var i = 0; i < this.Model.ColumnsCount; i++)
     {
-        <div style="@this.Model.ColumnStyles[i]" columnClass grid-size="@widgetConfig.Styling.CssGridSystemColumnCount" css-cols-per-row-col="@this.Model.ColumnProportions[i]" additional-class="@this.Model.ColumnsClasses[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext(this.Model.ColumnNames[i], this.Model.ColumnTitles[i])">
+        var additionalClass = this.Model.ColumnsClasses[i];
+        var cssClassPerRow = this.Model.ColumnProportions[i];
+        var gridSize = widgetConfig.Styling.CssGridSystemColumnCount;
+        var classValue = string.Concat(additionalClass, " w-", cssClassPerRow , "/", gridSize);
+        
+        <div class="@classValue" data-sfcontainer container-context="@this.Model.Context.ContainerContext(this.Model.ColumnNames[i], this.Model.ColumnTitles[i])">
         </div>
     }
 </section>

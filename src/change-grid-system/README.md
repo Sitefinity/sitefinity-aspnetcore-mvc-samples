@@ -39,21 +39,6 @@ The process here is the same as with a page widget.
 
 Add a Default.cshtml file under Views/Shared/Components/FormSection. This replaces the default template of the widget.
 
-In it we build the tailwind classes using a custom Tag helper. 
-
-## ColumnClassTagHelper: 
-
-The tag helper has 3 properties:
-* GridSize (the number of grid columns in the system - 12 for example)
-* AddtionalClass (all additional classes, set to the column, for example from the property editor's advanced view)
-* CssColsPerRowCol  (number of grid coluimns per row column) which we'll pass through the section template. 
-
-We pass those as attributes of the div element that represend the column wrapper.
-
-One thing to keep in mind is that property names in tag helpers follow pascall case naming convention in the class, but kebap case when used in the html. 
-
-General information about tag helpers can be found here: https://docs.microsoft.com/en-us/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-3.1 
-
 ## appsettings.json Styling documentation
 - used to configure preferred css classes for different styling options
 
