@@ -181,6 +181,10 @@ public class NewsDto : SdkItem
 }
 
 ```
+    
+**Dynamic content is referenced with the full type name**
+* Telerik.Sitefinity.DynamicTypes.Model.{ModuleName}.{TypeName}
+* Telerik.Sitefinity.DynamicTypes.Model.Pressreleases.Child
 
 **NOTE - The REST SDK provides dtos for all of the static types - news, events, lists, taxons, taxonomies, media, pages and page templates, so you do not need to define them yourself unless you wish for your custom fields to be defined in a custom DTO class. In this case it is best to inherit from the already defined types and add your custom fields there.**
 
