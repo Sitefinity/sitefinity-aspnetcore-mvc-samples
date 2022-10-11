@@ -1,7 +1,7 @@
 # Localization
 
 This project serves the purpose of providing an example of how localization can be used in .Net Core projects. 
-The project is based on the start template sample found in this repository.
+The project is based on the start template sample found in this repository. More info on localization can be found in [this article](https://www.progress.com/documentation/sitefinity-cms/localization-net-core).
  
 ## How it works
 
