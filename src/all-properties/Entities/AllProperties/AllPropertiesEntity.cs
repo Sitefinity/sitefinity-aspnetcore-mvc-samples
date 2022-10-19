@@ -10,6 +10,7 @@ using Progress.Sitefinity.Renderer.Models;
 using Progress.Sitefinity.Renderer.Entities;
 using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.Models;
+using Progress.Sitefinity.AspNetCore.ViewComponents;
 
 namespace all_properties.Entities.AllProperties
 {
@@ -76,8 +77,7 @@ namespace all_properties.Entities.AllProperties
         [DataType(customDataType: KnownFieldTypes.Password)]
         public string Password { get; set; }
 
-        [DefaultValue("#AABBCC")]
-        [DataType(customDataType: KnownFieldTypes.Color)]
+        [ColorPalette("Default")]
         public string ColorField { get; set; }
 
         [DataType(customDataType: KnownFieldTypes.Range)]
@@ -107,6 +107,12 @@ namespace all_properties.Entities.AllProperties
         #endregion
 
         #region links
+
+        [DynamicLinksContainer]
+        public ComplexObjectWithLinks ObjectWithLinks { get;set;}
+
+        [DynamicLinksContainer]
+        public IList<ComplexObjectWithLinks> ArrayOfObjectWithLinks { get;set;}
 
         public LinkModel Link { get; set; }
 
@@ -417,6 +423,11 @@ namespace all_properties.Entities.AllProperties
         private const string SecondBasicSection = "Second basic section";
         private const string FirstAdvancedSection = "First advanced section";
         private const string SecondAdvancedSection = "Second advanced section";
+    }
+
+    public class ComplexObjectWithLinks
+    {
+        public LinkModel Link { get; set; }
     }
 
     public class ComplexObject

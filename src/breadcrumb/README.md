@@ -1,5 +1,2 @@
-# Breadcrumb widget
-An example on how to create a breadcrumb widget.
-
-This example demonstrates how to create a ViewComponent that will be used to display a breadcrumb.
-
+# Breadcrumb widget [Deprecated]
+The sample is removed and deprecated. The breadcrumb widget is shipped with the OOB Sitefinity widgets.

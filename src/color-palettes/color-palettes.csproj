@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>breadcrumb</RootNamespace>
+    <RootNamespace>color-palettes</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
