@@ -6,11 +6,13 @@
 <h1>Related Media - Images</h1>
 @foreach (var image in (Model.GetValue<IEnumerable<ImageDto>>("TestRelatedImages")))
 {
+    string widthAttr = image.Width > 0 ? string.Format(@"width={0}", image.Width) : string.Empty;
+    string heightAttr = image.Height > 0 ? string.Format(@"height={0}", image.Height) : string.Empty;
     <picture>
         @foreach (var thumbnail in image.Thumbnails.OrderBy(t => t.Width))
         {
             <source media="(max-width: @(thumbnail.Width)px)" srcset="@thumbnail.Url" type="@thumbnail.MimeType">
         }
-        <img width="@image.Width" height="@image.Height" loading="lazy" src="@image.Url" title="@image.Title">
+        <img @widthAttr @heightAttr loading="lazy" src="@image.Url" title="@image.Title">
     </picture>
 }

@@ -1,0 +1,12 @@
+@model script_widget.ScriptEntity
+@inject Progress.Sitefinity.AspNetCore.Web.IRenderContext renderContext;
+
+@if (Model.Location == script_widget.ScriptLocation.Inline)
+{
+    @Html.Raw(Model.Script)
+
+    if (renderContext.IsEdit)
+    {
+        <div>@Model.Script</div>
+    }
+}
