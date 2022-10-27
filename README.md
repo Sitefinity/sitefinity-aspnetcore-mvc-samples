@@ -17,9 +17,9 @@ Follow the instructions [here](./RestSDK.md)
 * blazor - for integrating blazor components in the .Net ViewComponent widgets
 * blazor-dev-tools - for integrating Telerik UI for blazor components in the .Net ViewComponent widgets
 * bootstrap-overides - for overriding the default boostrap classes
-* breadcrumb - for generating a breadcrumb of pages
 * captcha - for creating a captcha widget for forms by using google recaptcha v2 or v3.
 * change-grid-system - for using a TailWind, a different css grid system
+* color-palettes - for configuring the default color pickers and registering new color palettes to be used in the widget designers
 * conditional-rendering-in-editor - demonstrates how conditional rendering can be applied based on the current context - edit, preview or live
 * content-selectors - for working with Sitefinity content in the widget designers
 * custom-form-fields - for building a custom hidden input widget and a custom date input widget.
