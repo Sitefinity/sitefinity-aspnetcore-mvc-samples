@@ -1,6 +1,5 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
-using all_properties.Entities.AllProperties;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Newtonsoft.Json.Linq;
 
