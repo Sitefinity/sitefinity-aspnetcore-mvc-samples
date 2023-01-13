@@ -16,7 +16,11 @@
 }
 else
 {
-    <div data-sf-role="sf-registration-container" class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
+    <div
+    data-sf-role="sf-registration-container"
+    data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+    data-sf-invalid="@Model.InvalidClass"
+    class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
         @if (Model.ShowSuccessMessage(Context))
         {
             <h3>@lbls.SuccessHeader</h3>

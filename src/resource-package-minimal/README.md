@@ -76,7 +76,7 @@ When you create a new Dynamic module, list and details widget templates for this
 
 ## Create and edit grid widget templates
 By default we include three grid widgets. We don't include CSS to style them. It is up to you to add a grid system and make the columns appear side by side.
-To modify a grid widget, for example, a grid widget with two columns, simply navigate to `/ResourcePackages/Minimal/GridSystem/Templates`, open `two-columns.html` and make your changes.
+To modify a grid widget, for example, a grid widgegt with two columns, simply navigate to `/ResourcePackages/Minimal/GridSystem/Templates`, open `two-columns.html` and make your changes.
 
 You can:
 - Add an extra CSS class to a column
@@ -92,7 +92,7 @@ You can:
     </div>
 </div>
 ```
-**IMPORTANT:** Do **not** remove `sf_colsIn` since it is a system CSS class that indicates where a placeholder is created.
+**IMPORTANT:** Do **not** remove `sf_colsIn` since it is a system CSS classe that indicates where a placeholder is created.
 
 To create a new grid widget is just as simple:
 1. Duplicate an existing grid widget template

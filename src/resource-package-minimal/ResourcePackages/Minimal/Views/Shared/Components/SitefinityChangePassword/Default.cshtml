@@ -23,7 +23,11 @@ else if (!string.IsNullOrEmpty(Model.ExternalProviderName))
 }
 else
 {
-    <div data-sf-role="sf-change-password-container" class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
+    <div data-sf-role="sf-change-password-container"
+    data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+    data-sf-invalid="@Model.InvalidClass"
+    class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)"
+    @Html.BuildAttributes(Model.Attributes)>
         <form action="@Model.ChangePasswordHandlerPath" method="post" role="form">
             <h2>@lbls.Header</h2>
             <div data-sf-role="error-message-container" style="display: none;" role="alert" aria-live="assertive"></div>

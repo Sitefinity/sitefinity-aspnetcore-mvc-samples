@@ -26,7 +26,12 @@
 @{ async Task RenderForm()
     {
         <!form action="@Html.Raw(Model.SubmitUrl)" method="post" @Html.BuildAttributes(Model.Attributes) novalidate>
-            <div class="@Model.CssClass" data-sf-role="form-container">
+            <div class="@Model.CssClass"
+            data-sf-role="form-container"
+            data-sf-invalid="@Model.InvalidClass"
+            data-sf-visibility-inline-visible="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.InlineVisible]"
+            data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+            data-sf-visibility-visible="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Visible]">
                 @if (!string.IsNullOrEmpty(Model.Rules))
                 {
                     <input type="hidden" data-sf-role="form-rules" value='@Model.Rules' />

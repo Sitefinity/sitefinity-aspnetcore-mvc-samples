@@ -19,7 +19,10 @@
     var cultureParam = queryCollection[Progress.Sitefinity.RestSdk.QueryParamNames.Culture].ToString();
     string culture = !string.IsNullOrEmpty(cultureParam) ? cultureParam : @Model.Culture;
     string sort = queryCollection["orderBy"];
-    <div @Html.Raw(@classAttr)>
+    <div @Html.Raw(@classAttr)
+    data-sf-search-autocomplete-item-class="@Model.SearchAutocompleteItemClass"
+    data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+    data-sf-active-class="@Model.ActiveClass">
         @{
             if (!string.IsNullOrEmpty(@Model.SearchIndex))
             {
