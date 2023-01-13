@@ -33,7 +33,7 @@
                             <a title="@node.Title" class="text-truncate" href="@node.Url" target="@node.LinkTarget">@node.Title</a>
                         }
                         </h2>
-                    
+
                     <div id='@coolapseId' class="@GetAccordeonContentStateClass(node)" aria-labelledby='@headingId' data-bs-parent="#@accordionId">
                         <div class="accordion-body">
                             @{RenderSubLevelsRecursive(node);}
@@ -82,16 +82,6 @@
 }
 
 @{
-    Microsoft.AspNetCore.Html.IHtmlContent GetAccordeonButtonStateClass(PageViewModel node)
-    {
-        if (!node.IsCurrentlyOpened && !node.HasChildOpen)
-        {
-            return Html.HtmlSanitize("");
-        }
-
-        return null;
-    }
-
     Microsoft.AspNetCore.Html.IHtmlContent GetAccordeonContentStateClass(PageViewModel node)
     {
         if (node.IsCurrentlyOpened || node.HasChildOpen)
@@ -100,16 +90,6 @@
         }
 
         return null;
-    }
-
-    Microsoft.AspNetCore.Html.IHtmlContent IsActive(PageViewModel node)
-    {
-        if (node.IsCurrentlyOpened || node.HasChildOpen)
-        {
-            return Html.HtmlSanitize("true");
-        }
-
-        return Html.HtmlSanitize("false");
     }
 }
 <environment include="Development">
