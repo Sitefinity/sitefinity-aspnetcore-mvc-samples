@@ -30,7 +30,7 @@
     <input data-sf-role="violation-messages" type="hidden" value='@Model.ViolationRestrictionsMessages' />
     <input type="hidden" data-sf-role="required-validator" value='@Model.Required.ToString()' />
 
-    <legend id="choice-field-label-@Model.FieldName"><h6>@Model.Label</h6></legend>
+    <legend id="choice-field-label-@Model.FieldName">@Model.Label</legend>
     @if (!String.IsNullOrEmpty(Model.InstructionalText))
     {
         <p class="text-muted small" id="choice-field-description-@Model.FieldName">@Model.InstructionalText</p>

@@ -20,13 +20,17 @@
     var cultureParam = queryCollection[Progress.Sitefinity.RestSdk.QueryParamNames.Culture].ToString();
     string culture = !string.IsNullOrEmpty(cultureParam) ? cultureParam : @Model.Culture;
     string sort = queryCollection["orderBy"];
-    <div @Html.Raw(@classAttr)>
+     <div @Html.Raw(@classAttr)
+    data-sf-search-autocomplete-item-class="@Model.SearchAutocompleteItemClass"
+    data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+    data-sf-active-class="@Model.ActiveClass">
         @{
             if (!string.IsNullOrEmpty(@Model.SearchIndex))
             {
-                <div class="grid-x">
-                    <input value="@queryCollection["searchQuery"]"
-                           class="form-control" data-sf-role="search-box" data-sf-results-url="@Model.SearchResultsPageUrl"
+                
+                    <div class="flex-container input-group margin-0">
+                        <input value="@queryCollection["searchQuery"]"
+                           class="input-group-field" data-sf-role="search-box" data-sf-results-url="@Model.SearchResultsPageUrl"
                            data-sf-search-catalogue="@Model.SearchIndex" data-sf-scoring-setting="@Model.ScoringProfile"
                            data-sf-suggestions-length="@Model.SuggestionsTriggerCharCount" data-sf-site-id="@Model.SiteId"
                            data-sf-culture="@culture" data-sf-sort="@sort"
@@ -34,16 +38,19 @@
                            data-sf-results-all="@Model.ShowResultsForAllIndexedSites"
                            data-sf-service-path="@Model.WebServicePath" disabled="@disabled" type="text"
                            placeholder="@Model.SearchBoxPlaceholder" />
-                    <button data-sf-role="search-button" class="btn btn-primary ms-2 flex-shrink-0" disabled="@disabled">
-                        @Model.SearchButtonLabel
-                    </button>
-                </div>
+                        <div class="input-group-button">
+                            <button data-sf-role="search-button" class="button" disabled="@disabled">
+                                @Model.SearchButtonLabel
+                            </button>
+                        </div>
+                     </div>
 
-                if (@Model.SuggestionsTriggerCharCount != null && @Model.SuggestionsTriggerCharCount >= 2)
-                {
-                    <ul data-sf-role="search-box-autocomplete" class="border bg-body list-unstyled position-absolute d-none" role="listbox">
-                    </ul>
-                }
+ 
+
+               if (@Model.SuggestionsTriggerCharCount != null && @Model.SuggestionsTriggerCharCount >= 2){
+                        <ul data-sf-role="search-box-autocomplete" class="list margin-0 hide" role="listbox">
+                        </ul>
+               }
             }
         }
     </div>

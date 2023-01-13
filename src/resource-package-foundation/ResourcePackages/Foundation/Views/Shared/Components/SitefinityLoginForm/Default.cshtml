@@ -18,7 +18,11 @@
 </environment>
 
 
-<div data-sf-role="sf-login-form-container" class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
+    <div data-sf-role="sf-login-form-container"
+        data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+        data-sf-invalid="@Model.InvalidClass"
+        class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)"
+        @Html.BuildAttributes(Model.Attributes)>
     <div data-sf-role="form-container">
         <h2 class="margin-bottom-1">@lbls.Header</h2>
         <div id="errorContainer" class="callout alert margin-vertical-1 @(Model.IsError(Context) ? "visible" : "hide")" role="alert" aria-live="assertive" data-sf-role="error-message-container">

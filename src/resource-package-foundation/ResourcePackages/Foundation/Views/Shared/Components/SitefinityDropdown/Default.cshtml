@@ -5,7 +5,7 @@
 <fieldset data-sf-role="dropdown-list-field-container" class="margin-bottom-1 @Model.CssClass" aria-labelledby="choice-field-label-@Model.FieldName choice-field-description-@Model.FieldName">
     <input data-sf-role="violation-messages" type="hidden" value='@Model.ViolationRestrictionsMessages' />
 
-    <legend id="choice-field-label-@Model.FieldName"><h6>@Model.Label</h6></legend>
+    <legend id="choice-field-label-@Model.FieldName">@Model.Label</legend>
 
     <select class="form-select" data-sf-role="dropdown-list-field-select" name="@Model.FieldName" @(Model.Required ? "required" : null)>
         @foreach (var choiceOption in Model.Choices)

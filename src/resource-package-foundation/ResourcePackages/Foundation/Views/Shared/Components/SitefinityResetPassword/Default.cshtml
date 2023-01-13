@@ -6,7 +6,7 @@
     var lbls = Model.Labels;
 }
 
-<div class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
+<div data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]" data-sf-invalid="@Model.InvalidClass"  class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
     @if (Model.IsResetPasswordRequest)
     {
         <div data-sf-role="sf-reset-password-container">

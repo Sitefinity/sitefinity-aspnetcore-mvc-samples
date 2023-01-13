@@ -21,7 +21,7 @@
     }
 }
 
-<div @Html.BuildAttributes(@Model.Attributes, "Wrapper") @Html.Raw(!string.IsNullOrEmpty(Model.CssClass) ? string.Format(@"class='grid-x align-middle {0}'", Model.CssClass) : "class='grid-x align-middle'")>
+<div @Html.BuildAttributes(@Model.Attributes, "Wrapper") @Html.Raw(!string.IsNullOrEmpty(Model.CssClass) ? string.Format(@"class='flex-container align-middle {0}'", Model.CssClass) : "class='flex-container align-middle'")>
     @{ButtonTag(Model.PrimaryActionLabel, Model.PrimaryActionHref, string.Format(@"margin-right-1 {0}", Model.PrimaryButtonCssClass), "Primary");}
     @{ButtonTag(Model.SecondaryActionLabel, Model.SecondaryActionHref, Model.SecondaryButtonCssClass, "Secondary");}
 </div>

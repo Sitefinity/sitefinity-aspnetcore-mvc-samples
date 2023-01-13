@@ -1,4 +1,7 @@
 //Foundation
-@import '../../../node_modules/foundation-sites/assets/foundation';
+@import '../../../node_modules/foundation-sites/assets/foundation-prototype';
+
+//Sitefinity
+@import "Sitefinity/";
 //Import .scss files here
-@include foundation-everything($prototype: true);
+
