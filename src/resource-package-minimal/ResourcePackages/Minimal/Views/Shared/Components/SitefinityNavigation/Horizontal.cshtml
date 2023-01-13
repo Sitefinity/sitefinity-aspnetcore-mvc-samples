@@ -1,0 +1,95 @@
+﻿@using Progress.Sitefinity.AspNetCore.TagHelpers;
+@using Progress.Sitefinity.AspNetCore.Widgets.Models.Navigation;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.Navigation.NavigationViewModel
+<environment include="Development">
+    <script src="scripts/bootstrap.bundle.js" section-name="Top"></script>
+</environment>
+<environment exclude="Development">
+    <script src="scripts/bootstrap.bundle.min.js" section-name="Top"></script>
+</environment>
+
+@{
+    var navbarId = Html.GetUniqueId($"navbar");
+}
+
+<div class="@Model.WrapperCssClass">
+    <nav @Html.BuildAttributes(Model.Attributes)>
+        <div >
+            <a href="#">Navbar</a>
+            <button type="button" aria-controls='@navbarId' aria-expanded="false" aria-label="Toggle Navigation">
+            </button>
+            <div id="@navbarId">
+                <ul>
+                    @foreach (var node in Model.Nodes)
+                    {
+                        RenderRootLevelNode(node);
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+@*Here is specified the rendering for the root level*@
+@{ void RenderRootLevelNode(PageViewModel node)
+    {
+        if (node.ChildNodes.Count > 0)
+        {
+            var navbarDropdownId = Html.GetUniqueId($"navbarDropdownMenuLink-{node.Key}");
+            <li class="@GetClass(node)">
+                <a href="#" id='@navbarDropdownId' aria-haspopup="true" aria-expanded="false">@node.Title</a>
+                <ul aria-labelledby='@navbarDropdownId'>
+                    @{RenderSubLevelsRecursive(node);}
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a class="@GetClass(node)" href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+            </li>
+        }
+    }
+}
+
+@*Here is specified the rendering for all child levels*@
+@{ void RenderSubLevelsRecursive(PageViewModel node)
+    {
+        foreach (var childNode in node.ChildNodes)
+        {
+            if (childNode.ChildNodes.Count > 0)
+            {
+                <li>
+                    <a class="@GetClass(childNode)" href="@childNode.Url" target="@childNode.LinkTarget">
+                        @childNode.Title
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                        </svg>
+                    </a>
+                    <ul>
+                        @{RenderSubLevelsRecursive(childNode);}
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a class="@GetClass(childNode)" href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+                </li>
+            }
+        }
+    }
+}
+@*Resolves the class that will be added for each node depending whether it is selected*@
+@{Microsoft.AspNetCore.Html.IHtmlContent GetClass(PageViewModel node)
+    {
+
+        if (node.IsCurrentlyOpened)
+        {
+            return Html.HtmlSanitize("active");
+        }
+
+        return null;
+    }
+}
