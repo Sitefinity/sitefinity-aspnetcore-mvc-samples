@@ -7,7 +7,7 @@ We provide a default layout file which you can use to start your pages even when
 
 Template inheritance is available for Sitefinity Templates as well. You can base your Sitefinity templates on physical layout files from the .NET Core Renderer. 
 
-You can create a new layout file inside your .Net Core project under the folders /Views/Shared. The new file must contain the words “Layout” or “Template” in its name.
+You can create a new layout file inside your .Net Core project under the folders /Views/Shared. The new file must contain the words “Layout” or “Template” in its name (valid for builds prior to 14.3.8023(excluding), for builds after 14.3.8023(including) this is not required).
 
 The layout files are integrated in the backend UI of Sitefinity and you can choose between them when you create new page. To do this go to Sitefinity backend -> Pages-> Create a page, enter page title and click “Continue”. Your layout files will be available in the lower part of the template selector under the section “External .NET core renderer”
 
