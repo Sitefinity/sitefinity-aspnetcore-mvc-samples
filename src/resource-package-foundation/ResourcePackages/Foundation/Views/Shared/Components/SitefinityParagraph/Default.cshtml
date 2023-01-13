@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore
+@using Progress.Sitefinity.AspNetCore.TagHelpers;
+
+@model Progress.Sitefinity.AspNetCore.FormWidgets.ViewModels.Common.TextViewModelBase
+
+@{
+    var paragraphUniqueId = Model.FieldName;
+    string ariaDescribedByAttribute = string.Empty;
+    @if (Model.HasDescription)
+    {
+        var paragraphErrorMessageId = Html.GetUniqueId("ParagraphErrorMessage");
+        if (!string.IsNullOrEmpty(Model.InstructionalText))
+        {
+            ariaDescribedByAttribute = $"aria-describedby='{paragraphUniqueId} {paragraphErrorMessageId}'";
+        }
+        else
+        {
+            ariaDescribedByAttribute = $"aria-describedby='{paragraphErrorMessageId}'";
+        }
+    }
+}
+
+<script data-sf-role='start_field_@paragraphUniqueId' data-sf-role-field-name='@paragraphUniqueId'></script>
+<div class="mb-3 @Model.CssClass" data-sf-role="paragraph-text-field-container">
+    <input data-sf-role="violation-restrictions" type="hidden" value='@Model.ViolationRestrictionsJson' />
+    <input data-sf-role="violation-messages" type="hidden" value='@Model.ViolationRestrictionsMessages' />
+
+    <label class="h6" for='@paragraphUniqueId'>@Model.Label</label>
+    <textarea id='@paragraphUniqueId'
+           class="form-control"
+           name="@Model.FieldName"
+           placeholder="@Model.PlaceholderText"
+           data-sf-role="paragraph-text-field-textarea"
+           @(Model.Readonly ? "readonly" : "")
+           @Html.Raw(ariaDescribedByAttribute)
+           @Html.Raw(Model.ValidationAttributes)>@Model.PredefinedValue</textarea>
+
+    @if (Model.HasDescription)
+    {
+        <div id='@Html.GetUniqueId("ParagraphInfo")' class="form-text">@Model.InstructionalText</div>
+    }
+
+    <div id='@Html.GetUniqueId("ParagraphErrorMessage")' data-sf-role="error-message" role="alert" aria-live="assertive" class="invalid-feedback"></div>
+</div>
+<script data-sf-role='end_field_@paragraphUniqueId'></script>

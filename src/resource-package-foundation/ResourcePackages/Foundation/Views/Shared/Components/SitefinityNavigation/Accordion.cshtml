@@ -1,0 +1,172 @@
+﻿@using Progress.Sitefinity.AspNetCore.TagHelpers;
+@using Progress.Sitefinity.AspNetCore.Widgets.Models.Navigation;
+@using Progress.Sitefinity.AspNetCore.Models;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.Navigation.NavigationViewModel
+
+
+
+<!-- This demo uses flex grid but you can use float grid too -->
+<!-- foundation accordion example -->
+
+<div class="row">
+  <div class="columns">
+    <h2>Accordion</h2>
+    <p>Accordions lets you organize and navigate multiple documents in a single container. Highly useful for switching between items in the container specially when you have a large amount of content.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="columns">
+    <ul class="accordion" data-accordion>
+  <li class="accordion-item is-active" data-accordion-item>
+    <a href="#" class="accordion-title">Accordion 1</a>
+    <div class="accordion-content" data-tab-content >
+      <p>Panel 1. Lorem ipsum dolor</p>
+      <a href="#">Nowhere to Go</a>
+    </div>
+  </li>
+  <li class="accordion-item" data-accordion-item>
+    <a href="#" class="accordion-title">Accordion 2</a>
+    <div class="accordion-content" data-tab-content>
+      <textarea></textarea>
+      <button class="button">I do nothing!</button>
+    </div>
+  </li>
+  <li class="accordion-item" data-accordion-item>
+    <a href="#" class="accordion-title">Accordion 3</a>
+    <div class="accordion-content" data-tab-content>
+      Type your name!
+      <input type="text"></input>
+    </div>
+  </li>
+</ul>
+  </div>
+</div>
+
+@{
+    var accordionId = Html.GetUniqueId("accordion");
+}
+
+<div class="row">
+    <ul class="accordion" id="@accordionId" data-accordion @Html.BuildAttributes(Model.Attributes)>
+        @foreach (var node in Model.Nodes)
+        {
+            RenderRootLevelNode(node);
+        }
+    </ul>
+</div>
+
+@*Here is specified the rendering for the root level*@
+@{ void RenderRootLevelNode(PageViewModel node)
+    {
+        <li class="accordion-item is-active" data-accordion-item>
+            @{ if (node.ChildNodes.Count > 0)
+                {
+                    var headingId = Html.GetUniqueId($"heading-{node.Key}");
+                    var coolapseId = Html.GetUniqueId($"collapse-{node.Key}");
+                    <a title="@node.Title" class="nav-link sc-accordion-link p-0 text-truncate" href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+                        <button aria-label="Expander for parent page @node.Title" class="accordion-button @GetAccordeonButtonStateClass(node)" type="button" data-bs-toggle="collapse" data-bs-target='#@coolapseId' aria-expanded="@IsActive(node)" aria-controls='@coolapseId'>
+                            @if (node.PageSiteMapNode.PageType == PageType.Group)
+                            {
+                                <span title="@node.Title" class="nav-link sc-accordion-link sf-group p-0 text-truncate">@node.Title</span>
+                            }
+                        </button>
+                        @if (node.PageSiteMapNode.PageType != PageType.Group)
+                        {
+                            <a title="@node.Title" class="nav-link sc-accordion-link p-0 text-truncate" href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+                        }
+                    
+                    <div id='@coolapseId' class="accordion-collapse collapse @GetAccordeonContentStateClass(node)" aria-labelledby='@headingId' data-bs-parent="#@accordionId">
+                        <div class="accordion-body">
+                            @{RenderSubLevelsRecursive(node);}
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <h2 class="accordion-title">
+                        <span class="accordion-button empty @GetAccordeonButtonStateClass(node)">
+                            <a title="@node.Title" class="nav-link d-inline-block p-0 text-truncate" href="@node.Url" target="@node.LinkTarget">@node.Title</a>
+                        </span>
+                    </h2>
+                }
+            }
+        </li>
+    }
+}
+
+@*Here is specified the rendering for all child levels*@
+@{ void RenderSubLevelsRecursive(PageViewModel node, bool nested = false)
+    {
+        @if (node.ChildNodes.Count > 0)
+        {
+            <ul class="nav flex-column @(nested ? "ms-3" : null)">
+                @foreach (var childNode in node.ChildNodes)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link d-inline-block @GetClass(childNode)" href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+
+                        @{RenderSubLevelsRecursive(childNode, true);}
+                    </li>
+                }
+            </ul>}
+    }
+}
+@*Resolves the class that will be added for each node depending whether it is selected*@
+@{Microsoft.AspNetCore.Html.IHtmlContent GetClass(PageViewModel node)
+    {
+
+        if (node.IsCurrentlyOpened)
+        {
+            return Html.HtmlSanitize("active");
+        }
+
+        return null;
+    }
+}
+
+@{
+    Microsoft.AspNetCore.Html.IHtmlContent GetAccordeonButtonStateClass(PageViewModel node)
+    {
+        if (!node.IsCurrentlyOpened && !node.HasChildOpen)
+        {
+            return Html.HtmlSanitize("collapsed");
+        }
+
+        return null;
+    }
+
+    Microsoft.AspNetCore.Html.IHtmlContent GetAccordeonContentStateClass(PageViewModel node)
+    {
+        if (node.IsCurrentlyOpened || node.HasChildOpen)
+        {
+            return Html.HtmlSanitize("show");
+        }
+
+        return null;
+    }
+
+    Microsoft.AspNetCore.Html.IHtmlContent IsActive(PageViewModel node)
+    {
+        if (node.IsCurrentlyOpened || node.HasChildOpen)
+        {
+            return Html.HtmlSanitize("true");
+        }
+
+        return Html.HtmlSanitize("false");
+    }
+}
+<environment include="Development">
+    <script src="ResourcePackages/Foundation/assets/dist/js/jquery.min.js" ></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.core.min.js" ></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.util.keyboard.min.js"></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.accordion.min.js"></script>
+</environment>
+<environment exclude="Development">
+    <script src="ResourcePackages/Foundation/assets/dist/js/jquery.min.js" ></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.core.min.js"></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.accordion.min.js"></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.util.keyboard.min.js"></script>
+</environment>
+<script type="text/javascript">$(document).foundation();</script>

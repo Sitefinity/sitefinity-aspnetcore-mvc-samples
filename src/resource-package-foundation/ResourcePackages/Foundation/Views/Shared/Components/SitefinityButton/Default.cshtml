@@ -1,0 +1,27 @@
+﻿@using Progress.Sitefinity.AspNetCore.TagHelpers;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.Button.ButtonViewModel
+
+<environment include="Development">
+    <script src="Scripts/call-to-action.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+</environment>
+<environment exclude="Development">
+    <script src="Scripts/call-to-action.min.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+</environment>
+@{
+    void ButtonTag(string label, string href, string cssClass, string typeToPlaceAttributeOn)
+    {
+        @if (!string.IsNullOrEmpty(label))
+        {
+            string classAttr = string.IsNullOrEmpty(cssClass) ? string.Empty : string.Format(@"class='{0}'", cssClass);
+            <a @Html.Raw(classAttr) href="@href" data-call-to-action @Html.BuildAttributes(Model.Attributes, typeToPlaceAttributeOn)>
+                @label
+            </a>
+        }
+    }
+}
+
+<div @Html.BuildAttributes(@Model.Attributes, "Wrapper") @Html.Raw(!string.IsNullOrEmpty(Model.CssClass) ? string.Format(@"class='grid-x align-middle {0}'", Model.CssClass) : "class='grid-x align-middle'")>
+    @{ButtonTag(Model.PrimaryActionLabel, Model.PrimaryActionHref, string.Format(@"margin-right-1 {0}", Model.PrimaryButtonCssClass), "Primary");}
+    @{ButtonTag(Model.SecondaryActionLabel, Model.SecondaryActionHref, Model.SecondaryButtonCssClass, "Secondary");}
+</div>

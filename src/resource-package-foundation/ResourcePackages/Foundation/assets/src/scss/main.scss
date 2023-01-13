@@ -1,0 +1,4 @@
+//Foundation
+@import '../../../node_modules/foundation-sites/assets/foundation';
+//Import .scss files here
+@include foundation-everything($prototype: true);
