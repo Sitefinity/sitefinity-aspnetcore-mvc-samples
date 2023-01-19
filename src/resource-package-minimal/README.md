@@ -2,8 +2,9 @@
 
 This is a basic package, which contains all default templates of the frontend widgets as plain HTML and minimal CSS. It can be used as a foundation for custom MVC packages, as well as packages that are based on frontend frameworks of your choice. In order to use it you need to add the package to the `ResourcePackages` folder of your project. If the `ResourcePackages` folder doesn't contain any packages, widget templates will be loaded from *Embedded resources* or from the **MVC** folder of **SitefinityWebApp** folder only if it contains files with names, matching the naming convention. The priority for loading templates is as follows (in descending order):
 1. Templates from the resource package
-2. Templates in the **MVC** folder of **SitefinityWebApp**
 3. Templates from the *Embedded resources* source
+
+**Note**: Keep in mind that if Sitefinity doesn't find a template for a built-in widget in your package, it will use the default embedded one. This is the difference between the .NET Core packages and the MVC packages.
 
 ## Npm
 ### Install
@@ -116,14 +117,14 @@ If you want to have separate locations for the project widget templates and the 
 You can apply the same separation for grid widget templates as well. You can move the project-specific grid widget templates to the `/GridSystem/Templates` folder in the root `SitefinityWebApp` folder of the project.
 
 ## Location of project frontend assets
-All project-specific frontend assets like SCSS, images, JavaSCript files, and so on need to be placed in the `assets/src/project` folder. When the `npm start` is run, all source files are processed and moved to the `assets/dist` folder, from which there are used in the project.
+All project-specific frontend assets like SCSS, images, JavaSCript files, and so on need to be placed in the `assets/src/project` folder. When the `npm start` is run, all source files are processed and moved to the `assets/dist` folder, from which they are used in the project.
 
 ### Scss
 Place all your SCSS files in the `assets/src/project/sass` folder. We recommend that you create subfolders to organize the project files and only then import the files in `main.scss`
 **Example:**
 ```
 File structure
-|- sass
+|- scss
 |-- settings
 |--- _colors.scss
 |--- _typography.scss

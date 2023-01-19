@@ -4,6 +4,8 @@ This is a package, which contains all default templates of the frontend widgets 
 1. Templates from the resource package
 2. Templates from the *Embedded resources* source
 
+**Note**: Keep in mind that if Sitefinity doesn't find a template for a built-in widget in your package, it will use the default embedded one. This is the difference between the .NET Core packages and the MVC packages.
+
 ## Npm
 ### Install
 Npm is the package manager for JavaScript that enables you to assemble packages of reusable code. For more information, visit [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) websites. Currently *Foundation* package supports Node.js LTS version 18.13.0.
@@ -25,7 +27,7 @@ The Foundation package contains Foundation assets and widget templates. Followin
             - **main.min.css** - this is the minified version of the `main.css` file. The `main.min.css` file is the distributed CSS file that is linked in the `MVC/Views/Layouts/default.cshtml` Razor layout file of the package.
             - **sitefinity.css** - this is output of the processed `sitefinity.scss` from `assets/src/sitefinity/sass`. This files contain CSS added by Sitefinity CMS
             - **sitefinity.min.css** - this is the minified version of `sitefinity.css`
-    - **src** - contains the source front-end files which are processed via grunt to dist folder
+    - **src** - contains the source front-end files which are processed via npm scripts
             - **images** - add images in this folder. These images will be compressed and output to the `assets/dist/images` folder.
             - **js** - add JavaScript files in this folder that need to be moved to the `assets/dist/js` folder. You will need to extend the file paths listed in `package.json` file in `config.copyJs` section.
             - **scss** - create subfolders in this folder to add your SCSS files
@@ -66,8 +68,6 @@ Creating a new template is just as simple:
 
 As a result, the new template is displayed in widget designer for this widget in the list with templates.
 
-When you create a new Dynamic module, list and details widget templates for this module are automatically created for this module in `Design > Widget Templates`.
-
 ## Recommendations for managing widget templates
 
 ### Modifying widget templates
@@ -75,7 +75,7 @@ When you create a new Dynamic module, list and details widget templates for this
 To make upgrades easier, we recommend not to change the default widget templates. If you need to make changes to a default template, we recommend that you create a new one by duplicating the existing template you want to modify. You then make the changes on the newly created template.
 
 ## Location of project frontend assets
-All project-specific frontend assets like SCSS, images, JavaScript files, and so on need to be placed in the `assets/src` folder. When the `npm start` is run, all source files are processed and moved to the `assets/dist` folder, from which there are used in the project.
+All project-specific frontend assets like SCSS, images, JavaScript files, and so on need to be placed in the `assets/src` folder. When the `npm start` is run, all source files are processed and moved to the `assets/dist` folder, from which they are used in the project.
 
 ### Scss
 Place all your SCSS files in the `assets/src/scss` folder. We recommend that you create subfolders to organize the project files and only then import the files in `main.scss`
