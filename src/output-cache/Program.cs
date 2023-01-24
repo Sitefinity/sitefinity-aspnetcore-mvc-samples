@@ -21,6 +21,11 @@ builder.Services.AddDbContextFactory<CacheContext>(options => options.UseSqlServ
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddSingleton<IOutputCacheStore, EfCacheStore>();
 
+builder.Services.AddOutputCache(x =>
+{
+    x.AddPolicy("sitefinity", new CustomCachePolicy());
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
