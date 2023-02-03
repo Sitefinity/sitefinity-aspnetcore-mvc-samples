@@ -1,0 +1,42 @@
+﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering
+@using Progress.Sitefinity.RestSdk.Dto
+@inject Progress.Sitefinity.AspNetCore.Web.IRenderContext renderContext;
+@inject Progress.Sitefinity.AspNetCore.Web.IRequestContext renquestContext;
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.Classification.ClassificationViewModel;
+
+<ul class="@Model.CssClass"
+    data-sf-role="classification"
+    @Html.BuildAttributes(Model.Attributes) >
+    @{
+        foreach (var item in @Model.Taxons)
+        {
+            string count = @Model.ShowItemCount ? $" ({item.AppliedTo})" : string.Empty;
+            <li>
+                <a href="@item.UrlName">@Html.HtmlSanitize(item.Title)</a>@count
+                @if (item.SubTaxa.Any())
+                {
+                    RenderSubTaxa(item.SubTaxa, @Model.ShowItemCount);
+                }
+            </li>
+        }
+    }
+</ul>
+
+@functions{
+    void RenderSubTaxa(IList<TaxonDto> taxa, bool showItemCount)
+      {
+        <ul>
+        @foreach (var t in taxa)
+           {
+           string count = showItemCount ? $" ({t.AppliedTo})" : string.Empty;
+            <li>
+                <a href="@t.UrlName">@Html.HtmlSanitize(t.Title)</a>@count
+                @if (t.SubTaxa.Any())
+                {
+                    RenderSubTaxa(t.SubTaxa, showItemCount);
+                }
+            </li>
+          }
+        </ul>
+       }
+   }

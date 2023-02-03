@@ -1,0 +1,105 @@
+﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering
+@using Progress.Sitefinity.AspNetCore.Widgets.Models.SearchResults
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.SearchResults.SearchResultsViewModel;
+@inject Progress.Sitefinity.AspNetCore.Web.IRenderContext renderContext;
+
+<environment include="Development">
+    <script src="Scripts/SearchWidgets/search-results.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+</environment>
+<environment exclude="Development">
+    <script src="Scripts/SearchWidgets/search-results.min.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+</environment>
+
+@{
+    var queryCollection = this.Context.Request.Query;
+    var orderByQuery = this.Context.Request.Query["orderBy"].ToString();
+    var sorting = !string.IsNullOrEmpty(orderByQuery) ? orderByQuery : Model.Sorting.ToString();
+    var sortingSelectId = Html.GetUniqueId("sf-sort-");
+    var searchTerm = this.Context.Request.Query["searchQuery"].ToString();
+
+    @if (!string.IsNullOrEmpty(searchTerm) || renderContext.IsEdit)
+    {
+        <div class="@Model.CssClass"
+             data-sf-role='search-results'
+             data-sf-search-query='@searchTerm'
+             data-sf-search-catalogue='@queryCollection["indexCatalogue"]'
+             data-sf-words-mode='@queryCollection["wordsMode"]'
+             data-sf-language='@queryCollection["sf_culture"]'
+             data-sf-scoring-info='@queryCollection["scoringInfo"]'
+             data-sf-results-all='@queryCollection["resultsForAllSites"]'
+             data-sf-sorting='@sorting'
+             @Html.BuildAttributes(Model.Attributes)>
+            <div class="flex-container align-middle align-justify margin-vertical-1">
+                <h1 role="alert" aria-live="assertive">@Model.ResultsHeader</h1>
+                <div class="flex-container align-middle padding-1">
+                @if (@Model.AllowUsersToSortResults && @Model.TotalCount > 0)
+                {
+                        <label for="@sortingSelectId" class="form-label text-nowrap">
+                            Sort by
+                        </label>
+                        <select class="userSortDropdown form-select" title="SortDropdown" id="@sortingSelectId">
+                            <option value="@SearchResultsSorting.MostRelevantOnTop">Relevance</option>
+                            <option value="@SearchResultsSorting.NewestFirst">Newest first</option>
+                            <option value="@SearchResultsSorting.OldestFirst">Oldest first</option>
+                        </select>
+                }
+                </div>
+            </div>
+            <div>
+                <h4>@Model.TotalCount @Model.ResultsNumberLabel</h4>
+                <p>@Model.LanguagesLabel
+                    @{
+                    int count = Model.Languages.Count();
+                        @for (int i = 0; i < count; i++)
+                        {
+                            var language = Model.Languages.ElementAt(i);
+                            <span><a data-sf-role='search-results-language'
+                                data-sf-language='@language.Name'
+                                href="#">@language.DisplayName</a>@(i + 1 < count ? ',' : null)</span>
+                        }
+                    }
+                </p>
+            </div>
+            <div class="mt-4">
+                @foreach (var item in Model.SearchResults)
+                {
+                    bool hasLink = !string.IsNullOrEmpty(item.Link);
+                    <div class="mb-3 d-flex">
+                        @if (@item.ThumbnailUrl != null)
+                        {
+                            <div class="margin-right-1">
+                                <a href="@item.Link">
+                                    <img src="@item.ThumbnailUrl" alt="@item.Title" width="120" />
+                                </a>
+                            </div>
+                        }
+                        <div class="flex-child-grow">
+                            <h3 class="margin-bottom-1">
+                                @if (@hasLink)
+                                {
+                                    <a  href="@item.Link">@item.Title</a>
+                                }
+                                else
+                                {
+                                    @item.Title
+                                }
+                            </h3>
+                            <p class="margin-bottom-1">@Html.HtmlSanitize(item.HighLighterResult)</p>
+                            @if (@hasLink)
+                            {
+                                <a  href="@item.Link">@item.Link</a>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        @if (Model.Pager != null)
+        {
+            <div class="margin-top-3">
+                @await Html.PartialAsync("ContentPager", Model.Pager)
+            </div>
+        }
+    }
+}

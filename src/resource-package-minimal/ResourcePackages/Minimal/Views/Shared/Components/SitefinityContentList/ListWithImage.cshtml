@@ -1,0 +1,66 @@
+﻿@using Progress.Sitefinity.RestSdk.Dto;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
+@{
+    var imageCss = Model.GetFieldCss("Image");
+    var titleCss = Model.GetFieldCss("Title");
+    var textCss = Model.GetFieldCss("Text");
+    var wrapperCss = Model.GetFieldCss("Content list");
+}
+
+<div @Html.Raw(string.IsNullOrEmpty(wrapperCss) ? "" : $"class='{wrapperCss}'") @Html.BuildAttributes(Model.Attributes)>
+    @{
+        var first = Model.Items.FirstOrDefault();
+    }
+    @foreach (var item in Model.Items)
+    {
+        var image = Model.GetFirstRelatedMedia(item, "Image");
+        var thumbnail = image != null ? image.GetThumbnail() : null;
+        var title = Model.GetFieldValue<string>(item, "Title");
+        var text = Model.GetFieldValue<string>(item, "Text");
+
+        if (!item.Equals(first))
+        {
+            <hr>
+        }
+
+        <div>
+            <div>
+                @if (thumbnail != null)
+                {
+                    <img class="@(imageCss)" src='@(thumbnail.Url)' title='@(image.Title)' />
+                }
+                else if (image != null)
+                {
+                    <img class="@(imageCss)" src='@(image.Url)' alt='@(image.AlternativeText)' title='@(image.Title)' />
+                }
+            </div>
+            <div>
+                @if (title != null)
+                {
+                    <h5 @Html.Raw(string.IsNullOrEmpty(titleCss) ? "" : $"class='{titleCss}'")>@Html.HtmlSanitize(title)</h5>
+                }
+                @if (text != null)
+                {
+                    <p @Html.Raw(string.IsNullOrEmpty(textCss) ? "" : $"class='{textCss}'")>@Html.HtmlSanitize(text)</p>
+                }
+
+                @if (Model.RenderLinks)
+                {
+                    var itemUrl = Model.GetItemUrl(this.Context, item);
+                    @if (itemUrl != null)
+                    {
+                        <a href="@itemUrl.ToString()">Learn more</a>
+                    }
+                }
+            </div>
+        </div>
+    }
+
+    @if (Model.Pager != null)
+    {
+        <div>
+            @await Html.PartialAsync("ContentPager", Model.Pager)
+        </div>
+    }
+</div>

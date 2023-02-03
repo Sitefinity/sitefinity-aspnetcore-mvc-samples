@@ -1,0 +1,65 @@
+﻿@using Progress.Sitefinity.Renderer.Contracts.Forms
+@model Progress.Sitefinity.AspNetCore.FormWidgets.ViewModels.MultipleChoice.MultipleChoiceViewModel
+
+@{
+    var layoutClass = string.Empty;
+    var innerColumnClass = string.Empty;
+    switch (@Model.ColumnsNumber)
+    {
+        case 0:
+            layoutClass = "";
+            innerColumnClass = "";
+            break;
+        case 2:
+            layoutClass = "";
+            innerColumnClass = "";
+            break;
+        case 3:
+            layoutClass = "";
+            innerColumnClass = "";
+            break;
+        default:
+            layoutClass = string.Empty;
+            innerColumnClass = string.Empty;
+            break;
+    }
+}
+
+<script data-sf-role='start_field_@Model.FieldName' data-sf-role-field-name='@Model.FieldName'></script>
+<fieldset data-sf-role="checkboxes-field-container" class="@Model.CssClass" aria-labelledby="choice-field-label-@Model.FieldName choice-field-description-@Model.FieldName">
+    <input data-sf-role="violation-messages" type="hidden" value='@Model.ViolationRestrictionsMessages' />
+    <input type="hidden" data-sf-role="required-validator" value='@Model.Required.ToString()' />
+
+    <legend id="choice-field-label-@Model.FieldName">@Model.Label</legend>
+    @if (!String.IsNullOrEmpty(Model.InstructionalText))
+    {
+        <p id="choice-field-description-@Model.FieldName">@Model.InstructionalText</p>
+    }
+
+    <div class="@layoutClass">
+        @for (var i = 0; i < Model.Choices?.Count; i++)
+        {
+            var choiceOptionId = Html.GetUniqueId($"choiceOption-{i}-{Model.FieldName}");
+            var choiceOption = Model.Choices[i];
+            
+            <div class="@innerColumnClass">
+                <input type="checkbox" name="@Model.FieldName" id="@choiceOptionId" value="@choiceOption.Value" data-sf-role="checkboxes-field-input" checked="@choiceOption.Selected" @(Model.Required ? "required" : null)>
+                <label for="@choiceOptionId">
+                    @choiceOption.Name
+                </label>
+            </div>
+        }
+
+        @if (Model.HasAdditionalChoice)
+        {
+            var choiceOptionId = Html.GetUniqueId($"choiceOption-other-{Model.FieldName}");
+            <div class="@innerColumnClass">
+                <input type="checkbox" name="@Model.FieldName" id="@choiceOptionId" data-sf-role="checkboxes-field-input" @(Model.Required ? "required" : null)>
+                <label for="@choiceOptionId">Other</label>
+                <input type="text" style="display: none" data-sf-role="choice-other-input">
+            </div>
+        }
+    </div>  
+    <div data-sf-role="error-message" role="alert" aria-live="assertive"></div>
+</fieldset>
+<script data-sf-role='end_field_@Model.FieldName'></script>

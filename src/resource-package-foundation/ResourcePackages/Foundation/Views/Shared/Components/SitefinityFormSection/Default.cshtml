@@ -1,0 +1,8 @@
+﻿@model Progress.Sitefinity.AspNetCore.FormWidgets.ViewModels.FormSection.FormSectionViewModel;
+    <section class="grid-x">
+        @for (var i = 0; i < this.Model.ColumnsCount; i++)
+        {
+            <div class="cell medium-@this.Model.ColumnProportions[i]" data-sfcontainer container-context="@this.Model.Context.ContainerContext(this.Model.ColumnNames[i], null)">
+            </div>
+        }
+    </section>

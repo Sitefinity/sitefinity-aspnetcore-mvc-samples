@@ -1,0 +1,110 @@
+﻿@using Progress.Sitefinity.AspNetCore.Widgets.Models.ResetPassword
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ResetPassword.ResetPasswordViewModel
+
+@{
+    var lbls = Model.Labels;
+}
+
+<div
+data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+data-sf-invalid="@Model.InvalidClass"
+class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
+    @if (Model.IsResetPasswordRequest)
+    {
+        <div data-sf-role="sf-reset-password-container">
+            @if (Model.Error || (Model.RequiresQuestionAndAnswer && string.IsNullOrEmpty(Model.SecurityQuestion)))
+            {
+                <h2>@lbls.ResetPasswordHeader</h2>
+                <div data-sf-role="error-message-container" role="alert" aria-live="assertive">@lbls.ErrorMessage</div>
+            }
+            else
+            {
+                <environment include="Development">
+                    <script src="Scripts/LoginWidgets/reset-password.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+                </environment>
+                <environment exclude="Development">
+                    <script src="Scripts/LoginWidgets/reset-password.min.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+                </environment>
+
+                var securityQuestionInputId = Html.GetUniqueId("sf-security-question-");
+                var newPasswordInputId = Html.GetUniqueId("sf-new-password-");
+                var repeatPasswordInputId = Html.GetUniqueId("sf-repeat-password-");
+
+                <div data-sf-role="form-container">
+                    <h2 class="mb-3">@lbls.ResetPasswordHeader</h2>
+                    <div data-sf-role="error-message-container" style="display: none;" role="alert" aria-live="assertive"></div>
+                    <form method="post" action="@Model.ResetUserPasswordHandlerPath" role="form">
+                        @if (Model.RequiresQuestionAndAnswer && !string.IsNullOrEmpty(Model.SecurityQuestion))
+                        {
+                            var securityQuestionLabel = string.IsNullOrEmpty(lbls.SecurityQuestionLabel) ? Model.SecurityQuestion : $"{lbls.SecurityQuestionLabel} {Model.SecurityQuestion}";
+                            <div>
+                                <label for="@securityQuestionInputId">@securityQuestionLabel</label>
+                                <input id="@securityQuestionInputId" type="text" name="Answer" data-sf-role="required">
+                            </div>
+                        }
+                        <div>
+                            <label for="@newPasswordInputId">@lbls.NewPasswordLabel</label>
+                            <input id="@newPasswordInputId" type="password" name="NewPassword" data-sf-role="required">
+                        </div>
+                        <div>
+                            <label for="@repeatPasswordInputId">@lbls.RepeatNewPasswordLabel</label>
+                            <input id="@repeatPasswordInputId" type="password" data-sf-role="required">
+                        </div>
+
+                        <input type="hidden" name="SecurityToken" value="@Context.Request.QueryString.Value" />
+                        <input type="submit" value="@lbls.SaveButtonLabel" />
+                    </form>
+                    <input type="hidden" name="ErrorMessage" value="@lbls.ErrorMessage" />
+                    <input type="hidden" name="AllFieldsAreRequiredErrorMessage" value="@lbls.AllFieldsAreRequiredErrorMessage" />
+                    <input type="hidden" name="PasswordsMismatchErrorMessage" value="@lbls.PasswordsMismatchErrorMessage" />
+                </div>
+                <div data-sf-role="success-message-container" style="display: none;">
+                    <h2>@lbls.SuccessMessage</h2>
+                    @if (!string.IsNullOrEmpty(Model.LoginPageLink))
+                    {
+                        <a href="@Model.LoginPageLink">@lbls.BackLinkLabel</a>
+                    }
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <environment include="Development">
+            <script src="Scripts/LoginWidgets/forgotten-password.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="Scripts/LoginWidgets/forgotten-password.min.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+        </environment>
+
+        var emailInputId = Html.GetUniqueId("sf-email-");
+
+        <div data-sf-role="sf-forgotten-password-container">
+            <h2 class="mb-3">@lbls.ForgottenPasswordHeader</h2>
+            <div data-sf-role="error-message-container" style="display: none;" role="alert" aria-live="assertive"></div>
+            <div data-sf-role="form-container">
+                <p>@lbls.ForgottenPasswordLabel</p>
+                <form action="@Model.SendResetPasswordEmailHandlerPath" role="form" novalidate>
+                    <div>
+                        <label for="@emailInputId">@lbls.EmailLabel</label>
+                        <input id="@emailInputId" type="email" name="Email" data-sf-role="required">
+                    </div>
+                    <input type="submit" value="@lbls.SendButtonLabel" />
+                    <input type="hidden" name="ResetPasswordUrl" value="@Model.ResetPasswordUrl" />
+                </form>
+
+                <input type="hidden" name="InvalidEmailFormatMessage" value="@lbls.InvalidEmailFormatMessage" />
+                <input type="hidden" name="FieldIsRequiredMessage" value="@lbls.FieldIsRequiredMessage" />
+            </div>
+            <div data-sf-role="success-message-container" style="display: none;">
+                <p>@lbls.ForgottenPasswordSubmitMessage <strong data-sf-role="sent-email-label"></strong></p>
+                <p>@lbls.ForgottenPasswordLinkMessage</p>
+            </div>
+            @if (!string.IsNullOrEmpty(Model.LoginPageLink))
+            {
+                <a href="@Model.LoginPageLink">@lbls.BackLinkLabel</a>
+            }
+        </div>
+    }
+</div>

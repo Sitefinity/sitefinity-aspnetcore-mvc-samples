@@ -1,0 +1,45 @@
+{
+  "CardsList": [
+    {
+      "fieldTitle": "Image",
+      "fieldType": "RelatedImage"
+    },
+    {
+      "fieldTitle": "Title",
+      "fieldType": "ShortText"
+    },
+    {
+      "fieldTitle": "Text",
+      "fieldType": "Text"
+    }
+  ],
+
+  "ListWithSummary": [
+    {
+      "fieldTitle": "Title",
+      "fieldType": "ShortText"
+    },
+    {
+      "fieldTitle": "Text",
+      "fieldType": "Text"
+    },
+    {
+      "fieldTitle": "Publication date",
+      "fieldType": "DateTime"
+    }
+  ],
+  "ListWithImage": [
+    {
+      "fieldTitle": "Title",
+      "fieldType": "ShortText"
+    },
+    {
+      "fieldTitle": "Image",
+      "fieldType": "RelatedImage"
+    },
+    {
+      "fieldTitle": "Text",
+      "fieldType": "Text"
+    }
+  ]
+}
