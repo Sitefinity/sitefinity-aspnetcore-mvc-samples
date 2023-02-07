@@ -501,6 +501,33 @@ var result = await restClient.GetItems<NewsDto>(x => ((x.Id == item.Id) || (x.Id
 var result = await restClient.GetItems<NewsDtoInQuantum>(x => x.Thumbnail.Any(y => y.Title.StartsWith("Sample title", StringComparison.Ordinal) && y.Title.EndsWith(endsWithFilter, StringComparison.Ordinal)));
 
 ```
+    
+``` C#
+    
+// filtering by a dynamic collection of taxons
+var tags = new[] { Guid.NewGuid(), Guid.NewGuid()};
+var allFilters = tags.Select(tag =>
+{
+    var filter = new FilterClause()
+    {
+        FieldName = nameof(NewsDto.Tags),
+        FieldValue = tag.Id,
+        Operator = FilterClause.Operators.ContainsOr,
+    };
+
+    return (object)filter;
+}).ToList();
+
+var combinedFilter = new CombinedFilter()
+{
+    Operator = CombinedFilter.LogicalOperators.Or,
+    ChildFilters = allFilters,
+};
+
+var args = new GetAllArgs() { Count = true, Take = pageSize, Filter = combinedFilter, Fields = new List<string>() { "Id", "Title" } };
+var newsItems = await _restClient.GetItems<NewsDto>(args); 
+    
+```
 
 All of the above expressions can be combined in any binary operator form (&& ||).
 
