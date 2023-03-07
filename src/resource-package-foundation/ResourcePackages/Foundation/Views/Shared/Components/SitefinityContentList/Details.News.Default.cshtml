@@ -1,0 +1,28 @@
+﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+@using Progress.Sitefinity.RestSdk.Dto;
+@using Progress.Sitefinity.RestSdk;
+
+@inject IRestClient restClient;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentDetailViewModel
+
+<div @Html.Raw(string.IsNullOrEmpty(Model.CssClass) ? "" : $"class='{Model.CssClass}'") @Html.BuildAttributes(Model.Attributes)>
+    <h3>
+        <span>@(Model.Item.GetValue<string>("Title"))</span>
+    </h3>
+
+    <div>
+        @Html.FormatDate(Model.Item.GetValue<DateTime>("PublicationDate"), this.Context)
+        @{
+            var author = Model.Item.GetValue<string>("Author");
+        }
+        @if (!string.IsNullOrEmpty(author))
+        {
+            @Html.Raw($"By {author}");
+        }
+    </div>
+
+    <div>@Html.HtmlSanitize(Model.Item.GetValue<string>("Summary"))</div>
+
+    <div>@Html.HtmlSanitize(Model.Item.GetValue<string>("Content"))</div>
+</div>

@@ -1,0 +1,96 @@
+﻿@using Progress.Sitefinity.RestSdk.Dto;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentDetailViewModel
+
+<div @Html.Raw(string.IsNullOrEmpty(Model.CssClass) ? "" : $"class='{Model.CssClass}'") @Html.BuildAttributes(Model.Attributes)>
+    <h3 class="sf-event-title">
+        <span>@(Model.Item.GetValue<string>("Title"))</span>
+    </h3>
+    <span class="sf-event-type" style='background: @(Model.Item.GetValue<CalendarDto>("Parent").Color); display: inline-block; height:20px; width: 20px;'></span>
+
+    @* @if (!string.IsNullOrEmpty(Model.Item.EventDates()))
+        {
+            <p>
+                <time>@Model.Item.EventDates()</time>
+            </p>
+        } *@
+
+    @if (!string.IsNullOrEmpty(Model.Item.GetValue<string>("City")) || !string.IsNullOrEmpty(Model.Item.GetValue<string>("Country")))
+    {<address>
+
+            @if (!string.IsNullOrEmpty(Model.Item.GetValue<string>("City")) && !string.IsNullOrEmpty(Model.Item.GetValue<string>("Country")))
+            {
+                @(Model.Item.GetValue<string>("City")) <span>,</span> @(Model.Item.GetValue<string>("Country"))
+                <br>
+            }
+            else
+            {
+                @(string.IsNullOrEmpty(Model.Item.GetValue<string>("City")) ? Model.Item.GetValue<string>("Country") : Model.Item.GetValue<string>("City"))
+                <br>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Item.GetValue<string>("Street")))
+            {
+                @(Model.Item.GetValue<string>("Street"))
+            }
+        </address>
+    }
+
+    <div>
+        @if (!string.IsNullOrEmpty(Model.Item.GetValue<string>("ContactName")))
+        {
+            @(Model.Item.GetValue<string>("ContactName"))
+            <br>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Item.GetValue<string>("ContactPhone")))
+        {
+            @(Model.Item.GetValue<string>("ContactPhone"))
+            <br>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Item.GetValue<string>("ContactCell")))
+        {
+            @(Model.Item.GetValue<string>("ContactCell"))
+            <br>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Item.GetValue<string>("ContactEmail")))
+        {
+            <address><a href="mailto:@(Model.Item.GetValue<string>("ContactEmail"))" target="_blank">@(Model.Item.GetValue<string>("ContactEmail"))</a></address>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Item.GetValue<string>("ContactWeb")))
+        {
+            <a href="@(Model.Item.GetValue<string>("ContactWeb"))" target="_blank">@(Model.Item.GetValue<string>("ContactWeb"))</a>
+        }
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Item.GetValue<string>("Location")))
+    {
+        <p>
+            @*How to find us field*@
+            @(Model.Item.GetValue<string>("Location"))
+        </p>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Item.GetValue<string>("Description")))
+    {
+        <p>
+            @(Model.Item.GetValue<string>("Description"))
+        </p>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Item.GetValue<string>("Summary")))
+    {
+        <p>
+            <div>@Html.HtmlSanitize(Model.Item.GetValue<string>("Summary"))</div>
+        </p>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Item.GetValue<string>("Content")))
+    {
+        <p>@Html.HtmlSanitize(Model.Item.GetValue<string>("Content"))</p>
+    }
+
+</div>

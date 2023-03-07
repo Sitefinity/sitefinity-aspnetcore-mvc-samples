@@ -1,0 +1,9 @@
+﻿@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentDetailViewModel
+
+<div @Html.Raw(string.IsNullOrEmpty(Model.CssClass) ? "" : $"class='{Model.CssClass}'") @Html.BuildAttributes(Model.Attributes)>
+    <h3>
+        <span>@(Model.Item.GetValue<string>("Title"))</span>
+    </h3>
+
+    <div>@Html.HtmlSanitize(Model.Item.GetValue<string>("Content"))</div>
+</div>

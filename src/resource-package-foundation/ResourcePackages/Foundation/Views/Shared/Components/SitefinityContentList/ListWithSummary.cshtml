@@ -1,0 +1,57 @@
+﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentListViewModel
+@{
+    var publicationDateCss = Model.GetFieldCss("Publication date");
+    var titleCss = Model.GetFieldCss("Title");
+    var textCss = Model.GetFieldCss("Text");
+    var wrapperCss = Model.GetFieldCss("Content list");
+}
+
+<div @Html.Raw(string.IsNullOrEmpty(wrapperCss) ? "" : $"class='{wrapperCss}'") @Html.BuildAttributes(Model.Attributes)>
+    @{
+        var first = Model.Items.FirstOrDefault();
+    }
+    @foreach (var item in Model.Items)
+    {
+        var publicationDate = Model.GetFieldValue<DateTime>(item, "Publication date");
+        var title = Model.GetFieldValue<string>(item, "Title");
+        var text = Model.GetFieldValue<string>(item, "Text");
+
+        if (!item.Equals(first))
+        {
+            <hr>
+        }
+
+        <div>
+            @if (title != null)
+            {
+                var itemUrl = Model.GetItemUrl(this.Context, item);
+                <h5 @Html.Raw(string.IsNullOrEmpty(titleCss) ? "" : $"class='{titleCss}'")>
+                    @if (itemUrl != null && Model.RenderLinks)
+                    {
+                        <a href="@itemUrl.ToString()">@title</a>
+                    }
+                    else
+                    {
+                        @Html.HtmlSanitize(title)
+                    }
+                </h5>
+            }
+
+            <p class="text-muted @(publicationDateCss)"><small>@Html.FormatDate(publicationDate, this.Context)</small></p>
+
+            @if (text != null)
+            {
+                <p @Html.Raw(string.IsNullOrEmpty(textCss) ? "" : $"class='{textCss}'")>@Html.HtmlSanitize(text)</p>
+            }
+        </div>
+    }
+
+    @if (Model.Pager != null)
+    {
+        <div>
+            @await Html.PartialAsync("ContentPager", Model.Pager)
+        </div>
+    }
+</div>

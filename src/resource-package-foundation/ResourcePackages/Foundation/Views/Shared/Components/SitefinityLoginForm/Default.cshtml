@@ -1,0 +1,92 @@
+﻿@model Progress.Sitefinity.AspNetCore.Widgets.Models.LoginForm.LoginFormViewModel
+@using Progress.Sitefinity.AspNetCore.Widgets.Models.LoginForm
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering
+
+@{
+    var lbls = Model.Labels;
+    var returnUrl = Model.RedirectUrl ?? Model.GetDefaultReturnUrl(Context, false, false);
+    var returnErrorUrl = Model.GetDefaultReturnUrl(Context, true, false);
+    var usernameInputId = Html.GetUniqueId("sf-username-");
+    var passwordInputId = Html.GetUniqueId("sf-password-");
+}
+
+<environment include="Development">
+      <script src="Scripts/LoginWidgets/login-form.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+</environment>
+<environment exclude="Development">
+       <script src="Scripts/LoginWidgets/login-form.min.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+</environment>
+
+
+    <div data-sf-role="sf-login-form-container"
+        data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+        data-sf-invalid="@Model.InvalidClass"
+        class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)"
+        @Html.BuildAttributes(Model.Attributes)>
+    <div data-sf-role="form-container">
+        <h2 class="margin-bottom-1">@lbls.Header</h2>
+        <div id="errorContainer" class="callout alert margin-vertical-1 @(Model.IsError(Context) ? "visible" : "hide")" role="alert" aria-live="assertive" data-sf-role="error-message-container">
+            @lbls.ErrorMessage
+        </div>
+        <form action="@Model.LoginHandlerPath" method="post" role="form" novalidate>
+            <div class="margin-bottom-1">
+                <label for="@usernameInputId" class="form-label">@lbls.EmailLabel</label>
+                <input type="email" class="form-control" id="@usernameInputId" name="username" data-sf-role='required'>
+            </div>
+            <div class="margin-bottom-1">
+                <label for="@passwordInputId" class="form-label">@lbls.PasswordLabel</label>
+                <input type="password" class="form-control" id="@passwordInputId" name="password" data-sf-role='required'>
+            </div>
+
+            @if (Model.RememberMe || !string.IsNullOrEmpty(Model.ForgottenPasswordLink))
+            {
+                <div class="grid-x margin-bottom-1">
+                    @if (Model.RememberMe)
+                    {
+                        <div class="checkbox cell medium-6 margin-0">
+                            <label>
+                                @Html.CheckBoxFor(x => x.RememberMe)
+                                @Html.LabelFor(x => x.RememberMe, lbls.RememberMeLabel)
+                            </label>
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.ForgottenPasswordLink))
+                    {
+                        var passResetColumnSize = Model.RememberMe ? "cell medium-6 text-end" : "cell small-12";
+                        <div class="@passResetColumnSize">
+                            <a href="@Model.ForgottenPasswordLink" class="text-decoration-none">@lbls.ForgottenPasswordLinkLabel</a>
+                        </div>
+                    }
+                </div>
+            }
+
+            <input type="hidden" name="RedirectUrl" value="@returnUrl" />
+            <input type="hidden" name="ErrorRedirectUrl" value="@returnErrorUrl" />
+            <input type="hidden" name="MembershipProviderName" value="@Model.MembershipProviderName" />
+            <input type="hidden" value="" name="sf_antiforgery" />
+
+            <input class="button expanded" type="submit" value="@lbls.SubmitButtonLabel" />
+        </form>
+
+        <input type="hidden" name="ValidationInvalidEmailMessage" value="@lbls.ValidationInvalidEmailMessage" />
+        <input type="hidden" name="ValidationRequiredMessage" value="@lbls.ValidationRequiredMessage" />
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.RegistrationLink))
+    {
+        <div class="row margin-top-1">
+            <div class="cell medium-6">@lbls.NotRegisteredLabel</div>
+            <div class="cell medium-6 text-end"><a href="@Model.RegistrationLink" class="text-decoration-none">@lbls.RegisterLinkText</a></div>
+        </div>
+    }
+
+    @if (Model.ExternalProviders != null && Model.ExternalProviders.Any())
+    {
+        <h3 class="mt-3">@lbls.ExternalProvidersHeader</h3>
+        @foreach (var provider in Model.ExternalProviders)
+        {
+            <a data-sf-test="extPrv" class="hollow button expanded fs-5 margin-top-1 @Model.GetExternalLoginButtonCssClass(provider.Name)" href="@Model.GetExternalLoginPath(Context, provider.Name)">@provider.Title</a>
+        }
+    }
+</div>

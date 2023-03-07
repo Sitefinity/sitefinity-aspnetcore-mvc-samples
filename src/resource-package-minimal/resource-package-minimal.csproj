@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>resource_package_minimal</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.3.8024.13" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.3.8024.13" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.3.8024.13" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.3.8024.13" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.3.8024.13" />
+  </ItemGroup>
+
+</Project>

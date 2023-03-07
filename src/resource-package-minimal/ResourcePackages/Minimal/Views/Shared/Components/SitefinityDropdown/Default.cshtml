@@ -1,0 +1,23 @@
+﻿@using Progress.Sitefinity.Renderer.Contracts.Forms
+@model Progress.Sitefinity.AspNetCore.FormWidgets.ViewModels.Common.ChoiceViewModelBase
+
+<script data-sf-role='start_field_@Model.FieldName' data-sf-role-field-name='@Model.FieldName'></script>
+<fieldset data-sf-role="dropdown-list-field-container" class="@Model.CssClass" aria-labelledby="choice-field-label-@Model.FieldName choice-field-description-@Model.FieldName">
+    <input data-sf-role="violation-messages" type="hidden" value='@Model.ViolationRestrictionsMessages' />
+
+    <legend id="choice-field-label-@Model.FieldName">@Model.Label</legend>
+
+    <select data-sf-role="dropdown-list-field-select" name="@Model.FieldName" @(Model.Required ? "required" : null)>
+        @foreach (var choiceOption in Model.Choices)
+        {
+            <option selected="@choiceOption.Selected" value="@choiceOption.Value">@choiceOption.Name</option>
+        }
+    </select>
+
+    @if (!String.IsNullOrEmpty(Model.InstructionalText))
+    {
+        <p id="choice-field-description-@Model.FieldName">@Model.InstructionalText</p>
+    }
+    <div data-sf-role="error-message" role="alert" aria-live="assertive"></div>
+</fieldset>
+<script data-sf-role='end_field_@Model.FieldName'></script>

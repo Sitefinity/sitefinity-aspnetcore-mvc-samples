@@ -1,0 +1,86 @@
+@using Progress.Sitefinity.AspNetCore.Web;
+@model Progress.Sitefinity.AspNetCore.FormWidgets.ViewModels.FileField.FileFieldViewModel
+@inject IRenderContext renderContext;
+
+@{
+    var fileFieldUniqueId = Model.FieldName;
+    string ariaDescribedByAttribute = string.Empty;
+    var fileFieldErrorMessageId = Html.GetUniqueId("FileFieldErrorMessage");
+    var labelAdditionalClassList = Model.HasDescription ? "" : null;
+    @if (Model.HasDescription)
+    {
+        ariaDescribedByAttribute = $"aria-describedby='{fileFieldUniqueId} {fileFieldErrorMessageId}'";
+    }
+    else
+    {
+        ariaDescribedByAttribute = $"aria-describedby='{fileFieldErrorMessageId}'";
+    }
+}
+
+<script data-sf-role='start_field_@fileFieldUniqueId' data-sf-role-field-name='@fileFieldUniqueId'></script>
+<div class="@Model.CssClass mb-3" data-sf-role="file-field-container">
+    <label class="h6 d-block @labelAdditionalClassList" for='@fileFieldUniqueId'>@Model.Label</label>
+    @if (Model.HasDescription)
+    {
+        <div id='@Html.GetUniqueId("FileFieldInfo")'>@Model.InstructionalText</div>
+    }
+    <input data-sf-role="violation-restrictions" type="hidden" value='@Model.ViolationRestrictionsJson' />
+    <div data-sf-role="file-field-inputs">
+
+        @if (renderContext.IsEdit)
+        {
+            <div data-sf-role="single-file-input">
+                <input
+                    id='@fileFieldUniqueId'
+                    title="@Model.Label"
+                    name="@Model.FieldName"
+                    type="file"
+                    @Html.Raw(ariaDescribedByAttribute)
+                    @Html.Raw(Model.ValidationAttributes) />
+            </div>
+        }
+
+    </div>
+    @if (Model.AllowMultipleFiles)
+    {
+        <button data-sf-role="add-input">+</button>
+    }
+
+    @if (Model.Required)
+    {
+        <div data-sf-role="required-violation-message" role="alert" aria-live="assertive">@Model.RequiredViolationMessage</div>
+    }
+
+    @if (!renderContext.IsEdit)
+    {
+        <script type="text/template" data-sf-role="file-input-template">
+
+        <div data-sf-role="single-file-input-wrapper">
+            <div data-sf-role="single-file-input">
+                <input
+                    id='@fileFieldUniqueId'
+                    title="@Model.Label"
+                    name="@Model.FieldName"
+                    type="file"
+                    @Html.Raw(ariaDescribedByAttribute)
+                    @Html.Raw(Model.ValidationAttributes) />
+
+                @if (Model.AllowMultipleFiles)
+                {
+                    <button title="Remove" data-sf-role="remove-input">X</button>
+                }
+            </div>
+            @if (Model.MinFileSizeInMb > 0 || Model.MaxFileSizeInMb > 0)
+            {
+                <div data-sf-role="filesize-violation-message" role="alert" aria-live="assertive">@Model.FileSizeViolationMessage</div>
+            }
+            @if (Model.AllowedFileTypes != null)
+            {
+                <div data-sf-role="filetype-violation-message" role="alert" aria-live="assertive">@Model.FileTypeViolationMessage</div>
+            }
+        </div>
+
+        </script>
+    }
+</div>
+<script data-sf-role='end_field_@fileFieldUniqueId'></script>

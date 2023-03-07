@@ -1,0 +1,65 @@
+﻿@model Progress.Sitefinity.AspNetCore.Widgets.Models.ChangePassword.ChangePasswordViewModel
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering
+@using Progress.Sitefinity.AspNetCore.Widgets.Models.ChangePassword
+
+@using Progress.Sitefinity.RestSdk.Clients.Users.Dto
+
+@{
+    var lbls = Model.Labels;
+    var redirectUrl = Model.RedirectUrl;
+    var postChangeMessage = Model.PostPasswordChangeMessage;
+    var oldPasswordInputId = Html.GetUniqueId("sf-old-password-");
+    var newPasswordInputId = Html.GetUniqueId("sf-new-password-");
+    var repeatPasswordInputId = Html.GetUniqueId("sf-repeat-password-");
+}
+
+@if (this.User == null || this.User.Identity == null || !this.User.Identity.IsAuthenticated)
+{
+    <div>@lbls.LoginFirstMessage</div>
+}
+else if (!string.IsNullOrEmpty(Model.ExternalProviderName))
+{
+    <div>@string.Format(lbls.ExternalProviderMessageFormat, Model.ExternalProviderName)</div>
+}
+else
+{
+    <div data-sf-role="sf-change-password-container"
+    data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+    data-sf-invalid="@Model.InvalidClass"
+    class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)"
+    @Html.BuildAttributes(Model.Attributes)>
+        <form action="@Model.ChangePasswordHandlerPath" method="post" role="form">
+            <h2>@lbls.Header</h2>
+            <div data-sf-role="error-message-container" style="display: none;" role="alert" aria-live="assertive"></div>
+            <div data-sf-role="success-message-container" style="display: none;" role="alert" aria-live="assertive"></div>
+            <div>
+                <label for="@oldPasswordInputId">@lbls.OldPassword</label>
+                <input type="password" id="@oldPasswordInputId" name="OldPassword" data-sf-role="required">
+            </div>
+            <div class="mb-3">
+                <label for="@newPasswordInputId">@lbls.NewPassword</label>
+                <input type="password" id="@newPasswordInputId" name="NewPassword" data-sf-role="required">
+            </div>
+            <div class="mb-3">
+                <label for="@repeatPasswordInputId">@lbls.RepeatPassword</label>
+                <input type="password" id="@repeatPasswordInputId" name="RepeatPassword" data-sf-role="required">
+            </div>
+
+            <input type="submit" value="@lbls.SubmitButtonLabel" />
+        </form>
+
+        <input type="hidden" name="redirectUrl" value="@Model.RedirectUrl" />
+        <input type="hidden" name="postChangeMessage" value="@Model.PostPasswordChangeMessage" />
+        <input type="hidden" name="postChangeAction" value="@Model.PostPasswordChangeAction" />
+        <input type="hidden" name="validationRequiredMessage" value="@lbls.ValidationRequiredMessage" />
+        <input type="hidden" name="validationMismatchMessage" value="@lbls.ValidationMismatchMessage" />
+    </div>
+
+    <environment include="Development">
+        <script src="Scripts/LoginWidgets/change-password.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="Scripts/LoginWidgets/change-password.min.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+    </environment>
+      <script src="ResourcePackages/Minimal/assets/test.js"></script>
+}

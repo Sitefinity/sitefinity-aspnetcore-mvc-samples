@@ -41,6 +41,8 @@ Follow the instructions [here](./RestSDK.md)
 * quantum - for working with the Quantum sample demo.
 * react-renderer-front-end - for scripting client side react components
 * registration-widget-with-custom-fields - for addding custom fields to the registration widget.
+* resource-package-foundation - for implementing the "Foundation" framework
+* resource-package-minimal - for implementing the "Minimal" framework
 * script-widget - sample script widget implementation for placing runtime JavaScript on the page.
 * separate-widget-per-component - example on how to create a separate entry for each widget view inside the Select widget dialog.
 * share-data-between-widgets - for sharing data between two widgets in a very early stage of the pipeline before the page is executed.
@@ -49,3 +51,4 @@ Follow the instructions [here](./RestSDK.md)
 * starter-template - for basing your project with everything set-upped.
 * tabs-section - for building custom widget that can be used to create 2 tabs layout
 * widget-library - for building your custom distributed widget libraries and templates. Additionally this sample includes information on how to add your own custom scripts alongside the views.
+* component-filter - for filtering the components visible in the widget selectors for Pages, Templates and Forms based on a certain criteria.

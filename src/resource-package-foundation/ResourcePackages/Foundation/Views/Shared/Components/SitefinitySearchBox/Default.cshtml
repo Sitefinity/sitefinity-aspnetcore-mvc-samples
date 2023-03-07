@@ -1,0 +1,57 @@
+﻿@inject Progress.Sitefinity.AspNetCore.Web.IRenderContext renderContext;
+@inject Progress.Sitefinity.AspNetCore.Web.IRequestContext renquestContext;
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.Search.SearchBoxViewModel;
+
+
+<environment include="Development">
+    <script src="Scripts/SearchWidgets/search-box.js" section-name="Bottom"
+        assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+</environment>
+<environment exclude="Development">
+    <script src="Scripts/SearchWidgets/search-box.min.js" section-name="Bottom"
+        assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+</environment>
+
+@{
+    string classAttr = string.IsNullOrEmpty(@Model.CssClass) ? "class='position-relative'" : string.Format(@"class='position-relative {0}'",
+            @Model.CssClass);
+    bool disabled = @renderContext.IsEdit;
+    var queryCollection = this.Context.Request.Query;
+    var cultureParam = queryCollection[Progress.Sitefinity.RestSdk.QueryParamNames.Culture].ToString();
+    string culture = !string.IsNullOrEmpty(cultureParam) ? cultureParam : @Model.Culture;
+    string sort = queryCollection["orderBy"];
+     <div @Html.Raw(@classAttr)
+    data-sf-search-autocomplete-item-class="@Model.SearchAutocompleteItemClass"
+    data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+    data-sf-active-class="@Model.ActiveClass">
+        @{
+            if (!string.IsNullOrEmpty(@Model.SearchIndex))
+            {
+                
+                    <div class="flex-container input-group margin-0">
+                        <input value="@queryCollection["searchQuery"]"
+                           class="input-group-field" data-sf-role="search-box" data-sf-results-url="@Model.SearchResultsPageUrl"
+                           data-sf-search-catalogue="@Model.SearchIndex" data-sf-scoring-setting="@Model.ScoringProfile"
+                           data-sf-suggestions-length="@Model.SuggestionsTriggerCharCount" data-sf-site-id="@Model.SiteId"
+                           data-sf-culture="@culture" data-sf-sort="@sort"
+                           data-sf-suggestions-fields="@Model.SuggestionFields"
+                           data-sf-results-all="@Model.ShowResultsForAllIndexedSites"
+                           data-sf-service-path="@Model.WebServicePath" disabled="@disabled" type="text"
+                           placeholder="@Model.SearchBoxPlaceholder" />
+                        <div class="input-group-button">
+                            <button data-sf-role="search-button" class="button" disabled="@disabled">
+                                @Model.SearchButtonLabel
+                            </button>
+                        </div>
+                     </div>
+
+ 
+
+               if (@Model.SuggestionsTriggerCharCount != null && @Model.SuggestionsTriggerCharCount >= 2){
+                        <ul data-sf-role="search-box-autocomplete" class="list margin-0 hide" role="listbox">
+                        </ul>
+               }
+            }
+        }
+    </div>
+}

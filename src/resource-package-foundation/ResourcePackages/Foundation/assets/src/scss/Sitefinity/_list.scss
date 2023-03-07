@@ -1,0 +1,20 @@
+﻿.list {
+    background: #fff;
+    border: 1px solid blue;
+    list-style: none;
+}
+
+.list__item {
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+
+    &:hover {
+        background: #D3D3D3;
+    }
+
+    &.active {
+        background: blue;
+        color: #fff;
+    }
+}

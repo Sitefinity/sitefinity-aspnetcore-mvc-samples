@@ -1,0 +1,10 @@
+﻿@using Progress.Sitefinity.AspNetCore.TagHelpers;
+
+
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentBlock.ContentBlockViewModel
+
+<sf-wrapper tag-name="@Model.TagName" html-attributes="@Model.Attributes" class="@Model.WrapperCssClass">
+    @{
+        @Html.HtmlSanitize(@Model.Content)
+    }
+</sf-wrapper>
