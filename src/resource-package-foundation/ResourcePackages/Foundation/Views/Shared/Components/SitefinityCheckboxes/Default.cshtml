@@ -26,7 +26,7 @@
 }
 
 <script data-sf-role='start_field_@Model.FieldName' data-sf-role-field-name='@Model.FieldName'></script>
-<fieldset data-sf-role="checkboxes-field-container" class="margin-bottom-3 @Model.CssClass" aria-labelledby="choice-field-label-@Model.FieldName choice-field-description-@Model.FieldName">
+<fieldset data-sf-role="checkboxes-field-container" class="margin-bottom-1 @Model.CssClass" aria-labelledby="choice-field-label-@Model.FieldName choice-field-description-@Model.FieldName">
     <input data-sf-role="violation-messages" type="hidden" value='@Model.ViolationRestrictionsMessages' />
     <input type="hidden" data-sf-role="required-validator" value='@Model.Required.ToString()' />
 
@@ -60,6 +60,6 @@
             </div>
         }
     </div>  
-    <div data-sf-role="error-message" role="alert" aria-live="assertive" class="invalid-feedback"></div>
+    <div data-sf-role="error-message" role="alert" aria-live="assertive" class="form-error"></div>
 </fieldset>
 <script data-sf-role='end_field_@Model.FieldName'></script>
