@@ -1,4 +1,5 @@
 ﻿@using Progress.Sitefinity.AspNetCore.TagHelpers;
+@using Progress.Sitefinity.Renderer.Models;
 
 @model Progress.Sitefinity.AspNetCore.Widgets.Models.Button.ButtonViewModel
 
@@ -9,19 +10,21 @@
     <script src="Scripts/call-to-action.min.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
 </environment>
 @{
-    void ButtonTag(string label, string href, string cssClass, string typeToPlaceAttributeOn)
+    string classAttr;
+    void ButtonTag(string label, LinkModel linkModel, string cssClass, string typeToPlaceAttributeOn)
     {
         @if (!string.IsNullOrEmpty(label))
         {
-            string classAttr = string.IsNullOrEmpty(cssClass) ? string.Empty : string.Format(@"class='{0}'", cssClass);
-            <a @Html.Raw(classAttr) href="@href" data-call-to-action @Html.BuildAttributes(Model.Attributes, typeToPlaceAttributeOn)>
+            classAttr = string.IsNullOrEmpty(cssClass) ? null : cssClass;
+            <a @Html.GenerateAnchorFromLink(linkModel, classAttr) data-call-to-action @Html.BuildAttributes(Model.Attributes, typeToPlaceAttributeOn)>
                 @label
             </a>
         }
     }
+    classAttr = !string.IsNullOrEmpty(Model.CssClass) ? string.Format(" {0}", Model.CssClass) : "";
 }
 
-<div @Html.BuildAttributes(@Model.Attributes, "Wrapper") @Html.Raw(!string.IsNullOrEmpty(Model.CssClass) ? string.Format(@"class=' {0}'", Model.CssClass) : "class=''")>
-    @{ButtonTag(Model.PrimaryActionLabel, Model.PrimaryActionHref, string.Format(@"{0}", Model.PrimaryButtonCssClass), "Primary");}
-    @{ButtonTag(Model.SecondaryActionLabel, Model.SecondaryActionHref, Model.SecondaryButtonCssClass, "Secondary");}
+<div @Html.BuildAttributes(@Model.Attributes, "Wrapper") class="@classAttr">
+    @{ButtonTag(Model.PrimaryActionLabel, Model.PrimaryActionLink, string.Format(@"{0}", Model.PrimaryButtonCssClass), "Primary");}
+    @{ButtonTag(Model.SecondaryActionLabel, Model.SecondaryActionLink, Model.SecondaryButtonCssClass, "Secondary");}
 </div>
