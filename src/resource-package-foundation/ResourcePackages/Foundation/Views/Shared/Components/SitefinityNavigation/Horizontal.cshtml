@@ -2,11 +2,22 @@
 @using Progress.Sitefinity.AspNetCore.Widgets.Models.Navigation;
 
 @model Progress.Sitefinity.AspNetCore.Widgets.Models.Navigation.NavigationViewModel
+
 <environment include="Development">
-    <script src="scripts/bootstrap.bundle.js" section-name="Top"></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.util.keyboard.min.js" section-name="Bottom"></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.util.box.min.js" section-name="Bottom"></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.util.nest.min.js" section-name="Bottom"></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.util.touch.min.js" section-name="Bottom"></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.dropdownMenu.min.js" section-name="Bottom"></script>
+    <script src="scripts/accordion.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
 </environment>
 <environment exclude="Development">
-    <script src="scripts/bootstrap.bundle.min.js" section-name="Top"></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.util.keyboard.min.js" section-name="Bottom"></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.util.box.min.js" section-name="Bottom"></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.util.nest.min.js" section-name="Bottom"></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.util.touch.min.js" section-name="Bottom"></script>
+    <script src="ResourcePackages/Foundation/assets/dist/js/foundation.dropdownMenu.min.js" section-name="Bottom"></script>
+    <script src="scripts/accordion.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
 </environment>
 
 @{
@@ -16,7 +27,7 @@
 <div class="@Model.WrapperCssClass">
     <nav @Html.BuildAttributes(Model.Attributes)>
         <div>
-                <ul class="menu">
+            <ul class="dropdown menu" data-dropdown-menu>
                     @foreach (var node in Model.Nodes)
                     {
                         RenderRootLevelNode(node);
@@ -55,14 +66,11 @@
         {
             if (childNode.ChildNodes.Count > 0)
             {
-                <li class="dropdown-submenu">
-                    <a class="dropdown-item @GetClass(childNode)" href="@childNode.Url" target="@childNode.LinkTarget">
+                <li>
+                    <a class="@GetClass(childNode)" href="@childNode.Url" target="@childNode.LinkTarget">
                         @childNode.Title
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                            <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
-                        </svg>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="menu">
                         @{RenderSubLevelsRecursive(childNode);}
                     </ul>
                 </li>
@@ -70,7 +78,7 @@
             else
             {
                 <li>
-                    <a class="dropdown-item @GetClass(childNode)" href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
+                    <a class="@GetClass(childNode)" href="@childNode.Url" target="@childNode.LinkTarget">@childNode.Title</a>
                 </li>
             }
         }

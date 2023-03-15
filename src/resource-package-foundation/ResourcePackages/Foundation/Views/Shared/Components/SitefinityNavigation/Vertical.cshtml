@@ -23,7 +23,7 @@
 
             @if (node.ChildNodes.Count > 0)
             {
-                <ul class="vertical menu">
+                <ul class="nested vertical menu">
                     @foreach (var childNode in node.ChildNodes)
                     {
                         RenderSubLevelsRecursive(childNode);

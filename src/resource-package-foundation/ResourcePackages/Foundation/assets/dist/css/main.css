@@ -7107,7 +7107,7 @@ ol.list-upper-roman {
 
 .list {
   background: #fff;
-  border: 1px solid blue;
+  border: 1px solid #1779ba;
   list-style: none;
 }
 
@@ -7120,7 +7120,7 @@ ol.list-upper-roman {
   background: #D3D3D3;
 }
 .list__item.active {
-  background: blue;
+  background: #1779ba;
   color: #fff;
 }
 

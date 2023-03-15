@@ -44,8 +44,8 @@
 
                 <input type="hidden" data-sf-role="redirect-url" value="@Model.RedirectUrl" />
                 <input type="hidden" data-sf-role="custom-submit-action" value="@Model.CustomSubmitAction.ToString()" />
-                <div data-sf-role="success-message" class="valid-feedback" role="alert" aria-live="assertive" data-abide-error>@Model.SuccessMessage</div>
-                <div data-sf-role="error-message" class="invalid-feedback" role="alert" aria-live="assertive"></div>
+                <div data-sf-role="success-message" role="alert" aria-live="assertive" data-abide-error>@Model.SuccessMessage</div>
+            <div data-sf-role="error-message" class="form-error" role="alert" aria-live="assertive"></div>
                 <div data-sf-role="loading" style="display: none;">
                 <div class="flex-container align-center">
                     <div class="spinner-border" role="status">

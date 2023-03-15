@@ -49,7 +49,7 @@
 
     @if (Model.Required)
     {
-        <div data-sf-role="required-violation-message" class="invalid-feedback" role="alert" aria-live="assertive">@Model.RequiredViolationMessage</div>
+        <div data-sf-role="required-violation-message" class="form-error" role="alert" aria-live="assertive">@Model.RequiredViolationMessage</div>
     }
 
     @if (!renderContext.IsEdit)
@@ -74,11 +74,11 @@
             </div>
             @if (Model.MinFileSizeInMb > 0 || Model.MaxFileSizeInMb > 0)
             {
-                <div data-sf-role="filesize-violation-message" class="invalid-feedback margin-vertical-1" role="alert" aria-live="assertive">@Model.FileSizeViolationMessage</div>
+                        <div data-sf-role="filesize-violation-message" class="form-error margin-vertical-1" role="alert" aria-live="assertive">@Model.FileSizeViolationMessage</div>
             }
             @if (Model.AllowedFileTypes != null)
             {
-                <div data-sf-role="filetype-violation-message" class="invalid-feedback margin-vertical-1" role="alert" aria-live="assertive">@Model.FileTypeViolationMessage</div>
+                        <div data-sf-role="filetype-violation-message" class="form-error margin-vertical-1" role="alert" aria-live="assertive">@Model.FileTypeViolationMessage</div>
             }
         </div>
 
