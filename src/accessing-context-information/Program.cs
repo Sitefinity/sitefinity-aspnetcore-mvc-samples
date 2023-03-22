@@ -15,9 +15,4 @@ var app = builder.Build();
 app.UseRouting();
 app.UseSitefinity();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapSitefinityEndpoints();
-});
-
 app.Run();
