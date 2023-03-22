@@ -2,12 +2,16 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.FormWidgets;
-using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((ctx, lc) => lc
+        .WriteTo.Console()
+        .WriteTo.File("log.txt"));
 
 // Add services to the container.
 builder.Services.AddSitefinity();
@@ -25,16 +29,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
+app.UseSerilogRequestLogging();
 app.UseStatusCodePagesWithReExecute("/Error", "?statusCode={0}");
 app.UseStaticFiles();
 app.UseRouting();
 app.MapRazorPages();
-
-app.Use(async (context, next) =>
-{
-    await next();
-});
 
 app.UseSitefinity();
 

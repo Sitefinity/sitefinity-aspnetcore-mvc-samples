@@ -11,6 +11,9 @@
     <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.3.8024.13" />
     <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.3.8024.13" />
     <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.3.8024.13" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+    <PackageReference Include="serilog.expressions" Version="3.4.1" />
+    <PackageReference Include="serilog.sinks.seq" Version="5.2.2" />
   </ItemGroup>
 
 </Project>
