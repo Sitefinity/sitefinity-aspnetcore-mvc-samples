@@ -45,16 +45,16 @@
                         bool hideElement = (value > defaultFacetsCollapseCount) && Model.IsShowMoreLessButtonActive;
                         <li @(hideElement ? "hidden" : string.Empty)>
                             <input type="checkbox"
-                                id="facet-checkbox-@facet.FacetFieldName-@facetElement.FacetValue"
-                                data-facet-key="@facet.FacetFieldName"
-                                data-facet-value="@facetElement.FacetValue" />
+                                   id="facet-checkbox-@facet.FacetFieldName-@facetElement.FacetValue"
+                                   data-facet-key="@facet.FacetFieldName"
+                                   data-facet-value="@facetElement.FacetValue" />
 
 
-                            <label for="facet-checkbox-@facet.FacetFieldName-@facetElement.FacetValue" id="facet-@facetElement.FacetValue">@facetElement.FacetLabel</label>
+                            <label for="facet-checkbox-@facet.FacetFieldName-@facetElement.FacetValue" id="facet-@facet.FacetFieldName-@facetElement.FacetValue">@facetElement.FacetLabel</label>
 
                             @if (Model.DisplayItemCount)
                             {
-                                <span>(@facetElement.FacetCount)</span>
+                            <span>(@facetElement.FacetCount)</span>
                             }
                         </li>
                     }
@@ -106,7 +106,8 @@
                         <button type="button"
                             id="custom-range-btn-@facet.FacetFieldName"
                             data-custom-range-name="@facet.FacetFieldName"
-                            data-custom-range-type="@facet.FacetFieldType">
+                            data-custom-range-type="@facet.FacetFieldType"
+                            aria-label="Custom range for @facet.FacetFieldName">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" /> </svg>
                         </button>
                     </div>
@@ -118,18 +119,21 @@
                         
                             <input type="date"
                                 id="from-@facet.FacetFieldName"
-                                data-custom-range="true" />
+                                data-custom-range="true"
+                                aria-label="From @facet.FacetFieldName" />
                         
                         <span>&mdash;</span>
                         
                             <input type="date"
                                 id="to-@facet.FacetFieldName"
-                                data-custom-range="true" />
+                                data-custom-range="true"
+                                aria-label="To @facet.FacetFieldName" />
                         
                         <button type="button"
                             id="custom-range-btn-@facet.FacetFieldName"
                             data-custom-range-name="@facet.FacetFieldName"
-                            data-custom-range-type="@facet.FacetFieldType">
+                            data-custom-range-type="@facet.FacetFieldType"
+                            aria-label="Custom range for @facet.FacetFieldName">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" /> </svg>
                         </button>
                     </div>
