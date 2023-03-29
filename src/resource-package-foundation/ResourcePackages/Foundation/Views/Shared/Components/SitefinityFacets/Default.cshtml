@@ -50,7 +50,7 @@
                                 data-facet-value="@facetElement.FacetValue" />
 
 
-                            <label for="facet-checkbox-@facet.FacetFieldName-@facetElement.FacetValue" id="facet-@facetElement.FacetValue" class="margin-0">@facetElement.FacetLabel</label>
+                            <label for="facet-checkbox-@facet.FacetFieldName-@facetElement.FacetValue" id="facet-@facet.FacetFieldName-@facetElement.FacetValue" class="margin-0">@facetElement.FacetLabel</label>
 
                             @if (Model.DisplayItemCount)
                             {
@@ -111,7 +111,8 @@
                             id="custom-range-btn-@facet.FacetFieldName"
                             class="align-middle button secondary flex-container margin-0 margin-left-1 radius"
                             data-custom-range-name="@facet.FacetFieldName"
-                            data-custom-range-type="@facet.FacetFieldType">
+                            data-custom-range-type="@facet.FacetFieldType"
+                            aria-label="Custom range for @facet.FacetFieldName">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" /> </svg>
                         </button>
                     </div>
@@ -124,20 +125,23 @@
                             <input type="date"
                                 id="from-@facet.FacetFieldName"
                                 class="margin-0 radius"
-                                data-custom-range="true" />
+                                data-custom-range="true"
+                                aria-label="From @facet.FacetFieldName" />
                         </div>
                         <span class="margin-horizontal-1">&mdash;</span>
                         <div class="-sc-w-10rem">
                             <input type="date"
                                 id="to-@facet.FacetFieldName"
                                 class="margin-0 radius"
-                                data-custom-range="true" />
+                                data-custom-range="true"
+                                aria-label="To @facet.FacetFieldName" />
                         </div>
                         <button type="button"
                             id="custom-range-btn-@facet.FacetFieldName"
                             class="align-middle button secondary flex-container margin-0 margin-left-1 radius"
                             data-custom-range-name="@facet.FacetFieldName"
-                            data-custom-range-type="@facet.FacetFieldType">
+                            data-custom-range-type="@facet.FacetFieldType"
+                            aria-label="Custom range for @facet.FacetFieldName">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" /> </svg>
                         </button>
                     </div>
