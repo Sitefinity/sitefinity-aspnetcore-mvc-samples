@@ -42,29 +42,7 @@ namespace content_selectors.ViewComponents
         {
             var viewModels = new List<ItemCollection>();
 
-            // GetItems is an extension method from the class RestClientExtensions in the namespace Progress.Sitefinity.RestSdk
-            // In order to use it the generic type must inherit from ISdkItem
-            if (this.HasSelectedItems(context.Entity.News))
-            {
-                var newsItems = await this.restClient.GetItems<SdkItem>(context.Entity.News);
-                viewModels.Add(new ItemCollection()
-                {
-                    GroupTitle = "News items draft",
-                    Items = newsItems.Items.ToArray(),
-                });
-            }
-
-            if (this.HasSelectedItems(context.Entity.NewsLive))
-            {
-                var newsItemsLive = await this.restClient.GetItems<SdkItem>(context.Entity.NewsLive);
-                viewModels.Add(new ItemCollection()
-                {
-                    GroupTitle = "News items live",
-                    Items = newsItemsLive.Items.ToArray(),
-                });
-            }
-
-            if (this.HasSelectedItems(context.Entity.Page))
+            if (context.Entity.Page.HasSelectedItems())
             {
                  var page = await this.restClient.GetItems<SdkItem>(context.Entity.Page);
                 viewModels.Add(new ItemCollection()
@@ -74,7 +52,7 @@ namespace content_selectors.ViewComponents
                 });
             }
 
-            if (this.HasSelectedItems(context.Entity.Images))
+            if (context.Entity.Images.HasSelectedItems())
             {
                 var images = await this.restClient.GetItems<SdkItem>(context.Entity.Images);
                 viewModels.Add(new ItemCollection()
@@ -84,7 +62,7 @@ namespace content_selectors.ViewComponents
                 });
             }
 
-            if (this.HasSelectedItems(context.Entity.Tags))
+            if (context.Entity.Tags.HasSelectedItems())
             {
                 var tags = await this.restClient.GetItems<SdkItem>(context.Entity.Tags);
                 viewModels.Add(new ItemCollection()
@@ -93,10 +71,33 @@ namespace content_selectors.ViewComponents
                     Items = tags.Items.ToArray()
                 });
             }
+            
+            // combine same types of items into a single request - e.g. news + news
+            // do not use with different types of items - e.g. news + images
+            var bulkResponse = await this.restClient.GetItemsBulk<SdkItem>(new[] { context.Entity.News, context.Entity.NewsLive });
+            if (context.Entity.News.HasSelectedItems())
+            {
+                var newsItems = bulkResponse[context.Entity.News];
+                viewModels.Add(new ItemCollection()
+                {
+                    GroupTitle = "News items draft",
+                    Items = newsItems.ToArray(),
+                });
+            }
+
+            var newsItemsLive = bulkResponse[context.Entity.NewsLive];
+            if (context.Entity.NewsLive.HasSelectedItems())
+            {
+                viewModels.Add(new ItemCollection()
+                {
+                    GroupTitle = "News items live",
+                    Items = newsItemsLive.ToArray(),
+                });
+            }
 
             try
             {
-                if (this.HasSelectedItems(context.Entity.GeographicalRegions))
+                if (context.Entity.GeographicalRegions.HasSelectedItems())
                 {
                     var geoRegions = await this.restClient.GetItems<SdkItem>(context.Entity.GeographicalRegions).ConfigureAwait(true);
                     viewModels.Add(new ItemCollection()
@@ -120,7 +121,7 @@ namespace content_selectors.ViewComponents
 
             try
             {
-                if (this.HasSelectedItems(context.Entity.PressReleases))
+                if (context.Entity.PressReleases.HasSelectedItems())
                 {
                     var pressReleases = await this.restClient.GetItems<SdkItem>(context.Entity.PressReleases);
                     viewModels.Add(new ItemCollection()
@@ -143,11 +144,6 @@ namespace content_selectors.ViewComponents
             }
 
             return this.View(viewModels);
-        }
-
-        private bool HasSelectedItems(MixedContentContext mixedContentContext)
-        {
-            return mixedContentContext.ItemIdsOrdered != null && mixedContentContext.ItemIdsOrdered.Length > 0;
         }
     }
 }

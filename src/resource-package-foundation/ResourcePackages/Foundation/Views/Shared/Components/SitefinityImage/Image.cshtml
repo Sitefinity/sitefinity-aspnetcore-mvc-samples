@@ -7,13 +7,13 @@
 
 @model Progress.Sitefinity.AspNetCore.Widgets.Models.Image.ImageViewModel
 @{
-    string imageWrapperClass = "d-inline-block";
+    string imageWrapperClass = "display-inline-block";
 
     void ImageTag(string classAttributeValue)
     {
         string widthAttr = Model.Width.HasValue ? string.Format(@"width={0}", Model.Width.Value) : string.Empty;
         string heightAttr = Model.Height.HasValue ? string.Format(@"height={0}", Model.Height.Value) : string.Empty;
-        string altAttr = string.IsNullOrEmpty(Model.AlternativeText) ? string.Empty : string.Format(@"alt=""{0}""", Model.AlternativeText);
+        string altAttr = string.IsNullOrEmpty(Model.AlternativeText) ? null : Model.AlternativeText;
         @if (Model.ImageSize == ImageDisplayMode.Responsive)
         {
             var sortedList = Model.Thumbnails.OrderBy(t => t.Width).ToList();
@@ -29,13 +29,13 @@
                         <source media="(max-width: @(thumbnail.Width)px)" srcset="@thumbnail.Url" type="@thumbnail.MimeType" @sourceWidthAttr @sourceHeightAttr>
                     }
                 }
-                <img @Html.BuildAttributes(Model.Attributes) loading="lazy" @(Model.FitToContainer ? "class=max-width-100" : "") src="@this.Model.SelectedImageUrl" title="@Model.Title" @Html.Raw(altAttr)>
+                <img @Html.BuildAttributes(Model.Attributes) loading="lazy" @(Model.FitToContainer ? "class=max-width-100" : "") src="@this.Model.SelectedImageUrl" title="@Model.Title" alt="@altAttr">
             </picture>
         }
         else
         {
-            string classAttrValue = Model.CssClass + (Model.FitToContainer ? "max-width-100" : "");
-            string classAttr = string.IsNullOrWhiteSpace(classAttrValue) ? string.Empty : string.Format(@"class='{0}'", classAttrValue.Trim());
+            string classAttrValue = Model.CssClass + (Model.FitToContainer ? " max-width-100" : "");
+            string classAttr = string.IsNullOrWhiteSpace(classAttrValue) ? null : classAttrValue.Trim();
             @if (Model.ImageSize == ImageDisplayMode.CustomSize && Model.Width.HasValue)
             {
                 widthAttr = string.Format(@"width={0}", Model.Width.Value);
@@ -45,18 +45,28 @@
                 heightAttr = string.Format(@"height={0}", Model.Height.Value);
             }
 
-            <img @Html.BuildAttributes(Model.Attributes) @widthAttr @heightAttr loading="lazy" @Html.Raw(classAttr) src="@this.Model.SelectedImageUrl" title="@Model.Title" @Html.Raw(@altAttr)>
+            <img @Html.BuildAttributes(Model.Attributes) @widthAttr @heightAttr loading="lazy" @Html.Raw(classAttr) src="@this.Model.SelectedImageUrl" title="@Model.Title" alt="@altAttr")>
         }
     }
 
     if (@Model.Item != null)
     {
-        @if (Model.ClickAction != ImageClickAction.DoNothing && !string.IsNullOrEmpty(Model.ActionLink))
+        string anchorClass = string.IsNullOrWhiteSpace(Model.CssClass) ? imageWrapperClass : imageWrapperClass + " " + Model.CssClass;
+        @if (Model.ClickAction == ImageClickAction.OpenOriginalSize)
         {
-            string anchorClass = string.IsNullOrWhiteSpace(Model.CssClass) ? imageWrapperClass : imageWrapperClass + " " + Model.CssClass;
-            <a href="@Model.ActionLink" class="@anchorClass">
-                @{ImageTag(string.Empty);}
+            <a href="@Model.Item.Url" class="@anchorClass">
+                @{
+                    ImageTag(string.Empty);
+                }
             </a>
+        }
+        else if (Model.ClickAction == ImageClickAction.OpenLink && !string.IsNullOrEmpty(Model.ActionLinkModel?.Href))
+        {
+            <a @Html.GenerateAnchorFromLink(Model.ActionLinkModel, anchorClass)>
+                @{
+                    ImageTag(string.Empty);
+                }
+            </a>    
         }
         else
         {
