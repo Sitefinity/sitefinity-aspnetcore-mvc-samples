@@ -1,17 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>standalone_spa_renderers</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.1" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.3.8024.13" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.3.8024.13" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.3.8024.13" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.3.8024.13" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.3.8024.13" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.4.8100.439" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.4.8100.439" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.4.8100.439" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.4.8100.439" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.4.8100.439" />
   </ItemGroup>
 
 </Project>

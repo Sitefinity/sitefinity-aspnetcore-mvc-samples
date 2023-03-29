@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.OutputCaching;
-using Progress.Sitefinity.AspNetCore.Web.Caching;
+using Progress.Sitefinity.AspNetCore.Areas.Cache;
 
 internal class CustomCachePolicy : PageCachingPolicy
 {

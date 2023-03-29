@@ -26,10 +26,6 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseRouting();
 app.UseSitefinity();
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapBlazorHub();
-});
+app.MapBlazorHub();
 
 app.Run();
