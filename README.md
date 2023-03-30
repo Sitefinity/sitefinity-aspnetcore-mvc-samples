@@ -25,6 +25,7 @@ Follow the instructions [here](./RestSDK.md)
 * custom-form-fields - for building a custom hidden input widget and a custom date input widget.
 * custom-layout - for creating custom base templates
 * custom-section - for creating a custom layout widget with hard-coded columns and passing data to child widgets.
+* error-handling - for handling errors and responding to different status codes (error pages)
 * extended-content-block - for overriding the logic of the content block. (valid for any OOB widget)
 * extended-content-list - for creating custom views for the content list widget.
 * graphql - for querying data with graphql
@@ -37,6 +38,7 @@ Follow the instructions [here](./RestSDK.md)
 * mega-menu - for building a complex menu with dropdowns and placing custom/personalized content in those dropdowns.
 * migrate-data-to-cms - how to migrate your external data to the Sitefinity CMS using the C# REST SDK
 * native-chat - for creating a NativeChat widget and binding a dropdown to a custom data source.
+* output-cache - for configuring the output cache per page.
 * quantum - for working with the Quantum sample demo.
 * react-renderer-front-end - for scripting client side react components
 * registration-widget-with-custom-fields - for addding custom fields to the registration widget.

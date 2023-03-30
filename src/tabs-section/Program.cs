@@ -15,12 +15,7 @@ builder.Services.AddFormViewComponentModels();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-else
+if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
@@ -29,10 +24,5 @@ else
 app.UseStaticFiles();
 app.UseRouting();
 app.UseSitefinity();
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapSitefinityEndpoints();
-});
 
 app.Run();
