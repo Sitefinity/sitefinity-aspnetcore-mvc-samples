@@ -39,8 +39,5 @@
     "watch:styles": "cross-conf-env onchange \"npm_package_config_src/**/*.scss\" -- npm run scss",
     "watch": "run-p watch:styles",
     "start": "run-s build watch"
-  },
-  "dependencies": {
-    "foundation-sites": "^6.7.5"
   }
 }
