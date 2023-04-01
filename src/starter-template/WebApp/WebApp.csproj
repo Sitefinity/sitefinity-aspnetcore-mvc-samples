@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <RootNamespace>starter_template</RootNamespace>
+    <RootNamespace>WebApp</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Progress.Sitefinity.AspNetCore" />
