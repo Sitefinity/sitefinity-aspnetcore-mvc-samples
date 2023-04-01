@@ -1,0 +1,12 @@
+<Project>
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageVersion Include="Progress.Sitefinity.AspNetCore" Version="14.4.8100.439" />
+        <PackageVersion Include="Progress.Sitefinity.Renderer" Version="14.4.8100.439" />
+        <PackageVersion Include="Progress.Sitefinity.RestSdk" Version="14.4.8100.439" />
+        <PackageVersion Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.4.8100.439" />
+        <PackageVersion Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.4.8100.439" />
+    </ItemGroup>
+</Project>
