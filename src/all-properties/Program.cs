@@ -15,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSitefinity();
 builder.Services.AddViewComponentModels();
 builder.Services.AddFormViewComponentModels();
+
 builder.Services.AddSingleton<IPropertyConfigurator, ExternalChoicePropertyConfigurator>();
 
 var app = builder.Build();

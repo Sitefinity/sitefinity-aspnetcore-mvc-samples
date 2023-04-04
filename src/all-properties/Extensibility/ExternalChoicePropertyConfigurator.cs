@@ -25,6 +25,11 @@ namespace all_properties.Extensibility
                 var serializedChoices = JsonConvert.SerializeObject(choices);
                 propertyContainer.Properties.Add($"{WidgetMetadataConstants.Prefix}_Choices", serializedChoices);
 
+                if (string.Equals(propertyContainer.Type, KnownFieldTypes.ChoiceMultiple))
+                {
+                    propertyContainer.Properties.Add($"{WidgetMetadataConstants.Prefix}_Choices_AllowMultiple", bool.TrueString);
+                }
+
                 var choiceKey = $"{WidgetMetadataConstants.Prefix}_Choice_Choices";
                 if (propertyContainer.Properties.ContainsKey($"{WidgetMetadataConstants.Prefix}_Choice_Choices"))
                 {

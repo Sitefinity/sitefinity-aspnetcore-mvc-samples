@@ -11,6 +11,7 @@ using Progress.Sitefinity.Renderer.Entities;
 using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.Models;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
+using all_properties.Extensibility;
 
 namespace all_properties.Entities.AllProperties
 {
@@ -387,6 +388,14 @@ namespace all_properties.Entities.AllProperties
         [DataType(customDataType: KnownFieldTypes.Choices)]
         [Choice("[{\"Title\":\"1 level\",\"Name\":\"1\",\"Value\":1,\"Icon\":null},{\"Title\":\"2 levels\",\"Name\":\"2\",\"Value\":2,\"Icon\":null},{\"Title\":\"3 levels\",\"Name\":\"3\",\"Value\":3,\"Icon\":null}]")]
         public int? IntAsDropdownChoice { get; set; }
+
+        [ExternalDataChoice]
+        [DataType(customDataType: KnownFieldTypes.Choices)]
+        public string DynamicChoiceSingle { get; set; }
+
+        [ExternalDataChoice]
+        [DataType(customDataType: KnownFieldTypes.ChoiceMultiple)]
+        public string DynamicChoiceMultiple { get; set; }
 
         [Content]
         public MixedContentContext AllTypesSelector { get; set; }
