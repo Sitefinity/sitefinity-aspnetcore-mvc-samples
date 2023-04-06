@@ -397,6 +397,10 @@ namespace all_properties.Entities.AllProperties
         [DataType(customDataType: KnownFieldTypes.ChoiceMultiple)]
         public string DynamicChoiceMultiple { get; set; }
 
+        [Choice(ServiceUrl = "getcustomchoices", ButtonTitle = "Add", ActionTitle = "Select items")]
+        [DataType(customDataType: KnownFieldTypes.MultipleChoiceChip)]
+        public IEnumerable<string> DynamicChipChoiceMultiple { get; set; }
+
         [Content]
         public MixedContentContext AllTypesSelector { get; set; }
 
