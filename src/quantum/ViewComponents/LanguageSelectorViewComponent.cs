@@ -4,13 +4,14 @@ using Renderer.Entities.LanguageSelector;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Renderer.Models.LanguageSelector;
 using System.Threading.Tasks;
+using Progress.Sitefinity.AspNetCore.TestUtilities;
 
 namespace Renderer.ViewComponents
 {
     /// <summary>
     /// Language selector widget.
     /// </summary>
-    [SitefinityWidget(Title="Language selector")]
+    [SitefinityWidget(Title="Language selector", Section = WidgetSections.CustomWidgets)]
     public class LanguageSelectorViewComponent : ViewComponent
     {
         private LanguageSelectorModel languageSelectorModel;

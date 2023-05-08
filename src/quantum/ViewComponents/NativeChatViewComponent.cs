@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using Renderer.Entities.NativeChat;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Renderer.Models.NativeChat;
+using Progress.Sitefinity.AspNetCore.TestUtilities;
 
 namespace Renderer.ViewComponents
 {
     /// <summary>
     /// Test widget with different kind of restrictions for its properties.
     /// </summary>
-    [SitefinityWidget(Title="Native chat", EmptyIconText = "Select a chatbot", EmptyIcon = "")]
+    [SitefinityWidget(Title="Native chat", EmptyIconText = "Select a chatbot", EmptyIcon = "", Section = WidgetSections.CustomWidgets)]
     public class NativeChatViewComponent : ViewComponent
     {
         private INativeChatModel nativeChatModel;

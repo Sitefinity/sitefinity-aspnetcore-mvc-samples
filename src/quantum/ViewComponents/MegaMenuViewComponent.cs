@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Progress.Sitefinity.AspNetCore.TestUtilities;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Progress.Sitefinity.AspNetCore.Web;
 using Renderer.Entities;
@@ -8,7 +9,7 @@ using Renderer.Models;
 
 namespace Renderer.ViewComponents
 {
-    [SitefinityWidget(Title = "Mega Menu", Category = WidgetCategory.NavigationAndSearch, EmptyIconText = "No pages have been published", EmptyIconAction = EmptyLinkAction.None, EmptyIcon = "file-text-o")]
+    [SitefinityWidget(Title = "Mega Menu", Category = WidgetCategory.NavigationAndSearch, EmptyIconText = "No pages have been published", EmptyIconAction = EmptyLinkAction.None, EmptyIcon = "file-text-o", Section = WidgetSections.CustomWidgets)]
     public class MegaMenuViewComponent : ViewComponent
     {
         private IMegaMenuModel megaMenuModel;

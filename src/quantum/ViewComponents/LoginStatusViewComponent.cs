@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Progress.Sitefinity.AspNetCore.TestUtilities;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Renderer.Entities.LoginStatus;
 using Renderer.Models.LoginStatus;
@@ -9,7 +10,7 @@ namespace Renderer.ViewComponents
     /// <summary>
     /// The view component for accessing Sitefinity data.
     /// </summary>
-    [SitefinityWidget]
+    [SitefinityWidget(Section = WidgetSections.CustomWidgets)]
     public class LoginStatusViewComponent : ViewComponent
     {
         private ILoginStatusModel model;

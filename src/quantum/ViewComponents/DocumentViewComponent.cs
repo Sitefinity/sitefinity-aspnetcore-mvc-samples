@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
+using Progress.Sitefinity.AspNetCore.TestUtilities;
 using Renderer.Entities.Document;
 using Renderer.Models.Document;
 
@@ -9,7 +10,7 @@ namespace Renderer.ViewComponents
     /// <summary>
     /// The view component for accessing Sitefinity data.
     /// </summary>
-    [SitefinityWidget]
+    [SitefinityWidget(Section = WidgetSections.CustomWidgets)]
     public class DocumentViewComponent : ViewComponent
     {
         private IDocumentModel model;
