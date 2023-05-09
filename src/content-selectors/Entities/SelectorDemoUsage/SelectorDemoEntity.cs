@@ -25,6 +25,12 @@ namespace content_selectors.Entities.SelectorDemoUsage
         [Content(Type = KnownContentTypes.Images)]
         public MixedContentContext Images { get; set; }
 
+        [Content(Type = KnownContentTypes.Albums)]
+        public MixedContentContext Albums { get; set; }
+
+        [Content(Type = KnownContentTypes.DocumentLibraries, AllowMultipleItemsSelection = false, AllowCreate = false, Provider = "secondlibraries")]
+        public MixedContentContext DocumentLibrary { get; set; }
+
         [TaxonomyContent(Type = KnownContentTypes.Tags)]
         public MixedContentContext Tags { get; set; }
 

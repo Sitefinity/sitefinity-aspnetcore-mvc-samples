@@ -62,6 +62,26 @@ namespace content_selectors.ViewComponents
                 });
             }
 
+            if (context.Entity.Albums.HasSelectedItems())
+            {
+                var albums = await this.restClient.GetItems<SdkItem>(context.Entity.Albums);
+                viewModels.Add(new ItemCollection()
+                {
+                    GroupTitle = "Albums",
+                    Items = albums.Items.ToArray()
+                });
+            }
+
+            if (context.Entity.DocumentLibrary.HasSelectedItems())
+            {
+                var documentLibrary = await this.restClient.GetItems<SdkItem>(context.Entity.DocumentLibrary);
+                viewModels.Add(new ItemCollection()
+                {
+                    GroupTitle = "Document library",
+                    Items = documentLibrary.Items.ToArray()
+                });
+            }
+
             if (context.Entity.Tags.HasSelectedItems())
             {
                 var tags = await this.restClient.GetItems<SdkItem>(context.Entity.Tags);
