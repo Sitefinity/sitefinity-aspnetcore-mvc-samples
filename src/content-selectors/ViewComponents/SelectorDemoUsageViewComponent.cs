@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Progress.Sitefinity.AspNetCore.RestSdk;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Progress.Sitefinity.AspNetCore.Web;
+using Progress.Sitefinity.Renderer.Designers.Attributes;
 using Progress.Sitefinity.Renderer.Entities.Content;
 using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.Dto;
@@ -65,20 +66,28 @@ namespace content_selectors.ViewComponents
             if (context.Entity.Albums.HasSelectedItems())
             {
                 var albums = await this.restClient.GetItems<SdkItem>(context.Entity.Albums);
+
+                // get folders
+                context.Entity.Albums.Content[0].Type = KnownContentTypes.Folders;
+                var folders = await this.restClient.GetItems<SdkItem>(context.Entity.Albums);
                 viewModels.Add(new ItemCollection()
                 {
                     GroupTitle = "Albums",
-                    Items = albums.Items.ToArray()
+                    Items = albums.Items.Concat(folders.Items).ToArray()
                 });
             }
 
             if (context.Entity.DocumentLibrary.HasSelectedItems())
             {
                 var documentLibrary = await this.restClient.GetItems<SdkItem>(context.Entity.DocumentLibrary);
+
+                // get folders
+                context.Entity.DocumentLibrary.Content[0].Type = KnownContentTypes.Folders;
+                var folders = await this.restClient.GetItems<SdkItem>(context.Entity.DocumentLibrary);
                 viewModels.Add(new ItemCollection()
                 {
                     GroupTitle = "Document library",
-                    Items = documentLibrary.Items.ToArray()
+                    Items = documentLibrary.Items.Concat(folders.Items).ToArray()
                 });
             }
 
