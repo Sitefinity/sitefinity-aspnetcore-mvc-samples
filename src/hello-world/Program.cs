@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using Progress.Sitefinity.AspNetCore;
@@ -11,6 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSitefinity();
 builder.Services.AddViewComponentModels();
 builder.Services.AddFormViewComponentModels();
+
+builder.Services.Configure<RazorViewEngineOptions>(o =>
+{
+    o.ViewLocationExpanders.Add(new CustomViewLocationExpander());
+});
 
 var app = builder.Build();
 
