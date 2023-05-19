@@ -301,13 +301,13 @@ namespace all_properties.Entities.AllProperties
         public EnumSingle EnumDefaultValueInvalid { get; set; }
 
         [DefaultValue("Vall")]
-        public EnumMultiples EnumDefaultValueMultipleInvalid { get; set; }
+        public EnumMultiple EnumDefaultValueMultipleInvalid { get; set; }
 
-        [DefaultValue(EnumMultiples.Value1 | EnumMultiples.Value2)]
-        public EnumMultiples EnumDefaultValueMultiple { get; set; }
+        [DefaultValue(EnumMultiple.Value1 | EnumMultiple.Value2)]
+        public EnumMultiple EnumDefaultValueMultiple { get; set; }
 
-        [DefaultValue(EnumMultiples.Value1 | EnumMultiples.Value2)]
-        public EnumMultiples? NullableEnumDefaultValueMultiple { get; set; }
+        [DefaultValue(EnumMultiple.Value1 | EnumMultiple.Value2)]
+        public EnumMultiple? NullableEnumDefaultValueMultiple { get; set; }
 
         public EnumSingle EnumNoDefaultValue { get; set; }
 
@@ -521,6 +521,12 @@ namespace all_properties.Entities.AllProperties
 
         [DisplayName("Child complex prop")]
         public ComplexObject ChildComplexObject { get; set; }
+    }
+
+    public class ComplexObjectWithContent
+    {
+        [Content(Type = KnownContentTypes.Events)]
+        public MixedContentContext Events { get; set; }
     }
 
     public enum EnumSingle
