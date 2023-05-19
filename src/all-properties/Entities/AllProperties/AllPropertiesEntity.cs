@@ -69,6 +69,7 @@ namespace all_properties.Entities.AllProperties
 
         [DataType(customDataType: KnownFieldTypes.Html)]
         [Placeholder("This is the placeholder")]
+        [ContentContainer]
         public string HtmlField { get; set; }
 
         [DataType(customDataType: KnownFieldTypes.TextArea)]
@@ -78,8 +79,11 @@ namespace all_properties.Entities.AllProperties
         [DataType(customDataType: KnownFieldTypes.Password)]
         public string Password { get; set; }
 
-        [ColorPalette("Default")]
+        [ColorPalette("Company")]
         public string ColorField { get; set; }
+
+        [ColorPalette("Default")]
+        public string ColorFieldDefaultPalette { get; set; }
 
         [DataType(customDataType: KnownFieldTypes.Range)]
         [Suffix("MB")]
@@ -110,19 +114,34 @@ namespace all_properties.Entities.AllProperties
         #region links
 
         [DynamicLinksContainer]
-        public ComplexObjectWithLinks ObjectWithLinks { get;set;}
+        public ComplexObjectWithLinks ObjectWithLinks { get; set; }
 
         [DynamicLinksContainer]
-        public IList<ComplexObjectWithLinks> ArrayOfObjectWithLinks { get;set;}
+        public IList<ComplexObjectWithLinks> ArrayOfObjectWithLinks { get; set; }
 
         public LinkModel Link { get; set; }
 
         [Required]
         public LinkModel LinkRequired { get; set; }
 
+        [DataType(customDataType: "linkSelector")]
+        public LinkModel LinkModel { get; set; }
+
+        [DataType(customDataType: "linkSelector")]
+        public LinkModel[] LinkModelMultiple { get; set; }
+
         #endregion
 
         #region strings
+
+        [DisplaySettings(Hide = true)]
+        public string HiddenField { get; set; }
+
+        /// <summary>
+        /// Gets or sets a field that should not be visible.
+        /// </summary>
+        [DisplaySettings(HideContent = true)]
+        public string HiddenContent { get; set; }
 
         /// <summary>
         /// Gets or sets a value in the detail css class property.
@@ -179,7 +198,6 @@ namespace all_properties.Entities.AllProperties
         [DefaultValue("2020-09-11T06:38:11.170Z")]
         [ContentSection(SecondBasicSection, 3)]
         public DateTime? NullableDateWithDefault { get; set; }
-        public DateTime? NullableDate { get; set; }
 
         /// <summary>
         /// Default value is specified as ISO8601 format
@@ -198,6 +216,9 @@ namespace all_properties.Entities.AllProperties
         /// </summary>
         [DefaultValue("2020-13-09T06:38:11.170Z")]
         public DateTime DefaultValueDateTimeInvalid { get; set; }
+
+        [DateSettings(ShowTime = false)]
+        public DateTime DateFieldWithoutTime { get; set; }
 
         #endregion
 
@@ -299,6 +320,8 @@ namespace all_properties.Entities.AllProperties
 
         public ComplexObject Complex { get; set; }
 
+        public ComplexObjectWithContent ComplexWithContent { get; set; }
+
         [TableView("TableTitle")]
         public ComplexObject ComplexTable { get; set; }
 
@@ -306,7 +329,6 @@ namespace all_properties.Entities.AllProperties
 
         [TableView("BigTableTitle")]
         public BigComplexObject BigComplexTable { get; set; }
-
 
         #endregion
 
@@ -362,6 +384,12 @@ namespace all_properties.Entities.AllProperties
         [Content(Type = "Telerik.Sitefinity.DynamicTypes.Model.Pressreleases.PressRelease")]
         public MixedContentContext PressReleases { get; set; }
 
+        [Content(Type = KnownContentTypes.Albums)]
+        public MixedContentContext Albums { get; set; }
+
+        [Content(Type = KnownContentTypes.DocumentLibraries, AllowMultipleItemsSelection = false, AllowCreate = false, Provider = "secondlibraries")]
+        public MixedContentContext DocumentLibrary { get; set; }
+
         [TaxonomyContent(Type = KnownContentTypes.Tags)]
         public MixedContentContext Tags { get; set; }
 
@@ -384,7 +412,7 @@ namespace all_properties.Entities.AllProperties
         public int? IntAsChoice { get; set; }
 
         [DefaultValue(1)]
-        [DisplayName("Integer as multiple choice field")]
+        [DisplayName("Integer as dropdown field")]
         [DataType(customDataType: KnownFieldTypes.Choices)]
         [Choice("[{\"Title\":\"1 level\",\"Name\":\"1\",\"Value\":1,\"Icon\":null},{\"Title\":\"2 levels\",\"Name\":\"2\",\"Value\":2,\"Icon\":null},{\"Title\":\"3 levels\",\"Name\":\"3\",\"Value\":3,\"Icon\":null}]")]
         public int? IntAsDropdownChoice { get; set; }
@@ -399,7 +427,6 @@ namespace all_properties.Entities.AllProperties
 
         [Content]
         public MixedContentContext AllTypesSelector { get; set; }
-
 
         [Category(PropertyCategory.Advanced)]
         [ContentSection(FirstAdvancedSection, 3)]
@@ -494,6 +521,12 @@ namespace all_properties.Entities.AllProperties
 
         [DisplayName("Child complex prop")]
         public ComplexObject ChildComplexObject { get; set; }
+    }
+
+    public class ComplexObjectWithContent
+    {
+        [Content(Type = KnownContentTypes.Events)]
+        public MixedContentContext Events { get; set; }
     }
 
     public enum EnumSingle
