@@ -21,7 +21,7 @@ Additionally, the ContentListViewModel has a property called “Items” which c
 The ViewsMetadata.json file must reside in the directory "Views/Shared/Componenents/SitefinityContentList/ViewsMetadata.json". It contains all of the mappings between views and their coresspnding metadata.
 
 ### Mappings
-The metadata for mappings serves the purpose to create reusable views that can be used across diffrent content types. This is achieved by providing a list of fields and their types as a json entry in the ViewsMetadata.json file. Thus when selecting different content types, each of the provided fields by the view can be mapped to a coresponding field of the selected content type. An example can be found [here](./Views/Shared/Componenents/SitefinityContentList/ViewsMetadata.json)
+The metadata for mappings serves the purpose to create reusable views that can be used across diffrent content types. This is achieved by providing a list of fields and their types as a json entry in the ViewsMetadata.json file. Thus when selecting different content types, each of the provided fields by the view can be mapped to a coresponding field of the selected content type. An example can be found [here](./Views/Shared/Components/SitefinityContentList/ViewsMetaData.json).
 
 The supported field types are the following:
 * ShortText - for string fields
