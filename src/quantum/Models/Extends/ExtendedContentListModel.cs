@@ -8,6 +8,7 @@ using Renderer.ViewModels.Extends;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Progress.Sitefinity.AspNetCore.Widgets.ViewComponents.Common;
 
 namespace Renderer.Models.Extends
 {
@@ -18,8 +19,8 @@ namespace Renderer.Models.Extends
         /// </summary>
         /// <param name="restClient">The HTTP client.</param>
         /// <param name="requestContext">The context.</param>
-        public ExtendedContentListModel(IODataRestClient restClient, IRequestContext requestContext)
-            : base(restClient, requestContext)
+        public ExtendedContentListModel(IODataRestClient restClient, IRequestContext requestContext, IStyleClassesProvider styles)
+            : base(restClient, requestContext, styles)
         {
         }
 
@@ -28,7 +29,7 @@ namespace Renderer.Models.Extends
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns>The view model.</returns>
-        public override async Task<object> HandleListView(ContentListEntity entity, ReadOnlyCollection<string> urlParameters, HttpContext httpContext)
+        public override async Task<object> HandleListView(ContentListEntityBase entity, ReadOnlyCollection<string> urlParameters, HttpContext httpContext)
         {
             var extendedEntity = entity as ExtendedContentListEntity;
             var viewModel = await base.HandleListView(entity, urlParameters, httpContext);

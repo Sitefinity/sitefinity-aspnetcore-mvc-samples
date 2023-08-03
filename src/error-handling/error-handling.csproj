@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.4.8123.20" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.4.8123.20" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.4.8123.20" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.4.8123.20" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.4.8123.20" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.4.8127.15" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.4.8127.15" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.4.8127.15" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.4.8127.15" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.4.8127.15" />
     <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
     <PackageReference Include="serilog.expressions" Version="3.4.1" />
     <PackageReference Include="serilog.sinks.seq" Version="5.2.2" />
