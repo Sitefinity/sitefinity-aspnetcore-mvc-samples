@@ -1,0 +1,115 @@
+﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering;
+@using Progress.Sitefinity.AspNetCore.Widgets.Models.DocumentList;
+
+@model DocumentListViewModel
+@{
+	var wrapperCss = Model.GetFieldCss("Document table");
+	var classAttr = string.IsNullOrEmpty(wrapperCss) ? null : wrapperCss;
+}
+
+<div class="@classAttr @Model.WrapperCssClass" @Html.BuildAttributes(Model.Attributes)>
+	@if (Model.Items.Count > 0)
+	{
+		<table class="unstriped display-block">
+			<thead class="display-block">
+				<tr class="row grid-x grid-padding-x">
+					<th class="small-5 cell"><span class="text-bold">@Model.TitleColumnLabel</span></th>
+					<th class="small-2 cell"><span class="text-bold">@Model.TypeColumnLabel</span></th>
+					<th class="small-2 cell text-right"><span class="text-bold">@Model.SizeColumnLabel</span></th>
+					<th class="small-3 cell"></th>
+				</tr>
+			</thead>
+			<tbody class="display-block">
+				@foreach (var item in Model.Items)
+				{
+					var title = Model.GetFieldValue<string>(item, "Title");
+					var fileSize = Model.GetFileSize(item);
+					var extension = Model.GetExtension(item);
+					var url = Model.GetFieldValue<string>(item, "Url");
+
+					<tr class="row grid-x grid-padding-x">
+						<td class="small-5 cell">
+							<div class="grid-x grid-padding-x align-center-middle">
+								<div class="position-relative small-1 columns panel clearfix">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 384 512" fill="#a7acb1" class="float-left">
+										<path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+									</svg>
+									<span style="left:12px; top:18px; color: white; background-color: @GetFileExtensionCssClass(extension)"
+										  class="sc-file-icon-extension text-uppercase float-left">@extension</span>
+								</div>
+								<div class="small-10 padding-left-1 columns align-self-middle">
+									@if (title != null)
+									{
+										var itemUrl = Model.GetItemUrl(this.Context, item);
+
+										<div class="text-wrap">
+											@if (itemUrl != null && Model.RenderLinks)
+											{
+												<a href="@itemUrl.ToString()">@Html.HtmlSanitize(title)</a>
+											}
+											else
+											{
+												@Html.HtmlSanitize(title)
+											}
+										</div>
+									}
+								</div>
+							</div>
+						</td>
+						<td class="small-2 cell">
+							<span>@extension</span>
+						</td>
+						<td class="small-2 cell text-right">
+							<span>@fileSize</span>
+						</td>
+						<td class="small-3 cell text-right">
+							<a href="@url" target="_blank">@Model.DownloadLinkLabel</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+
+	@if (Model.Pager != null)
+	{
+		<div>
+			@await Html.PartialAsync("ContentPager", Model.Pager)
+		</div>
+	}
+</div>
+
+@functions {
+	string GetFileExtensionCssClass(String extension)
+	{
+		string color;
+
+		switch (extension)
+		{
+			case "xlsx":
+			case "xls":
+				color = "#198754";
+				break;
+			case "doc":
+			case "docx":
+				color = "#0D6EFD";
+				break;
+			case "ppt":
+			case "pptx":
+				color = "#FD7E14";
+				break;
+			case "pdf":
+				color = "#DC3545";
+				break;
+			case "zip":
+			case "rar":
+				color = "#6f42c1";
+				break;
+			default:
+				color = "#6C757D";
+				break;
+		}
+
+		return color;
+	}
+}
