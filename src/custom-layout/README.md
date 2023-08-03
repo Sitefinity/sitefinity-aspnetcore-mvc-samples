@@ -13,6 +13,9 @@ The layout files are integrated in the backend UI of Sitefinity and you can choo
 
 To define your own custom sections, you can decorate several html tags (div, header, footer, aside, section, main, body) with the data-sfcontainer="your_placeholder_name" attribute, which will enable users to drop into different placeholders from scratch
 
+## Conditional scripts
+To include a script only on a particular page, refer to the file SitefinityTemplate.cshtml. The file site.js is included only for the page with title "my_page_with_script". Other than filtering by title, custom fields can be used as well -> look at the samples [here](../all-fields/Views/Shared/Fields/) 
+
 ## Layout Requirements
 * Every layout file must have a defined section named Scripts.
 

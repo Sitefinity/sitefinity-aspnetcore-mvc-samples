@@ -1,0 +1,22 @@
+{
+  "DocumentList": [
+    {
+      "fieldTitle": "Document list",
+      "fieldType": "ShortText"
+    },
+    {
+      "fieldTitle": "Details view",
+      "fieldType": "ShortText"
+    }
+  ],
+  "DocumentTable": [
+    {
+      "fieldTitle": "Document table",
+      "fieldType": "ShortText"
+    },
+    {
+      "fieldTitle": "Details view",
+      "fieldType": "ShortText"
+    }
+  ]
+}

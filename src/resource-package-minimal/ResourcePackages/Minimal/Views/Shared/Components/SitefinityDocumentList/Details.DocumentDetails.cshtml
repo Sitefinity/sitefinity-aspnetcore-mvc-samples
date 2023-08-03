@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Html;
+@model Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList.ContentDetailViewModel
+@{
+	string classAttr = string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass;
+	var author = Model.GetFieldValue<string>("Author");
+	var description = Model.GetFieldValue<string>("Description");
+	var url = Model.GetFieldValue<string>("Url");
+	var extension = Model.GetExtension();
+	var fileSize = Model.GetFileSize();
+}
+
+<div class="@classAttr @Model.WrapperCssClass" @Html.BuildAttributes(Model.Attributes)>
+    <h1>
+		@Html.HtmlSanitize(Model.Item.GetValue<string>("Title"))
+    </h1>
+    <div>
+        @Html.FormatDate(Model.Item.GetValue<DateTime>("PublicationDate"), this.Context)
+        @if (!string.IsNullOrEmpty(author))
+        {
+            @($"by {Html.HtmlSanitize(author)}")
+        }
+    </div>
+    @if (!string.IsNullOrEmpty(description))
+    {
+        <div>
+            @Html.HtmlSanitize(description)
+        </div>
+    }
+
+    <div>
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" viewBox="0 0 384 512" fill="#a7acb1">
+                <path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"></path>
+            </svg>
+			<span>@extension</span>
+        </div>
+        <div>
+            <div>
+                <a href="@url" target="_blank">@Model.DownloadLinkLabel</a>
+                <span>(@extension)</span>
+            </div>
+            <span>@fileSize</span>
+        </div>
+    </div>
+</div>
