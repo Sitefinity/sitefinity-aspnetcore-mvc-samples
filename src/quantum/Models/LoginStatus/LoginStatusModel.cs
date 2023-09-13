@@ -36,8 +36,15 @@ namespace Renderer.Models.LoginStatus
         {
             var viewModel = new LoginStatusViewModel();
 
-            viewModel.LoginPage = await this.restService.GetItem<PageNodeDto>(entity.LoginPage).ConfigureAwait(true);
-            viewModel.RegistrationPage = await this.restService.GetItem<PageNodeDto>(entity.RegistrationPage).ConfigureAwait(true);
+            if (entity.LoginPage.HasSelectedItems())
+            {
+                viewModel.LoginPage = await this.restService.GetItem<PageNodeDto>(entity.LoginPage);
+            }
+
+            if (entity.RegistrationPage.HasSelectedItems())
+            {
+                viewModel.RegistrationPage = await this.restService.GetItem<PageNodeDto>(entity.RegistrationPage);
+            }
 
             return viewModel;
         }
