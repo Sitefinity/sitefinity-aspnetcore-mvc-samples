@@ -24,7 +24,7 @@ namespace custom_section.ViewComponents
                 Context = context
             };
 
-            return this.View(context.Entity.ViewType ?? "Container", viewModel);
+            return this.View(context.Entity.ViewType.ToString() ?? "Container", viewModel);
         }
     }
 }

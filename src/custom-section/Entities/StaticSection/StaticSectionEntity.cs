@@ -1,10 +1,15 @@
-﻿using Progress.Sitefinity.AspNetCore.ViewComponents.AttributeConfigurator.Attributes;
-
-namespace custom_section.Entities.StaticSection
+﻿namespace custom_section.Entities.StaticSection
 {
     public class StaticSectionEntity
     {
-        [ViewSelector("StaticSection")]
-        public string ViewType { get; set; }
+        public ViewType ViewType { get; set; }
+    }
+
+    public enum ViewType
+    {
+        Container,
+        ContainerFluid,
+        TwoMixed,
+        ThreeAutoLayout,
     }
 }
