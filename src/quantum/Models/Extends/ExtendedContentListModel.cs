@@ -42,9 +42,18 @@ namespace Renderer.Models.Extends
                 extendedViewModel.SmallList = extendedEntity.SmallList;
 
                 return extendedViewModel;
+            } 
+            else if (viewModel is ContentDetailViewModel detailViewModel)
+            {
+                var extendedDetailViewModel = new ExtendedContentDetailViewModel(detailViewModel);
+
+                extendedDetailViewModel.WhereLabel = extendedEntity.WhereLabel;
+                extendedDetailViewModel.WhenLabel = extendedEntity.WhenLabel;
+
+                return extendedDetailViewModel;
             }
 
-            return viewModel;
+                return viewModel;
         }
     }
 }
