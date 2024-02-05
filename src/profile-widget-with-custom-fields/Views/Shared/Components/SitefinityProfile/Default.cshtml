@@ -1,4 +1,5 @@
-﻿@using Progress.Sitefinity.AspNetCore.Web;
+﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering
+@using Progress.Sitefinity.AspNetCore.Web;
 @using Progress.Sitefinity.AspNetCore.Widgets.Models.Profile
 
 @model Progress.Sitefinity.AspNetCore.Widgets.Models.Profile.ProfileViewModel
@@ -131,7 +132,7 @@
                             <label for="@aboutInputId" class="form-label">@lbls.AboutLabel</label>
                             <textarea id="@aboutInputId" class="form-control" name="About" disabled=@Model.ReadOnlyFields.Contains("About")>@Model.About</textarea>
                         </div>
-
+                        @* Custom fields start *@
                         @foreach (var customField in Model.CustomFields)
                         {
                             <div class="mb-3">
@@ -139,7 +140,7 @@
                                 <input id="@customField.Key" type="text" class="form-control" name="@customField.Key" value="@customField.Value" disabled=@Model.ReadOnlyFields.Contains(customField.Key) />
                             </div>
                         }
-
+                        @* Custom fields end *@
                     </div>
                     <div data-sf-role="password-container" class="d-none">
                         <div class="mb-3">
