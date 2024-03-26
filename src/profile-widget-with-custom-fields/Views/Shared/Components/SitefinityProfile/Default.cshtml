@@ -1,15 +1,15 @@
-﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering
-@using Progress.Sitefinity.AspNetCore.Web;
-@using Progress.Sitefinity.AspNetCore.Widgets.Models.Profile
+﻿@model Progress.Sitefinity.AspNetCore.Widgets.Models.Profile.ProfileViewModel
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering
+@using Progress.Sitefinity.AspNetCore.Web
+@using Progress.Sitefinity.AspNetCore.Widgets.Models.Profile;
 
-@model Progress.Sitefinity.AspNetCore.Widgets.Models.Profile.ProfileViewModel
 @inject IRenderContext renderContext;
 
 @{
     var lbls = Model.Labels;
 }
 
-@if (this.User.Identity.IsAuthenticated)
+@if (this.User?.Identity?.IsAuthenticated ?? false)
 {
     <environment include="Development">
         <script src="Scripts/LoginWidgets/profile.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
