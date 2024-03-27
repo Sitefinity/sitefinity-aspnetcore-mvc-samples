@@ -2,15 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>registration_widget_with_custom_fields</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>profile_widget_with_custom_fields</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.1.8300.303" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.1.8300.303" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.1.8300.303" />
     <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.1.8300.303" />
     <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.1.8300.303" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.1.8300.303" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.1.8300.303" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,182 @@
+﻿@model Progress.Sitefinity.AspNetCore.Widgets.Models.Profile.ProfileViewModel
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering
+@using Progress.Sitefinity.AspNetCore.Web
+@using Progress.Sitefinity.AspNetCore.Widgets.Models.Profile;
+
+@inject IRenderContext renderContext;
+
+@{
+    var lbls = Model.Labels;
+}
+
+@if (this.User?.Identity?.IsAuthenticated ?? false)
+{
+    <environment include="Development">
+        <script src="Scripts/LoginWidgets/profile.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="Scripts/LoginWidgets/profile.min.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+    </environment>
+
+    <div data-sf-role="profile-container"
+         data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+         data-sf-invalid="@Model.InvalidClass"
+         class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
+
+        <input type="hidden" name="ViewMode" value="@Model.ViewMode" />
+
+        <div data-sf-role="read-container" class="d-flex @((Model.ViewMode == ProfileViewMode.Read || Model.ViewMode == ProfileViewMode.ReadEdit)  ? "" : "d-none")">
+            <div class="flex-shrink-0">
+                <img src="@Model.AvatarUrl" width="100" />
+            </div>
+            <div class="flex-grow-1 ms-2">
+                <h2 class="mb-0">@Model.FirstName @Model.LastName</h2>
+                <p class="text-muted mb-3">@Model.Email</p>
+                @if (Model.ViewMode == ProfileViewMode.ReadEdit)
+                {
+                    <a href="javascript:void(0)" data-sf-role="editProfileLink">@lbls.EditProfileLink</a>
+                }
+            </div>
+        </div>
+
+        @if (Model.ViewMode == ProfileViewMode.Edit || Model.ViewMode == ProfileViewMode.ReadEdit)
+        {
+            bool disabled = !@renderContext.IsLive;
+            var firstNameInputId = Html.GetUniqueId("sf-first-name-");
+            var lastNameInputId = Html.GetUniqueId("sf-last-name-");
+            var emailInputId = Html.GetUniqueId("sf-email-");
+            var nicknameInputId = Html.GetUniqueId("sf-nickname-");
+            var aboutInputId = Html.GetUniqueId("sf-about-");
+            var passwordInputId = Html.GetUniqueId("sf-password-");
+            var fileUploadInputId = Html.GetUniqueId("sf-file-upload-");
+
+            <div data-sf-role="form-container" class="@(Model.ViewMode == ProfileViewMode.Edit ? "" : "d-none")">
+                <div data-sf-role="error-message-container" class="alert alert-danger d-none my-3" role="alert" aria-live="assertive"></div>
+                <div data-sf-role="success-message-container"
+                     class="alert alert-success my-3 d-none"
+                     role="alert" aria-live="assertive">
+                    @lbls.SuccessNotification
+                </div>
+                <div class="mb-3">
+                    <h2>
+                        @lbls.EditProfileHeader
+                    </h2>
+                </div>
+                <form method="post" action="@Model.UpdateProfileHandlerPath" role="form">
+                    <div data-sf-role="edit-profile-container">
+                        <div class="d-flex">
+                            <div class="mb-3">
+                                <img data-sf-role="sf-user-profile-avatar" src="@Model.AvatarUrl" alt="@Model.Email" width="100" />
+                            </div>
+                            <div class="mx-3">
+                                <a href="#" class="link-primary">
+                                    <label for="@fileUploadInputId">@lbls.ChangePhotoLabel</label>
+                                </a>
+                                <input type="file" id="@fileUploadInputId" data-sf-role="edit-profile-upload-picture-input" name="UploadImage" style="display: none;" accept=".jpg, .jpeg, .png" />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="@firstNameInputId" class="form-label">@lbls.FirstNameLabel</label>
+                            <input id="@firstNameInputId" type="text" class="form-control" @{
+                                if (!Model.ReadOnlyFields.Contains("FirstName"))
+                                {
+                                    <text>data-sf-role='required'</text>
+                                }
+                                else
+                                {
+                                    <text>disabled</text>
+                                }
+                            } name="FirstName" value="@Model.FirstName"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="@lastNameInputId" class="form-label">@lbls.LastNameLabel</label>
+                            <input id="@lastNameInputId" type="text" class="form-control" @{
+                                if (!Model.ReadOnlyFields.Contains("LastName"))
+                                {
+                                    <text>data-sf-role='required'</text>
+                                }
+                                else
+                                {
+                                    <text>disabled</text>
+                                }
+
+                            } name="LastName" value="@Model.LastName" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="@emailInputId" class="form-label">@lbls.EmailLabel</label>
+                            <input id="@emailInputId" type="text" class="form-control" @{
+                                if (!Model.ReadOnlyFields.Contains("Email"))
+                                {
+                                    <text>data-sf-role='required'</text>
+                                }
+                                else
+                                {
+                                    <text>disabled</text>
+                                }
+                            } name="Email" value="@Model.Email" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="@nicknameInputId" class="form-label">@lbls.NicknameLabel</label>
+                            <input id="@nicknameInputId" type="text" class="form-control" name="Nickname" value="@Model.Nickname" @{
+                                if (Model.ReadOnlyFields.Contains("Email"))
+                                {
+                                    <text>disabled</text>
+                                }
+                            } />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="@aboutInputId" class="form-label">@lbls.AboutLabel</label>
+                            <textarea id="@aboutInputId" class="form-control" name="About" disabled=@Model.ReadOnlyFields.Contains("About")>@Model.About</textarea>
+                        </div>
+                        @* Custom fields start *@
+                        @foreach (var customField in Model.CustomFields)
+                        {
+                            <div class="mb-3">
+                                <label for="@customField.Key" class="form-label">@customField.Key</label>
+                                <input id="@customField.Key" type="text" class="form-control" name="@customField.Key" value="@customField.Value" disabled=@Model.ReadOnlyFields.Contains(customField.Key) />
+                            </div>
+                        }
+                        @* Custom fields end *@
+                    </div>
+                    <div data-sf-role="password-container" class="d-none">
+                        <div class="mb-3">
+                            @lbls.ChangeEmailLabel
+                        </div>
+                        <div class="mb-3">
+                            <label for="@passwordInputId" class="form-label">@lbls.PasswordLabel</label>
+                            <input id="@passwordInputId" type="password" class="form-control" name="Password" />
+                        </div>
+                    </div>
+
+                    <input class="btn btn-primary w-100" type="submit" value="@lbls.SaveChangesLabel" disabled="@disabled" />
+                    <input type="hidden" name="Id" value="@Model.Id" />
+
+                    <input type="hidden" value="" name="sf_antiforgery" />
+                </form>
+
+                @if (Model.ViewMode == ProfileViewMode.Edit)
+                {
+                    <input type="hidden" name="PostUpdateAction" value="@Model.EditModeAction" />
+                    <input type="hidden" name="RedirectUrl" value="@Model.EditModeRedirectUrl" />
+                }
+
+                @if (Model.ViewMode == ProfileViewMode.ReadEdit)
+                {
+                    <input type="hidden" name="PostUpdateAction" value="@Model.ReadEditModeAction" />
+                    <input type="hidden" name="RedirectUrl" value="@Model.ReadEditModeRedirectUrl" />
+                }
+
+                <input type="hidden" name="InitialEmail" value="@Model.Email" />
+                <input type="hidden" name="ValidationRequiredMessage" value="@lbls.ValidationRequiredMessage" />
+                <input type="hidden" name="InvalidEmailErrorMessage" value="@lbls.InvalidEmailErrorMessage" />
+                <input type="hidden" name="InvalidPhotoErrorMessage" value="@lbls.InvalidPhotoErrorMessage" />
+                <input type="hidden" name="InvalidPasswordErrorMessage" value="@lbls.InvalidPasswordErrorMessage" />
+            </div>
+        }
+
+    </div>
+}
