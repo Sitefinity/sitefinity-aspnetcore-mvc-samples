@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 	</PropertyGroup>
 	<ItemGroup>
@@ -8,8 +8,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.4.8127.15" />
-        <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.4.8127.15" />
-		<PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.4.8127.15" />
+		<PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.1.8321.17" />
+        <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.1.8321.17" />
+		<PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.1.8321.17" />
 	</ItemGroup>
 </Project>
