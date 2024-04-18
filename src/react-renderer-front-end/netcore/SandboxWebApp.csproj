@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,11 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="14.4.8127.15" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.4.8127.15" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.4.8127.15" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="14.4.8127.15" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="14.4.8127.15" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.1.8321.17" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.1.8321.17" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.1.8321.17" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.1.8321.17" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.1.8321.17" />
   </ItemGroup>
 
   <ItemGroup>

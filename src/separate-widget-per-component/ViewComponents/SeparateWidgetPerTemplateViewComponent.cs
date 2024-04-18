@@ -8,7 +8,7 @@ namespace SeparateWidgetPerComponent.ViewComponents
     /// <summary>
     /// Test widget that creates multiple templates inside the Select widget dialog.
     /// </summary>
-    [SitefinityWidget(Title = "CommonWidget", EmptyIconText = "Custom empty text", EmptyIcon = "hand-peace-o", EmptyIconAction = EmptyLinkAction.None, SeparateWidgetPerTemplate = true)]
+    [SitefinityWidget(Title = "CommonWidget", EmptyIconText = "Custom empty text", EmptyIcon = "hand-peace-o", EmptyIconAction = EmptyLinkAction.None)]
     public class SeparateWidgetPerTemplateViewComponent : ViewComponent
     {
         /// <summary>
