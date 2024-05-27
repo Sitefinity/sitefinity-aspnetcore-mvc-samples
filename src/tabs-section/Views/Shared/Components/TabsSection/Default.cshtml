@@ -30,6 +30,13 @@
 
 @if (!(string.IsNullOrEmpty(Model.FirstTabLabel) && string.IsNullOrEmpty(Model.SecondTabLabel)))
 {
+    <style>
+        /* TabsSection is the name of the widget */
+        :root .sf-zone-widget[data-sfname="TabsSection"]::before {
+            top: 42px !important; /* the height of the tabs */
+        }
+    </style>
+    
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link" href="#@firstTabId" type="button" data-bs-toggle="tab">@Model.FirstTabLabel</a>
