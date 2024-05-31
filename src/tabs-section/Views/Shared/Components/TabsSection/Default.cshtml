@@ -33,7 +33,7 @@
     @if (renderContext.IsEdit)
     {
         <style>
-            /* TabsSection is the name of the widget */
+            /* Workaround to enable click events for tab change while in edit mode. TabsSection is the name of the widget */
             :root .sf-zone-widget[data-sfname="TabsSection"]::before {
                 top: 42px !important; /* the height of the tabs */
             }
