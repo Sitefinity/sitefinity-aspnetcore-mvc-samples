@@ -114,9 +114,9 @@ namespace content_selectors.ViewComponents
                 });
             }
 
-            var newsItemsLive = bulkResponse[context.Entity.NewsLive];
             if (context.Entity.NewsLive.HasSelectedItems())
             {
+                var newsItemsLive = bulkResponse[context.Entity.NewsLive];
                 viewModels.Add(new ItemCollection()
                 {
                     GroupTitle = "News items live",
