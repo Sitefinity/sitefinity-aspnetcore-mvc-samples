@@ -1,0 +1,3 @@
+M:System.Net.Http.HttpClient.#ctor;Don't instantiate HttpClient directly. Use IHttpClientFactory instead.
+M:System.Net.Http.HttpClient.#ctor(System.Net.Http.HttpMessageHandler);Don't instantiate HttpClient directly. Use IHttpClientFactory instead.
+M:System.Net.Http.HttpClient.#ctor(System.Net.Http.HttpMessageHandler,System.Boolean);Don't instantiate HttpClient directly. Use IHttpClientFactory instead.

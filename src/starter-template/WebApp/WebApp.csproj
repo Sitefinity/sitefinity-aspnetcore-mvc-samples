@@ -9,5 +9,4 @@
     <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" />
     <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" />
   </ItemGroup>
-
 </Project>
