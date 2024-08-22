@@ -2,7 +2,3 @@
 M:System.Net.Http.HttpClient.#ctor;Don't instantiate HttpClient directly. Use IHttpClientFactory instead.
 M:System.Net.Http.HttpClient.#ctor(System.Net.Http.HttpMessageHandler);Don't instantiate HttpClient directly. Use IHttpClientFactory instead.
 M:System.Net.Http.HttpClient.#ctor(System.Net.Http.HttpMessageHandler,System.Boolean);Don't instantiate HttpClient directly. Use IHttpClientFactory instead.
-
-P:System.DateTime.Now; Progress.Sitefinity.Core.IClock.UtcNow instead.
-P:System.DateTime.UtcNow; Progress.Sitefinity.Core.IClock.UtcNow instead.
-M:System.DateTimeOffset.op_Implicit(System.DateTime); Do not implicitly cast DateTime to DateTimeOffset.
