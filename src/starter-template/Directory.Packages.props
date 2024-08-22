@@ -8,5 +8,8 @@
         <PackageVersion Include="Progress.Sitefinity.RestSdk" Version="14.4.8123.20" />
         <PackageVersion Include="Progress.Sitefinity.AspNetCore.Widgets" Version="14.4.8123.20" />
         <PackageVersion Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="14.4.8123.20" />
+        <PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageVersion>
     </ItemGroup>
 </Project>
