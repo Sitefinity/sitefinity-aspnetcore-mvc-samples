@@ -11,7 +11,7 @@ The keys are created for either reCAPTCHA v2 or reCAPTCHA v3 and can be used wit
  
 In order to run this sample, you need to configure the Sitefinity Web Security module. Make sure that the module is 'Active' in Administration > Modules & Services.
 Note: If the Web Security module is not visible in the list of modules, you can install the Progress.Sitefinity.WebSecurity NuGet package for your current Sitefinity version.
-Note: If the WebSecurity module is still not available, you can istall it from Administration > Modules & Services > 'Install a module' button, with name: Web security and type: Telerik.Sitefinity.WebSecurity.WebSecurityModule, Telerik.Sitefinity.WebSecurity. You need to have the Progress.Sitefinity.WebSecurity NuGet package installed for this to work.
+Note: If the WebSecurity module is still not available, you can install it from Administration > Modules & Services > 'Install a module' button, with name: Web security and type: Telerik.Sitefinity.WebSecurity.WebSecurityModule, Telerik.Sitefinity.WebSecurity. You need to have the Progress.Sitefinity.WebSecurity NuGet package installed for this to work.
 
 Go to Administration > Settings > Advanced > Web Security > Captcha > Parameters and add 3 new parameters:
 1. Key 'VerificationUrl' and  value 'https://www.google.com/recaptcha/api/siteverify'.
