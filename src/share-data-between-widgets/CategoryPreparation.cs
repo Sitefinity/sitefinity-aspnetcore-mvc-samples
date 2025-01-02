@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Entities.CategorySelector;
@@ -7,6 +8,7 @@ using Progress.Sitefinity.AspNetCore.Models;
 using Progress.Sitefinity.AspNetCore.Preparations;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Progress.Sitefinity.RestSdk;
+using Progress.Sitefinity.RestSdk.Dto;
 using ViewComponents;
 
 namespace share_data_between_widgets
@@ -17,6 +19,8 @@ namespace share_data_between_widgets
 
         public Task Prepare(PageModel pageModel, IRestClient restClient, HttpContext context)
         {
+            var tasks = new List<Task>();
+
             // get the category selector widget
             var categorySelectorWidget = pageModel.AllViewComponentsFlat.FirstOrDefault(x => typeof(IViewComponentContext<CategorySelectorEntity>).IsAssignableFrom(x.GetType()));
             if (categorySelectorWidget != null)
@@ -25,30 +29,37 @@ namespace share_data_between_widgets
                 // e.g.
                 // localhost/home/cat1 -> [cat1] will be the parameter in the UrlParameters collection
                 // localhost/home/cat1/cat2 -> [cat1, cat2] will be the parameters in the UrlParameters collection
-                var categories = CategorySelectorViewComponent.Categories.Keys.ToList();
-                if (pageModel.UrlParameters.Count == 1)
+                var getItemsTask = restClient.GetItems<CategoryDto>(new GetAllArgs()).ContinueWith((sdkItemTask) =>
                 {
-                    // if the additional url parameter matches one of the category urls, we mark the parameters as resolved
-                    // so there is no 404 thrown
-                    var parameterWithForwardSlash = "/" + pageModel.UrlParameters[0];
-                    if (categories.Contains(parameterWithForwardSlash))
+                    var categories = sdkItemTask.Result.Items.Select(x => x.Title);
+                    categories = CategorySelectorViewComponent.Categories.Keys.ToList();
+                    if (pageModel.UrlParameters.Count == 1)
                     {
-                        // add the selected category to the state so we can highlight it in the front-end
-                        categorySelectorWidget.State.Add(SelectedCategory, parameterWithForwardSlash);
-
-                        var dataBasedOnSelectedCategoryWidget = pageModel.AllViewComponentsFlat.FirstOrDefault(x => typeof(IViewComponentContext<DataBasedOnSelectedCategoryEntity>).IsAssignableFrom(x.GetType()));
-                        if (dataBasedOnSelectedCategoryWidget != null)
+                        // if the additional url parameter matches one of the category urls, we mark the parameters as resolved
+                        // so there is no 404 thrown
+                        var parameterWithForwardSlash = "/" + pageModel.UrlParameters[0];
+                        if (categories.Contains(parameterWithForwardSlash))
                         {
-                            // add the selected category to the state so we can filter our data based on the selected url parameter
-                            dataBasedOnSelectedCategoryWidget.State.Add(SelectedCategory, parameterWithForwardSlash);
-                        }
+                            // add the selected category to the state so we can highlight it in the front-end
+                            categorySelectorWidget.State.Add(SelectedCategory, parameterWithForwardSlash);
 
-                        pageModel.MarkUrlParametersResolved();
+                            var dataBasedOnSelectedCategoryWidget = pageModel.AllViewComponentsFlat.FirstOrDefault(x => typeof(IViewComponentContext<DataBasedOnSelectedCategoryEntity>).IsAssignableFrom(x.GetType()));
+                            if (dataBasedOnSelectedCategoryWidget != null)
+                            {
+                                // add the selected category to the state so we can filter our data based on the selected url parameter
+                                dataBasedOnSelectedCategoryWidget.State.Add(SelectedCategory, parameterWithForwardSlash);
+                            }
+
+                            pageModel.MarkUrlParametersResolved();
+                        }
                     }
-                }
+                },
+                TaskScheduler.Current);
+                
+                tasks.Add(getItemsTask);
             }
 
-            return Task.CompletedTask;
+            return Task.WhenAll(tasks);
         }
     }
 }
