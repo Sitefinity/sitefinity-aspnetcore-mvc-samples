@@ -37,7 +37,6 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseSerilogRequestLogging();
-app.UseStatusCodePagesWithReExecute("/Error", "?statusCode={0}");
 app.UseStaticFiles();
 app.UseRouting();
 app.MapRazorPages();
