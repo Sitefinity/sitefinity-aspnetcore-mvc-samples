@@ -6,6 +6,7 @@ using Serilog;
 
 using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.FormWidgets;
+using Progress.Sitefinity.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,12 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
+
+    app.UseWhen(context => !context.IsProxyRequest(), appBuilder =>
+    {
+        appBuilder.UseStatusCodePagesWithReExecute("/error-pages", "?statusCode={0}");
+    });
+
     app.UseHsts();
 }
 
