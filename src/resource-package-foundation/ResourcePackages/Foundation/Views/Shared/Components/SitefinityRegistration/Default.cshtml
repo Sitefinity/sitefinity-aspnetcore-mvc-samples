@@ -114,7 +114,7 @@ else
             </div>
 
             <div data-sf-role="confirm-registration-message-container" class="hide">
-                <h3>@lbls.ActivationLinkHeader</h3>
+                <h3>@lbls.PleaseCheckYourEmailHeader</h3>
                 <p data-sf-role="activation-link-message-container"></p>
 
                 <a href="javascript:void(0)" data-sf-role="sendAgainLink" class="button">
@@ -122,9 +122,9 @@ else
                 </a>
 
                 <input type="hidden" name="ResendConfirmationEmailUrl" value="@Model.ResendConfirmationEmailHandlerPath" />
-                <input type="hidden" name="ActivationLinkLabel" value="@lbls.ActivationLinkLabel" />
+                <input type="hidden" name="ActivationLinkLabel" value="@lbls.PleaseCheckYourEmailMessage" />
                 <input type="hidden" name="SendAgainLink" value="@lbls.SendAgainLink" />
-                <input type="hidden" name="SendAgainLabel" value="@lbls.SendAgainLabel" />
+                <input type="hidden" name="SendAgainLabel" value="@lbls.ActivateAccountLink" />
             </div>
         }
     </div>
