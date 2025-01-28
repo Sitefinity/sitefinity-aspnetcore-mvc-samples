@@ -1,26 +1,28 @@
 @model Progress.Sitefinity.AspNetCore.Widgets.Models.Registration.RegistrationViewModel
 @using Progress.Sitefinity.AspNetCore.Widgets.Models.Registration
 @using Progress.Sitefinity.AspNetCore.Mvc.Rendering
-@using Progress.Sitefinity.AspNetCore.ViewComponents;
-
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@addTagHelper *, Progress.Sitefinity.AspNetCore
 
 @{
     var lbls = Model.Labels;
 }
 
-@if (Model.IsAccountActivationRequest)
+@if (Model.IsAccountActivationRequest && !Model.ActivationFailed)
 {
     <div class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
         <h2 class="mb-3">
             @lbls.ActivationMessage
         </h2>
+        <p>
+            <a href="@Model.LoginPageUrl">@lbls.LoginLink</a>
+        </p>
     </div>
 }
 else
 {
-    <div data-sf-role="sf-registration-container" class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
+    <div data-sf-role="sf-registration-container"
+         data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+         data-sf-invalid="@Model.InvalidClass"
+         class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
         @if (Model.ShowSuccessMessage(Context))
         {
             <h3>@lbls.SuccessHeader</h3>
@@ -99,6 +101,7 @@ else
                     <input class="btn btn-primary w-100" type="submit" value="@lbls.RegisterButtonLabel" />
 
                     <input type="hidden" name="ActivationPageUrl" value="@Model.ActivationPageUrl" />
+                    <input type="hidden" value="" name="sf_antiforgery" />
                 </form>
 
                 @if (!string.IsNullOrEmpty(Model.LoginPageUrl))
@@ -130,17 +133,21 @@ else
             </div>
 
             <div data-sf-role="confirm-registration-message-container" class="d-none">
-                <h3>@lbls.PleaseCheckYourEmailHeader</h3>
+                <h3 data-sf-role="activation-link-header"></h3>
                 <p data-sf-role="activation-link-message-container"></p>
 
-                <a href="javascript:void(0)" data-sf-role="sendAgainLink" class="btn btn-primary">
-                    @lbls.SendAgainLink
-                </a>
+                <a href="javascript:void(0)" data-sf-role="sendAgainLink" class="btn btn-primary"></a>
 
                 <input type="hidden" name="ResendConfirmationEmailUrl" value="@Model.ResendConfirmationEmailHandlerPath" />
-                <input type="hidden" name="ActivationLinkLabel" value="@lbls.PleaseCheckYourEmailMessage" />
+                <input type="hidden" name="PleaseCheckYourEmailMessage" value="@lbls.PleaseCheckYourEmailMessage" />
+                <input type="hidden" name="PleaseCheckYourEmailAnotherMessage" value="@lbls.PleaseCheckYourEmailAnotherMessage" />
                 <input type="hidden" name="SendAgainLink" value="@lbls.SendAgainLink" />
-                <input type="hidden" name="SendAgainLabel" value="@lbls.ActivateAccountLink" />
+                <input type="hidden" name="ActivateAccountLink" value="@lbls.ActivateAccountLink" />
+                <input type="hidden" name="ExistingEmail" value="@Model.Email" />
+                <input type="hidden" name="ActivationFailed" value="@Model.ActivationFailed" />
+                <input type="hidden" name="PleaseCheckYourEmailHeader" value="@lbls.PleaseCheckYourEmailHeader" />
+                <input type="hidden" name="ActivateAccountTitle" value="@lbls.ActivateAccountTitle" />
+                <input type="hidden" name="ActivateAccountMessage" value="@lbls.ActivateAccountMessage" />
             </div>
         }
     </div>

@@ -6,22 +6,23 @@
     var lbls = Model.Labels;
 }
 
-@if (Model.IsAccountActivationRequest)
+@if (Model.IsAccountActivationRequest && !Model.ActivationFailed)
 {
     <div class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
-        <h2 class="margin-bottom-1">
+        <h2 class="mb-3">
             @lbls.ActivationMessage
         </h2>
+        <p>
+            <a href="@Model.LoginPageUrl">@lbls.LoginLink</a>
+        </p>
     </div>
 }
 else
 {
-        <div
-    data-sf-role="sf-registration-container"
-    data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
-    data-sf-invalid="@Model.InvalidClass"
-    class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
-
+    <div data-sf-role="sf-registration-container"
+         data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+         data-sf-invalid="@Model.InvalidClass"
+         class="@(string.IsNullOrEmpty(Model.CssClass) ? null : Model.CssClass)" @Html.BuildAttributes(Model.Attributes)>
         @if (Model.ShowSuccessMessage(Context))
         {
             <h3>@lbls.SuccessHeader</h3>
@@ -44,26 +45,26 @@ else
                 <script src="Scripts/LoginWidgets/registration.min.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
             </environment>
             <div data-sf-role="form-container">
-                <h2 class="margin-bottom-1">@lbls.Header</h2>
-                <div data-sf-role="error-message-container" class="callout alert margin-vertical-1 hide" role="alert" aria-live="assertive"></div>
+                <h2 class="mb-3">@lbls.Header</h2>
+                <div data-sf-role="error-message-container" class="alert alert-danger d-none my-3" role="alert" aria-live="assertive"></div>
                 <form method="post" action="@Model.RegistrationHandlerPath" role="form" novalidate>
-                    <div class="margin-bottom-1">
+                    <div class="mb-3">
                         <label for="@firstNameInputId" class="form-label">@lbls.FirstNameLabel</label>
                         <input id="@firstNameInputId" type="text" class="form-control" name="FirstName" data-sf-role="required">
                     </div>
-                    <div class="margin-bottom-1">
+                    <div class="mb-3">
                         <label for="@lastNameInputId" class="form-label">@lbls.LastNameLabel</label>
                         <input id="@lastNameInputId" type="text" class="form-control" name="LastName" data-sf-role="required">
                     </div>
-                    <div class="margin-bottom-1">
+                    <div class="mb-3">
                         <label for="@emailInputId" class="form-label">@lbls.EmailLabel</label>
                         <input id="@emailInputId" type="email" class="form-control" name="Email" data-sf-role="required">
                     </div>
-                    <div class="margin-bottom-1">
+                    <div class="mb-3">
                         <label for="@passwordInputId" class="form-label">@lbls.PasswordLabel</label>
                         <input id="@passwordInputId" type="password" class="form-control" name="Password" data-sf-role="required">
                     </div>
-                    <div class="margin-bottom-1">
+                    <div class="mb-3">
                         <label for="@repeatPasswordInputId" class="form-label">@lbls.RepeatPasswordLabel</label>
                         <input id="@repeatPasswordInputId" type="password" class="form-control" name="RepeatPassword" data-sf-role="required">
                     </div>
@@ -80,9 +81,10 @@ else
                         </div>
                     }
 
-                    <input class="button expanded" type="submit" value="@lbls.RegisterButtonLabel" />
+                    <input class="btn btn-primary w-100" type="submit" value="@lbls.RegisterButtonLabel" />
 
                     <input type="hidden" name="ActivationPageUrl" value="@Model.ActivationPageUrl" />
+                    <input type="hidden" value="" name="sf_antiforgery" />
                 </form>
 
                 @if (!string.IsNullOrEmpty(Model.LoginPageUrl))
@@ -96,7 +98,7 @@ else
                     <h3 class="mt-3">@lbls.ExternalProvidersHeader</h3>
                     @foreach (var provider in Model.ExternalProviders)
                     {
-                        <a data-sf-test="extPrv" class="hollow button secondary expanded margin-top-1 @Model.GetExternalLoginButtonCssClass(provider.Name)" href="@Model.GetExternalLoginPath(Context, provider.Name)">@provider.Title</a>
+                        <a data-sf-test="extPrv" class="btn border fs-5 w-100 mt-2 @Model.GetExternalLoginButtonCssClass(provider.Name)" href="@Model.GetExternalLoginPath(Context, provider.Name)">@provider.Title</a>
                     }
                 }
 
@@ -108,23 +110,27 @@ else
                 <input type="hidden" name="ValidationInvalidEmailMessage" value="@lbls.ValidationInvalidEmailMessage" />
             </div>
 
-            <div data-sf-role="success-registration-message-container" class="hide">
+            <div data-sf-role="success-registration-message-container" class="d-none">
                 <h3>@lbls.SuccessHeader</h3>
                 <p>@lbls.SuccessLabel</p>
             </div>
 
-            <div data-sf-role="confirm-registration-message-container" class="hide">
-                <h3>@lbls.PleaseCheckYourEmailHeader</h3>
+            <div data-sf-role="confirm-registration-message-container" class="d-none">
+                <h3 data-sf-role="activation-link-header"></h3>
                 <p data-sf-role="activation-link-message-container"></p>
 
-                <a href="javascript:void(0)" data-sf-role="sendAgainLink" class="button">
-                    @lbls.SendAgainLink
-                </a>
+                <a href="javascript:void(0)" data-sf-role="sendAgainLink" class="btn btn-primary"></a>
 
                 <input type="hidden" name="ResendConfirmationEmailUrl" value="@Model.ResendConfirmationEmailHandlerPath" />
-                <input type="hidden" name="ActivationLinkLabel" value="@lbls.PleaseCheckYourEmailMessage" />
+                <input type="hidden" name="PleaseCheckYourEmailMessage" value="@lbls.PleaseCheckYourEmailMessage" />
+                <input type="hidden" name="PleaseCheckYourEmailAnotherMessage" value="@lbls.PleaseCheckYourEmailAnotherMessage" />
                 <input type="hidden" name="SendAgainLink" value="@lbls.SendAgainLink" />
-                <input type="hidden" name="SendAgainLabel" value="@lbls.ActivateAccountLink" />
+                <input type="hidden" name="ActivateAccountLink" value="@lbls.ActivateAccountLink" />
+                <input type="hidden" name="ExistingEmail" value="@Model.Email" />
+                <input type="hidden" name="ActivationFailed" value="@Model.ActivationFailed" />
+                <input type="hidden" name="PleaseCheckYourEmailHeader" value="@lbls.PleaseCheckYourEmailHeader" />
+                <input type="hidden" name="ActivateAccountTitle" value="@lbls.ActivateAccountTitle" />
+                <input type="hidden" name="ActivateAccountMessage" value="@lbls.ActivateAccountMessage" />
             </div>
         }
     </div>
