@@ -28,6 +28,7 @@ namespace all_properties.Extensibility
                 if (string.Equals(propertyContainer.Type, KnownFieldTypes.ChoiceMultiple))
                 {
                     propertyContainer.Properties.Add($"{WidgetMetadataConstants.Prefix}_Choices_AllowMultiple", bool.TrueString);
+                    propertyContainer.Type = "multipleChoices";
                 }
 
                 var choiceKey = $"{WidgetMetadataConstants.Prefix}_Choice_Choices";
