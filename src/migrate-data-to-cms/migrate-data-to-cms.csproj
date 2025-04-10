@@ -1,21 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>migrate_data_to_cms</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="Samples\Media\Data\image.jpg" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="Samples\Media\Data\image.jpg" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="IdentityModel" Version="4.5.0" />
-	  <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.2.8400.355" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.3.8500.296" />
   </ItemGroup>
 </Project>

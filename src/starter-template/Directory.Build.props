@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
@@ -8,7 +8,6 @@
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)BannedSymbols.txt" />
   </ItemGroup>
   <ItemGroup>
-      <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" />
+    <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" />
   </ItemGroup>
-  
 </Project>

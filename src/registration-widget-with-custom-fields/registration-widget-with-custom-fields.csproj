@@ -1,16 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>registration_widget_with_custom_fields</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.2.8400.355" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.2.8400.355" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.2.8400.355" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.2.8400.355" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.2.8400.355" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.3.8500.296" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.3.8500.296" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.3.8500.296" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.3.8500.296" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.3.8500.296" />
   </ItemGroup>
-
 </Project>
