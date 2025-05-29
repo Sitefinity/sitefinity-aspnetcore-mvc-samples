@@ -4,10 +4,10 @@
     <RootNamespace>mega_menu</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.3.8500.296" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.3.8500.296" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.3.8500.296" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.3.8500.296" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.3.8500.296" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.3.8522.83" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.3.8522.83" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.3.8522.83" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.3.8522.83" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.3.8522.83" />
   </ItemGroup>
 </Project>
