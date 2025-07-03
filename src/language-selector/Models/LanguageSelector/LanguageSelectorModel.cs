@@ -1,11 +1,14 @@
+using System;
 using System.Globalization;
+using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using language_selector.Entities.LanguageSelector;
 using language_selector.ViewModels.LanguageSelector;
+using Microsoft.AspNetCore.Http;
 using Progress.Sitefinity.AspNetCore.Web;
 using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.Clients.Pages.Dto;
+using Progress.Sitefinity.RestSdk.Dto;
 
 namespace language_selector.Models.LanguageSelector
 {
@@ -13,56 +16,145 @@ namespace language_selector.Models.LanguageSelector
     {
         private IRequestContext requestContext;
         private IRestClient restClient;
+        private IHttpContextAccessor httpContextAccessor;
 
-        public LanguageSelectorModel(IRequestContext requestContext, IRestClient restClient)
+        public LanguageSelectorModel(IRequestContext requestContext, IRestClient restClient, IHttpContextAccessor httpContextAccessor)
         {
             this.requestContext = requestContext;
             this.restClient = restClient;
+            this.httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<LanguageSelectorViewModel> GetViewModel(LanguageSelectorEntity entity)
         {
-            var cultures = this.requestContext.Site.Cultures;
+            var request = this.httpContextAccessor.HttpContext.Request;
 
             var viewModel = new LanguageSelectorViewModel();
-            var culturePageMap = new Dictionary<string, Task<PageNodeDto>>();
+
             if (this.requestContext.PageNode != null)
             {
-                var batchBuilder = this.restClient.StartBatch();
-                foreach (var culture in cultures)
+
+                string[] pageNodeAvailableLanguages = this.requestContext.PageNode.GetValue<string[]>("AvailableLanguages");
+
+                var detailItem = this.requestContext.Model.DetailItem;
+
+
+                foreach (var language in pageNodeAvailableLanguages)
                 {
-                    var response = batchBuilder.GetItem<PageNodeDto>(new GetItemArgs()
+                    var ci = CultureInfo.GetCultureInfo(language);
+
+                    var pageNode = restClient.GetItem<PageNodeDto>(new GetItemArgs()
                     {
                         Id = this.requestContext.PageNode.Id,
                         Provider = this.requestContext.PageNode.Provider,
-                        Culture = culture.Name,
-                    });
-                    culturePageMap.Add(culture.Name, response);
-                }
+                        Culture = language
+                    }).Result;
 
-                await batchBuilder.Execute();
-            }
+                    if (detailItem != null)
+                    {
+                        string[] itemAvailableLanguages = restClient.GetItem<SdkItem>(new GetItemArgs()
+                        {
+                            Id = detailItem.Id,
+                            Provider = detailItem.ProviderName,
+                            Type = detailItem.ItemType,
+                            Fields = new[] { "AvailableLanguages" }
+                        }).Result.GetValue<string[]>("AvailableLanguages");
 
+                        string itemUrl = restClient.GetItem<SdkItem>(new GetItemArgs()
+                        {
+                            Id = detailItem.Id,
+                            Provider = detailItem.ProviderName,
+                            Type = detailItem.ItemType,
+                            Culture = language,
+                            Fields = new[] { "ItemDefaultUrl" }
+                        }).Result.GetValue<string>("ItemDefaultUrl");
 
-            foreach (var culture in cultures)
-            {
-                var ci = CultureInfo.GetCultureInfo(culture.Name);
-                var entry = new LanguageEntry()
-                {
-                    Name = ci.EnglishName,
-                    Value = ci.Name,
-                    Selected = ci.Name == this.requestContext.Culture.Name
-                };
+                        var entry = new LanguageEntry()
+                        {
+                            Name = ci.EnglishName,
+                            Value = ci.Name,
+                            Selected = ci.Name == this.requestContext.Culture.Name,
+                            PageUrl = pageNode.ViewUrl + itemUrl
+                        };
 
-                if (culturePageMap.TryGetValue(culture.Name, out Task<PageNodeDto> task))
-                {
-                    entry.PageUrl = task.Result.ViewUrl;
-                }
+                        viewModel.Languages.Add(entry);
 
-                viewModel.Languages.Add(entry);
+                    }
+                    else if (request.QueryString.HasValue)
+                    {
+                        var query = request.Query;
+
+                        if (query.Keys.Contains("indexCatalogue"))
+                        {
+                            string resolvedQueryParams = this.ResolveQueryParams(request.QueryString.Value, language);
+
+                            var entry = new LanguageEntry()
+                            {
+                                Name = ci.EnglishName,
+                                Value = ci.Name,
+                                Selected = ci.Name == this.requestContext.Culture.Name,
+                                PageUrl = pageNode.ViewUrl + resolvedQueryParams
+                            };
+
+                            viewModel.Languages.Add(entry);
+                        }
+                        else
+                        {
+                            var entry = new LanguageEntry()
+                            {
+                                Name = ci.EnglishName,
+                                Value = ci.Name,
+                                Selected = ci.Name == this.requestContext.Culture.Name,
+                                PageUrl = pageNode.ViewUrl
+                            };
+
+                            viewModel.Languages.Add(entry);
+                        }
+                    }
+                    else
+                    {
+                        var entry = new LanguageEntry()
+                        {
+                            Name = ci.EnglishName,
+                            Value = ci.Name,
+                            Selected = ci.Name == this.requestContext.Culture.Name,
+                            PageUrl = pageNode.ViewUrl
+                        };
+
+                        viewModel.Languages.Add(entry);
+                    }
+                }   
             }
 
             return viewModel;
+        }
+
+        private string ResolveQueryParams(string queryString, string language)
+        {
+            if (string.IsNullOrWhiteSpace(queryString))
+                return string.Empty;
+
+            var queryParams = queryString.Split('&');
+            var resolvedParams = new StringBuilder();
+
+            for (int i = 0; i < queryParams.Length; i++)
+            {
+                string param = queryParams[i];
+
+                if (param.StartsWith("sf_culture=", StringComparison.OrdinalIgnoreCase))
+                {
+                    param = "sf_culture=" + language;
+                }
+
+                resolvedParams.Append(param);
+
+                if (i < queryParams.Length - 1)
+                {
+                    resolvedParams.Append('&');
+                }
+            }
+
+            return resolvedParams.ToString();
         }
     }
 }
