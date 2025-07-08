@@ -56,7 +56,7 @@ namespace language_selector.Models.LanguageSelector
                     Selected = ci.Name == this.requestContext.Culture.Name
                 };
 
-                if (culturePageMap.TryGetValue(ci.Name, out Task<PageNodeDto> task))
+                if (culturePageMap.TryGetValue(culture.Name, out Task<PageNodeDto> task))
                 {
                     entry.PageUrl = task.Result.ViewUrl;
                 }
