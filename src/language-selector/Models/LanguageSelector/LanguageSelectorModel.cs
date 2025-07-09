@@ -6,6 +6,7 @@ using language_selector.ViewModels.LanguageSelector;
 using Progress.Sitefinity.AspNetCore.Web;
 using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.Clients.Pages.Dto;
+using System.Linq;
 
 namespace language_selector.Models.LanguageSelector
 {
@@ -23,13 +24,15 @@ namespace language_selector.Models.LanguageSelector
         public async Task<LanguageSelectorViewModel> GetViewModel(LanguageSelectorEntity entity)
         {
             var cultures = this.requestContext.Site.Cultures;
+            var availableLanguages = this.requestContext.PageNode.GetValue<string[]>("AvailableLanguages");
+            var validCultures = cultures.Where(c => availableLanguages.Contains(c.Name));
 
             var viewModel = new LanguageSelectorViewModel();
             var culturePageMap = new Dictionary<string, Task<PageNodeDto>>();
             if (this.requestContext.PageNode != null)
             {
                 var batchBuilder = this.restClient.StartBatch();
-                foreach (var culture in cultures)
+                foreach (var culture in validCultures)
                 {
                     var response = batchBuilder.GetItem<PageNodeDto>(new GetItemArgs()
                     {
@@ -43,8 +46,7 @@ namespace language_selector.Models.LanguageSelector
                 await batchBuilder.Execute();
             }
 
-
-            foreach (var culture in cultures)
+            foreach (var culture in validCultures)
             {
                 var ci = CultureInfo.GetCultureInfo(culture.Name);
                 var entry = new LanguageEntry()
