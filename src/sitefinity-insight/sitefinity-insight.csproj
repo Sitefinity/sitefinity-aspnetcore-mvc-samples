@@ -4,10 +4,10 @@
     <RootNamespace>sitefinity_insight</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.3.8524.63" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.3.8524.63" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.3.8524.63" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.3.8524.63" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.3.8524.63" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.3.8525.7" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.3.8525.7" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.3.8525.7" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.3.8525.7" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.3.8525.7" />
   </ItemGroup>
 </Project>
