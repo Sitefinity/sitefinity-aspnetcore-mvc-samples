@@ -19,6 +19,17 @@ namespace content_selectors.Entities.SelectorDemoUsage
         [Content(Type = KnownContentTypes.Pages, AllowMultipleItemsSelection = false)]
         public MixedContentContext Page { get; set; }
 
+        [Content(
+            Type = KnownContentTypes.Pages,
+            AllowMultipleItemsSelection = true,
+            OpenMultipleItemsSelection = true,
+            ManualSelectionTabTitle = "External URLs",
+            ManualSelectionMainFieldName = "Title",
+            ManualSelectionIconClass = "redirecting-page",
+            ManualSelectionBreadcrumbText ="External URL",
+            ManualSelectionEntityType = typeof(ExternalUrlEntity))]
+        public MixedContentContext PagesWithManualSelection { get; set; }
+
         [Content(Type = "Telerik.Sitefinity.DynamicTypes.Model.Pressreleases.PressRelease")]
         public MixedContentContext PressReleases { get; set; }
 

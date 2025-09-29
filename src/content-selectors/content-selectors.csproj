@@ -1,13 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>content_selectors</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.3.8525.7" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.3.8525.7" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.3.8525.7" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.3.8525.7" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.3.8525.7" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.4.8600.*" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.4.8600.*" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.4.8600.*" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.4.8600.*" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.4.8600.*" />
   </ItemGroup>
 </Project>
