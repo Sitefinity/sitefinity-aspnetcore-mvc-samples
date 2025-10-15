@@ -6,7 +6,7 @@ using custom_section.ViewModels;
 
 namespace custom_section.ViewComponents
 {
-    [SitefinityWidget(Category = WidgetCategory.Layout, Title = "Static section", Section = WidgetSection.EmptySection)]
+    [SitefinityWidget(Category = WidgetCategory.Layout, Title = "Static section")]
     public class StaticSectionViewComponent : ViewComponent
     {
         public IViewComponentResult Invoke(ICompositeViewComponentContext<StaticSectionEntity> context)
