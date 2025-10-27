@@ -5,10 +5,10 @@
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.3.8526.22" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.3.8526.22" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.3.8526.22" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.3.8526.22" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.3.8526.22" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.3.8527.68" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.3.8527.68" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.3.8527.68" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.3.8527.68" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.3.8527.68" />
   </ItemGroup>
 </Project>
