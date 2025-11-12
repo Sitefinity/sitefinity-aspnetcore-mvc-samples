@@ -7,8 +7,8 @@
     <EmbeddedResource Include="Scripts\hello.js" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.3.8527.68" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.3.8527.68" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.3.8527.68" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.4.8621.25" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.4.8621.25" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.4.8621.25" />
   </ItemGroup>
 </Project>
