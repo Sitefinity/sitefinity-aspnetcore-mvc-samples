@@ -28,21 +28,20 @@ namespace language_selector.Models.LanguageSelector
             var culturePageMap = new Dictionary<string, Task<PageNodeDto>>();
             if (this.requestContext.PageNode != null)
             {
-                var batchBuilder = this.restClient.StartBatch();
                 foreach (var culture in cultures)
                 {
-                    var response = batchBuilder.GetItem<PageNodeDto>(new GetItemArgs()
+                    var response = this.restClient.GetItem<PageNodeDto>(new GetItemArgs()
                     {
                         Id = this.requestContext.PageNode.Id,
                         Provider = this.requestContext.PageNode.Provider,
                         Culture = culture.Name,
                     });
+
                     culturePageMap.Add(culture.Name, response);
                 }
-
-                await batchBuilder.Execute();
             }
 
+            await Task.WhenAll(culturePageMap.Values);
 
             foreach (var culture in cultures)
             {
