@@ -34,7 +34,7 @@
 
         string assistantAvatarUrl = string.IsNullOrEmpty(Model.AssistantAvatarUrl) ? cdn.GetUrl("chat-avatar.svg", Model.ProductVersion) : Model.AssistantAvatarUrl;
 
-        @if (Model.DisplayMode == DisplayMode.Inline)
+        @if (Model.DisplayMode == "inline")
         {
             <script type="application/json" class="sf-assistant-widget-data">
                 {
@@ -68,7 +68,7 @@
             </script>
             <div id="@Html.EncodeAttribute(Model.ContainerId)" @Html.BuildAttributes(@Model.Attributes) class="@Html.EncodeAttribute(Model.CssClass)"></div>
         }
-        else if (Model.DisplayMode == DisplayMode.Modal)
+        else if (Model.DisplayMode == "overlay")
         {
             <script type="application/json" class="sf-assistant-widget-data">
                 {

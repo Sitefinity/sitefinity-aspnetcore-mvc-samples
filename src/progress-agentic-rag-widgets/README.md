@@ -31,12 +31,12 @@ The following sample demonstrates how to create a set of custom widgets powered 
     - Log in to the Agentic RAG Dashboard with your credentials.
     - Navigate to Manage account > NUA Keys.
     - Select the option to create a new NUA Key and save it.
-    - Copy the generated key for use in API authentication or SDK configurations. 
+    - Copy the generated key for use in API authentication or SDK configurations.
     - Paste the key in SF: **Advanced Settings -> Agentic RAG -> NUA key**
   - Account Id:
     - Log in to the Agentic RAG Dashboard with your credentials.
     - Navigate to Manage account > Account.
-    - Copy the UID 
+    - Copy the UID
     - Paste the ID in SF: **Advanced Settings -> Agentic RAG -> Account ID**
   - Base URL
     - Log in to the Agentic RAG Dashboard with your credentials.
@@ -56,6 +56,6 @@ The following sample demonstrates how to create a set of custom widgets powered 
       - Paste the key in SF: **Advanced Settings -> Agentic RAG -> Knowledge Boxes -> KnowledgeBoxKey**
 
 ## Setup Assistant settings
-  - AdminApiBaseUrl - 
-  - CdnHostName - assistantcdn.blob.core.windows.net or cdn.assistant.api.sitefinity.cloud
-  - CdnRootFolderRelativePath - dev or prod
+  - AdminApiBaseUrl -
+  - CdnHostName - **assistantcdn.blob.core.windows.net** or **cdn.assistant.api.sitefinity.cloud**
+  - CdnRootFolderRelativePath - **dev** or **prod**

@@ -57,7 +57,7 @@ namespace Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant
         /// <summary>
         /// Gets or sets DisplayMode.
         /// </summary>
-        public DisplayMode DisplayMode { get; set; }
+        public string DisplayMode { get; set; }
 
         /// <summary>
         /// Gets or sets OpeningChatIconUrl.
