@@ -27,8 +27,6 @@ namespace PARAGAssistantWidget.Models.PARAGAssistant
         [Progress.Sitefinity.Renderer.Designers.Attributes.ContentSection("AI assistant", 2)]
         [DisplayName("Search configuration")]
         [Description("A saved set of search settings that the AI assistant uses to find content.")]
-        [DataType(customDataType: KnownFieldTypes.Choices)]
-        [Choice(ServiceUrl = "/Default.GetSearchConfigurations(knowledgeBoxName=\'{0}\')", ServiceCallParameters = "[{ \"knowledgeBoxName\" : \"{0}\"}]")]
         public string ConfigurationName { get; set; }
 
         /// <summary>
