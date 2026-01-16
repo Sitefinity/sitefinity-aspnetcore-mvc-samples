@@ -56,6 +56,6 @@ The following sample demonstrates how to create a set of custom widgets powered 
       - Paste the key in SF: **Advanced Settings -> PARAG -> Knowledge Boxes -> KnowledgeBoxKey**
 
 ## Setup Assistant settings
-  - AdminApiBaseUrl -
-  - CdnHostName - **assistantcdn.blob.core.windows.net** or **cdn.assistant.api.sitefinity.cloud**
-  - CdnRootFolderRelativePath - **dev** or **prod**
+  - AdminApiBaseUrl - https://api.sitefinity.cloud/Version
+  - CdnHostName - **cdn.assistant.api.sitefinity.cloud**
+  - CdnRootFolderRelativePath - **prod**
