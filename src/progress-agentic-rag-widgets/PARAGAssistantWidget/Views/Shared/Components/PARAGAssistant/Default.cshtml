@@ -68,7 +68,7 @@
             </script>
             <div id="@Html.EncodeAttribute(Model.ContainerId)" @Html.BuildAttributes(@Model.Attributes) class="@Html.EncodeAttribute(Model.CssClass)"></div>
         }
-        else if (Model.DisplayMode == "overlay")
+        else if (Model.DisplayMode == "modal")
         {
             <script type="application/json" class="sf-assistant-widget-data">
                 {

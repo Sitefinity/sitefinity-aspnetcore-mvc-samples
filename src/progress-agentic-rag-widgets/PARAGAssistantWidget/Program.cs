@@ -9,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddSitefinity(x => x.CspOptions.CspDelegate = (cspDirectives, httpContext) =>
 {
-    cspDirectives.ScriptSrc += " ";
-    cspDirectives.StyleSrc += " ";
-    cspDirectives.ImgSrc += " ";
+    cspDirectives.ScriptSrc += " assistantcdn.blob.core.windows.net";
+    cspDirectives.StyleSrc += " assistantcdn.blob.core.windows.net";
+    cspDirectives.ImgSrc += " assistantcdn.blob.core.windows.net";
     cspDirectives.FontSrc += " data:";
 });
 builder.Services.AddViewComponentModels();

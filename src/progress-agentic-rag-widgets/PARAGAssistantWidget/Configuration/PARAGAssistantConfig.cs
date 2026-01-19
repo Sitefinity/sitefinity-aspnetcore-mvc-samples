@@ -8,7 +8,7 @@
         /// <summary>
         /// Gets the name of the configuration section.
         /// </summary>
-        public const string SectionName = "PARAGAssistant";
+        public const string SectionName = "SitefinityAssistant";
 
         /// <summary>
         /// Gets or sets the static files CDN host name.
