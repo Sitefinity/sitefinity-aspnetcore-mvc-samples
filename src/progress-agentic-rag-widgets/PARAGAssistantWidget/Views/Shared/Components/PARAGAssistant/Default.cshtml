@@ -21,11 +21,6 @@
     {
         <link rel="stylesheet" type="text/css" href="@cdn.GetUrl("sf-assistant-chat-widget.min.css", Model.ProductVersion)" />
 
-        @if (!string.IsNullOrEmpty(Model.CustomCss))
-        {
-            <link rel="stylesheet" type="text/css" href="@Model.CustomCss" />
-        }
-
         <script src="@cdn.GetUrl("jquery.min.js", Model.ProductVersion)" section-name="Bottom"></script>
         <script src="@cdn.GetUrl("marked.min.js", Model.ProductVersion)" section-name="Bottom"></script>
         <script src="@cdn.GetUrl("parag-chat-service.js", Model.ProductVersion)" section-name="Bottom"></script>
