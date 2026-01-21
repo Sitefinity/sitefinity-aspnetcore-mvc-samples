@@ -8,14 +8,11 @@ using Progress.Sitefinity.AspNetCore.Widgets.Models.ContentList;
 using Progress.Sitefinity.AspNetCore.Widgets.Models.Form;
 using Progress.Sitefinity.AspNetCore.FormWidgets;
 using Progress.Sitefinity.Renderer.Designers;
-using Renderer.Attributes;
-using Renderer.Client;
 using Renderer.Entities.Extends;
 using Renderer.Models;
 using Renderer.Models.Document;
 using Renderer.Models.Extends;
 using Renderer.Models.LanguageSelector;
-using Renderer.Models.NativeChat;
 using Renderer.Models.Testimonial;
 using Renderer.Models.LoginStatus;
 
@@ -33,9 +30,6 @@ builder.Services.AddScoped<IContentListModel, ExtendedContentListModel>();
 builder.Services.AddSingleton<IEntityExtender, EntityExtender<ContentListEntity, ExtendedContentListEntity>>();
 builder.Services.AddScoped<IFormModel, ExtendedFormModel>();
 builder.Services.AddSingleton<IEntityExtender, EntityExtender<FormEntity, ExtendedFormEntity>>();
-builder.Services.AddScoped<INativeChatModel, NativeChatModel>();
-builder.Services.AddSingleton<INativeChatClient, NativeChatClient>();
-builder.Services.AddSingleton<IPropertyConfigurator, ExternalPropertyConfigurator>();
 builder.Services.AddScoped<ILoginStatusModel, LoginStatusModel>();
 
 var app = builder.Build();

@@ -37,7 +37,6 @@ Follow the instructions [here](./RestSDK.md)
 * master-detail - for implementing a custom master/detail navigation from an external data source.
 * mega-menu - for building a complex menu with dropdowns and placing custom/personalized content in those dropdowns.
 * migrate-data-to-cms - how to migrate your external data to the Sitefinity CMS using the C# REST SDK
-* native-chat - for creating a NativeChat widget and binding a dropdown to a custom data source.
 * output-cache - for configuring the output cache per page.
 * quantum - for working with the Quantum sample demo.
 * react-renderer-front-end - for scripting client side react components
