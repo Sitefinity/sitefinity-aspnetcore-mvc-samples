@@ -57,4 +57,3 @@ In Sitefinity, configure the following values under: **Administration → Settin
 | ----------------------------- | -------------------------------------- |
 | **AdminApiBaseUrl**           | `https://api.sitefinity.cloud/Version` |
 | **CdnHostName**               | `cdn.assistant.api.sitefinity.cloud`   |
-| **CdnRootFolderRelativePath** | `prod`                                 |
