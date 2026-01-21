@@ -6,12 +6,16 @@
   <ItemGroup>
     <Compile Remove="client-src\scss\landing-page\**" />
     <Compile Remove="client-src\scss\quantum\**" />
+    <Compile Remove="Controllers\**" />
     <Content Remove="client-src\scss\landing-page\**" />
     <Content Remove="client-src\scss\quantum\**" />
+    <Content Remove="Controllers\**" />
     <EmbeddedResource Remove="client-src\scss\landing-page\**" />
     <EmbeddedResource Remove="client-src\scss\quantum\**" />
+    <EmbeddedResource Remove="Controllers\**" />
     <None Remove="client-src\scss\landing-page\**" />
     <None Remove="client-src\scss\quantum\**" />
+    <None Remove="Controllers\**" />
     <None Remove="Views\Shared\Components\LoginStatus\" />
     <None Remove="ViewModels\LoginStatus\" />
   </ItemGroup>
@@ -20,7 +24,6 @@
     <Folder Include="Entities\Testimonial\" />
     <Folder Include="Models\Testimonial\" />
     <Folder Include="ViewModels\Testimonial\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Entities\StaticSection\" />
     <Folder Include="Views\Shared\Components\StaticSection\" />
     <Folder Include="Entities\MegaMenu\" />
