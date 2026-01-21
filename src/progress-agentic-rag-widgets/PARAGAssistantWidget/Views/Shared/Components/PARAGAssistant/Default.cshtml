@@ -1,4 +1,5 @@
-﻿@using Progress.Sitefinity.AspNetCore
+﻿@using System.Web
+@using Progress.Sitefinity.AspNetCore
 @using Progress.Sitefinity.AspNetCore.Mvc.Rendering
 @using Progress.Sitefinity.AspNetCore.TagHelpers
 @using Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant
@@ -36,32 +37,32 @@
                     "id": "sf-assistant-inline-chat",
                     "display": {
                         "mode": "inline",
-                        "containerId": "@Html.EncodeAttribute(Model.ContainerId)"
+                        "containerId": "@HttpUtility.HtmlAttributeEncode(Model.ContainerId)"
                     },
                     "chat": {
                         "bot": {
-                            "name": "@Html.EncodeAttribute(Model.AssistantDisplayName)",
-                            "avatarUrl": "@Html.EncodeAttribute(assistantAvatarUrl)"
+                            "name": "@HttpUtility.HtmlAttributeEncode(Model.AssistantDisplayName)",
+                            "avatarUrl": "@HttpUtility.HtmlAttributeEncode(assistantAvatarUrl)"
                         },
                         "input": {
                             "supportsMultilineText": true,
-                            "placeholder": "@Html.EncodeAttribute(Model.InputPlaceholder)"
+                            "placeholder": "@HttpUtility.HtmlAttributeEncode(Model.InputPlaceholder)"
                         },
-                        "notice": "@Html.EncodeAttribute(Model.Notice)",
-                        "css": "@Html.EncodeAttribute(Model.CustomCss)"
+                        "notice": "@HttpUtility.HtmlAttributeEncode(Model.Notice)",
+                        "css": "@HttpUtility.HtmlAttributeEncode(Model.CustomCss)"
                     },
                     "serviceSettings": {
-                        "serviceType": "@Html.EncodeAttribute(Model.ChatServiceName)",
-                        "greetingsMessage": "@Html.EncodeAttribute(Model.AssistantGreetingMessage)",
-                        "endpoint": "@Html.EncodeAttribute(Model.ServiceUrl)",
-                        "knowledgeBoxName": "@Html.EncodeAttribute(Model.KnowledgeBoxName)",
-                        "configurationName": "@Html.EncodeAttribute(Model.ConfigurationName)",
+                        "serviceType": "@HttpUtility.HtmlAttributeEncode(Model.ChatServiceName)",
+                        "greetingsMessage": "@HttpUtility.HtmlAttributeEncode(Model.AssistantGreetingMessage)",
+                        "endpoint": "@HttpUtility.HtmlAttributeEncode(Model.ServiceUrl)",
+                        "knowledgeBoxName": "@HttpUtility.HtmlAttributeEncode(Model.KnowledgeBoxName)",
+                        "configurationName": "@HttpUtility.HtmlAttributeEncode(Model.ConfigurationName)",
                         "showSources": "@Model.ShowSources",
                         "showFeedbackButtons": "@Model.ShowFeedback"
                     }
                 }
             </script>
-            <div id="@Html.EncodeAttribute(Model.ContainerId)" @Html.BuildAttributes(@Model.Attributes) class="@Html.EncodeAttribute(Model.CssClass)"></div>
+            <div id="@HttpUtility.HtmlAttributeEncode(Model.ContainerId)" @Html.BuildAttributes(@Model.Attributes) class="@HttpUtility.HtmlAttributeEncode(Model.CssClass)"></div>
         }
         else if (Model.DisplayMode == "modal")
         {
@@ -71,28 +72,28 @@
                     "display": {
                         "mode": "modal",
                         "launcher": {
-                            "openIconUrl":"@Html.EncodeAttribute(Model.OpeningChatIconUrl)",
-                            "closeIconUrl":"@Html.EncodeAttribute(Model.ClosingChatIconUrl)"
+                            "openIconUrl":"@HttpUtility.HtmlAttributeEncode(Model.OpeningChatIconUrl)",
+                            "closeIconUrl":"@HttpUtility.HtmlAttributeEncode(Model.ClosingChatIconUrl)"
                         }
                     },
                     "chat": {
                         "bot": {
-                            "name": "@Html.EncodeAttribute(Model.AssistantDisplayName)",
-                            "avatarUrl": "@Html.EncodeAttribute(assistantAvatarUrl)"
+                            "name": "@HttpUtility.HtmlAttributeEncode(Model.AssistantDisplayName)",
+                            "avatarUrl": "@HttpUtility.HtmlAttributeEncode(assistantAvatarUrl)"
                         },
                         "input": {
                         "supportsMultilineText": true,
-                        "placeholder": "@Html.EncodeAttribute(Model.InputPlaceholder)"
+                        "placeholder": "@HttpUtility.HtmlAttributeEncode(Model.InputPlaceholder)"
                         },
-                        "notice": "@Html.EncodeAttribute(Model.Notice)",
-                        "css": "@Html.EncodeAttribute(Model.CustomCss)"
+                        "notice": "@HttpUtility.HtmlAttributeEncode(Model.Notice)",
+                        "css": "@HttpUtility.HtmlAttributeEncode(Model.CustomCss)"
                     },
                     "serviceSettings": {
-                        "serviceType": "@Html.EncodeAttribute(Model.ChatServiceName)",
-                        "greetingsMessage": "@Html.EncodeAttribute(Model.AssistantGreetingMessage)",
-                        "endpoint": "@Html.EncodeAttribute(Model.ServiceUrl)",
-                        "knowledgeBoxName": "@Html.EncodeAttribute(Model.KnowledgeBoxName)",
-                        "configurationName": "@Html.EncodeAttribute(Model.ConfigurationName)",
+                        "serviceType": "@HttpUtility.HtmlAttributeEncode(Model.ChatServiceName)",
+                        "greetingsMessage": "@HttpUtility.HtmlAttributeEncode(Model.AssistantGreetingMessage)",
+                        "endpoint": "@HttpUtility.HtmlAttributeEncode(Model.ServiceUrl)",
+                        "knowledgeBoxName": "@HttpUtility.HtmlAttributeEncode(Model.KnowledgeBoxName)",
+                        "configurationName": "@HttpUtility.HtmlAttributeEncode(Model.ConfigurationName)",
                         "showSources": "@Model.ShowSources",
                         "showFeedbackButtons": "@Model.ShowFeedback"
                     }
