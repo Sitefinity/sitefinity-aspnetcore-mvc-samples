@@ -56,8 +56,8 @@ namespace Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant
             var sitefinityConfig = httpContext.RequestServices.GetRequiredService<ISitefinityConfig>();
             if (!string.IsNullOrEmpty(sitefinityConfig.WebServiceApiKey))
             {
-                args.AdditionalHeaders.Remove(Constants.Headers.WebServiceApiKey);
-                args.AdditionalHeaders.Add(Constants.Headers.WebServiceApiKey, sitefinityConfig.WebServiceApiKey);
+                args.AdditionalHeaders.Remove("X-SF-APIKEY");
+                args.AdditionalHeaders.Add("X-SF-APIKEY", sitefinityConfig.WebServiceApiKey);
             }
 
             await restClient.Init(args);
