@@ -6,10 +6,10 @@
   <ItemGroup>
     <PackageReference Include="GraphQL.Client" Version="5.1.0" />
     <PackageReference Include="GraphQL.Client.Serializer.Newtonsoft" Version="5.1.0" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.4.8622.28" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.4.8622.28" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.4.8622.28" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.4.8622.28" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.4.8622.28" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.4.8623.117" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.4.8623.117" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.4.8623.117" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.4.8623.117" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.4.8623.117" />
   </ItemGroup>
 </Project>

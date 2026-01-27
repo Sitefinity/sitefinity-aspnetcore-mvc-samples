@@ -4,10 +4,10 @@
     <RootNamespace>resource_package_foundation</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.4.8622.28" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.4.8622.28" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.4.8622.28" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.4.8622.28" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.4.8622.28" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.4.8623.117" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.4.8623.117" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.4.8623.117" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.4.8623.117" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.4.8623.117" />
   </ItemGroup>
 </Project>
