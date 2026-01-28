@@ -15,6 +15,8 @@ using Renderer.Models.Extends;
 using Renderer.Models.LanguageSelector;
 using Renderer.Models.Testimonial;
 using Renderer.Models.LoginStatus;
+using Progress.Sitefinity.AspNetCore.Http.ContentSecurityPolicy;
+using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +25,6 @@ builder.Services.AddScoped<ITestimonialModel, TestimonialModel>();
 builder.Services.AddScoped<IDocumentModel, DocumentModel>();
 builder.Services.AddScoped<IMegaMenuModel, MegaMenuModel>();
 builder.Services.AddScoped<LanguageSelectorModel>();
-builder.Services.AddSitefinity();
 builder.Services.AddViewComponentModels();
 builder.Services.AddFormViewComponentModels();
 builder.Services.AddScoped<IContentListModel, ExtendedContentListModel>();
@@ -31,6 +32,16 @@ builder.Services.AddSingleton<IEntityExtender, EntityExtender<ContentListEntity,
 builder.Services.AddScoped<IFormModel, ExtendedFormModel>();
 builder.Services.AddSingleton<IEntityExtender, EntityExtender<FormEntity, ExtendedFormEntity>>();
 builder.Services.AddScoped<ILoginStatusModel, LoginStatusModel>();
+
+builder.Services.AddSitefinity(x => x.CspOptions.CspDelegate = (cspDirectives, httpContext) =>
+{
+    cspDirectives.StyleSrc += " https://fonts.googleapis.com";
+    cspDirectives.ScriptSrc += " 'unsafe-inline' https://use.fontawesome.com/ https://cdn.jsdelivr.net/ https://maps.googleapis.com";
+    cspDirectives.FontSrc += " https://fonts.gstatic.com";
+    cspDirectives.ConnectSrc += " https://cdn.jsdelivr.net https://maps.googleapis.com/";
+    cspDirectives.FrameSrc += " https://www.youtube.com/";
+    cspDirectives.ImgSrc += " https://www.awwwards.com/ https://maps.gstatic.com https://maps.googleapis.com/";
+});
 
 var app = builder.Build();
 
