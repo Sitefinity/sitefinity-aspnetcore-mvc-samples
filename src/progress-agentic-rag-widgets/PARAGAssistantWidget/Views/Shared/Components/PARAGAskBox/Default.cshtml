@@ -1,0 +1,39 @@
+﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering
+@using Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant
+@inject Progress.Sitefinity.AspNetCore.Web.IRenderContext renderContext
+@inject IPARAGAssistantCDN cdn
+@model PARAGAssistantWidget.Models.PARAGAskBox.PARAGAskBoxViewModel
+
+@if (!string.IsNullOrEmpty(@Model.KnowledgeBoxName))
+{
+    if (renderContext.IsEdit)
+    {
+        <div style="padding: 10px;">
+            <div style="background-color:#dcecf5; padding: 10px; border-radius: 5px;">
+                <p style="margin: 0;">AI ask box is configured.</p>
+                <p style="margin: 0;">Use "Preview" to check widgets's display on the page.</p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="@Model.CssClass"
+             data-sf-search-autocomplete-item-class="@Model.SearchAutocompleteItemClass"
+             data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
+             data-sf-active-class="@Model.ActiveClass"
+             @Html.BuildAttributes(Model.Attributes)>
+            <sf-parag-search-box knowledge-box-name="@Model.KnowledgeBoxName"
+                                 results-page-url="@Model.ResultsPageUrl"
+                                 search-configuration-name="@Model.SearchConfigurationName"
+                                 placeholder="@Model.Placeholder"
+                                 button-label="@Model.ButtonLabel"
+                                 suggestions-label="@Model.SuggestionsLabel"
+                                 suggestions="@Model.Suggestions"
+                                 suggestions-trigger-char-count="3"
+                                 suggestions-service-path="api/default">
+            </sf-parag-search-box>
+        </div>
+
+        <script src="@cdn.GetUrl("sf-parag-search-box.js", Model.ProductVersion)" type="text/javascript" defer></script>
+    }
+}

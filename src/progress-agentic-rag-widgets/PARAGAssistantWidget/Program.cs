@@ -1,3 +1,4 @@
+using PARAGAssistantWidget.Models.PARAGAskBox;
 using PARAGAssistantWidget.Models.PARAGAssistant;
 using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.Configuration;
@@ -19,6 +20,7 @@ builder.Services.AddFormViewComponentModels();
 builder.Services.AddScoped<IPARAGAssistantCDN, PARAGAssistantCDN>();
 builder.Services.AddScoped<IPARAGAssistantModel, PARAGAssistantModel>();
 builder.Services.AddSingleton<IPARAGAssistantClient, PARAGAssistantClient>();
+builder.Services.AddScoped<IPARAGAskBoxModel, PARAGAskBoxModel>();
 
 builder.Services.AddSingleton<PARAGAssistantConfig>((x) =>
 {

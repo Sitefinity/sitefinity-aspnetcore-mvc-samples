@@ -1,5 +1,4 @@
 ﻿using Progress.Sitefinity.AspNetCore.Models;
-using Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant;
 using Progress.Sitefinity.Renderer.Designers;
 using Progress.Sitefinity.Renderer.Designers.Attributes;
 using Progress.Sitefinity.Renderer.Entities.Content;
@@ -14,11 +13,11 @@ namespace PARAGAssistantWidget.Models.PARAGAssistant
         /// Gets or sets the Progress agentic RAG knowledge box identifier.
         /// </summary>
         [Progress.Sitefinity.Renderer.Designers.Attributes.ContentSection("AI assistant", 1)]
-        [DisplayName("Knowledge box")]
-        [Description("A knowledge box is a separate collection of content in Progress Agentic RAG. Select which collection the assistant should use to answer questions.")]
+        [DisplayName("Agentic RAG connection")]
+        [Description("[{\"Type\":1,\"Chunks\":[{\"Value\":\"A connection to a specific knowledge box in Preogress Agentic RAG. Select which connection this widget should use to search and answer questions.\",\"Presentation\":[]}]},{\"Type\":1,\"Chunks\":[{\"Value\":\"Manage connections in \",\"Presentation\":[]},{\"Value\":\"Administration > Progress Agentic Rag connections\",\"Presentation\":[3]}]}]")]
         [DataType(customDataType: KnownFieldTypes.Choices)]
         [Choice(ServiceUrl = "/Default.GetConfiguredKnowledgeBoxes()", ServiceWarningMessage = "No PARAG knowledge boxes are found.")]
-        [Placeholder("Select knowledge box")]
+        [Placeholder("Select connection")]
         public string KnowledgeBoxName { get; set; }
 
         /// <summary>
@@ -26,7 +25,7 @@ namespace PARAGAssistantWidget.Models.PARAGAssistant
         /// </summary>
         [Progress.Sitefinity.Renderer.Designers.Attributes.ContentSection("AI assistant", 2)]
         [DisplayName("Search configuration")]
-        [Description("A saved set of search settings that the AI assistant uses to find content.")]
+        [Description("[{\"Type\":1,\"Chunks\":[{\"Value\":\"A saved set of search settings that the AI uses to find content.\",\"Presentation\":[]}]},{\"Type\":1,\"Chunks\":[{\"Value\":\"Can be found in Progress Agentic Rag portal \",\"Presentation\":[]},{\"Value\":\"Search > Saved configurations\",\"Presentation\":[3]}]}]")]
         public string ConfigurationName { get; set; }
 
         /// <summary>
@@ -70,7 +69,7 @@ namespace PARAGAssistantWidget.Models.PARAGAssistant
         /// </summary>
         [Progress.Sitefinity.Renderer.Designers.Attributes.ContentSection("AI assistant", 7)]
         [DisplayName("Enable visitor feedback")]
-        [Description("If enabled, site visitors can provide feedback on the assistant answers in the chat window.")]
+        [Description("If enabled, site visitors can provide feedback on the assistant's answer in the chat window.")]
         [DefaultValue(true)]
         [DataType(customDataType: KnownFieldTypes.ChipChoice)]
         [Choice("[{\"Title\":\"Yes\",\"Name\":\"Yes\",\"Value\":\"True\",\"Icon\":null},{\"Title\":\"No\",\"Name\":\"No\",\"Value\":\"False\",\"Icon\":null}]")]
