@@ -1,4 +1,4 @@
-﻿namespace PARAGAssistantWidget.Models.PARAGAskBox
+﻿namespace PARAGWidgets.Models.PARAGAskBox
 {
     /// <summary>
     /// Defines model for the AskBox widget.

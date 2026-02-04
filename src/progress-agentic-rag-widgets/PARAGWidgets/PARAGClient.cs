@@ -4,14 +4,14 @@ using Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant.Dto;
 using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.OData;
 
-namespace Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant
+namespace PARAGWidgets
 {
-    internal class PARAGAssistantClient : IPARAGAssistantClient
+    internal class PARAGClient : IPARAGClient
     {
         private readonly IHttpContextAccessor httpAccessor;
-        private readonly ILogger<PARAGAssistantClient> logger;
+        private readonly ILogger<PARAGClient> logger;
 
-        public PARAGAssistantClient(IHttpContextAccessor httpAccessor, ILogger<PARAGAssistantClient> logger)
+        public PARAGClient(IHttpContextAccessor httpAccessor, ILogger<PARAGClient> logger)
         {
             this.httpAccessor = httpAccessor;
             this.logger = logger;

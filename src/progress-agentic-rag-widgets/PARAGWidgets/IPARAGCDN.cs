@@ -1,9 +1,9 @@
-﻿namespace Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant
+﻿namespace PARAGWidgets
 {
     /// <summary>
     /// Provides urls to static files.
     /// </summary>
-    public interface IPARAGAssistantCDN
+    public interface IPARAGCDN
     {
         /// <summary>
         /// Gets the url of a static file.

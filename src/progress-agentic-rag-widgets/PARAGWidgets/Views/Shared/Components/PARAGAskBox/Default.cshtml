@@ -1,8 +1,9 @@
-﻿@using Progress.Sitefinity.AspNetCore.Mvc.Rendering
+﻿@using PARAGWidgets
+@using Progress.Sitefinity.AspNetCore.Mvc.Rendering
 @using Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant
 @inject Progress.Sitefinity.AspNetCore.Web.IRenderContext renderContext
-@inject IPARAGAssistantCDN cdn
-@model PARAGAssistantWidget.Models.PARAGAskBox.PARAGAskBoxViewModel
+@inject IPARAGCDN cdn
+@model PARAGWidgets.Models.PARAGAskBox.PARAGAskBoxViewModel
 
 @if (!string.IsNullOrEmpty(@Model.KnowledgeBoxName))
 {

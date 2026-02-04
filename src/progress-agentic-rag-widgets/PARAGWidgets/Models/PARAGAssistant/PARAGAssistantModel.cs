@@ -6,7 +6,7 @@ using Progress.Sitefinity.Renderer.Entities.Content;
 using Progress.Sitefinity.RestSdk;
 using Progress.Sitefinity.RestSdk.Dto;
 
-namespace PARAGAssistantWidget.Models.PARAGAssistant
+namespace PARAGWidgets.Models.PARAGAssistant
 {
     /// <summary>
     /// The SitefinityAssistantModel class.
@@ -14,7 +14,7 @@ namespace PARAGAssistantWidget.Models.PARAGAssistant
     internal class PARAGAssistantModel : IPARAGAssistantModel
     {
         private readonly IRestClient restClient;
-        private readonly IPARAGAssistantClient assistantClient;
+        private readonly IPARAGClient assistantClient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PARAGAssistantModel"/> class.
@@ -25,7 +25,7 @@ namespace PARAGAssistantWidget.Models.PARAGAssistant
         public PARAGAssistantModel(
             IRestClient restClient,
             ISitefinityConfig config,
-            IPARAGAssistantClient assistantClient)
+            IPARAGClient assistantClient)
         {
             this.restClient = restClient;
             this.assistantClient = assistantClient;

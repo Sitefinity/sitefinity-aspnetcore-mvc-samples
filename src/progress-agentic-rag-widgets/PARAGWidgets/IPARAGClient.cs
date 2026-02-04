@@ -1,8 +1,8 @@
 ﻿using Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant.Dto;
 
-namespace Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant
+namespace PARAGWidgets
 {
-    internal interface IPARAGAssistantClient
+    internal interface IPARAGClient
     {
         Task<VersionInfoDto> GetVersionInfoAsync();
     }

@@ -9,7 +9,7 @@ using Progress.Sitefinity.Renderer.Entities.Content;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace PARAGAssistantWidget.Models.PARAGAskBox
+namespace PARAGWidgets.Models.PARAGAskBox
 {
     /// <summary>
     /// Entity for the AskBox widget.

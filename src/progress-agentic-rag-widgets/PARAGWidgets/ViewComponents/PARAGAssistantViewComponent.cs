@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PARAGAssistantWidget.Models.PARAGAssistant;
+using PARAGWidgets.Models.PARAGAssistant;
 using Progress.Sitefinity.AspNetCore.ViewComponents;
 
-namespace PARAGAssistantWidget.ViewComponents
+namespace PARAGWidgets.ViewComponents
 {
     /// <summary>
     /// The view component for the widget.

@@ -1,7 +1,7 @@
 ﻿using Progress.Sitefinity.AspNetCore.Configuration;
 using Progress.Sitefinity.AspNetCore.Models;
 
-namespace PARAGAssistantWidget.Models.PARAGAskBox
+namespace PARAGWidgets.Models.PARAGAskBox
 {
     /// <summary>
     /// The view model for the AskBox widget.

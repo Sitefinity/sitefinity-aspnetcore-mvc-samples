@@ -1,7 +1,7 @@
 ﻿using Progress.Sitefinity.AspNetCore.ViewComponents;
 using Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant;
 
-namespace PARAGAssistantWidget.Models.PARAGAssistant
+namespace PARAGWidgets.Models.PARAGAssistant
 {
     public interface IPARAGAssistantModel
     {

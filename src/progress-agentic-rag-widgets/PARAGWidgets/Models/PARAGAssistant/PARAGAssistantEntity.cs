@@ -5,7 +5,7 @@ using Progress.Sitefinity.Renderer.Entities.Content;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace PARAGAssistantWidget.Models.PARAGAssistant
+namespace PARAGWidgets.Models.PARAGAssistant
 {
     public class PARAGAssistantEntity
     {

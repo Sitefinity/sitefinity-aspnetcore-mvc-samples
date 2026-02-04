@@ -1,13 +1,13 @@
 ﻿using Progress.Sitefinity.AspNetCore.Configuration;
 
-namespace Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant
+namespace PARAGWidgets
 {
-    public class PARAGAssistantCDN : IPARAGAssistantCDN
+    public class PARAGCDN : IPARAGCDN
     {
         private readonly string hostName;
         private readonly string rootRelativePath;
 
-        public PARAGAssistantCDN(IConfiguration configuration)
+        public PARAGCDN(IConfiguration configuration)
         {
             var config = new PARAGAssistantConfig();
             configuration.Bind(PARAGAssistantConfig.SectionName, config);

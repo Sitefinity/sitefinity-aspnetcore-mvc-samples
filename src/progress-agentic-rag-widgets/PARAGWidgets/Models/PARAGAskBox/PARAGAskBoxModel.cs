@@ -1,5 +1,4 @@
 ﻿using Progress.Sitefinity.AspNetCore.RestSdk;
-using Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant;
 using Progress.Sitefinity.AspNetCore.Widgets.ViewComponents.Common;
 using Progress.Sitefinity.Renderer.Entities.Content;
 using Progress.Sitefinity.RestSdk;
@@ -7,12 +6,12 @@ using Progress.Sitefinity.RestSdk.Clients.Pages.Dto;
 using Progress.Sitefinity.RestSdk.OData;
 using System.Text.Json;
 
-namespace PARAGAssistantWidget.Models.PARAGAskBox
+namespace PARAGWidgets.Models.PARAGAskBox
 {
     internal class PARAGAskBoxModel : IPARAGAskBoxModel
     {
         private readonly IStyleClassesProvider styles;
-        private readonly IPARAGAssistantClient assistantClient;
+        private readonly IPARAGClient assistantClient;
         private IODataRestClient restService;
 
         /// <summary>
@@ -21,7 +20,7 @@ namespace PARAGAssistantWidget.Models.PARAGAskBox
         /// <param name="styles">The style classes provider.</param>
         /// <param name="assistantClient">The Sitefinity Assistant client parameter.</param>
         /// <param name="restService">The client for Sitefinity web services.</param>
-        public PARAGAskBoxModel(IStyleClassesProvider styles, IPARAGAssistantClient assistantClient, IODataRestClient restService)
+        public PARAGAskBoxModel(IStyleClassesProvider styles, IPARAGClient assistantClient, IODataRestClient restService)
         {
             this.styles = styles;
             this.assistantClient = assistantClient;

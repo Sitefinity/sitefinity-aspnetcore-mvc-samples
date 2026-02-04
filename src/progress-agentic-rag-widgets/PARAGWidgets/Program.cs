@@ -1,9 +1,9 @@
-using PARAGAssistantWidget.Models.PARAGAskBox;
-using PARAGAssistantWidget.Models.PARAGAssistant;
+using PARAGWidgets;
+using PARAGWidgets.Models.PARAGAskBox;
+using PARAGWidgets.Models.PARAGAssistant;
 using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.Configuration;
 using Progress.Sitefinity.AspNetCore.FormWidgets;
-using Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +17,9 @@ builder.Services.AddSitefinity(x => x.CspOptions.CspDelegate = (cspDirectives, h
 });
 builder.Services.AddViewComponentModels();
 builder.Services.AddFormViewComponentModels();
-builder.Services.AddScoped<IPARAGAssistantCDN, PARAGAssistantCDN>();
+builder.Services.AddScoped<IPARAGCDN, PARAGCDN>();
 builder.Services.AddScoped<IPARAGAssistantModel, PARAGAssistantModel>();
-builder.Services.AddSingleton<IPARAGAssistantClient, PARAGAssistantClient>();
+builder.Services.AddSingleton<IPARAGClient, PARAGClient>();
 builder.Services.AddScoped<IPARAGAskBoxModel, PARAGAskBoxModel>();
 
 builder.Services.AddSingleton<PARAGAssistantConfig>((x) =>

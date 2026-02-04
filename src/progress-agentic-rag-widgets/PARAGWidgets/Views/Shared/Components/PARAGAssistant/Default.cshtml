@@ -1,10 +1,11 @@
 ﻿@using System.Web
+@using PARAGWidgets
 @using Progress.Sitefinity.AspNetCore
 @using Progress.Sitefinity.AspNetCore.Mvc.Rendering
 @using Progress.Sitefinity.AspNetCore.TagHelpers
 @using Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant
 @model Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant.PARAGAssistantViewModel
-@inject IPARAGAssistantCDN cdn
+@inject IPARAGCDN cdn
 @inject Progress.Sitefinity.AspNetCore.Web.IRenderContext renderContext;
 
 @if (!string.IsNullOrEmpty(Model.KnowledgeBoxName))
