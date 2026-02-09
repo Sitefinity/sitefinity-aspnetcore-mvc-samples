@@ -7,7 +7,7 @@ namespace PARAGWidgets.ViewComponents
     /// <summary>
     /// The view component for the AskBox widget.
     /// </summary>
-    [SitefinityWidget(Title = "PARAG ask box", EmptyIconText = "Set where to seach", Order = 0, Section = "AI search", IconName = "search", EmptyIconAction = EmptyLinkAction.Edit, EmptyIcon = "search")]
+    [SitefinityWidget(Title = "AI ask box", EmptyIconText = "Set where to seach", Order = 0, Section = "AI search", IconName = "search", EmptyIconAction = EmptyLinkAction.Edit, EmptyIcon = "search")]
     [ViewComponent(Name = "PARAGAskBox")]
     public class PARAGAskBoxViewComponent : ViewComponent
     {
