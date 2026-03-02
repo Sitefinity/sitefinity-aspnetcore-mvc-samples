@@ -2,6 +2,7 @@ using PARAGWidgets;
 using PARAGWidgets.Models.PARAGAskBox;
 using PARAGWidgets.Models.PARAGAssistant;
 using PARAGWidgets.Models.PARAGAnswer;
+using PARAGWidgets.Models.PARAGResults;
 using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.Configuration;
 using Progress.Sitefinity.AspNetCore.FormWidgets;
@@ -23,6 +24,7 @@ builder.Services.AddScoped<IPARAGAssistantModel, PARAGAssistantModel>();
 builder.Services.AddSingleton<IPARAGClient, PARAGClient>();
 builder.Services.AddScoped<IPARAGAskBoxModel, PARAGAskBoxModel>();
 builder.Services.AddScoped<IPARAGAnswerModel, PARAGAnswerModel>();
+builder.Services.AddScoped<IPARAGResultsModel, PARAGResultsModel>();
 
 builder.Services.AddSingleton<PARAGAssistantConfig>((x) =>
 {

@@ -6,7 +6,7 @@ using Progress.Sitefinity.RestSdk.OData;
 
 namespace PARAGWidgets
 {
-    internal class PARAGClient : IPARAGClient
+    public class PARAGClient : IPARAGClient
     {
         private readonly IHttpContextAccessor httpAccessor;
         private readonly ILogger<PARAGClient> logger;

@@ -1,3 +1,4 @@
+@addTagHelper *, Progress.Sitefinity.AspNetCore
 @using System.Web
 @using PARAGWidgets
 @using Progress.Sitefinity.AspNetCore
@@ -9,10 +10,10 @@
 
 @if (renderContext.IsEdit)
 {
-    <link rel="stylesheet" type="text/css" href="@cdn.GetUrl("sf-assistant-chat-widget.min.css", Model.ProductVersion)" />
+    <link rel="stylesheet" type="text/css" href="@cdn.GetUrl("sf-assistant-chat-widget.min.css")" />
     <div class="sf-assistant-header @Model.CssClass" @Html.BuildAttributes(Model.Attributes)>
         <div class="sf-header-top">
-            <img src="@(string.IsNullOrEmpty(Model.AssistantAvatarUrl) ? cdn.GetUrl("chat-avatar.svg", Model.ProductVersion) : Model.AssistantAvatarUrl)" class="sf-avatar" alt="AI assistant avatar">
+            <img src="@(string.IsNullOrEmpty(Model.AssistantAvatarUrl) ? cdn.GetUrl("chat-avatar.svg") : Model.AssistantAvatarUrl)" class="sf-avatar" alt="AI assistant avatar">
             <span class="sf-author">@Model.Title</span>
         </div>
         @if (!string.IsNullOrEmpty(Model.SearchedPhraseLabel))
@@ -37,11 +38,11 @@
 }
 else
 {
-    <script src="@cdn.GetUrl("jquery.min.js", Model.ProductVersion)" section-name="Bottom"></script>
-    <script src="@cdn.GetUrl("marked.min.js", Model.ProductVersion)" section-name="Bottom"></script>
-    <script src="@cdn.GetUrl("sf-assistant-chat.js", Model.ProductVersion)" section-name="Bottom"></script>
-    <script src="@cdn.GetUrl("parag-chat-service.js", Model.ProductVersion)" section-name="Bottom"></script>
-    <script src="@cdn.GetUrl("sf-assistant-widget.js", Model.ProductVersion)" section-name="Bottom"></script>
+    <script src="@cdn.GetUrl("jquery.min.js")" section-name="Bottom"></script>
+    <script src="@cdn.GetUrl("marked.min.js")" section-name="Bottom"></script>
+    <script src="@cdn.GetUrl("sf-assistant-chat.js")" section-name="Bottom"></script>
+    <script src="@cdn.GetUrl("parag-chat-service.js")" section-name="Bottom"></script>
+    <script src="@cdn.GetUrl("sf-assistant-widget.js")" section-name="Bottom"></script>
 
     <div id="paragAnswerBox"
          class="@Model.CssClass"
@@ -58,7 +59,7 @@ else
             "chat": {
                 "bot": {
                     "name": "@Html.EncodeAttribute(Model.Title)",
-                    "avatarUrl": "@(string.IsNullOrEmpty(Model.AssistantAvatarUrl) ? cdn.GetUrl("chat-avatar.svg", Model.ProductVersion) : Model.AssistantAvatarUrl)"
+                    "avatarUrl": "@(string.IsNullOrEmpty(Model.AssistantAvatarUrl) ? cdn.GetUrl("chat-avatar.svg") : Model.AssistantAvatarUrl)"
                 },
                 "labels": {
                     "feedbackPromptText": "@Html.EncodeAttribute(Model.Notice)",

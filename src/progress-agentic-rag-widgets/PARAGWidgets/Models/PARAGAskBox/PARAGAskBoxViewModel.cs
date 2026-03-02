@@ -44,11 +44,6 @@ namespace PARAGWidgets.Models.PARAGAskBox
         public string SuggestionsLabel { get; set; }
 
         /// <summary>
-        /// Gets or sets the product version.
-        /// </summary>
-        public string ProductVersion { get; set; }
-
-        /// <summary>
         /// Gets or sets the web services path.
         /// </summary>
         public string WebServicePath { get; set; }

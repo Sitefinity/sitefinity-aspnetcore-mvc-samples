@@ -14,28 +14,23 @@ namespace PARAGWidgets.Models.PARAGAssistant
     internal class PARAGAssistantModel : IPARAGAssistantModel
     {
         private readonly IRestClient restClient;
-        private readonly IPARAGClient assistantClient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PARAGAssistantModel"/> class.
         /// </summary>
         /// <param name="restClient">The restClient parameter.</param>
         /// <param name="config">The Sitefinity configurations.</param>
-        /// <param name="assistantClient">The Sitefinity Assistant client parameter.</param>
         public PARAGAssistantModel(
             IRestClient restClient,
-            ISitefinityConfig config,
-            IPARAGClient assistantClient)
+            ISitefinityConfig config)
         {
             this.restClient = restClient;
-            this.assistantClient = assistantClient;
         }
 
         /// <inheritdoc/>
         public virtual async Task<PARAGAssistantViewModel> GetViewModel(IViewComponentContext<PARAGAssistantEntity> context)
         {
             var entity = context.Entity;
-            var versionInfo = await this.assistantClient.GetVersionInfoAsync();
             var viewModel = new PARAGAssistantViewModel();
             viewModel.KnowledgeBoxName = entity.KnowledgeBoxName;
             viewModel.ConfigurationName = entity.ConfigurationName;
@@ -47,7 +42,6 @@ namespace PARAGWidgets.Models.PARAGAssistant
             viewModel.DisplayMode = entity.DisplayMode;
             viewModel.ChatServiceName = "ProgressARAGChatService";
             viewModel.ServiceUrl = "/parag/";
-            viewModel.ProductVersion = versionInfo?.ProductVersion;
             viewModel.OpeningChatIconUrl = await GetSingleSelectedImageUrlAsync(restClient, entity.OpeningChatIcon);
             viewModel.ClosingChatIconUrl = await GetSingleSelectedImageUrlAsync(restClient, entity.ClosingChatIcon);
             viewModel.ContainerId = entity.ContainerId;

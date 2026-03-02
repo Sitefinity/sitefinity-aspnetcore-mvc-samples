@@ -13,7 +13,6 @@ namespace PARAGWidgets.Models.PARAGAnswer
     internal class PARAGAnswerModel : IPARAGAnswerModel
     {
         private readonly IStyleClassesProvider styles;
-        private readonly IPARAGClient assistantClient;
         private readonly IRestClient restClient;
         private readonly ISitefinityConfig config;
 
@@ -21,13 +20,11 @@ namespace PARAGWidgets.Models.PARAGAnswer
         /// Initializes a new instance of the <see cref="PARAGAnswerModel"/> class.
         /// </summary>
         /// <param name="styles">The style classes provider.</param>
-        /// <param name="assistantClient">The PARAG client.</param>
         /// <param name="restClient">The REST client for retrieving images.</param>
         /// <param name="config">The Sitefinity configurations.</param>
-        public PARAGAnswerModel(IStyleClassesProvider styles, IPARAGClient assistantClient, IRestClient restClient, ISitefinityConfig config)
+        public PARAGAnswerModel(IStyleClassesProvider styles, IRestClient restClient, ISitefinityConfig config)
         {
             this.styles = styles;
-            this.assistantClient = assistantClient;
             this.restClient = restClient;
             this.config = config;
         }
@@ -40,7 +37,6 @@ namespace PARAGWidgets.Models.PARAGAnswer
 
             httpContext.AddVaryByQueryParams(new[] { "searchQuery" });
 
-            var versionInfo = await this.assistantClient.GetVersionInfoAsync();
             var knowledgeBoxName = httpContext.Request.Query["knowledgeBoxName"];
             var searchConfigurationName = httpContext.Request.Query["searchConfigurationName"];
             var searchQuery = httpContext.Request.Query["searchQuery"];
@@ -62,7 +58,6 @@ namespace PARAGWidgets.Models.PARAGAnswer
             viewModel.ExpandAnswerLabel = !string.IsNullOrEmpty(entity.ExpandAnswerLabel) ? entity.ExpandAnswerLabel : "Show more";
             viewModel.CollapseAnswerLabel = !string.IsNullOrEmpty(entity.CollapseAnswerLabel) ? entity.CollapseAnswerLabel : "Show less";
             viewModel.LoadingLabel = !string.IsNullOrEmpty(entity.LoadingLabel) ? entity.LoadingLabel : "Putting together an answer";
-            viewModel.ProductVersion = versionInfo?.ProductVersion;
             viewModel.ServiceUrl = $"/{this.config.WebServicePath}/AgenticRag/";
             viewModel.ConfigName = searchConfigurationName;
             viewModel.KnowledgeBoxName = knowledgeBoxName;

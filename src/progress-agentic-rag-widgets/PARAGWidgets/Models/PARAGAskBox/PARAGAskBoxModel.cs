@@ -13,19 +13,16 @@ namespace PARAGWidgets.Models.PARAGAskBox
     {
         private readonly ISitefinityConfig config;
         private readonly IStyleClassesProvider styles;
-        private readonly IPARAGClient assistantClient;
         private IODataRestClient restService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AskBoxModel"/> class.
         /// </summary>
         /// <param name="styles">The style classes provider.</param>
-        /// <param name="assistantClient">The Sitefinity Assistant client parameter.</param>
         /// <param name="restService">The client for Sitefinity web services.</param>
-        public PARAGAskBoxModel(IStyleClassesProvider styles, IPARAGClient assistantClient, IODataRestClient restService, ISitefinityConfig config)
+        public PARAGAskBoxModel(IStyleClassesProvider styles, IODataRestClient restService, ISitefinityConfig config)
         {
             this.styles = styles;
-            this.assistantClient = assistantClient;
             this.restService = restService;
             this.config = config;
         }
@@ -36,8 +33,6 @@ namespace PARAGWidgets.Models.PARAGAskBox
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
 
-            var versionInfo = await this.assistantClient.GetVersionInfoAsync();
-
             var viewModel = new PARAGAskBoxViewModel();
             viewModel.KnowledgeBoxName = entity.KnowledgeBoxName;
             viewModel.SearchConfigurationName = entity.ConfigurationName;
@@ -45,7 +40,6 @@ namespace PARAGWidgets.Models.PARAGAskBox
             viewModel.Placeholder = entity.Placeholder;
             viewModel.ButtonLabel = entity.ButtonLabel;
             viewModel.SuggestionsLabel = entity.SuggestionsLabel;
-            viewModel.ProductVersion = versionInfo?.ProductVersion;
             viewModel.WebServicePath = $"/{this.config.WebServicePath}";
             viewModel.Attributes = entity.Attributes;
             viewModel.ResultsPageUrl = entity.RedirectPageMode == "redirect" ? await this.GetPageNodeUrl(entity.SearchResultsPage) : null;

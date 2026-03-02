@@ -1,4 +1,6 @@
-﻿@using PARAGWidgets
+﻿@addTagHelper *, Progress.Sitefinity.AspNetCore
+
+@using PARAGWidgets
 @using Progress.Sitefinity.AspNetCore.Configuration
 @using Progress.Sitefinity.AspNetCore.Mvc.Rendering
 @using Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant
@@ -17,7 +19,7 @@
 
     if (!renderContext.IsEdit)
     {
-        <script src="Scripts/AISearchWidgets/ask-box.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
+        <script src="Scripts/ask-box.js" section-name="Bottom" assembly-ref="PARAGWidgets"></script>
     }
 
     <div class="@Model.CssClass"

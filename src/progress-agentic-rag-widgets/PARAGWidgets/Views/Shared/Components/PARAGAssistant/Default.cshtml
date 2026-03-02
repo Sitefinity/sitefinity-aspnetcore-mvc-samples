@@ -21,15 +21,15 @@
     }
     else
     {
-        <link rel="stylesheet" type="text/css" href="@cdn.GetUrl("sf-assistant-chat-widget.min.css", Model.ProductVersion)" />
+        <link rel="stylesheet" type="text/css" href="@cdn.GetUrl("sf-assistant-chat-widget.min.css")" />
 
-        <script src="@cdn.GetUrl("jquery.min.js", Model.ProductVersion)" section-name="Bottom"></script>
-        <script src="@cdn.GetUrl("marked.min.js", Model.ProductVersion)" section-name="Bottom"></script>
-        <script src="@cdn.GetUrl("parag-chat-service.js", Model.ProductVersion)" section-name="Bottom"></script>
-        <script src="@cdn.GetUrl("sf-assistant-chat.js", Model.ProductVersion)" section-name="Bottom"></script>
-        <script src="@cdn.GetUrl("sf-assistant-widget.js", Model.ProductVersion)" section-name="Bottom" defer></script>
+        <script src="@cdn.GetUrl("jquery.min.js")" section-name="Bottom"></script>
+        <script src="@cdn.GetUrl("marked.min.js")" section-name="Bottom"></script>
+        <script src="@cdn.GetUrl("parag-chat-service.js")" section-name="Bottom"></script>
+        <script src="@cdn.GetUrl("sf-assistant-chat.js")" section-name="Bottom"></script>
+        <script src="@cdn.GetUrl("sf-assistant-widget.js")" section-name="Bottom" defer></script>
 
-        string assistantAvatarUrl = string.IsNullOrEmpty(Model.AssistantAvatarUrl) ? cdn.GetUrl("chat-avatar.svg", Model.ProductVersion) : Model.AssistantAvatarUrl;
+        string assistantAvatarUrl = string.IsNullOrEmpty(Model.AssistantAvatarUrl) ? cdn.GetUrl("chat-avatar.svg") : Model.AssistantAvatarUrl;
 
         @if (Model.DisplayMode == "inline")
         {

@@ -2,7 +2,7 @@
 
 namespace PARAGWidgets
 {
-    internal interface IPARAGClient
+    public interface IPARAGClient
     {
         Task<VersionInfoDto> GetVersionInfoAsync();
     }

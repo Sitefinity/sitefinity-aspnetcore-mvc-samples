@@ -45,11 +45,6 @@ namespace Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant
         public string ServiceUrl { get; set; }
 
         /// <summary>
-        /// Gets or sets the product version.
-        /// </summary>
-        public string ProductVersion { get; set; }
-
-        /// <summary>
         /// Gets or sets the chat service name.
         /// </summary>
         public string ChatServiceName { get; set; }

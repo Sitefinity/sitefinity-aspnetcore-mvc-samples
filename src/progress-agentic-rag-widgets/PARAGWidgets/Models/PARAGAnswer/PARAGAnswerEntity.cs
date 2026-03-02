@@ -1,3 +1,4 @@
+using Progress.Sitefinity.AspNetCore;
 using Progress.Sitefinity.AspNetCore.Models;
 using Progress.Sitefinity.AspNetCore.Models.Common;
 using Progress.Sitefinity.AspNetCore.ViewComponents.AttributeConfigurator.Attributes;
@@ -80,7 +81,7 @@ namespace PARAGWidgets.Models.PARAGAnswer
         /// <summary>
         /// Gets or sets the view name for the widget template.
         /// </summary>
-        [ContentSection("Display settings", 0)]
+        [ContentSection(Constants.ContentSectionTitles.DisplaySettings, 0)]
         [ViewSelector]
         [DisplayName("AI answer template")]
         [DefaultValue("Default")]
@@ -89,7 +90,7 @@ namespace PARAGWidgets.Models.PARAGAnswer
         /// <summary>
         /// Gets or sets the margins for the widget.
         /// </summary>
-        [ContentSection("Display settings", 1)]
+        [ContentSection(Constants.ContentSectionTitles.DisplaySettings, 1)]
         [DisplayName("Margins")]
         [TableView("AI answer")]
         public MarginStyle Margins { get; set; }
@@ -105,7 +106,7 @@ namespace PARAGWidgets.Models.PARAGAnswer
         /// Gets or sets the searched phrase label.
         /// </summary>
         [Category(PropertyCategory.Advanced)]
-        [ContentSection("Labels &amp; Messages", 0)]
+        [ContentSection(Constants.ContentSectionTitles.LabelsAndMessages, 0)]
         [DefaultValue("Answer for \"{0}\"")]
         [DisplayName("Searched phrase label")]
         public string SearchedPhraseLabel { get; set; }
@@ -114,7 +115,7 @@ namespace PARAGWidgets.Models.PARAGAnswer
         /// Gets or sets the AI notice text.
         /// </summary>
         [Category(PropertyCategory.Advanced)]
-        [ContentSection("Labels &amp; Messages", 1)]
+        [ContentSection(Constants.ContentSectionTitles.LabelsAndMessages, 1)]
         [DefaultValue("AI answer may contain mistakes.")]
         public string Notice { get; set; }
 
@@ -122,7 +123,7 @@ namespace PARAGWidgets.Models.PARAGAnswer
         /// Gets or sets the positive feedback tooltip.
         /// </summary>
         [Category(PropertyCategory.Advanced)]
-        [ContentSection("Labels &amp; Messages", 2)]
+        [ContentSection(Constants.ContentSectionTitles.LabelsAndMessages, 2)]
         [DefaultValue("Helpful")]
         [DisplayName("Positive feedback tooltip")]
         public string PositiveFeedbackTooltip { get; set; }
@@ -131,7 +132,7 @@ namespace PARAGWidgets.Models.PARAGAnswer
         /// Gets or sets the negative feedback tooltip.
         /// </summary>
         [Category(PropertyCategory.Advanced)]
-        [ContentSection("Labels &amp; Messages", 3)]
+        [ContentSection(Constants.ContentSectionTitles.LabelsAndMessages, 3)]
         [DefaultValue("Not helpful")]
         [DisplayName("Negative feedback tooltip")]
         public string NegativeFeedbackTooltip { get; set; }
@@ -140,7 +141,7 @@ namespace PARAGWidgets.Models.PARAGAnswer
         /// Gets or sets the thank you message after feedback.
         /// </summary>
         [Category(PropertyCategory.Advanced)]
-        [ContentSection("Labels &amp; Messages", 4)]
+        [ContentSection(Constants.ContentSectionTitles.LabelsAndMessages, 4)]
         [DefaultValue("Thank you for your feedback!")]
         [DisplayName("Thank you message")]
         public string ThankYouMessage { get; set; }
@@ -149,7 +150,7 @@ namespace PARAGWidgets.Models.PARAGAnswer
         /// Gets or sets the expand answer label.
         /// </summary>
         [Category(PropertyCategory.Advanced)]
-        [ContentSection("Labels &amp; Messages", 5)]
+        [ContentSection(Constants.ContentSectionTitles.LabelsAndMessages, 5)]
         [DefaultValue("Show more")]
         [DisplayName("Expand answer")]
         public string ExpandAnswerLabel { get; set; }
@@ -158,7 +159,7 @@ namespace PARAGWidgets.Models.PARAGAnswer
         /// Gets or sets the collapse answer label.
         /// </summary>
         [Category(PropertyCategory.Advanced)]
-        [ContentSection("Labels &amp; Messages", 6)]
+        [ContentSection(Constants.ContentSectionTitles.LabelsAndMessages, 6)]
         [DefaultValue("Show less")]
         [DisplayName("Collapse answer")]
         public string CollapseAnswerLabel { get; set; }
@@ -167,7 +168,7 @@ namespace PARAGWidgets.Models.PARAGAnswer
         /// Gets or sets the loading text.
         /// </summary>
         [Category(PropertyCategory.Advanced)]
-        [ContentSection("Labels &amp; Messages", 7)]
+        [ContentSection(Constants.ContentSectionTitles.LabelsAndMessages, 7)]
         [DefaultValue("Putting together an answer")]
         [DisplayName("Loading text")]
         public string LoadingLabel { get; set; }
@@ -176,7 +177,7 @@ namespace PARAGWidgets.Models.PARAGAnswer
         /// Gets or sets the custom attributes for the Answer elements.
         /// </summary>
         [Category(PropertyCategory.Advanced)]
-        [ContentSection("Attributes", 0)]
+        [ContentSection(Constants.ContentSectionTitles.Attributes, 0)]
         [DisplayName("Attributes for...")]
         [LengthDependsOn(null, "", "", ExtraRecords = "[{\"Name\": \"Answer\", \"Title\": \"AI answer\"}]")]
         [DataType(customDataType: KnownFieldTypes.Attributes)]

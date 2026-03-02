@@ -68,11 +68,6 @@ namespace PARAGWidgets.Models.PARAGAnswer
         public string LoadingLabel { get; set; }
 
         /// <summary>
-        /// Gets or sets the product version.
-        /// </summary>
-        public string ProductVersion { get; set; }
-
-        /// <summary>
         /// Gets or sets the AI service url.
         /// </summary>
         public string ServiceUrl { get; set; }
