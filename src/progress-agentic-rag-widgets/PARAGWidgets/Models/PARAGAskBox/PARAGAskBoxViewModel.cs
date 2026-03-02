@@ -49,6 +49,11 @@ namespace PARAGWidgets.Models.PARAGAskBox
         public string ProductVersion { get; set; }
 
         /// <summary>
+        /// Gets or sets the web services path.
+        /// </summary>
+        public string WebServicePath { get; set; }
+
+        /// <summary>
         /// Gets or sets the CSS class.
         /// </summary>
         public string CssClass { get; set; }

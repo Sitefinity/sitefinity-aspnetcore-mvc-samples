@@ -1,4 +1,5 @@
-﻿using Progress.Sitefinity.AspNetCore.RestSdk;
+﻿using Progress.Sitefinity.AspNetCore.Configuration;
+using Progress.Sitefinity.AspNetCore.RestSdk;
 using Progress.Sitefinity.AspNetCore.Widgets.ViewComponents.Common;
 using Progress.Sitefinity.Renderer.Entities.Content;
 using Progress.Sitefinity.RestSdk;
@@ -10,6 +11,7 @@ namespace PARAGWidgets.Models.PARAGAskBox
 {
     internal class PARAGAskBoxModel : IPARAGAskBoxModel
     {
+        private readonly ISitefinityConfig config;
         private readonly IStyleClassesProvider styles;
         private readonly IPARAGClient assistantClient;
         private IODataRestClient restService;
@@ -20,11 +22,12 @@ namespace PARAGWidgets.Models.PARAGAskBox
         /// <param name="styles">The style classes provider.</param>
         /// <param name="assistantClient">The Sitefinity Assistant client parameter.</param>
         /// <param name="restService">The client for Sitefinity web services.</param>
-        public PARAGAskBoxModel(IStyleClassesProvider styles, IPARAGClient assistantClient, IODataRestClient restService)
+        public PARAGAskBoxModel(IStyleClassesProvider styles, IPARAGClient assistantClient, IODataRestClient restService, ISitefinityConfig config)
         {
             this.styles = styles;
             this.assistantClient = assistantClient;
             this.restService = restService;
+            this.config = config;
         }
 
         /// <inheritdoc/>
@@ -43,6 +46,7 @@ namespace PARAGWidgets.Models.PARAGAskBox
             viewModel.ButtonLabel = entity.ButtonLabel;
             viewModel.SuggestionsLabel = entity.SuggestionsLabel;
             viewModel.ProductVersion = versionInfo?.ProductVersion;
+            viewModel.WebServicePath = $"/{this.config.WebServicePath}";
             viewModel.Attributes = entity.Attributes;
             viewModel.ResultsPageUrl = entity.RedirectPageMode == "redirect" ? await this.GetPageNodeUrl(entity.SearchResultsPage) : null;
 

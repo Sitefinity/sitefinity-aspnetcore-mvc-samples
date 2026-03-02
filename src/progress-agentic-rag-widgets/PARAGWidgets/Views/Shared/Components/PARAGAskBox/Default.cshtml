@@ -1,40 +1,70 @@
 ﻿@using PARAGWidgets
+@using Progress.Sitefinity.AspNetCore.Configuration
 @using Progress.Sitefinity.AspNetCore.Mvc.Rendering
 @using Progress.Sitefinity.AspNetCore.Widgets.Models.SitefinityAssistant
 @inject Progress.Sitefinity.AspNetCore.Web.IRenderContext renderContext
 @inject IPARAGCDN cdn
 @model PARAGWidgets.Models.PARAGAskBox.PARAGAskBoxViewModel
 
-@if (!string.IsNullOrEmpty(@Model.KnowledgeBoxName))
+@if (!string.IsNullOrEmpty(Model.KnowledgeBoxName))
 {
-    if (renderContext.IsEdit)
+    var suggestionsList = !string.IsNullOrEmpty(Model.Suggestions)
+        ? System.Text.Json.JsonSerializer.Deserialize<string[]>(Model.Suggestions)
+        : new string[0];
+
+    var askBoxTextBoxId = Guid.NewGuid();
+    var askBoxButtonId = Guid.NewGuid();
+
+    if (!renderContext.IsEdit)
     {
-        <div style="padding: 10px;">
-            <div style="background-color:#dcecf5; padding: 10px; border-radius: 5px;">
-                <p style="margin: 0;">AI ask box is configured.</p>
-                <p style="margin: 0;">Use "Preview" to check widgets's display on the page.</p>
-            </div>
-        </div>
+        <script src="Scripts/AISearchWidgets/ask-box.js" section-name="Bottom" assembly-ref="Progress.Sitefinity.AspNetCore.Widgets"></script>
     }
-    else
-    {
-        <div class="@Model.CssClass"
-             data-sf-search-autocomplete-item-class="@Model.SearchAutocompleteItemClass"
-             data-sf-visibility-hidden="@Model.VisibilityClasses[Progress.Sitefinity.AspNetCore.Configuration.VisibilityStyle.Hidden]"
-             data-sf-active-class="@Model.ActiveClass"
-             @Html.BuildAttributes(Model.Attributes)>
-            <sf-parag-search-box knowledge-box-name="@Model.KnowledgeBoxName"
-                                 results-page-url="@Model.ResultsPageUrl"
-                                 search-configuration-name="@Model.SearchConfigurationName"
-                                 placeholder="@Model.Placeholder"
-                                 button-label="@Model.ButtonLabel"
-                                 suggestions-label="@Model.SuggestionsLabel"
-                                 suggestions="@Model.Suggestions"
-                                 suggestions-trigger-char-count="3"
-                                 suggestions-service-path="api/default">
-            </sf-parag-search-box>
+
+    <div class="@Model.CssClass"
+         data-sf-role="askBoxContainer"
+         data-sf-search-autocomplete-item-class="@Model.SearchAutocompleteItemClass"
+         data-sf-visibility-hidden="@Model.VisibilityClasses[VisibilityStyle.Hidden]"
+         data-sf-active-class="@Model.ActiveClass"
+         @Html.BuildAttributes(Model.Attributes)>
+
+        <div class="d-flex gap-3">
+            <label for="@askBoxTextBoxId" class="visually-hidden">Search</label>
+            <input type="text"
+                   class="form-control"
+                   id="@askBoxTextBoxId"
+                   placeholder="@Model.Placeholder"
+                   aria-label="@Model.Placeholder"
+                   value="@(renderContext.IsEdit ? null : Context.Request.Query["searchQuery"].ToString())" />
+            <button type="button" class="btn btn-primary" id="@askBoxButtonId">
+                @Model.ButtonLabel
+            </button>
         </div>
 
-        <script src="@cdn.GetUrl("sf-parag-search-box.js", Model.ProductVersion)" type="text/javascript" defer></script>
-    }
+        @if (!renderContext.IsEdit)
+        {
+            <ul class="border bg-body list-unstyled position-absolute dropdown-menu show d-none" role="listbox" data-sf-role="suggestionsDropdown"></ul>
+        }
+
+        @if (suggestionsList != null && suggestionsList.Length > 0)
+        {
+            <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
+                <span class="text-muted">@Model.SuggestionsLabel</span>
+                @foreach (var suggestion in suggestionsList)
+                {
+                    <button class="badge rounded-pill border-0 text-truncate bg-opacity-10 bg-secondary text-dark fw-normal fs-6 py-2 px-3" tabindex="0" title="@System.Net.WebUtility.HtmlEncode(suggestion)">@System.Net.WebUtility.HtmlEncode(suggestion)</button>
+                }
+            </div>
+        }
+
+        @if (!renderContext.IsEdit)
+        {
+            <input type="hidden" data-sf-role="knowledgeBoxName" value="@Model.KnowledgeBoxName" />
+            <input type="hidden" data-sf-role="searchConfigurationName" value="@Model.SearchConfigurationName" />
+            <input type="hidden" data-sf-role="resultsPageUrl" value="@Model.ResultsPageUrl" />
+            <input type="hidden" data-sf-role="suggestionsTriggerCharCount" value="3" />
+            <input type="hidden" data-sf-role="suggestionsServicePath" value="@Model.WebServicePath" />
+            <input type="hidden" data-sf-role="askBoxTextBoxId" value="@("#" + askBoxTextBoxId)" />
+            <input type="hidden" data-sf-role="askBoxButtonId" value="@("#" + askBoxButtonId)" />
+        }
+    </div>
 }

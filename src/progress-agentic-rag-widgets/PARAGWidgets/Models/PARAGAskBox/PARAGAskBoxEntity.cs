@@ -23,7 +23,7 @@ namespace PARAGWidgets.Models.PARAGAskBox
         /// </summary>
         [ContentSection(SetupSectionName, 0)]
         [DisplayName("Agentic RAG connection")]
-        [Description("[{\"Type\":1,\"Chunks\":[{\"Value\":\"A connection to a specific knowledge box in Preogress Agentic RAG. Select which connection this widget should use to search and answer questions.\",\"Presentation\":[]}]},{\"Type\":1,\"Chunks\":[{\"Value\":\"Manage connections in \",\"Presentation\":[]},{\"Value\":\"Administration > Progress Agentic Rag connections\",\"Presentation\":[3]}]}]")]
+        [Description("[{\"Type\":1,\"Chunks\":[{\"Value\":\"A connection to a specific knowledge box in Progress Agentic RAG. Select which connection this widget should use to search and answer questions.\",\"Presentation\":[]}]},{\"Type\":1,\"Chunks\":[{\"Value\":\"Manage connections in \",\"Presentation\":[]},{\"Value\":\"Administration > Progress Agentic Rag connections\",\"Presentation\":[3]}]}]")]
         [DataType(customDataType: KnownFieldTypes.Choices)]
         [Choice(ServiceUrl = "/Default.GetConfiguredKnowledgeBoxes()", ServiceWarningMessage = "No Agentic RAG connections are found.")]
         [Placeholder("Select connection")]
@@ -72,7 +72,7 @@ namespace PARAGWidgets.Models.PARAGAskBox
         /// </summary>
         [ContentSection(Constants.ContentSectionTitles.DisplaySettings, 0)]
         [ViewSelector]
-        [DisplayName("AI ask box temlate")]
+        [DisplayName("AI ask box template")]
         public string SfViewName { get; set; }
 
         /// <summary>

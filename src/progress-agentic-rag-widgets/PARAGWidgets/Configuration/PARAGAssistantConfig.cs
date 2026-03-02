@@ -14,10 +14,5 @@
         /// Gets or sets the static files CDN host name.
         /// </summary>
         public string CdnHostName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the relative path to the CDN root folder.
-        /// </summary>
-        public string CdnRootFolderRelativePath { get; set; }
     }
 }
