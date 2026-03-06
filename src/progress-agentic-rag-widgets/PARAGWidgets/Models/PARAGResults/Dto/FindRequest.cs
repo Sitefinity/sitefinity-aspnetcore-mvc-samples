@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace PARAGWidgets.Models.PARAGResults.Dto
 {
     /// <summary>
@@ -24,5 +26,10 @@ namespace PARAGWidgets.Models.PARAGResults.Dto
         /// Gets or sets the number of results to return.
         /// </summary>
         public int Take { get; set; }
+
+        /// <summary>
+        /// Gets or sets the response options that control what information is returned in search results.
+        /// </summary>
+        public string[] Show { get; set; }
     }
 }

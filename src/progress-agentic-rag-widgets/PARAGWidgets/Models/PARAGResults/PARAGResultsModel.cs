@@ -1,8 +1,10 @@
-using System.Globalization;
+using AngleSharp.Io;
 using PARAGWidgets.Models.PARAGResults.Dto;
+using Progress.Sitefinity.AspNetCore.Configuration;
 using Progress.Sitefinity.AspNetCore.Widgets.ViewComponents.Common;
 using Progress.Sitefinity.RestSdk;
-using Progress.Sitefinity.RestSdk.OData;
+using System.Globalization;
+using System.Text.Json;
 
 namespace PARAGWidgets.Models.PARAGResults
 {
@@ -14,17 +16,19 @@ namespace PARAGWidgets.Models.PARAGResults
         private const int DefaultLimitItemsCount = 20;
 
         private readonly IStyleClassesProvider styles;
-        private readonly IODataRestClient restClient;
+        private readonly HttpClient httpClient;
+        private readonly ISitefinityConfig config;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PARAGResultsModel"/> class.
         /// </summary>
         /// <param name="styles">The style classes provider.</param>
-        /// <param name="restClient">The OData REST client.</param>
-        public PARAGResultsModel(IStyleClassesProvider styles, IODataRestClient restClient)
+        /// <param name="httpClient">The http client.</param>
+        public PARAGResultsModel(IStyleClassesProvider styles, HttpClient httpClient, ISitefinityConfig config)
         {
             this.styles = styles;
-            this.restClient = restClient;
+            this.httpClient = httpClient;
+            this.config = config;
         }
 
         /// <inheritdoc/>
@@ -114,7 +118,8 @@ namespace PARAGWidgets.Models.PARAGResults
             {
                 KnowledgeBoxName = knowledgeBoxName,
                 Query = searchQuery,
-                Take = 200
+                Take = 200,
+                Show = new[] { "basic", "values", "origin" }
             };
 
             if (!string.IsNullOrEmpty(searchConfigurationName))
@@ -122,13 +127,19 @@ namespace PARAGWidgets.Models.PARAGResults
                 findRequest.ConfigurationName = searchConfigurationName;
             }
 
-            var args = new BoundActionArgs
-            {
-                Name = "AgenticRag/find",
-                Data = findRequest
-            };
+            var baseUrl = this.config.Uri?.ToString().TrimEnd('/');
+            var url = $"{baseUrl}/parag/find";
 
-            return await this.restClient.ExecuteUnboundAction<FindResponse>(args);
+            using var httpRequest = new HttpRequestMessage(System.Net.Http.HttpMethod.Post, url);
+
+            httpRequest.Content = JsonContent.Create(findRequest);
+
+            var response = await this.httpClient.SendAsync(httpRequest);
+
+            return await response.Content.ReadFromJsonAsync<FindResponse>(new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
         }
     }
 }

@@ -58,28 +58,28 @@ else
             },
             "chat": {
                 "bot": {
-                    "name": "@Html.EncodeAttribute(Model.Title)",
+                    "name": "@Html.Raw(HttpUtility.HtmlAttributeEncode(Model.Title))",
                     "avatarUrl": "@(string.IsNullOrEmpty(Model.AssistantAvatarUrl) ? cdn.GetUrl("chat-avatar.svg") : Model.AssistantAvatarUrl)"
                 },
                 "labels": {
-                    "feedbackPromptText": "@Html.EncodeAttribute(Model.Notice)",
-                    "searchedPhraseLabel": "@Html.EncodeAttribute(Model.SearchedPhraseLabel)",
-                    "feedbackYesTooltipText": "@Html.EncodeAttribute(Model.PositiveFeedbackTooltip)",
-                    "feedbackNoTooltipText": "@Html.EncodeAttribute(Model.NegativeFeedbackTooltip)",
-                    "feedbackThanks": "@Html.EncodeAttribute(Model.ThankYouMessage)",
-                    "showMoreLabel": "@Html.EncodeAttribute(Model.ExpandAnswerLabel)",
-                    "showLessLabel": "@Html.EncodeAttribute(Model.CollapseAnswerLabel)",
-                    "loadingLabel": "@Html.EncodeAttribute(Model.LoadingLabel)"
+                    "feedbackPromptText": "@Html.Raw(HttpUtility.HtmlAttributeEncode(Model.Notice))",
+                    "searchedPhraseLabel": "@Html.Raw(HttpUtility.HtmlAttributeEncode(Model.SearchedPhraseLabel))",
+                    "feedbackYesTooltipText": "@Html.Raw(HttpUtility.HtmlAttributeEncode(Model.PositiveFeedbackTooltip))",
+                    "feedbackNoTooltipText": "@Html.Raw(HttpUtility.HtmlAttributeEncode(Model.NegativeFeedbackTooltip))",
+                    "feedbackThanks": "@Html.Raw(HttpUtility.HtmlAttributeEncode(Model.ThankYouMessage))",
+                    "showMoreLabel": "@Html.Raw(HttpUtility.HtmlAttributeEncode(Model.ExpandAnswerLabel))",
+                    "showLessLabel": "@Html.Raw(HttpUtility.HtmlAttributeEncode(Model.CollapseAnswerLabel))",
+                    "loadingLabel": "@Html.Raw(HttpUtility.HtmlAttributeEncode(Model.LoadingLabel))"
                 }
             },
             "serviceSettings": {
                 "serviceType": "ProgressARAGChatService",
-                "endpoint": "@Html.EncodeAttribute(Model.ServiceUrl)",
-                "knowledgeBoxName": "@Html.EncodeAttribute(Model.KnowledgeBoxName)",
-                "configurationName": "@Html.EncodeAttribute(Model.ConfigName)",
+                "endpoint": "@Html.Raw(HttpUtility.HtmlAttributeEncode(Model.ServiceUrl))",
+                "knowledgeBoxName": "@Html.Raw(HttpUtility.HtmlAttributeEncode(Model.KnowledgeBoxName))",
+                "configurationName": "@Html.Raw(HttpUtility.HtmlAttributeEncode(Model.ConfigName))",
                 "showSources": "@Model.ShowSources",
                 "showFeedbackButtons": "@Model.ShowFeedback",
-                "initialPrompt": "@Html.EncodeAttribute(Model.SearchQuery)"
+                "initialPrompt": "@Html.Raw(HttpUtility.HtmlAttributeEncode(Model.SearchQuery))"
             }
         }
     </script>

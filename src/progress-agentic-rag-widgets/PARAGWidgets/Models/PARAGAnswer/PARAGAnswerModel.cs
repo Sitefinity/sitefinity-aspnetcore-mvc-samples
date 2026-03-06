@@ -1,4 +1,3 @@
-using Progress.Sitefinity.AspNetCore.Configuration;
 using Progress.Sitefinity.AspNetCore.RestSdk;
 using Progress.Sitefinity.AspNetCore.Widgets.ViewComponents.Common;
 using Progress.Sitefinity.Renderer.Entities.Content;
@@ -14,19 +13,16 @@ namespace PARAGWidgets.Models.PARAGAnswer
     {
         private readonly IStyleClassesProvider styles;
         private readonly IRestClient restClient;
-        private readonly ISitefinityConfig config;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PARAGAnswerModel"/> class.
         /// </summary>
         /// <param name="styles">The style classes provider.</param>
         /// <param name="restClient">The REST client for retrieving images.</param>
-        /// <param name="config">The Sitefinity configurations.</param>
-        public PARAGAnswerModel(IStyleClassesProvider styles, IRestClient restClient, ISitefinityConfig config)
+        public PARAGAnswerModel(IStyleClassesProvider styles, IRestClient restClient)
         {
             this.styles = styles;
             this.restClient = restClient;
-            this.config = config;
         }
 
         /// <inheritdoc/>
@@ -58,7 +54,7 @@ namespace PARAGWidgets.Models.PARAGAnswer
             viewModel.ExpandAnswerLabel = !string.IsNullOrEmpty(entity.ExpandAnswerLabel) ? entity.ExpandAnswerLabel : "Show more";
             viewModel.CollapseAnswerLabel = !string.IsNullOrEmpty(entity.CollapseAnswerLabel) ? entity.CollapseAnswerLabel : "Show less";
             viewModel.LoadingLabel = !string.IsNullOrEmpty(entity.LoadingLabel) ? entity.LoadingLabel : "Putting together an answer";
-            viewModel.ServiceUrl = $"/{this.config.WebServicePath}/AgenticRag/";
+            viewModel.ServiceUrl = $"/parag/";
             viewModel.ConfigName = searchConfigurationName;
             viewModel.KnowledgeBoxName = knowledgeBoxName;
             viewModel.SearchQuery = searchQuery;
