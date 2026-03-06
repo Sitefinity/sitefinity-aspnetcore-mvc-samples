@@ -4,11 +4,10 @@
 	</PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="Scripts\ask-box.js" />
     <EmbeddedResource Include="Scripts\results.js" />
@@ -20,5 +19,4 @@
     <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.4.8622.28" />
     <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.4.8622.28" />
   </ItemGroup>
-
 </Project>
