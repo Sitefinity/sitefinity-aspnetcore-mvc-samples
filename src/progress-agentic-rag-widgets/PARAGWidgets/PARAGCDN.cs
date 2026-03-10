@@ -21,7 +21,7 @@ namespace PARAGWidgets
 
         public string GetUrl(string filePath)
         {
-            string versionSuffix = string.IsNullOrEmpty(versionInfo.ProductVersion) ? string.Empty : $"?ver={versionInfo.ProductVersion}";
+            string versionSuffix = string.IsNullOrEmpty(versionInfo?.ProductVersion) ? string.Empty : $"?ver={versionInfo.ProductVersion}";
 
             return $"https://{this.hostName}/{filePath}{versionSuffix}";
         }
