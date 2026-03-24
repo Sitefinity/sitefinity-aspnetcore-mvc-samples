@@ -1,8 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-	<PropertyGroup>
-		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-	</PropertyGroup>
-
+  <PropertyGroup>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -12,11 +11,10 @@
     <EmbeddedResource Include="Scripts\ask-box.js" />
     <EmbeddedResource Include="Scripts\results.js" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.4.8622.28" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.4.8622.28" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.4.8622.28" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.4.8622.28" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.4.8627.152" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.4.8627.152" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.4.8627.152" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.4.8627.152" />
   </ItemGroup>
 </Project>
