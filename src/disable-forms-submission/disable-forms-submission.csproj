@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>disable_forms_submission</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.4.8635.111" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.4.8635.111" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.4.8635.111" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.4.8635.111" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.4.8635.111" />
+  </ItemGroup>
+
+</Project>
