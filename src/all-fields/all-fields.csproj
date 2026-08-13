@@ -4,10 +4,10 @@
     <RootNamespace>all_fields</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.4.8634.81" />
-    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.4.8634.81" />
-    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.4.8634.81" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.4.8634.81" />
-    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.4.8634.81" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore" Version="15.4.8635.111" />
+    <PackageReference Include="Progress.Sitefinity.Renderer" Version="15.4.8635.111" />
+    <PackageReference Include="Progress.Sitefinity.RestSdk" Version="15.4.8635.111" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.Widgets" Version="15.4.8635.111" />
+    <PackageReference Include="Progress.Sitefinity.AspNetCore.FormWidgets" Version="15.4.8635.111" />
   </ItemGroup>
 </Project>
