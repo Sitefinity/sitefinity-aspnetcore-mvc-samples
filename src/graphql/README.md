@@ -4,7 +4,7 @@ A widget demonstrating how to setup graphQL service calls with both Sitefinity a
 
 ## For Sitefinity GraphQL
 
-Firstly, you must install the [Progress.Sitefinity.GraphQL](https://nuget.sitefinity.com/#/package/Progress.Sitefinity.GraphQL) nuget package. Follow the documentation for the setup [here](https://www.progress.com/documentation/sitefinity-cms/use-graphql-protocol)
+Firstly, you must install the [Progress.Sitefinity.GraphQL](https://www.nuget.org/packages/Progress.Sitefinity.GraphQL/14.2.7932) nuget package. Follow the documentation for the setup [here](https://www.progress.com/documentation/sitefinity-cms/use-graphql-protocol)
 
 ## For Other GraphQL Services
 
