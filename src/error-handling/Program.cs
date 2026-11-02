@@ -1,5 +1,8 @@
+using System;
+using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -28,7 +31,7 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
 
-    app.UseWhen(context => !context.IsProxyRequest(), appBuilder =>
+    app.UseWhen(context => IsMediaRequest(context) || !context.IsProxyRequest(), appBuilder =>
     {
         appBuilder.UseStatusCodePagesWithReExecute("/error-pages", "?statusCode={0}");
     });
@@ -44,3 +47,14 @@ app.MapRazorPages();
 app.UseSitefinity();
 
 app.Run();
+
+public partial class Program
+{
+    private static bool IsMediaRequest(HttpContext httpContext)
+    {
+        var path = httpContext.Request.Path;
+        return path.HasValue && MediaPaths.Any(x => path.Value.StartsWith(x, StringComparison.Ordinal));
+    }
+
+    private static readonly string[] MediaPaths = ["/images/", "/docs/", "/videos/"];
+}
