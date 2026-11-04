@@ -17,6 +17,8 @@ namespace Renderer.ViewModels.Extends
             this.Rules = source.Rules;
             this.HiddenFields = source.HiddenFields;
             this.Attributes = source.Attributes;
+            this.InvalidClass = source.InvalidClass;
+            this.VisibilityClasses = source.VisibilityClasses;
         }
         public string Heading { get; set; }
     }
